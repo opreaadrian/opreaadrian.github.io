@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+        <title>WebRambler</title>
+        <description>WebRambler - Adrian Oprea</description>
+        <link>http://opreaadrian.github.io</link>
+        <link>http://opreaadrian.github.io</link>
+        <lastBuildDate>2014-11-05T16:18:26+02:00</lastBuildDate>
+        <pubDate>2014-11-05T16:18:26+02:00</pubDate>
+        <ttl>1800</ttl>
+
+
+        <item>
+                <title>First Post</title>
+                <description>&lt;h1 id=&quot;this-is-the-first-post&quot;&gt;This is the first post&lt;/h1&gt;
+</description>
+                <link>http://opreaadrian.github.io/2014/11/05/first-post</link>
+                <guid>http://opreaadrian.github.io/2014/11/05/first-post</guid>
+                <pubDate>2014-11-05T00:00:00+02:00</pubDate>
+        </item>
+
+
+</channel>
+</rss>

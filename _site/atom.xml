@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>WebRambler</title>
+ <link href="http://opreaadrian.github.io/" rel="self"/>
+ <link href="http://opreaadrian.github.io"/>
+ <updated>2014-11-05T16:18:26+02:00</updated>
+ <id>http://opreaadrian.github.io</id>
+ <author>
+   <name>Adrian Oprea</name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>First Post</title>
+   <link href="http://opreaadrian.github.io/2014/11/05/first-post"/>
+   <updated>2014-11-05T00:00:00+02:00</updated>
+   <id>http://opreaadrian.github.io/2014/11/05/first-post</id>
+   <content type="html">&lt;h1 id=&quot;this-is-the-first-post&quot;&gt;This is the first post&lt;/h1&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>
