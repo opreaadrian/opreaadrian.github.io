@@ -1,12 +1,12 @@
 # Site wide configuration
 
-title: Web Ramblings
+title: WEB RAMBLER
 description: "Opinionated blog about JavaScript, life, and everything inbetween."
 logo: # 120x120 px default image used for Twitter summary card
 teaser: false # 400x250 px default teaser image used in image archive grid
 locale:
 url: http://opreaadrian.github.io
-
+# url: http://localhost:4000
 # Jekyll configuration
 
 sass:

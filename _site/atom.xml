@@ -3,13 +3,13 @@
 
     
 
-    <title>Web Ramblings</title>
+    <title>WEB RAMBLER</title>
     <generator uri="https://github.com/jekyll/jekyll">Jekyll v2.4.0</generator>
 		<icon>http://localhost:4000/apple-touch-icon-precomposed.png</icon>
     <subtitle>Opinionated blog about JavaScript, life, and everything inbetween.</subtitle>
     <link href="http://localhost:4000/atom.xml" rel="self"/>
     <link href="http://localhost:4000/" rel="alternate" type="text/html"/>
-    <updated>2014-11-06T01:27:04+02:00</updated>
+    <updated>2014-11-06T01:52:46+02:00</updated>
     <id>http://localhost:4000/</id>
     <author>
 			<name>Adrian Oprea</name>
@@ -21,7 +21,7 @@
     <entry>
         <title>Thoughts on Angular 2.0</title>
         <link href="http://localhost:4000/javascript/thoughts-on-angular-2.0/"/>
-        <updated>2014-11-05T12:00:00+02:00</updated>
+        <updated>2014-11-05T00:00:00+02:00</updated>
         <id>http://localhost:4000/javascript/thoughts-on-angular-2.0</id>
         <author>
 					<name>Adrian Oprea</name>
