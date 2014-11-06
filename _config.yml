@@ -27,6 +27,7 @@ owner:
   google:
     ad-client:
     ad-slot:
+    analytics: UA-32468134-4
   bio:
   avatar: bio-photo.jpg # 160x160 px image for author byline
 disqus-shortname: webrambler
