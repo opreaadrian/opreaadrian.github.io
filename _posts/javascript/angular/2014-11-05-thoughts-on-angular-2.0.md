@@ -3,7 +3,8 @@ layout: article
 title: Thoughts on Angular 2.0
 modified: 2014-11-05 12:00 PM
 summary: This is a summary about how I feel about the new Angular 2.0 syntax, in relation to the WWW, and web standards. This is an opinion that many of my friends who use Angular for their projects share, so I thought it's worth expanding on the subject.
-categories: JavaScript
+categories: JavaScript Angular
+tags: javascript angular2.0
 comments: true
 ---
 

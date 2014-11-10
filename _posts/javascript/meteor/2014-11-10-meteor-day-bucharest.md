@@ -4,6 +4,7 @@ title: Worldwide Meteor Day in Bucharest
 modified: 2014-11-10 1:00 AM
 summary: Impressions from Worldwide Meteor Day, details from the MeteorJS meetup group.
 categories: JavaScript Meteor
+tags: javascript meteorjs meteor meteorday
 comments: true
 ---
 
