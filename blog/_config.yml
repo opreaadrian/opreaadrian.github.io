@@ -1,6 +1,6 @@
 # Site wide configuration
 
-title: CODE SIN(Z)
+title: CODE SIN{Z}
 description: "Opinionated blog about JavaScript, life, and everything inbetween."
 logo: # 120x120 px default image used for Twitter summary card
 teaser: false # 400x250 px default teaser image used in image archive grid

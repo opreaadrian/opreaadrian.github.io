@@ -3,13 +3,13 @@
 
     
 
-    <title>CODE SIN(Z)</title>
+    <title>CODE SIN{Z}</title>
     <generator uri="https://github.com/jekyll/jekyll">Jekyll v2.4.0</generator>
 		<icon>http://blog.codesi.nz/apple-touch-icon-precomposed.png</icon>
     <subtitle>Opinionated blog about JavaScript, life, and everything inbetween.</subtitle>
     <link href="http://blog.codesi.nz/atom.xml" rel="self"/>
     <link href="http://blog.codesi.nz/" rel="alternate" type="text/html"/>
-    <updated>2014-12-11T14:32:45+02:00</updated>
+    <updated>2014-12-11T14:49:37+02:00</updated>
     <id>http://blog.codesi.nz/</id>
     <author>
 			<name>Adrian Oprea</name>
