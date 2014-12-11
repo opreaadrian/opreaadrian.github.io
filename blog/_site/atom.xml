@@ -3,29 +3,29 @@
 
     
 
-    <title>DERAILED WEB</title>
+    <title>CODE SIN(Z)</title>
     <generator uri="https://github.com/jekyll/jekyll">Jekyll v2.4.0</generator>
-		<icon>http://opreaadrian.github.io/apple-touch-icon-precomposed.png</icon>
+		<icon>http://blog.codesi.nz/apple-touch-icon-precomposed.png</icon>
     <subtitle>Opinionated blog about JavaScript, life, and everything inbetween.</subtitle>
-    <link href="http://opreaadrian.github.io/atom.xml" rel="self"/>
-    <link href="http://opreaadrian.github.io/" rel="alternate" type="text/html"/>
-    <updated>2014-11-10T02:14:59+02:00</updated>
-    <id>http://opreaadrian.github.io/</id>
+    <link href="http://blog.codesi.nz/atom.xml" rel="self"/>
+    <link href="http://blog.codesi.nz/" rel="alternate" type="text/html"/>
+    <updated>2014-12-11T14:32:45+02:00</updated>
+    <id>http://blog.codesi.nz/</id>
     <author>
 			<name>Adrian Oprea</name>
-			<uri>http://opreaadrian.github.io/</uri>
+			<uri>http://blog.codesi.nz/</uri>
 			
 		</author>
 
     
     <entry>
         <title>Worldwide Meteor Day in Bucharest</title>
-        <link href="http://opreaadrian.github.io/javascript/meteor/meteor-day-bucharest/"/>
+        <link href="http://blog.codesi.nz/javascript/meteor/meteor-day-bucharest/"/>
         <updated>2014-11-10T00:00:00+02:00</updated>
-        <id>http://opreaadrian.github.io/javascript/meteor/meteor-day-bucharest</id>
+        <id>http://blog.codesi.nz/javascript/meteor/meteor-day-bucharest</id>
         <author>
 					<name>Adrian Oprea</name>
-					<uri>http://opreaadrian.github.io/</uri>
+					<uri>http://blog.codesi.nz/</uri>
 					
 				</author>
         <content type="html">
@@ -59,12 +59,12 @@ In case you are interested about the application, it is called “Votez Pe” �
     
     <entry>
         <title>Thoughts on Angular 2.0</title>
-        <link href="http://opreaadrian.github.io/javascript/thoughts-on-angular-2.0/"/>
+        <link href="http://blog.codesi.nz/javascript/angular/thoughts-on-angular-2.0/"/>
         <updated>2014-11-05T00:00:00+02:00</updated>
-        <id>http://opreaadrian.github.io/javascript/thoughts-on-angular-2.0</id>
+        <id>http://blog.codesi.nz/javascript/angular/thoughts-on-angular-2.0</id>
         <author>
 					<name>Adrian Oprea</name>
-					<uri>http://opreaadrian.github.io/</uri>
+					<uri>http://blog.codesi.nz/</uri>
 					
 				</author>
         <content type="html">
