@@ -2,7 +2,7 @@
 layout: post
 title: "Npm package automation with packo"
 date: 2015-01-17 8:00:00 AM
-categories: node, workflow
+categories: nodejs
 featured_image: /images/posts/automation.jpg
 ---
 
