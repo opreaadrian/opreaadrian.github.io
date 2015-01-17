@@ -60,10 +60,10 @@ The answer for me is YES, and for this exact purpose I built <a href="https://ww
 
 <h2>Reasoning</h2>
 
-<p>While analysing the codebase that I currently work with at the office, I advocated the idea that we should build everything as an npm package, and then just install everything with npm and we&#39;re good to go.
+<p>While analysing the codebase that I currently work with at the office, I advocated the idea that we should rebuild/rething some of our modules as npm packages, and just install them through <code>npm install</code>.
 But given the fact that I work for a company that heavily manipulates sensitive user data, we cannot afford to have all our code published on <a href="http://npmjs.com">npmjs.com</a>, so we hit a roadblock. Fortunately, <a href="https://github.com/npm/npm">npm</a> is open source, so this means that we can configure it to work with an internally-managed repository.
-With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how will they fit nicely into their own modules, until I realised that for each module I&#39;m going to have to create the folder structure,
-the JavaScript files, create the package.json for the module, all of these BY HAND and without having a clear view on what are the best practices. So I took on to investigate the way popular npm packages are structured, so I analysed the top 6 modules on <a href="http://npmjs.com">npmjs.com</a> -- <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> -- to see if I can spot patterns in their structure, and I found that this directory structure is the most commonly used:</p>
+With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how they will fit nicely into their own modules, until I realised that for each of these modules I have to create the folder structure,
+<code>touch</code> the JavaScript files, create the <code>package.json</code>, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 modules on <a href="http://npmjs.com">npmjs.com</a> -- <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> -- and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">module/
     bin/
     doc/
@@ -71,7 +71,8 @@ the JavaScript files, create the package.json for the module, all of these BY HA
     lib/
     test/
 </code></pre></div>
-<p>Besides the basic folder structure, I also added preference files for various tools, but this was more of a personal touch, as I use <a href="http://editorconfig.org/">EditorConfig</a> to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using <a href="http://jshint.com/">JSHint</a> as it is more relaxed, and less opinionated than other tools out there.</p>
+<p>so I made <a href="https://www.npmjs.com/package/packo">packo</a> create this exact directory structure.<br>
+I also added preference files for various tools, but this was more of a personal touch, as I use <a href="http://editorconfig.org/">EditorConfig</a> to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using <a href="http://jshint.com/">JSHint</a> as it is more relaxed, and less opinionated than other tools out there.</p>
 
 <h2>Usage</h2>
 
@@ -101,7 +102,7 @@ author: Adrian Oprea
 license: (ISC)
 About to write to /Users/adrianoprea/Projects/myModule/package.json:
 </code></pre></div>
-<p>After this message, if you hit RETURN, <code>package.json</code> will be generated and you&#39;re all done, your module is available in the <code>myModule</code> directory.</p>
+<p>After this message, if you hit <code>RETURN</code>, <code>package.json</code> will be generated and you&#39;re all done, your module is available in the <code>myModule</code> directory.</p>
 
 <p>More info about how to use packo is available on the project&#39;s npm page, so be sure to check it out: <a href="https://www.npmjs.com/package/packo">https://www.npmjs.com/package/packo</a>.</p>
 

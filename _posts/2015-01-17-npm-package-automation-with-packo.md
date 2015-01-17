@@ -19,10 +19,10 @@ The answer for me is YES, and for this exact purpose I built [packo](https://www
 
 ## Reasoning
 
-While analysing the codebase that I currently work with at the office, I advocated the idea that we should build everything as an npm package, and then just install everything with npm and we're good to go.
+While analysing the codebase that I currently work with at the office, I advocated the idea that we should rebuild/rething some of our modules as npm packages, and just install them through `npm install`.
 But given the fact that I work for a company that heavily manipulates sensitive user data, we cannot afford to have all our code published on [npmjs.com](http://npmjs.com), so we hit a roadblock. Fortunately, [npm](https://github.com/npm/npm) is open source, so this means that we can configure it to work with an internally-managed repository.
-With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how will they fit nicely into their own modules, until I realised that for each module I'm going to have to create the folder structure,
-the JavaScript files, create the package.json for the module, all of these BY HAND and without having a clear view on what are the best practices. So I took on to investigate the way popular npm packages are structured, so I analysed the top 6 modules on [npmjs.com](http://npmjs.com) -- [browserify](https://www.npmjs.com/packages/browserify), [express](https://www.npmjs.com/packages/express), [pm2](https://www.npmjs.com/packages/pm2), [grunt-cli](https://www.npmjs.com/packages/grunt-cli), [npm](https://www.npmjs.com/packages/npm), [karma](https://www.npmjs.com/packages/karma) -- to see if I can spot patterns in their structure, and I found that this directory structure is the most commonly used:
+With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how they will fit nicely into their own modules, until I realised that for each of these modules I have to create the folder structure,
+`touch` the JavaScript files, create the `package.json`, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 modules on [npmjs.com](http://npmjs.com) -- [browserify](https://www.npmjs.com/packages/browserify), [express](https://www.npmjs.com/packages/express), [pm2](https://www.npmjs.com/packages/pm2), [grunt-cli](https://www.npmjs.com/packages/grunt-cli), [npm](https://www.npmjs.com/packages/npm), [karma](https://www.npmjs.com/packages/karma) -- and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:
 
     module/
         bin/
@@ -31,7 +31,8 @@ the JavaScript files, create the package.json for the module, all of these BY HA
         lib/
         test/
   
-Besides the basic folder structure, I also added preference files for various tools, but this was more of a personal touch, as I use [EditorConfig](http://editorconfig.org/) to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using [JSHint](http://jshint.com/) as it is more relaxed, and less opinionated than other tools out there.
+so I made [packo](https://www.npmjs.com/package/packo) create this exact directory structure.  
+I also added preference files for various tools, but this was more of a personal touch, as I use [EditorConfig](http://editorconfig.org/) to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using [JSHint](http://jshint.com/) as it is more relaxed, and less opinionated than other tools out there.
 
 ## Usage
 
@@ -62,7 +63,7 @@ After npm has finished installing it, you're ready to scaffold your first packag
     license: (ISC)
     About to write to /Users/adrianoprea/Projects/myModule/package.json:
 
-After this message, if you hit RETURN, `package.json` will be generated and you're all done, your module is available in the `myModule` directory.
+After this message, if you hit `RETURN`, `package.json` will be generated and you're all done, your module is available in the `myModule` directory.
 
 More info about how to use packo is available on the project's npm page, so be sure to check it out: [https://www.npmjs.com/package/packo](https://www.npmjs.com/package/packo).
 
