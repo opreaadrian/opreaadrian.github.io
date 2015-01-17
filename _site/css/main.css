@@ -62,7 +62,8 @@ blockquote {
 /* Header & Article */
 
 header,
-article {
+article,
+.articles-list {
   display: inline-block;
   vertical-align: top;
   height: 100%;
@@ -76,7 +77,8 @@ article {
 }
 
 @media (max-width: 960px) {
-  article {
+  article,
+  .articles-list {
     display: block;
   }
   .container {
@@ -237,14 +239,14 @@ header ul.meta li span {
     right: 10px;
     bottom: 10px;
     left: 10px;
-  }  
+  }
 }
 
 @media screen and (max-width: 960px){
   .pagination {
     margin-top: 40px;
     padding: 0 10px;
-  }  
+  }
 }
 
 .pagination:after {
@@ -284,30 +286,35 @@ header ul.meta li span {
 
 /* Article */
 
+.articles-list,
 article {
   width: 65%;
   overflow-x: hidden;
 }
 
 
-article .container {
+article .container,
+.articles-list .container {
   padding-top: 80px;
 }
 
 @media (max-width: 960px) {
+  .articles-list,
   article {
     width: 100%;
     overflow: visible;
   }
-  article .container {
+  article .container,
+  .articles-list .container {
     padding: 25px !important;
   }
 }
 
+.articles-list p,
 article p {
   margin-bottom: 1em;
 }
-
+.articles-list li,
 article li {
   margin-left: 3em;
   margin-bottom: 9px;
@@ -315,16 +322,18 @@ article li {
 }
 
 @media (max-width: 960px) {
+  .articles-list li,
   article li {
     margin-left: 0;
   }
 }
 
+.articles-list a,
 article a {
   color: #CE2323;
   text-decoration: none;
 }
-
+.articles-list a:hover,
 article a:hover {
   text-decoration: underline;
 }

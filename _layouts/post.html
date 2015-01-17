@@ -19,7 +19,7 @@ layout: default
           </span>
           {{ page.categories }}
         </li>
-      </ul>      
+      </ul>
     </div>
     <ul class="pagination">
       {% if page.previous.url %}
@@ -40,8 +40,10 @@ layout: default
   </div>
 </header>
 
-<article>
-  <div class="container">
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<meta itemprop="datePublished" content="{{page.date | date_to_xmlschema}}">
+<meta itemprop="keywords" content="{{ page.keywords }}">
+  <section itemprop="articleBody" class="container">
     {{ content }}
-  </div>
+  </section>
 </article>

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>codeSin(s||z)</title>
-  <meta name="viewport" content="width=device-width">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="programming, blog, tutorials, technical, javascript">
+
+  <meta name="author" itemprop="creator" content="Adrian Oprea">
+  <meta name="description" itemprop="description" content="Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.">
 
   <!-- syntax highlighting CSS -->
   <link rel="stylesheet" href="/css/syntax.css">
@@ -36,7 +41,7 @@
           </span>
           nodejs
         </li>
-      </ul>      
+      </ul>
     </div>
     <ul class="pagination">
       
@@ -45,8 +50,10 @@
   </div>
 </header>
 
-<article>
-  <div class="container">
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<meta itemprop="datePublished" content="2015-01-17T08:00:00+02:00">
+<meta itemprop="keywords" content="nodejs, workflow, automation, npm, packages, cli">
+  <section itemprop="articleBody" class="container">
     <p>Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.<br>
 I&#39;m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like <code>import package.*;</code>. </p>
 
@@ -108,7 +115,7 @@ About to write to /Users/adrianoprea/Projects/myModule/package.json:
 
 <p>I really appreciate feedback, so if you have some suggestions, be sure to tweet me -- <a href="https://twitter.com/opreaadrian">@opreaadrian</a>, or get in touch via the <a href="https://github.com/opreaadrian/packo/issues">project&#39;s issues board</a>, on GitHub.</p>
 
-  </div>
+  </section>
 </article>
 
 
