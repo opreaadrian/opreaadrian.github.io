@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>codeSin(s||z)</title>
+  <meta name="viewport" content="width=device-width">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <header style="background-image: url(/images/posts/automation.jpg);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>Npm package automation with packo</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Published
+          </span>
+          17 Jan 2015
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          node,workflow
+        </li>
+      </ul>      
+    </div>
+    <ul class="pagination">
+      
+      
+    </ul>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <p>Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.<br>
+I&#39;m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like <code>import package.*;</code>. </p>
+
+<p>Not to say that NodeJS doesn&#39;t have a similar system, it&#39;s just that we&#39;re using it wrong. 
+We tend to stack functionality in one file, just because &quot;we think&quot; it belongs to that &quot;module&quot;. In fact, the &quot;module&quot; is not a module at all, as in the majority of cases, I found JavaScript files that had a huge, 300+ lines of code function as <code>module.exports</code>, and that would be included in the application using <code>require(&#39;../somefolder/module);</code>.<br>
+To me, this seems like a whole lot of coupling, just because you have to actually &quot;crawl&quot; through the application&#39;s directory structure like that.
+Think what it would be like, to have to include that file in 3 more places, in other areas of the application. 
+If further down the road you decide to refactor the module and place it in a <code>lib/</code> folder, things start to get complicated, as now you have to update all the different paths in the application using the following workflow: open file-&gt;update-&gt;save-&gt;reload application-&gt;check logs/ui for errors.<br>
+Wouldn&#39;t it have been easier to simply type this: <code>require(&#39;my-super-module&#39;);</code>?<br>
+The answer for me is YES, and for this exact purpose I built <a href="https://www.npmjs.com/package/packo">packo</a>, a npm package generator that takes away the work of having to manually create your package&#39;s boilerplate structure, and all of this while keeping best practices in mind. </p>
+
+<h2>Reasoning</h2>
+
+<p>While analysing the codebase that I currently work with at the office, I advocated the idea that we should build everything as an npm package, and then just install everything with npm and we&#39;re good to go.
+But given the fact that I work for a company that heavily manipulates sensitive user data, we cannot afford to have all our code published on <a href="http://npmjs.com">npmjs.com</a>, so we hit a roadblock. Fortunately, <a href="https://github.com/npm/npm">npm</a> is open source, so this means that we can configure it to work with an internally-managed repository.
+With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how will they fit nicely into their own modules, until I realised that for each module I&#39;m going to have to create the folder structure,
+the JavaScript files, create the package.json for the module, all of these BY HAND and without having a clear view on what are the best practices. So I took on to investigate the way popular npm packages are structured, so I analysed the top 6 modules on <a href="http://npmjs.com">npmjs.com</a> -- <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> -- to see if I can spot patterns in their structure, and I found that this directory structure is the most commonly used:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">module/
+    bin/
+    doc/
+    examples/
+    lib/
+    test/
+</code></pre></div>
+<p>Besides the basic folder structure, I also added preference files for various tools, but this was more of a personal touch, as I use <a href="http://editorconfig.org/">EditorConfig</a> to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using <a href="http://jshint.com/">JSHint</a> as it is more relaxed, and less opinionated than other tools out there.</p>
+
+<h2>Usage</h2>
+
+<p>In order to use packo you need to install it globally, so you will need to open a terminal window and type: <code>$ npm install -g packo</code></p>
+
+<p>After npm has finished installing it, you&#39;re ready to scaffold your first package, so navigate to your <code>Projects/</code> folder and run the following command:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ packo --dir=myModule --init
+Successfully created npm package: myModule
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sane defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install &lt;pkg&gt; --save` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+name: (myModule)
+version: (1.0.0)
+description: A test module
+entry point: (index.js)
+test command: npm test
+git repository:
+keywords: test module
+author: Adrian Oprea
+license: (ISC)
+About to write to /Users/adrianoprea/Projects/myModule/package.json:
+</code></pre></div>
+<p>After this message, if you hit RETURN, <code>package.json</code> will be generated and you&#39;re all done, your module is available in the <code>myModule</code> directory.</p>
+
+<p>More info about how to use packo is available on the project&#39;s npm page, so be sure to check it out: <a href="https://www.npmjs.com/package/packo">https://www.npmjs.com/package/packo</a>.</p>
+
+<p>I really appreciate feedback, so if you have some suggestions, be sure to tweet me -- <a href="https://twitter.com/opreaadrian">@opreaadrian</a>, or get in touch via the <a href="https://github.com/opreaadrian/packo/issues">project&#39;s issues board</a>, on GitHub.</p>
+
+  </div>
+</article>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-32468134-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

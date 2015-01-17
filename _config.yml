@@ -1,0 +1,12 @@
+# Site settings
+title: 'codeSin(s||z)' # Your Title
+tagline: 'Of JavaScript, life, and everything inbetween.' # A brief tagline for your site
+sidebar_image: /images/cover.png
+
+# Build settings
+markdown: redcarpet
+highlighter: pygments
+baseurl:  # the subpath of your site, e.g. /blog/
+
+google :
+    analytics : 'UA-32468134-4'
