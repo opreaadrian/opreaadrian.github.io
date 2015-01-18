@@ -63,7 +63,7 @@ blockquote {
 
 header,
 article,
-.articles-list {
+section.article-list {
   display: inline-block;
   vertical-align: top;
   height: 100%;
@@ -78,7 +78,7 @@ article,
 
 @media (max-width: 960px) {
   article,
-  .articles-list {
+  section.article-list {
     display: block;
   }
   .container {
@@ -286,7 +286,7 @@ header ul.meta li span {
 
 /* Article */
 
-.articles-list,
+section.article-list,
 article {
   width: 65%;
   overflow-x: hidden;
@@ -294,27 +294,27 @@ article {
 
 
 article .container,
-.articles-list .container {
+section.article-list .container {
   padding-top: 80px;
 }
 
 @media (max-width: 960px) {
-  .articles-list,
+  section.article-list,
   article {
     width: 100%;
     overflow: visible;
   }
   article .container,
-  .articles-list .container {
+  section.article-list .container {
     padding: 25px !important;
   }
 }
 
-.articles-list p,
+section.article-list p,
 article p {
   margin-bottom: 1em;
 }
-.articles-list li,
+section.article-list li,
 article li {
   margin-left: 3em;
   margin-bottom: 9px;
@@ -322,18 +322,18 @@ article li {
 }
 
 @media (max-width: 960px) {
-  .articles-list li,
+  section.article-list li,
   article li {
     margin-left: 0;
   }
 }
 
-.articles-list a,
+section.article-list a,
 article a {
   color: #CE2323;
   text-decoration: none;
 }
-.articles-list a:hover,
+section.article-list a:hover,
 article a:hover {
   text-decoration: underline;
 }
