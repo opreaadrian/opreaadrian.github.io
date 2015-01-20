@@ -41,7 +41,8 @@ layout: default
 </header>
 
 <article itemscope itemtype="http://schema.org/BlogPosting">
-<meta itemprop="datePublished" content="{{page.date | date_to_xmlschema}}">
+<meta itemprop="datePublished" content="{{page.pubdate | date_to_xmlschema}}">
+<meta itemprop="dateModified" content="{{page.last_modified | date_to_xmlschema}}">
 <meta itemprop="keywords" content="{{ page.keywords }}">
   <section itemprop="articleBody" class="container">
     {{ content }}
