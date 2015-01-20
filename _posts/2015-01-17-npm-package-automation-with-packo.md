@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Npm package automation with packo"
-date: 2015-01-17 8:00:00 AM
+pubdate: 2015-01-17 8:00:00 AM
+last_modified: 2015-01-20 11:30:00 PM
 categories: nodejs
 keywords: nodejs, workflow, automation, npm, packages, cli
 featured_image: /images/posts/automation.jpg
@@ -41,28 +42,27 @@ In order to use packo you need to install it globally, so you will need to open 
 
 After npm has finished installing it, you're ready to scaffold your first package, so navigate to your `Projects/` folder and run the following command:
 
-    $ packo --dir=myModule --init
-    Successfully created npm package: myModule
+    $ packo create awesome-module
     This utility will walk you through creating a package.json file.
     It only covers the most common items, and tries to guess sane defaults.
-    
+
     See `npm help json` for definitive documentation on these fields
     and exactly what they do.
-    
+
     Use `npm install <pkg> --save` afterwards to install a package and
     save it as a dependency in the package.json file.
-    
+
     Press ^C at any time to quit.
-    name: (myModule)
+    name: (awesome-module)
     version: (1.0.0)
-    description: A test module
+    description: Npm package authoring just got better!
     entry point: (index.js)
     test command: npm test
     git repository:
-    keywords: test module
+    keywords: scaffolding, node_modules
     author: Adrian Oprea
-    license: (ISC)
-    About to write to /Users/adrianoprea/Projects/myModule/package.json:
+    license: (ISC) MIT
+    About to write to /Users/adrianoprea/Projects/awesome-module/package.json:
 
 After this message, if you hit `RETURN`, `package.json` will be generated and you're all done, your module is available in the `myModule` directory.
 
