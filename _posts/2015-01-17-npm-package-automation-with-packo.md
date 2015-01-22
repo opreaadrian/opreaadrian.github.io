@@ -26,13 +26,15 @@ But given the fact that I work for a company that heavily manipulates sensitive 
 With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how they will fit nicely into their own modules, until I realised that for each of these modules I have to create the folder structure,
 `touch` the JavaScript files, create the `package.json`, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 modules on [npmjs.com](http://npmjs.com) -- [browserify](https://www.npmjs.com/packages/browserify), [express](https://www.npmjs.com/packages/express), [pm2](https://www.npmjs.com/packages/pm2), [grunt-cli](https://www.npmjs.com/packages/grunt-cli), [npm](https://www.npmjs.com/packages/npm), [karma](https://www.npmjs.com/packages/karma) -- and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:
 
+```
     module/
         bin/
         doc/
         examples/
         lib/
         test/
-  
+```
+
 so I made [packo](https://www.npmjs.com/package/packo) create this exact directory structure.  
 I also added preference files for various tools, but this was more of a personal touch, as I use [EditorConfig](http://editorconfig.org/) to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using [JSHint](http://jshint.com/) as it is more relaxed, and less opinionated than other tools out there.
 
@@ -42,6 +44,7 @@ In order to use packo you need to install it globally, so you will need to open 
 
 After npm has finished installing it, you're ready to scaffold your first package, so navigate to your `Projects/` folder and run the following command:
 
+```text
     $ packo create awesome-module
     This utility will walk you through creating a package.json file.
     It only covers the most common items, and tries to guess sane defaults.
@@ -63,6 +66,7 @@ After npm has finished installing it, you're ready to scaffold your first packag
     author: Adrian Oprea
     license: (ISC) MIT
     About to write to /Users/adrianoprea/Projects/awesome-module/package.json:
+```
 
 After this message, if you hit `RETURN`, `package.json` will be generated and you're all done, your module is available in the `myModule` directory.
 
