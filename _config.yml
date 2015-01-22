@@ -8,6 +8,7 @@ domain_name: 'codesi.nz'
 
 creator :
     name : 'Adrian Oprea'
+    twitter : '@opreaadrian'
 
 # Build settings
 markdown: redcarpet

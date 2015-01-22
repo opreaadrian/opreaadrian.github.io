@@ -17,6 +17,7 @@
 
   <meta property="og:locale" content="en_US" />
 
+
   {% if page.title %}
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{ page.title }}" />
@@ -27,12 +28,29 @@
     <meta property="article:modified_time" content="{{ page.last_modified | date_to_string }} " />
     <link rel="canonical" href="http://{{ site.domain_name }}{{ site.baseurl }}{{ page.url }}">
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{{ page.excerpt | strip_html }}">
+    <meta name="twitter:url" content="http://{{ site.domain_name }}{{ site.baseurl }}{{ page.url }}
+    ">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html }}">
+    <meta name="twitter:image" content="http://{{ site.domain_name }}{{ site.baseurl }}{{ page.featured_image }}">
+
+
   {% else %}
     <meta property="og:type" content="website" />
     <meta property="og:description" content="{{ site.description }}" />
     <meta property="og:title" content="{{ site.title }}" />
     <meta property="og:url" content="http://{{ site.domain_name }}{{ site.baseurl }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{{ site.description }}">
+    <meta name="twitter:url" content="http://{{ site.domain_name }}{{ site.baseurl }}">
+    <meta name="twitter:title" content="{{ site.title }}">
+    <meta name="twitter:description" content="{{ site.description }}">
+    <meta name="twitter:image" content="http://{{ site.domain_name }}{{ site.baseurl }}{{ site.sidebar_image }}">
   {% endif %}
+    <meta name="”twitter:creator”" value="{{ site.creator.twitter }}">
 
   {% if site.google.googleplus %}
     <link rel="author" href="https://plus.google.com/{{ site.google.googleplus }}/">
