@@ -10,7 +10,7 @@ creator :
 
 # Build settings
 markdown: redcarpet
-highlighter_theme: github
+highlighter_theme: tomorrow
 baseurl:  # the subpath of your site, e.g. /blog/
 
 google :

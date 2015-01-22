@@ -11,7 +11,7 @@ featured_image: /images/posts/mistakes.jpg
 Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one...
 
 Most of the times, we thought that we had backend issues, that data wasn't consistent, that God didn't love us that day. We thought so hard that we didn't know what to think. Some of us were using debuggers, but the third time the application failed and the debugger said nothing about it, and there was no console error, nothing, we would fill up the code with `console.log`s. When none of this would work, we would simply relax, as this was something divine, something that us mortals would never understand.  
-The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find it's way into the office.  
+The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find its way into the office.  
 The aforementioned story, has an open end, and you can choose your version from the 3 options below. Enjoy!
 
 ## indexOf()
