@@ -14,15 +14,17 @@ Most of the times, we thought that we had backend issues, that data wasn't consi
 The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find it's way into the office.  
 The aforementioned story, has an open end, and you can choose your version from the 3 options below. Enjoy!
 
-## `indexOf()`
+## indexOf()
 > `Array.indexOf()` and `String.indexOf()`
 
 In order to find if a certain substring exists within a given string, or if a certain key exists within a given array, the go-to method is `indexOf()`.
 
 Let's say that we have the following setup:
-    
+
+```js   
     var myString = 'The quick brown fox jumps over the lazy developer\'s head';
-    
+```
+
 Calling `myString.indexOf('developer');` would give us the index at which the word/substring "developer" is found within the given string, in our case `40`.
 
 Let's say that we have a function that checks whether a certain word is present within a given sentence, and returns true or false based on this verification. Our code would look something like this:
@@ -72,7 +74,8 @@ A better way to do this is to refactor your function to look like the one below:
 ```
 
 
-## `Object.property`/`Object['key']`
+## Checking object properties
+> Object.property/Object['key']
 
 Let's assume that you get a JSON object from an API, that returns error data from an error aggregator based on a certain query, and displays only certain errors. You will obviously need to validate if the error key exists, and display it's value.
 
@@ -137,7 +140,7 @@ I think it is also worth mentioning [Paul Irish's asshole effect](http://vimeo.c
     }
 ```
 
-Key takeaway here, is __NEVER USE `for-in` ON ARRAYS__. Use `for`, `while`, `do...while`, `forEach` and the list goes on.
+Key takeaway here, is __NEVER USE `for...in` ON ARRAYS__. Use `for`, `while`, `do...while`, `forEach` and the list goes on.
 
 I hope the info that I shared here is valuable to developers, especially beginners, and if you know any other "little" mistakes like the ones outlined in this article, please feel free to share them in the comments section, and I might even update the post publish them, for the sake of posterity. 
 

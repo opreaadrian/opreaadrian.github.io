@@ -13,6 +13,7 @@
 
   <!-- syntax highlighting CSS -->
   <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 
   <!-- CSS -->
   <link rel="stylesheet" href="/css/reset.css">
@@ -20,7 +21,8 @@
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
   <!-- Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
   <header style="background-image: url(/images/posts/mistakes.jpg);">
@@ -67,7 +69,7 @@
 The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find it&#39;s way into the office.<br>
 The aforementioned story, has an open end, and you can choose your version from the 3 options below. Enjoy!</p>
 
-<h2><code>indexOf()</code></h2>
+<h2>indexOf()</h2>
 
 <blockquote>
 <p><code>Array.indexOf()</code> and <code>String.indexOf()</code></p>
@@ -76,7 +78,7 @@ The aforementioned story, has an open end, and you can choose your version from 
 <p>In order to find if a certain substring exists within a given string, or if a certain key exists within a given array, the go-to method is <code>indexOf()</code>.</p>
 
 <p>Let&#39;s say that we have the following setup:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">var myString = &#39;The quick brown fox jumps over the lazy developer\&#39;s head&#39;;
+<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">&#39;The quick brown fox jumps over the lazy developer\&#39;s head&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Calling <code>myString.indexOf(&#39;developer&#39;);</code> would give us the index at which the word/substring &quot;developer&quot; is found within the given string, in our case <code>40</code>.</p>
 
@@ -120,7 +122,11 @@ is that <code>indexOf()</code> will return <code>-1</code> inside <code>checkWor
         <span class="p">}</span>
     <span class="p">}</span>
 </code></pre></div>
-<h2><code>Object.property</code>/<code>Object[&#39;key&#39;]</code></h2>
+<h2>Checking object properties</h2>
+
+<blockquote>
+<p>Object.property/Object[&#39;key&#39;]</p>
+</blockquote>
 
 <p>Let&#39;s assume that you get a JSON object from an API, that returns error data from an error aggregator based on a certain query, and displays only certain errors. You will obviously need to validate if the error key exists, and display it&#39;s value.</p>
 
@@ -170,7 +176,7 @@ But when performing a <code>for-in</code> loop, we get the index of the last ele
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span> <span class="c1">// will log &quot;3&quot; and &quot;assholeVar&quot; for all arrays</span>
     <span class="p">}</span>
 </code></pre></div>
-<p>Key takeaway here, is <strong>NEVER USE <code>for-in</code> ON ARRAYS</strong>. Use <code>for</code>, <code>while</code>, <code>do...while</code>, <code>forEach</code> and the list goes on.</p>
+<p>Key takeaway here, is <strong>NEVER USE <code>for...in</code> ON ARRAYS</strong>. Use <code>for</code>, <code>while</code>, <code>do...while</code>, <code>forEach</code> and the list goes on.</p>
 
 <p>I hope the info that I shared here is valuable to developers, especially beginners, and if you know any other &quot;little&quot; mistakes like the ones outlined in this article, please feel free to share them in the comments section, and I might even update the post publish them, for the sake of posterity. </p>
 
@@ -204,5 +210,7 @@ But when performing a <code>for-in</code> loop, we get the index of the last ele
   ga('send', 'pageview');
 
 </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

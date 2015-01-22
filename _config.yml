@@ -10,7 +10,7 @@ creator :
 
 # Build settings
 markdown: redcarpet
-highlighter: pygments
+highlighter_theme: github
 baseurl:  # the subpath of your site, e.g. /blog/
 
 google :
