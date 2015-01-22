@@ -4,6 +4,7 @@ tagline: 'Of JavaScript, life, and everything inbetween.' # A brief tagline for 
 keywords : 'programming, blog, tutorials, technical, javascript'
 description : 'Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.'
 sidebar_image: /images/cover.png
+domain_name: 'codesi.nz'
 
 creator :
     name : 'Adrian Oprea'
