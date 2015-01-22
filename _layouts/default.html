@@ -20,7 +20,7 @@
   {% if page.title %}
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{ page.title }}" />
-    <meta property="og:description" content="{{ page.excerpt }}" />
+    <meta property="og:description" content="{{ page.excerpt | strip_html }}" />
     <meta property="og:image" content="http://{{ site.domain_name }}{{ site.baseurl }}{{ page.featured_image }}" />
     <meta property="og:url" content="http://{{ site.domain_name }}{{ site.baseurl }}{{ page.url }}" />
     <meta property="article:published_time" content="{{ page.pubdate | date_to_string }}" />
