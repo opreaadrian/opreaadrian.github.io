@@ -73,3 +73,6 @@ After this message, if you hit `RETURN`, `package.json` will be generated and yo
 More info about how to use packo is available on the project's npm page, so be sure to check it out: [https://www.npmjs.com/package/packo](https://www.npmjs.com/package/packo).
 
 I really appreciate feedback, so if you have some suggestions, be sure to tweet me -- [@opreaadrian](https://twitter.com/opreaadrian), or get in touch via the [project's issues board](https://github.com/opreaadrian/packo/issues), on GitHub.
+
+
+> Image credits: [Ovagraph](https://flic.kr/p/PFDgo) by [Steve Jurvetson](https://www.flickr.com/photos/jurvetson/)

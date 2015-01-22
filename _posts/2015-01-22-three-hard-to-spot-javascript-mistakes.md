@@ -145,3 +145,5 @@ Key takeaway here, is __NEVER USE `for...in` ON ARRAYS__. Use `for`, `while`, `d
 I hope the info that I shared here is valuable to developers, especially beginners, and if you know any other "little" mistakes like the ones outlined in this article, please feel free to share them in the comments section, and I might even update the post publish them, for the sake of posterity. 
 
 P.S. I had one more, about `i++` but I'll publish that one in an update to this post.
+
+> Image credits: [Some mistake, surely ...](https://flic.kr/p/nrHJrx) by [Tim Green](https://www.flickr.com/photos/atoach/)
