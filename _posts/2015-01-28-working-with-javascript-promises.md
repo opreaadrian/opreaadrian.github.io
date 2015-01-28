@@ -3,7 +3,7 @@ layout: post
 title: "Working with JavaScript promises: practices and mistakes"
 pubdate: 2015-01-28 8:00:00 AM
 last_modified: 2015-01-28 10:00:00 PM
-categories: nodejs
+categories: javascript
 keywords: nodejs, workflow, javascript, promises, async
 featured_image: /images/posts/promises.jpg
 ---
