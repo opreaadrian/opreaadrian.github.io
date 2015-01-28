@@ -2,7 +2,7 @@
 layout: post
 title: "Working with JavaScript promises: practices and mistakes"
 pubdate: 2015-01-28 8:00:00 AM
-last_modified: 2015-01-26 3:30:00 AM
+last_modified: 2015-01-28 10:00:00 PM
 categories: nodejs
 keywords: nodejs, workflow, javascript, promises, async
 featured_image: /images/posts/promises.jpg
@@ -16,7 +16,7 @@ With this post I aim to share some of my practices when it comes to working with
 
 "A promise represents the eventual result of an asynchronous operation. The primary way of interacting with a promise is through its `then` method, which registers callbacks to receive either a promise’s eventual value or the reason why the promise cannot be fulfilled." &mdash; [Promises A+ official spec](https://promisesaplus.com/)
 
-In short, a promise object represents a wrapper around that asynchronous operation(which I sometimes call "task"), that at some point might be "resolved" or "rejected" based on whatever the completion of that operation returns. Upon resolution/rejection, the appropriate callback for the promise's resolution state, registered by the `then` method, will be called with the data/rejection reason.
+In short, a promise object represents a wrapper around that asynchronous operation(which I sometimes call "task"), that at some point might be "resolved" or "rejected" based on whatever the completion of the operation returns. Upon resolution/rejection, the appropriate callback for the promise's resolution state, registered by the `then` method, will be called with the data/rejection reason.
 
 ```javascript
 // app.js
@@ -79,7 +79,7 @@ DataService.prototype.getCustomerDetails = function(customerID) {
 }
 ```
 
-Now, istead of working with promises at our application level, we're moving the promise-handling logic in it's own, `DataService` module, so our application code now looks like this:
+Now, istead of working with promises at our application level, we're moving all the logic related to the DataService in its own, `DataService` module, so our application code now looks like this:
 
 ```javascript
 // app.js
@@ -110,11 +110,12 @@ var deferred = Promise.defer();
 
 I'm really into clean, self-explanatory code so snippets like the one above turn my "you-re-not-respecting-the-styleguide" alarm on.
 
-## Separate handlers
+## Working with multiple promises
 > Do you just `deferred.resolve(data);`? Then why write it 100 times?
 
 Let's say that you use the `DataService.getCustomerDetails` method, along with a `Cart.getCartItems()` method pull in the necessary information for an order.  
-After receiving the info, you need to set the data as properties on the `Order` instance. If all you're doing is `instance.property = returnedData`, why write the `success`/`rejection` callbacks twice? What if you have to add another call/property, do you duplicate the code again? I'm suggesting the following structure, that promotes code reuse.
+After receiving the info, you need to set the data as properties on the `Order` instance. If all you're doing is `this.property = returnedData`, instead of writing 2 separate calls, you can use [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), and use its `success`/`rejection` callbacks instead of having individual callbacks for each promise.  
+This way, if you would have to add a third promise, and set whatever data it returns on the current order, you only need to write 2 lines of code, instead of approx. 6 lines. I'm suggesting the following structure, that promotes code reuse.
 
 ```javascript
 // Note that this will not work currently as support for native Promises in 
@@ -158,7 +159,7 @@ function someAsyncTask(query) {
 }
 ```
 
-Add a case for rejection and always add the rejection callback to your calls. Make sure you also add meaningful messages.
+Add a case for rejection and always add use the rejection callback when using promises. Make sure you also add meaningful messaging, especially when dealing with errors/rejections.
 
 ```javascript
 function someAsyncTask(query) {
@@ -218,10 +219,10 @@ getOrderDetails('ABC123')
 
 The problem with the code above is that only you know how to call the getOrderDetails function. If another developer has to work with your code 3 months from now, he will probably write the `getOrderDetails` call using both success and rejection callbacks, and will probably spend some time figuring out why somewhere along the road his order `amount` is set to 0. Bottom line, please use resolve/reject thoroughly, as reject doesn't necessarily mean CRASH THE PROCESS, or BLOW UP THE APPLICATION. It's just a way of saying that something failed and you should take an action.
 
-## `return` to me
+## Short-cirtuit ? Use `return`.
 
 If by any chance you have to implement a method that takes a deferred as an argument and resolves/rejects it based on data resulting from further processing, you have to rely on `if-else`  statements.  
-In this situation, if you're planning to short-circuit the logic, note that `deferred.resolve()` and `deferred.reject()` don't return the control to their caller, so always use `return` after you resolve/reject(depends on your situation) the promise, as without it, the code will continue to run.
+In this situation, if you're planning to short-circuit the logic, note that `deferred.resolve()` and `deferred.reject()` don't return the control to the caller, so always use `return` after you resolve/reject(depends on your situation) the promise, as without it, the code will continue to run.
 
 ```javascript
 function processData(deferred, input)
