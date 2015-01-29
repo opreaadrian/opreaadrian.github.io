@@ -10,6 +10,9 @@ creator :
     name : 'Adrian Oprea'
     twitter : '@opreaadrian'
 
+gems :
+    - jekyll-sitemap
+
 # Build settings
 markdown: redcarpet
 highlighter_theme: tomorrow
