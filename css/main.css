@@ -354,3 +354,7 @@ ul.posts .meta {
 ul.posts p {
   margin-bottom: 36px;
 }
+
+a.post-author {
+  color: white;
+}

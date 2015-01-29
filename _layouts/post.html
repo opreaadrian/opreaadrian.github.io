@@ -9,6 +9,12 @@ layout: default
       <ul class="meta">
         <li>
           <span>
+            Author
+          </span>
+          <a class="post-author" href="https://twitter.com/{{ page.author_twitter }}">{{ page.author_name }}</a>
+        </li>
+        <li>
+          <span>
             Published
           </span>
           {{ page.pubdate | date_to_string }}
