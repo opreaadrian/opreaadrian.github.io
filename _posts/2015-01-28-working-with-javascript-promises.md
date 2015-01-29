@@ -244,7 +244,7 @@ In the previous code block, if an error occurs and no `return` exists, you will 
 
 ## Libraries
 
-Last but not least, I'll share a list of promise libraries that I really like. All of the implement the [Promises A+ spec](https://promisesaplus.com/implementations).
+Last but not least, I'll share a list of promise libraries that I really like. All of them implement the [Promises A+ spec](https://promisesaplus.com). For a more comprehensive list, check the conformant implementations list at [promisesaplus.com/implementations](https://promisesaplus.com/implementations).
 
 * [when.js](https://github.com/cujojs/when)
 * [Q](https://github.com/kriskowal/q)
