@@ -52,7 +52,7 @@ Let's say that we have a function that checks whether a certain word is present 
     }
 ```
 
-You would think that the piece of code above will say "Programmer not found" but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: `false`, `Null`, `undefined`, `0` and `''`. Nowhere does it say that `-1`, the value that `indexOf()` returns if it does not find anything, will evaluate to false. 
+You would think that the piece of code above will say "Programmer not found" but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: `NaN`, `Null`, `undefined`, `0` and `''`. Nowhere does it say that `-1`, the value that `indexOf()` returns if it does not find anything, will evaluate to false. 
 
 So basically what happens when you say `if (checkWordOccurrenceInSentence('programmer', myString))`
 is that `indexOf()` will return `-1` inside `checkWordOccurrenceInSentence()` and that will be evaluated as `true` and this will be propagated and evaluated in your `if` statement.
