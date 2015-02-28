@@ -152,7 +152,7 @@ The aforementioned story, has an open end, and you can choose your version from 
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Programmer not found&#39;</span><span class="p">);</span>
     <span class="p">}</span>
 </code></pre></div>
-<p>You would think that the piece of code above will say &quot;Programmer not found&quot; but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: <code>false</code>, <code>Null</code>, <code>undefined</code>, <code>0</code> and <code>&#39;&#39;</code>. Nowhere does it say that <code>-1</code>, the value that <code>indexOf()</code> returns if it does not find anything, will evaluate to false. </p>
+<p>You would think that the piece of code above will say &quot;Programmer not found&quot; but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: <code>NaN</code>, <code>Null</code>, <code>undefined</code>, <code>0</code> and <code>&#39;&#39;</code>. Nowhere does it say that <code>-1</code>, the value that <code>indexOf()</code> returns if it does not find anything, will evaluate to false. </p>
 
 <p>So basically what happens when you say <code>if (checkWordOccurrenceInSentence(&#39;programmer&#39;, myString))</code>
 is that <code>indexOf()</code> will return <code>-1</code> inside <code>checkWordOccurrenceInSentence()</code> and that will be evaluated as <code>true</code> and this will be propagated and evaluated in your <code>if</code> statement.</p>
