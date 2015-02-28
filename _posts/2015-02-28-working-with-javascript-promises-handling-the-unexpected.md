@@ -16,7 +16,7 @@ I plan on sharing my experience with promises, especially error-handling, but th
 ## What's an [Error](http://en.wikipedia.org/wiki/Error)
 > The concrete meaning of the Latin word "error" is "wandering" or "straying". [...] an error or a mistake can sometimes be dispelled through knowledge.
 
-So basically an error can be interpreted as a state that can be resolved/repaired by applying corrective action. This is exactly how I feel about JavaScript promises and what error-handling means when working with such a concept.  
+So basically an error can be interpreted as a state that can(sometimes, of course) be resolved/repaired by applying corrective action. This is exactly how I feel about JavaScript promises and what error-handling means when working with such a concept.  
 In my opinion, there are situations or states that involve for example killing the process, and there are other situations that only involve setting some default data if no proper response is given. These cases are to be treated in a different way, as they involve different application states.
 
 ## A pattern for handling the `unexpected` and the `uncaught`
