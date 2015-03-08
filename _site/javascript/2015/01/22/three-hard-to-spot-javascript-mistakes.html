@@ -198,6 +198,30 @@ What if there are no fatal errors for that period, so <code>errorData.fatalError
 </code></pre></div>
 <p>and now you are safe!</p>
 
+<p>EDIT 2015/03/08: As per <a href="https://twitter.com/jacobparker/status/568519846050205696">@jakobparker&#39;s tweet</a> I promised I&#39;ll make an edit and put the information here, so here it goes.<br>
+Use the <code>in</code> operator with caution, as it triggers prototype lookups, and you might get the property that you&#39;re looking for, from another object, further up the prototype chain.</p>
+
+<p>Let&#39;s say you have the following structure:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">+ Object
+  - toString()
+    |
+    + Parent
+        + Child
+</code></pre></div>
+<p>If you do this: <code>var childHasTostringMethod = &#39;toString&#39; in Child;</code> you will see that your variable will be set to <code>true</code> as this will trigger a prototype lookup, that in plain english looks like this: </p>
+
+<p>&mdash; <code>Child</code> do you have a <code>toString</code> property?<br>
+&mdash; No, I don&#39;t!<br>
+&mdash; Okay, I&#39;ll ask your father. [.. walks up the <code>prototype</code>, to ask the <code>Child</code>&#39;s <code>Parent</code>.]<br>
+&mdash; <code>Parent</code> do you have a <code>toString</code> property?<br>
+&mdash; No, I don&#39;t!<br>
+&mdash; Okay, then I guess your parent should have it, otherwise I&#39;ll tell the people who told me to ask you, that it&#39;s <code>undefined</code>.<br>
+- <code>Object</code> do you have a <code>toString</code> property?<br>
+- Yes I do, here it is!<br>
+[FIN]</p>
+
+<p>Bottom line is that if you want to restrict your lookup to the current object and stay safe from prototype lookups, you should use the <code>hasOwnProperty()</code> method, to check if the key you&#39;re looking for is available on your object.</p>
+
 <h2><code>for...in</code> on Array(s)</h2>
 
 <p>I&#39;ll just tell you from the start that this is an EFFIN&#39; bad idea. First of all because in JavaScript it is perfectly okay to have an array like this:</p>

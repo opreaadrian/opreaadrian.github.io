@@ -105,6 +105,31 @@ What if there are no fatal errors for that period, so `errorData.fatalErrorsCoun
 
 and now you are safe!
 
+EDIT 2015/03/08: As per [@jakobparker's tweet](https://twitter.com/jacobparker/status/568519846050205696) I promised I'll make an edit and put the information here, so here it goes.  
+Use the `in` operator with caution, as it triggers prototype lookups, and you might get the property that you're looking for, from another object, further up the prototype chain.
+
+Let's say you have the following structure:
+
+    + Object
+      - toString()
+        |
+        + Parent
+            + Child
+
+If you do this: `var childHasTostringMethod = 'toString' in Child;` you will see that your variable will be set to `true` as this will trigger a prototype lookup, that in plain english looks like this: 
+
+&mdash; `Child` do you have a `toString` property?  
+&mdash; No, I don't!  
+&mdash; Okay, I'll ask your father. [.. walks up the `prototype`, to ask the `Child`'s `Parent`.]  
+&mdash; `Parent` do you have a `toString` property?  
+&mdash; No, I don't!  
+&mdash; Okay, then I guess your parent should have it, otherwise I'll tell the people who told me to ask you, that it's `undefined`.  
+- `Object` do you have a `toString` property?  
+- Yes I do, here it is!  
+[FIN]
+
+Bottom line is that if you want to restrict your lookup to the current object and stay safe from prototype lookups, you should use the `hasOwnProperty()` method, to check if the key you're looking for is available on your object.
+
 ## `for...in` on Array(s)
 
 I'll just tell you from the start that this is an EFFIN' bad idea. First of all because in JavaScript it is perfectly okay to have an array like this:
