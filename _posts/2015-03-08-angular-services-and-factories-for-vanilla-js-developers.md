@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Angular services/factories for vanilla JS developers"
+title: "Angular services and factories for vanilla JS developers"
 pubdate: 2015-03-08 03:00:00 PM
 last_modified: 2015-03-08 03:00:00 PM
 categories: angular
