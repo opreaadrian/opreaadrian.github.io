@@ -7,7 +7,7 @@ categories: inspiration
 author_name: 'Adrian Oprea'
 author_twitter: '@opreaadrian'
 keywords: inspiration, keeping current, tech, documentation, learning
-featured_image: /images/posts/change.jpg
+featured_image: /images/posts/change_alley.jpg
 ---
 
 Whether you're a developer, designer or any type of professional in the tech industry, there's one disease we all fear: *change*. Technologies, tools, languages, techniques ... all of them change literally overnight, sometimes leaving behind disappointed, frustrated people. In this article I plan on describing the actions I take when dealing with the ever changing tech world. 
@@ -80,5 +80,5 @@ I think it's very important to go by at least a small set of rules, and have a s
 ## Closing thoughts
 There are no closing thoughts, and I consider this article as being just my share of the discussion and I'd like to have people share their tools and techniques for staying up to date.
 
-> Image credits: [I'm So Confused!](https://flic.kr/p/9fwoMs) by [Ian Sane](https://www.flickr.com/photos/31246066@N04/)
+> Image credits: [Change Alley sign](https://flic.kr/p/5Py8CH) by [Matt Brown](https://www.flickr.com/photos/londonmatt/)
 
