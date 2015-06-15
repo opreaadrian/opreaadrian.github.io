@@ -72,4 +72,4 @@ The next step would be to manually remove those files, and we're going to rely o
 
 And you're done, you can now commit your changes!
 
-> Image credits: [Ovagraph](https://flic.kr/p/PFDgo) by [Steve Jurvetson](https://www.flickr.com/photos/jurvetson/)
+> Image credits: [Owl](https://flic.kr/p/6AMV1C) by [DIVA007](https://www.flickr.com/photos/23975018@N04/)
