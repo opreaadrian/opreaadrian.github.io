@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/workflow/2015/06/15/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal.html</loc>
+    <lastmod>2015-06-15T00:00:00+03:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>/workflow/2015/06/05/communicating-through-commit-messages.html</loc>
     <lastmod>2015-06-05T00:00:00+03:00</lastmod>
     <priority>0.8</priority>
@@ -37,7 +42,7 @@
   </url>
   <url>
     <loc>/</loc>
-    <lastmod>2015-06-05T16:14:03+03:00</lastmod>
+    <lastmod>2015-06-15T12:48:44+03:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
