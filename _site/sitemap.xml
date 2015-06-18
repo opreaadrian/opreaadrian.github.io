@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/life/2015/06/18/I-hate-full-stack.html</loc>
+    <lastmod>2015-06-18T00:00:00+03:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>/workflow/2015/06/15/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal.html</loc>
     <lastmod>2015-06-15T00:00:00+03:00</lastmod>
     <priority>0.8</priority>
@@ -42,7 +47,7 @@
   </url>
   <url>
     <loc>/</loc>
-    <lastmod>2015-06-15T12:51:00+03:00</lastmod>
+    <lastmod>2015-06-18T17:16:45+03:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
