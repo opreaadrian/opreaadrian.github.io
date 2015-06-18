@@ -48,3 +48,5 @@ This being said, I'd love to hear some thoughts from people more skilled than me
 using the #ihatefullstack hash.
 
 Cheers!
+
+> Image credits: [Unsplash](https://pixabay.com/en/users/Unsplash-242387/)
