@@ -34,11 +34,11 @@ weird combinations. This sounds just as ridiculous as the LAMP stack.
 
 Another reason besides these made-up names and the fact that anyone can take a bunch of technologies, make up a cool name and then call that a "stack", is the fact that calling yourself an 
 X stack developer means you're married to that technology. 
-It's just like tatooing "J2SE architect for life!" on your belly. 
+It's just like tatooing "J2EE architect for life!" on your belly. 
 
 !![THUG LIFE](https://i.imgflip.com/n2owy.jpg)
 
-Well, what do you know, J2SE is EOL, so what are you going to do? Are you going to go EOL too? Are you going to go out of work?
+Well, what do you know, J2EE is EOL, so what are you going to do? Are you going to go EOL too? Are you going to go out of work?
 
 Now, to get back on track with my ramblings, I consider that if one is in need to let people know they're skilled in both client-side and server-side JavaScript, for example, or if a recruiter is in need of such
 a person, they should at least try to use: "Cross-competency JavaScript Developer" or "Cross-trained JavaScript developer" or "Multidisciplinary developer skilled with JavaScript" instead of "Full-stack ...". 
