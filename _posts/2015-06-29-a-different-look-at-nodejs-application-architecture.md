@@ -10,7 +10,7 @@ keywords: workflow, productivity, nodejs, node, node.js, npm, packo, automation,
 featured_image: /images/posts/a_different_look_at_nodejs_application_architecture/different.jpg
 ---
 
-Wednesday, June 24th, I attended the [BucharestJS meetup](http://www.meetup.com/BucharestJS/) as a speaker, with a presentation titled: "A different way to node" and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.  
+Wednesday, June 24th, I attended the [BucharestJS meetup](http://www.meetup.com/BucharestJS/) as a speaker, with a presentation titled <a target="_blank" title="BucharestJS presentation: A different way to node" href="http://codesi.nz/presentations/a-different-way-to-node/index.html">A different way to node</a>, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.  
 In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  
 
 The gist of the presentation is as follows:  
