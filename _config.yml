@@ -21,3 +21,5 @@ baseurl:  # the subpath of your site, e.g. /blog/
 google :
     analytics : 'UA-32468134-4'
     googleplus: '+AdrianOpreasWeb'
+collections:
+    - presentations
