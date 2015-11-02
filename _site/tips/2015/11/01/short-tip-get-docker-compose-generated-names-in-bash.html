@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+    <title>Short tip: Working with docker-compose container names</title>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="programming, blog, tutorials, technical, javascript">
+
+  <meta name="author" itemprop="creator" content="Adrian Oprea">
+
+  <meta property="og:locale" content="en_US" />
+
+
+  
+    <meta name="description" itemprop="description" content="In this short tip I will show you how to get the name of a  container created with
+docker-compose, so you can manipulate it.
+">
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Short tip: Working with docker-compose container names" />
+    <meta property="og:description" content="In this short tip I will show you how to get the name of a  container created with
+docker-compose, so you can manipulate it.
+" />
+    <meta property="og:image" content="http://codesi.nz/images/posts/short-tip-docker-compose-dynamic-container-names/post.jpg" />
+    <meta property="og:url" content="http://codesi.nz/tips/2015/11/01/short-tip-get-docker-compose-generated-names-in-bash.html" />
+    <meta property="article:published_time" content="01 Jan 1970" />
+    <meta property="article:modified_time" content="01 Jan 1970 " />
+    <link rel="canonical" href="http://codesi.nz/tips/2015/11/01/short-tip-get-docker-compose-generated-names-in-bash.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="In this short tip I will show you how to get the name of a  container created with
+docker-compose, so you can manipulate it.
+">
+    <meta name="twitter:url" content="http://codesi.nz/tips/2015/11/01/short-tip-get-docker-compose-generated-names-in-bash.html
+    ">
+    <meta name="twitter:title" content="Short tip: Working with docker-compose container names">
+    <meta name="twitter:description" content="In this short tip I will show you how to get the name of a  container created with
+docker-compose, so you can manipulate it.
+">
+    <meta name="twitter:image" content="http://codesi.nz/images/posts/short-tip-docker-compose-dynamic-container-names/post.jpg">
+
+
+  
+    <meta name="”twitter:creator”" value="@opreaadrian">
+
+  
+    <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
+    <link rel="publisher" href="https://plus.google.com/+AdrianOpreasWeb/">
+  
+
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+  <header style="background-image: url(/images/posts/short-tip-docker-compose-dynamic-container-names/post.jpg);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>Short tip: Working with docker-compose container names</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Author
+          </span>
+          <a class="post-author" href="https://twitter.com/@opreaadrian">Adrian Oprea</a>
+        </li>
+        <li>
+          <span>
+            Published
+          </span>
+          01 Jan 1970
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          tips
+        </li>
+      </ul>
+    </div>
+    <ul class="pagination">
+      
+        <li class="previous">
+          <a href="/frontend/2015/09/22/unlearning-and-re-learning-stuff.html">
+            Previous
+          </a>
+        </li>
+      
+      
+    </ul>
+  </div>
+</header>
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<meta itemprop="datePublished" content="1970-01-01T02:33:35+02:00">
+<meta itemprop="dateModified" content="1970-01-01T02:33:35+02:00">
+<meta itemprop="keywords" content="workflow, docker, dev-ops, docker-compose, bash">
+  <section itemprop="articleBody" class="container">
+    <p>In this short tip I will show you how to get the name of a  container created with<br>
+<code>docker-compose</code>, so you can manipulate it.</p>
+
+<h2>The problem</h2>
+
+<p><code>docker-compose</code> generates container names going by the following convention: 
+<code>&lt;CURRENT_DIR&gt;_&lt;CONTAINER_NAME&gt;_&lt;INSTANCE_NUMBER&gt;</code>.<br>
+I needed to get my hands on container names so I can individually kill and remove them without
+messing up with the whole infrastructure.</p>
+
+<p>Let&#39;s first dissect the structure:</p>
+
+<ul>
+<li><code>CURRENT_DIR</code> is the directory where the <code>docker-compose.yml</code> file is located</li>
+<li><code>CONTAINER_NAME</code> is the name you gave to your service in <code>docker-compose.yml</code></li>
+<li><code>INSTANCE_NUMBER</code> is self-explanatory</li>
+</ul>
+
+<p>So for a config file like the one below, placed in <code>~/Documents/projects/webapp</code>, your 
+container would be named <code>webapp_nginx_1</code>:</p>
+<div class="highlight"><pre><code class="language-YAML" data-lang="YAML"><span class="l-Scalar-Plain">nginx</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nginx</span>
+    <span class="l-Scalar-Plain">ports</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="s">&quot;80:80&quot;</span>
+        <span class="p-Indicator">-</span> <span class="s">&quot;443:443&quot;</span>
+</code></pre></div>
+<h2>The solution</h2>
+
+<p>No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
+<a href="http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top" 
+    target="_blank" 
+    title="StackOverflow question: Get current directory name (without full path) in Bash Script">
+    there was a way to parse only the <code>basename</code></a>
+from the whole <code>pwd</code> string, without complicated splits and parsing.<br>
+The thing I was looking for was 
+<a href="http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html" 
+    target="_blank" 
+    title="gnu.org: Shell Parameter Expansion documentation">
+    Shell Parameter Expansion</a>, which got me this thing: <code>CONTAINER_NAME=${PWD##*/}_nginx_1</code>.<br>
+What this allowed me to do was to get the current directory name, without the full path and concatenate that with what
+I wanted. Now I could <code>docker rm</code> my container peacefully.  </p>
+
+<p>There&#39;s another problem, though, the fact that directory names like this:
+<code>webapp-authentication-project</code>, get turned into <code>webappauthenticationproject</code>.<br>
+For this, I resorted to <a href="https://www.gnu.org/software/sed/manual/" target="_blank" title="gnu.org: GNU Sed user's manual">sed</a> 
+so I could take out the underscores and dashes from the filename.</p>
+
+<p>The final version of my code looks just like the snippet below:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 <span class="p">|</span> sed s<span class="s1">&#39;/[ -]/_/g&#39;</span><span class="k">)</span>
+</code></pre></div>
+<p>Now I can manipulate containers from any bash script, as long as I can get my hands on the <code>$PWD</code>
+and as long as I know the names they get in the <code>YAML</code> config file.</p>
+
+<blockquote>
+<p>Image credits: <a href="https://www.flickr.com/photos/l2f1/">Glen</a></p>
+</blockquote>
+
+
+  <section>
+    <h3>Share this article:</h3>
+    <span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_email_large' displayText='Email'></span>
+    <span class='st_reddit_large' displayText='Reddit'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_pinterest_large' displayText='Pinterest'></span>      
+  </section>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'codesinz'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+</article>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-32468134-4', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "92204b4b-884e-4a7f-9337-a39d86c8b368", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
+</body>
+</html>
