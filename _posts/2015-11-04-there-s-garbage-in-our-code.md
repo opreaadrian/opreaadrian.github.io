@@ -10,10 +10,10 @@ keywords: workflow, garbage collection, v8, chrome
 featured_image: /images/posts/there-s-garbage-in-our-code/caber-toss.jpg
 ---
 
-Last week we had our [October BucharestJS meetup](https://www.facebook.com/events/180867725583584/) 
+Last week we had our <a href="https://www.facebook.com/events/180867725583584/" target="_blank" title="October BucharestJS meetup - facebook event">October BucharestJS meetup</a> 
 and they made the mistake of letting me speak, again.  
 Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently &mdash; [A different look at Node.js application architecture](http://codesi.nz/speaking/2015/06/29/a-different-look-at-nodejs-application-architecture.html)
+lazy at work, and use their time intelligently &mdash; <a href="http://codesi.nz/speaking/2015/06/29/a-different-look-at-nodejs-application-architecture.html" target="_blank" title="Older article about Node.js application architecture">A different look at Node.js application architecture</a>
 
 This time, I took on a challenge bigger than myself: explaining to people what garbage collection
 is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn't own.  
@@ -25,7 +25,7 @@ this community and to the patient crowd that stood and listened to me rambling a
 collection algorithms and my Chinese Crested friend,
 Sniffles.
 
-The slides are available on [SlideShare](http://www.slideshare.net/AdrianOprea3/theres-garbage-in-our-code).  
+The slides are available on <a href="http://www.slideshare.net/AdrianOprea3/theres-garbage-in-our-code" target="_blank" title="There's garbage in our code - SlideShare presentation">SlideShare</a>.  
 Enjoy!
 
 <figure>
@@ -34,5 +34,6 @@ Enjoy!
 	<figcaption>Sniffles</figcaption>
 </figure>
 
-> Credits: 
-> [Yolanda](https://www.flickr.com/photos/annrkiszt/)
+> Credits:   
+> [Yolanda](https://www.flickr.com/photos/annrkiszt/)  
+> [John Haslam](https://www.flickr.com/photos/foxypar4/)
