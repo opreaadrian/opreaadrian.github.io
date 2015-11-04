@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Short tip: Working with docker-compose container names"
-pubdate: 2015-11.02 12:00:00 PM
-last_modified: 2015-11.02 12:00:00 PM
+pubdate: 2015-11-02 12:00:00 PM
+last_modified: 2015-11-02 12:00:00 PM
 categories: tips
 author_name: "Adrian Oprea"
 author_twitter: "@opreaadrian"
