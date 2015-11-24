@@ -128,7 +128,7 @@ The answer for me is YES, and for this exact purpose I built <a href="https://ww
 But given the fact that I work for a company that heavily manipulates sensitive user data, we cannot afford to have all our code published on <a href="http://npmjs.com">npmjs.com</a>, so we hit a roadblock. Fortunately, <a href="https://github.com/npm/npm">npm</a> is open source, so this means that we can configure it to work with an internally-managed repository.
 With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how they will fit nicely into their own packages, until I realised that for each of these packages I have to create the folder structure,
 <code>touch</code> the JavaScript files, create the <code>package.json</code>, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 packages on <a href="http://npmjs.com">npmjs.com</a> -- <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> -- and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    package/
+<div class="highlight"><pre><code class="language-" data-lang="">    package/
         bin/
         doc/
         examples/

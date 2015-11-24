@@ -172,9 +172,9 @@ script is still waiting for user input, to continue with the setup, so what you 
 next is to comment out the line that halts the  installation until it gets a keypress, in the 
 <code>installAMS</code> script. For this matter in particular, you will need to use 
 <a href="https://www.gnu.org/software/sed/manual/sed.html"><code>sed</code></a>, just like in the snippet below.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>ams_setup_directory
-<span class="nv">$ </span>rm -Rf License.txt
-<span class="nv">$ </span>sed -i -e <span class="s1">&#39;s:read cont &lt; /dev/tty:#read cont &lt; /dev/tty:g&#39;</span> installAMS
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span><span class="nb">cd </span>ams_setup_directory
+<span class="gp">$ </span>rm -Rf License.txt
+<span class="gp">$ </span>sed -i -e <span class="s1">'s:read cont &lt; /dev/tty:#read cont &lt; /dev/tty:g'</span> installAMS
 </code></pre></div>
 <p>After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
 you have to provide various answers to the installer. This is where the second problem appears, as 
@@ -214,24 +214,24 @@ y
 <p>that you can validate against AMS&#39;s &quot;Install Action Summary&quot;, outlined below:  </p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">----------- Install Action Summary -----------
 
-Installation <span class="nv">directory</span>         <span class="o">=</span> /opt/adobe/ams
+Installation directory         <span class="o">=</span> /opt/adobe/ams
 
-Adobe Media Server <span class="nv">Port</span>        <span class="o">=</span> 1935,-443
-Adobe Media Admin Server <span class="nv">Port</span>  <span class="o">=</span> 1111
-Interface <span class="o">(</span>IP address<span class="o">)</span> AMS will listen <span class="nv">on</span>  <span class="o">=</span> auto
+Adobe Media Server Port        <span class="o">=</span> 1935,-443
+Adobe Media Admin Server Port  <span class="o">=</span> 1111
+Interface <span class="o">(</span>IP address<span class="o">)</span> AMS will listen on  <span class="o">=</span> auto
 
-Apache <span class="nv">Install</span>                 <span class="o">=</span> Yes
+Apache Install                 <span class="o">=</span> Yes
 
 
-Administrative <span class="nv">username</span>        <span class="o">=</span> admin
-Administrative <span class="nv">password</span>        <span class="o">=</span> <span class="o">(</span>suppressed<span class="o">)</span>
+Administrative username        <span class="o">=</span> admin
+Administrative password        <span class="o">=</span> <span class="o">(</span>suppressed<span class="o">)</span>
 
-service <span class="nv">owner</span>                  <span class="o">=</span> ams
+service owner                  <span class="o">=</span> ams
 
-service <span class="nv">user</span>                   <span class="o">=</span> ams
-service <span class="nv">group</span>                  <span class="o">=</span> ams
+service user                   <span class="o">=</span> ams
+service group                  <span class="o">=</span> ams
 
-Run as <span class="nv">daemon</span>                  <span class="o">=</span> Yes
+Run as daemon                  <span class="o">=</span> Yes
 </code></pre></div>
 <p>Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
 of your container, and simply <code>pipe</code> it through <code>installAMS</code>. I would recommend naming the file 
@@ -258,7 +258,7 @@ RUN curl -O http://download.macromedia.com/pub/adobemediaserver/5_0_8/AdobeMedia
 WORKDIR /tmp/ams_latest
 RUN tar zxvf ../AdobeMediaServer5_x64.tar.gz -C . --strip-components<span class="o">=</span>1
 RUN rm -Rf License.txt
-RUN sed -i -e <span class="s1">&#39;s:read cont &lt; /dev/tty:#read cont &lt; /dev/tty:g&#39;</span> installAMS
+RUN sed -i -e <span class="s1">'s:read cont &lt; /dev/tty:#read cont &lt; /dev/tty:g'</span> installAMS
 
 COPY conf/installAMS.input installAMS.input
 
@@ -270,11 +270,11 @@ COPY conf/Adaptor.xml /opt/adobe/ams/conf/_defaultRoot_/Adaptor.xml
 WORKDIR /tmp
 RUN rm -Rf ams_latest AdobeMediaServer5_x64.tar.gz
 
-VOLUME <span class="o">[</span><span class="s2">&quot;/opt/adobe/ams/applications&quot;</span><span class="o">]</span>
+VOLUME <span class="o">[</span><span class="s2">"/opt/adobe/ams/applications"</span><span class="o">]</span>
 
-EXPOSE <span class="m">80</span> <span class="m">443</span> <span class="m">1111</span> 1935
+EXPOSE 80 443 1111 1935
 
-CMD <span class="o">[</span><span class="s2">&quot;/usr/bin/supervisord&quot;</span><span class="o">]</span>
+CMD <span class="o">[</span><span class="s2">"/usr/bin/supervisord"</span><span class="o">]</span>
 </code></pre></div>
 <p>The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
 connection, and a ready-made configuration for <code>docker-compose</code> is available on 

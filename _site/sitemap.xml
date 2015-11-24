@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/development/2015/11/22/using-mitmproxy-for-mobile-testing.html</loc>
+    <lastmod>2015-11-22T00:00:00+02:00</lastmod>
+  </url>
+  <url>
     <loc>/speaking/2015/11/04/there-s-garbage-in-our-code.html</loc>
     <lastmod>2015-11-04T00:00:00+02:00</lastmod>
   </url>
@@ -63,60 +67,108 @@
   <url>
     <loc>/</loc>
   </url>
+    <url>
+      <loc>/nodejs/2015/01/17/npm-package-automation-with-packo.html</loc>
+    </url>
+    <url>
+      <loc>/javascript/2015/01/22/three-hard-to-spot-javascript-mistakes.html</loc>
+    </url>
+    <url>
+      <loc>/nodejs/2015/01/28/working-with-javascript-promises.html</loc>
+    </url>
+    <url>
+      <loc>/nodejs/2015/02/28/working-with-javascript-promises-handling-the-unexpected.html</loc>
+    </url>
+    <url>
+      <loc>/angular/2015/03/08/angular-services-and-factories-for-vanilla-js-developers.html</loc>
+    </url>
+    <url>
+      <loc>/inspiration/2015/05/05/war-tactics-staying-current.html</loc>
+    </url>
+    <url>
+      <loc>/workflow/2015/06/05/communicating-through-commit-messages.html</loc>
+    </url>
+    <url>
+      <loc>/workflow/2015/06/15/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal.html</loc>
+    </url>
+    <url>
+      <loc>/life/2015/06/18/I-hate-full-stack.html</loc>
+    </url>
+    <url>
+      <loc>/productivity/2015/06/19/vim-tip-working-with-network-mapped-folders.html</loc>
+    </url>
+    <url>
+      <loc>/speaking/2015/06/29/a-different-look-at-nodejs-application-architecture.html</loc>
+    </url>
+    <url>
+      <loc>/docker/2015/09/17/dockerizing-adobe-media-server.html</loc>
+    </url>
+    <url>
+      <loc>/frontend/2015/09/22/unlearning-and-re-learning-stuff.html</loc>
+    </url>
+    <url>
+      <loc>/tips/2015/11/01/short-tip-get-docker-compose-generated-names-in-bash.html</loc>
+    </url>
+    <url>
+      <loc>/speaking/2015/11/04/there-s-garbage-in-our-code.html</loc>
+    </url>
+    <url>
+      <loc>/development/2015/11/22/using-mitmproxy-for-mobile-testing.html</loc>
+    </url>
   <url>
     <loc>/presentations/a-different-way-to-node/index.html</loc>
-    <lastmod>2015-06-29T17:35:36+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/plugin/markdown/example.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
-  </url>
-  <url>
-    <loc>/presentations/a-different-way-to-node/reveal.js/plugin/notes/notes.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/plugin/notes-server/notes.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
+  </url>
+  <url>
+    <loc>/presentations/a-different-way-to-node/reveal.js/plugin/notes/notes.html</loc>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/examples/barebones.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/examples/embedded-media.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/examples/math.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/examples/slide-backgrounds.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/examples/slide-transitions.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/test-markdown-element-attributes.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/test-markdown-slide-attributes.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/test-markdown.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/test-pdf.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
   <url>
     <loc>/presentations/a-different-way-to-node/reveal.js/test/test.html</loc>
-    <lastmod>2015-06-24T00:07:34+03:00</lastmod>
+    <lastmod>2015-11-22T12:30:33+02:00</lastmod>
   </url>
 </urlset>

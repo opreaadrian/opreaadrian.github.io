@@ -132,16 +132,16 @@ In my opinion, there are situations or states that involve for example killing t
 <h2>A pattern for handling the <code>unexpected</code> and the <code>uncaught</code></h2>
 
 <p>Let&#39;s say for example that we have to implement a method that performs an async call to a REST service and returns the data to be used in the UI. The implementation    would probably look as follows:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">),</span>
-    <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
+    <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'config'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">Customer</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">getData</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="na">getData</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
 
         <span class="nx">request</span><span class="p">({</span>
-            <span class="nx">method</span>  <span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-            <span class="nx">uri</span> <span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">uri</span>
+            <span class="na">method</span>  <span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+            <span class="na">uri</span> <span class="p">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">uri</span>
         <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
@@ -152,6 +152,7 @@ In my opinion, there are situations or states that involve for example killing t
         <span class="p">});</span>
     <span class="p">}</span>
 <span class="p">};</span>
+
 </code></pre></div>
 <p>You would be tempted to structure your code like the above snippet, and look for an error, and if no error is provided, then you can just resolve with the body, as nothing could have gone wrong.<br>
 I say no to that approach, because you can bump into situations where you don&#39;t get an <code>Error</code> object, but you do get a <code>500 Internal Server Error</code>. </p>
@@ -159,17 +160,17 @@ I say no to that approach, because you can bump into situations where you don&#3
 <p>Even though many of the NodeJS development best practices articles, and even the NodeJS documentation itself suggests that you should have an error-first approach when working with callbacks, in situations like the one above, it&#39;s best to check for the status code and the presence of data, and forward the data to whoever is calling the method. If that&#39;s not the case, reject the promise with MEANINGFUL INFORMATION.<br>
 I&#39;m stressing the &quot;meaningful information&quot; part so much because I&#39;m a firm believer in these words: &quot;Do unto others as you would have them do unto you&quot;. This doesn&#39;t mean in any way that I&#39;m a religious type of person, not that it would be a shame, but I strongly believe in the power of setting examples, so if enough people are going to be able to quickly debug and track down possible issues because I added enough error-related information, they&#39;ll soon follow that example &mdash; and I would love to see the same amout of details when I&#39;m debugging someone else&#39;s code.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [core/customer.js]</span>
-<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request&#39;</span><span class="p">),</span>
-    <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
+    <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'config'</span><span class="p">);</span>
 
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">getData</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">customerId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">getData</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">customerId</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
 
         <span class="nx">request</span><span class="p">({</span>
-            <span class="nx">method</span>  <span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-            <span class="nx">uri</span> <span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">uri</span>
+            <span class="na">method</span>  <span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+            <span class="na">uri</span> <span class="p">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">uri</span>
         <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="nx">response</span> <span class="o">&amp;&amp;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
@@ -180,14 +181,14 @@ I&#39;m stressing the &quot;meaningful information&quot; part so much because I&
 
             <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">({</span>
                 <span class="c1">// What did the server say?</span>
-                <span class="nx">response</span>    <span class="o">:</span> <span class="nx">response</span><span class="p">,</span>
+                <span class="na">response</span>    <span class="p">:</span> <span class="nx">response</span><span class="p">,</span>
                 <span class="c1">// Did we get an error?</span>
-                <span class="nx">originalError</span> <span class="o">:</span> <span class="nx">error</span><span class="p">,</span>
+                <span class="na">originalError</span> <span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
                 <span class="c1">// Was it really bad?</span>
                 <span class="c1">// Do we restart the process, retry, or continue with defaults?</span>
-                <span class="nx">type</span>        <span class="o">:</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">500</span> <span class="o">?</span> <span class="s1">&#39;fatal&#39;</span> <span class="o">:</span> <span class="s1">&#39;failure&#39;</span><span class="p">,</span>
+                <span class="na">type</span>        <span class="p">:</span> <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">==</span> <span class="mi">500</span> <span class="p">?</span> <span class="s1">'fatal'</span> <span class="p">:</span> <span class="s1">'failure'</span><span class="p">,</span>
                 <span class="c1">// Tell them this:</span>
-                <span class="nx">message</span>     <span class="o">:</span> <span class="s1">&#39;Unable to retrieve customer data&#39;</span>
+                <span class="na">message</span>     <span class="p">:</span> <span class="s1">'Unable to retrieve customer data'</span>
             <span class="p">});</span>
 
         <span class="p">});</span>
@@ -203,16 +204,16 @@ I&#39;m stressing the &quot;meaningful information&quot; part so much because I&
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
     <span class="p">})</span>
     <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="cm">/* </span>
-<span class="cm">        If you mess up, you can crash the process, </span>
-<span class="cm">        set defaults, or perform recovery.</span>
-<span class="cm">        */</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;fatal&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* 
+        If you mess up, you can crash the process, 
+        set defaults, or perform recovery.
+        */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">'fatal'</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// Crash the process, perform error recovery.</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;FATAL_CRASH_THE_PROCESS&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'FATAL_CRASH_THE_PROCESS'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="c1">// Just a failure, retry or set defaults.</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;FAILURE_SET_DEFAULTS_AND_RECOVER&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'FAILURE_SET_DEFAULTS_AND_RECOVER'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">});</span>
 </code></pre></div>

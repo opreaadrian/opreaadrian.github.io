@@ -131,7 +131,7 @@ After doing some scanning on the Internet, I wasn&#39;t able to find something t
 <p>I finally settled on 2 styles of commit messages that I scrutinised for 2 whole days: <a href="https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md#commit-tagging">the EmberJS commit tagging style</a> and <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">Angular&#39;s Git commit guidelines</a>.</p>
 
 <p>I fancied  Ember&#39;s style, as it was very similar to what I did at work, namely tagging every commit with an issue number that was most often the issue tracking system ticket id. The drawback is that I often found that developers, no matter how &quot;dedicated&quot; to the cause they may be, they often add only the issue number and forget to describe what they did, so you often end up with commit messages like the ones below:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">* a85ad84 - [ISSUE-3344 bugfixing] (1 month ago)
+<div class="highlight"><pre><code class="language-" data-lang="">* a85ad84 - [ISSUE-3344 bugfixing] (1 month ago)
 * 58a4d05 - [ISSUE-3344 feature] (1 month ago)
 * b60b79b - [ISSUE-9933] (1 month ago)
 * 5ecefa9 - [ISSUE-1123] fixed text on response.body.answer (2 months ago)
@@ -146,7 +146,7 @@ Now, to clarify, I strongly believe that developers should spend as little time 
 
 <p>Angular&#39;s approach is not drastically different from Ember, as they require about the same details, but where Angular shines is in the way they require you to structure your commit message. 
 Their commit message needs to look like the snippet below:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+<div class="highlight"><pre><code class="language-" data-lang="">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
 &lt;BLANK LINE&gt;
 &lt;body&gt;
 &lt;BLANK LINE&gt;
@@ -163,7 +163,7 @@ Their commit message needs to look like the snippet below:</p>
 </code></p>
 
 <p>You&#39;ll know for example that you added getter/setter methods to the <code>ApplicationModel</code> class, so you can look that up. Another advantage is that if you follow the guideline to it&#39;s full extent, and add a <code>&lt;body&gt;</code>, you&#39;ll be able to add the issue number and a more detailed reason about your changes.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
+<div class="highlight"><pre><code class="language-" data-lang="">commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
 Author: Adrian Oprea &lt;adrian@codesi.nz&gt;
 Date:   Tue May 5 13:29:58 2015 +0300
 
@@ -174,7 +174,7 @@ Date:   Tue May 5 13:29:58 2015 +0300
 </code></pre></div>
 <p>You could also add a <code>&lt;footer&gt;</code> to your commit message, and you could use this to sign off commits, when performing code review, if you&#39;re working with pull requests, or if you&#39;re responsible with merging other people&#39;s work to a main branch. 
 By making use of the full structure suggested by the AngularJS team, your final commit message would look something like the message below, which is clearly more &quot;enlightening&quot; than any of the previous versions:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
+<div class="highlight"><pre><code class="language-" data-lang="">commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
 Author: Adrian Oprea &lt;adrian@codesi.nz&gt;
 Date:   Tue May 5 13:29:58 2015 +0300
 

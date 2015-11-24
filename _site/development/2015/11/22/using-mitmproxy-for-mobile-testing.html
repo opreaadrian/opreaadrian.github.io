@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Blog">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+    <title>Quick tip: Using mitmproxy for mobile testing</title>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="programming, blog, tutorials, technical, javascript">
+
+  <meta name="author" itemprop="creator" content="Adrian Oprea">
+
+  <meta property="og:locale" content="en_US" />
+
+
+  
+    <meta name="description" itemprop="description" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
+your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+or resorting to other, less elegant solutions.
+">
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Quick tip: Using mitmproxy for mobile testing" />
+    <meta property="og:description" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
+your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+or resorting to other, less elegant solutions.
+" />
+    <meta property="og:image" content="http://codesi.nz/images/posts/using-mitmproxy-for-mobile-testing/post.jpg" />
+    <meta property="og:url" content="http://codesi.nz/development/2015/11/22/using-mitmproxy-for-mobile-testing.html" />
+    <meta property="article:published_time" content="23 Nov 2015" />
+    <meta property="article:modified_time" content="23 Nov 2015 " />
+    <link rel="canonical" href="http://codesi.nz/development/2015/11/22/using-mitmproxy-for-mobile-testing.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
+your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+or resorting to other, less elegant solutions.
+">
+    <meta name="twitter:url" content="http://codesi.nz/development/2015/11/22/using-mitmproxy-for-mobile-testing.html
+    ">
+    <meta name="twitter:title" content="Quick tip: Using mitmproxy for mobile testing">
+    <meta name="twitter:description" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
+your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+or resorting to other, less elegant solutions.
+">
+    <meta name="twitter:image" content="http://codesi.nz/images/posts/using-mitmproxy-for-mobile-testing/post.jpg">
+
+
+  
+    <meta name="”twitter:creator”" value="@opreaadrian">
+
+  
+    <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
+    <link rel="publisher" href="https://plus.google.com/+AdrianOpreasWeb/">
+  
+
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+  <header style="background-image: url(/images/posts/using-mitmproxy-for-mobile-testing/post.jpg);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>Quick tip: Using mitmproxy for mobile testing</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Author
+          </span>
+          <a class="post-author" href="https://twitter.com/@opreaadrian">Adrian Oprea</a>
+        </li>
+        <li>
+          <span>
+            Published
+          </span>
+          23 Nov 2015
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          development
+        </li>
+      </ul>
+    </div>
+    <ul class="pagination">
+      
+        <li class="previous">
+          <a href="/speaking/2015/11/04/there-s-garbage-in-our-code.html">
+            Previous
+          </a>
+        </li>
+      
+      
+    </ul>
+  </div>
+</header>
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+<meta itemprop="datePublished" content="2015-11-23T12:00:00+02:00">
+<meta itemprop="dateModified" content="2015-11-23T12:00:00+02:00">
+<meta itemprop="keywords" content="mobile, testing, mitmproxy, hosts, hostfile, nodejs">
+  <section itemprop="articleBody" class="container">
+    <p>This article is meant to offer a hopefully simple solution for testing web applications that run on 
+your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+or resorting to other, less elegant solutions.</p>
+
+<h2>Use case</h2>
+
+<p>I have an application running on my machine, and I access it on <code>http://myapp.dev</code> as it depends on
+the domain it is running on, in order to bootstrap itself and offer different functionality based
+on the domain where it is being loaded.<br>
+I want to be able to navigate to <code>http://myapp.dev</code> on my phone and get the application running on 
+my computer.</p>
+
+<h2>Solution 1</h2>
+
+<p>Have the mapping added to my local DNS(the router&#39;s DNS) and every time a device on my network
+navigates to <code>http://myapp.dev</code> it will be redirected to my machine &mdash; highly impractical as
+I have multiple devices and I&#39;d probably like to keep my router&#39;s config as sane as possible.</p>
+
+<h2>Solution 2</h2>
+
+<p>Set my computer as a 
+<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" 
+    title="Wikipedia link to Man-In-The-Middle attack definition" 
+    target="_blank">Man-In-The-Middle</a>
+between my phone and the Internet &mdash; in other words, make my computer act as an HTTP proxy. 
+This way, I can trick the phone into believeing that all its traffic needs to be routed through my laptop.</p>
+
+<h2>How DNS resolution works</h2>
+
+<ul>
+<li>I navigate to <code>http://myapp.dev</code> from my phone</li>
+<li>My phone looks at its internal hostfile &mdash; usually <code>/etc/hosts</code> on UNIX-like operating 
+systems &mdash; for entries resolving to that specific hostname.</li>
+<li>If it doesn&#39;t find anything it looks at the local DNS (the router&#39;s DNS) </li>
+<li>If no result is returned by the local DNS, then the external DNS is queried - via recursion</li>
+<li>If nothing comes back from the external DNS, then it means that the address is either inexistent
+or down.</li>
+</ul>
+
+<h2>The setup</h2>
+
+<ul>
+<li>A copy of <a href="https://mitmproxy.org/" title="Link to mitmproxy official website"
+target="_blank">mitmproxy</a></li>
+<li>A mobile device to test on</li>
+</ul>
+
+<h2>Workflow</h2>
+
+<p>What I want to do is to trick my phone into thinking that <code>http://myapp.dev</code> resolves to 
+192.168.xxx.xxx &mdash; my laptop&#39;s local IP address &mdash; and the way I can do that is by using 
+<a href="https://mitmproxy.org/" title="Link to mitmproxy official website" target="_blank">mitmproxy</a>.</p>
+
+<p>If you&#39;re on a Mac, you have two options for installing <code>mitmproxy</code>: </p>
+
+<ul>
+<li>Through <a href="https://pip.pypa.io/en/stable/" title="Link to Python package manager, pip"
+target="_blank">pip</a> by issuing <code>pip install mitmproxy</code> at your 
+terminal prompt.</li>
+<li>Through <a href="http://brew.sh/" title="Link to Homebrew - Mac OS X package manager" target="_blank">homebrew</a> 
+by issuing another command at your terminal prompt: <code>brew install mitmproxy</code>.<br></li>
+</ul>
+
+<p>If you are on a different operating system please check the 
+<a href="http://docs.mitmproxy.org/en/stable/install.html" title="Mitmproxy official installation docs" target="_blank">mitmproxy installation guide</a>  </p>
+
+<h2>Proxy server setup</h2>
+
+<p>All you have to do now is to start the proxy server, and set your machine&#39;s local IP
+(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.  </p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Start the proxy server on port 7654</span>
+<span class="gp">$ </span>mitmproxy -p 7654
+</code></pre></div>
+<p>After starting the proxy server go to your phone&#39;s wireless network settings, and add your 
+computer&#39;s ip as an HTTP proxy that every connection on your phone goes through.<br>
+Note that the phone and the computer need to be on the same network, or otherwise you will need to
+get the public IP that your computer uses when it accesses the Internet.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># UNIX - Get your computer's router-assigned IP (see image below)</span>
+<span class="gp">$ </span>ifconfig -a | grep inet
+
+<span class="c"># Windows - Get the network configuration for all interfaces</span>
+<span class="gp">&gt; </span>ipconfig /all
+</code></pre></div>
+<figure>
+<img src="/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png" alt="Image of the output of the ifconfig
+command on UNIX like systems.">
+<!--- <figcaption>Using ifconfig to get your IP address</figcaption> --->
+</figure>
+
+<h2>iPhone proxy setup</h2>
+
+<p>In order to add a proxy to your wireless connection, navigate to &quot;Settings -&gt; Wi-Fi&quot;, find the 
+network you whish to connect to and tap the &quot;i&quot; symbol, to the far  right of the network&#39;s name.<br>
+This will move you to the network&#39;s settings panel, and at the bottom of this panel you have the 
+&quot;HTTP PROXY&quot; section, which is set to &quot;Off&quot; by default.<br>
+Tap &quot;Manual&quot; and add your machine&#39;s IP and the port you used when you started <code>mitmproxy</code>. The
+setup should look like the image below.</p>
+
+<figure>
+<img src="/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png" alt="Image of HTTP PROXY settings on the iPhone">
+</figure>
+
+<p>Once you&#39;re done performing the steps above, you should try and visit any web page, and you will
+see some activity in the terminal window where you started <code>mitmproxy</code>.<br>
+This means that the proxy is working correctly and that your phone&#39;s connection is routed through 
+your laptop.<br>
+Now, you can start your application on your machine, add an entry to your <code>/etc/hosts</code> file, that
+makes <code>myapp.dev</code> point to your local machine&#39;s IP, and visit <code>http://myapp.dev:&lt;port&gt;</code> from your
+phone.  </p>
+
+<p>You&#39;re done! You should now be able to see the application that is running on your computer.</p>
+
+<blockquote>
+<p>Credits:<br>
+<a href="https://www.flickr.com/photos/believekevin/">kevin</a> &mdash; <a href="https://flic.kr/p/8mGycA">Lot of mobile phones + accessories (FREE)</a>  </p>
+</blockquote>
+
+
+  <section>
+    <h3>Share this article:</h3>
+    <span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_linkedin_large' displayText='LinkedIn'></span>
+    <span class='st_email_large' displayText='Email'></span>
+    <span class='st_reddit_large' displayText='Reddit'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_pinterest_large' displayText='Pinterest'></span>      
+  </section>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'codesinz'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+</article>
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-32468134-4', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "92204b4b-884e-4a7f-9337-a39d86c8b368", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
+</body>
+</html>

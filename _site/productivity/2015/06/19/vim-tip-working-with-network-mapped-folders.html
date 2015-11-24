@@ -153,13 +153,13 @@ The only problem was that it would re-upload all the files and I didn&#39;t want
 Knowing this, I would rely on a trick I presented in 
 <a href="http://codesi.nz/workflow/2015/06/15/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal.html">Short tip: viewing and resolving svn conflicts in the terminal</a>, 
 namely, I would take the filenames from <code>svn status</code>, and upload them one by one &mdash; talk about thinking like a programmer. The result is in the snippet below.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">function</span> scpsync<span class="o">()</span> <span class="o">{</span>
-    <span class="nb">local </span><span class="nv">changed_files</span><span class="o">=</span><span class="k">$(</span>svn status <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
-    <span class="nb">echo</span> <span class="s2">&quot;Syncing $changed_files\n&quot;</span>
-    <span class="k">for</span> file in <span class="nv">$changed_files</span><span class="p">;</span> <span class="k">do</span>
-        scp <span class="nv">$file</span> goprea@<span class="nv">$1</span>:/<span class="nv">$2</span>/<span class="nv">$file</span>
-    <span class="k">done</span>
-    <span class="nb">echo</span> <span class="s2">&quot;Sync done\n&quot;</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">function </span>scpsync<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">changed_files</span><span class="o">=</span><span class="k">$(</span>svn status | awk <span class="s1">'{print $2}'</span><span class="k">)</span>
+    <span class="nb">echo</span> <span class="s2">"Syncing </span><span class="nv">$changed_files</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="k">for </span>file <span class="k">in</span> <span class="nv">$changed_files</span>; <span class="k">do
+        </span>scp <span class="nv">$file</span> goprea@<span class="nv">$1</span>:/<span class="nv">$2</span>/<span class="nv">$file</span>
+    <span class="k">done
+    </span><span class="nb">echo</span> <span class="s2">"Sync done</span><span class="se">\n</span><span class="s2">"</span>
 <span class="o">}</span>
 </code></pre></div>
 <p>Now, everything looked fine but I started hating it when I read the code out loud.

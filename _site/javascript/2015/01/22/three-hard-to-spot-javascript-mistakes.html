@@ -128,14 +128,14 @@ The aforementioned story, has an open end, and you can choose your version from 
 <p>In order to find if a certain substring exists within a given string, or if a certain key exists within a given array, the go-to method is <code>indexOf()</code>.</p>
 
 <p>Let&#39;s say that we have the following setup:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">&#39;The quick brown fox jumps over the lazy developer\&#39;s head&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">'The quick brown fox jumps over the lazy developer\'s head'</span><span class="p">;</span>
 </code></pre></div>
 <p>Calling <code>myString.indexOf(&#39;developer&#39;);</code> would give us the index at which the word/substring &quot;developer&quot; is found within the given string, in our case <code>40</code>.</p>
 
 <p>Let&#39;s say that we have a function that checks whether a certain word is present within a given sentence, and returns true or false based on this verification. Our code would look something like this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">function</span> <span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">word</span> <span class="o">||</span> <span class="o">!</span><span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Please provide both parameters.&#39;</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Please provide both parameters.'</span><span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">sentence</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">word</span><span class="p">))</span> <span class="p">{</span>
@@ -145,11 +145,11 @@ The aforementioned story, has an open end, and you can choose your version from 
         <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">&#39;The quick brown fox jumps over the lazy developer\&#39;s head&#39;</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="s1">&#39;programmer&#39;</span><span class="p">,</span> <span class="nx">myString</span><span class="p">))</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Found programmer&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">'The quick brown fox jumps over the lazy developer\'s head'</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="s1">'programmer'</span><span class="p">,</span> <span class="nx">myString</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Found programmer'</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Programmer not found&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Programmer not found'</span><span class="p">);</span>
     <span class="p">}</span>
 </code></pre></div>
 <p>You would think that the piece of code above will say &quot;Programmer not found&quot; but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: <code>NaN</code>, <code>Null</code>, <code>undefined</code>, <code>0</code> and <code>&#39;&#39;</code>. Nowhere does it say that <code>-1</code>, the value that <code>indexOf()</code> returns if it does not find anything, will evaluate to false. </p>
@@ -160,10 +160,10 @@ is that <code>indexOf()</code> will return <code>-1</code> inside <code>checkWor
 <p>A better way to do this is to refactor your function to look like the one below:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">function</span> <span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">word</span> <span class="o">||</span> <span class="o">!</span><span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Please provide both parameters.&#39;</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Please provide both parameters.'</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">// Using &quot;!=&quot; instead of &quot;!==&quot;(identity operator) as indexOf() will not trick us</span>
+        <span class="c1">// Using "!=" instead of "!=="(identity operator) as indexOf() will not trick us</span>
         <span class="c1">// You can use &gt;= 0 instead of != -1</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">sentence</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
@@ -182,18 +182,18 @@ is that <code>indexOf()</code> will return <code>-1</code> inside <code>checkWor
 
 <p>Let&#39;s take the following JSON object as an example of error data, and check whether the <code>fatalErrorsCount</code> property exists as we would only want to show the fatal errors.</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// /errors/startDateMiliseconds/endDateMiliseconds</span>
-    <span class="kd">var</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://api.company.com/errors/14201436816409/1421882120458&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'https://api.company.com/errors/14201436816409/1421882120458'</span><span class="p">);</span>
     <span class="p">[</span><span class="nx">table</span> <span class="nx">creation</span> <span class="nx">code</span> <span class="nx">goes</span> <span class="nx">here</span><span class="p">...]</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ui</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;fatal-errors-count&#39;</span><span class="p">,</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">);</span>
+        <span class="nx">ui</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">'fatal-errors-count'</span><span class="p">,</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">);</span>
     <span class="p">}</span>
 </code></pre></div>
 <p>Again, like with <code>indexOf</code>, you would think that this works fine: you get data, you check if the key exists, and BAM!, you output those damn fatal errors. Not so fast!<br>
 What if there are no fatal errors for that period, so <code>errorData.fatalErrorsCount</code> is 0. Well, then our <code>if</code> statement there doesn&#39;t look so good, does it? This also happens if <code>fatalErrorsCount</code> is set to any falsy value, so a better way to do this would be to use the <code>in</code> operator as follows:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="p">[...]</span>
-    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;fatalErrorsCount&#39;</span> <span class="k">in</span> <span class="nx">errorData</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ui</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">&#39;fatal-errors-count&#39;</span><span class="p">,</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">'fatalErrorsCount'</span> <span class="k">in</span> <span class="nx">errorData</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ui</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">'fatal-errors-count'</span><span class="p">,</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">);</span>
     <span class="p">}</span>
 </code></pre></div>
 <p>and now you are safe!</p>
@@ -202,7 +202,7 @@ What if there are no fatal errors for that period, so <code>errorData.fatalError
 Use the <code>in</code> operator with caution, as it triggers prototype lookups, and you might get the property that you&#39;re looking for, from another object, further up the prototype chain.</p>
 
 <p>Let&#39;s say you have the following structure:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">+ Object
+<div class="highlight"><pre><code class="language-" data-lang="">+ Object
   - toString()
     |
     + Parent
@@ -237,17 +237,17 @@ Use the <code>in</code> operator with caution, as it triggers prototype lookups,
 <p>This means that if we perform a <code>for</code> loop on our array and log out each element would get 3xundefined and then 11.<br>
 But when performing a <code>for-in</code> loop, we get the index of the last element, as the statement treats our array as an object, treating the index <code>3</code> as the key, and 11 as the value because in JavaScript it is perfectly legal to have an object looking like this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;0&#39;</span> <span class="o">:</span> <span class="s1">&#39;First value&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;1&#39;</span> <span class="o">:</span> <span class="s1">&#39;Second value&#39;</span>
+        <span class="s1">'0'</span> <span class="p">:</span> <span class="s1">'First value'</span><span class="p">,</span>
+        <span class="s1">'1'</span> <span class="p">:</span> <span class="s1">'Second value'</span>
     <span class="p">};</span>
 </code></pre></div>
 <p>I think it is also worth mentioning <a href="http://vimeo.com/12529436#t=272">Paul Irish&#39;s asshole effect</a> as somebody could do something like this:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// in another js file</span>
-    <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">assholeVar</span> <span class="o">=</span> <span class="s1">&#39;I haz a dude&#39;</span><span class="p">;</span> <span class="c1">// http://lolcode.org/</span>
+    <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">assholeVar</span> <span class="o">=</span> <span class="s1">'I haz a dude'</span><span class="p">;</span> <span class="c1">// http://lolcode.org/</span>
 
     <span class="c1">// in your module</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">el</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span> <span class="c1">// will log &quot;3&quot; and &quot;assholeVar&quot; for all arrays</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span> <span class="c1">// will log "3" and "assholeVar" for all arrays</span>
     <span class="p">}</span>
 </code></pre></div>
 <p>Key takeaway here, is <strong>NEVER USE <code>for...in</code> ON ARRAYS</strong>. Use <code>for</code>, <code>while</code>, <code>do...while</code>, <code>forEach</code> and the list goes on.</p>

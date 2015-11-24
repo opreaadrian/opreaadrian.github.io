@@ -137,11 +137,11 @@ messing up with the whole infrastructure.</p>
 
 <p>So for a config file like the one below, placed in <code>~/Documents/projects/webapp</code>, your 
 container would be named <code>webapp_nginx_1</code>:</p>
-<div class="highlight"><pre><code class="language-YAML" data-lang="YAML"><span class="l-Scalar-Plain">nginx</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nginx</span>
-    <span class="l-Scalar-Plain">ports</span><span class="p-Indicator">:</span>
-        <span class="p-Indicator">-</span> <span class="s">&quot;80:80&quot;</span>
-        <span class="p-Indicator">-</span> <span class="s">&quot;443:443&quot;</span>
+<div class="highlight"><pre><code class="language-YAML" data-lang="YAML">nginx:
+    image: nginx
+    ports:
+        - "80:80"
+        - "443:443"
 </code></pre></div>
 <h2>The solution</h2>
 
@@ -165,7 +165,7 @@ For this, I resorted to <a href="https://www.gnu.org/software/sed/manual/" targe
 so I could take out the underscores and dashes from the filename.</p>
 
 <p>The final version of my code looks just like the snippet below:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 <span class="p">|</span> sed s<span class="s1">&#39;/[ -]/_/g&#39;</span><span class="k">)</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 | sed s<span class="s1">'/[ -]/_/g'</span><span class="k">)</span>
 </code></pre></div>
 <p>Now I can manipulate containers from any bash script, as long as I can get my hands on the <code>$PWD</code>
 and as long as I know the names they get in the <code>YAML</code> config file.</p>

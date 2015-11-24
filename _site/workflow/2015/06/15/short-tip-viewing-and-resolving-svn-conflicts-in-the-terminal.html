@@ -122,8 +122,8 @@
 <p><code>&gt; svn status | grep &quot;^C&quot;</code></p>
 
 <p>The above command pipes <code>svn status</code> through <code>grep</code> and applies a RegExp which basically says: &quot;Give me all the rows in <code>svn status</code>&#39;s output that begin with a capital C&quot;. The output will look the same as below.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">adrian at mothership in ~/Documents/projects/svn-project
-&gt; svn st <span class="p">|</span> grep <span class="s2">&quot;^C&quot;</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">adrian at mothership <span class="k">in</span> ~/Documents/projects/svn-project
+<span class="gp">&gt; </span>svn st | grep <span class="s2">"^C"</span>
 C       modules/user/index.js
 C       modules/user/meta_inf.json
 C       modules/database/index.js
@@ -158,7 +158,7 @@ C       modules/user/meta_inf.json
 ?       modules/user/meta_inf.json.merge-left.r10231
 ?       modules/user/meta_inf.json.merge-right.r10255
 ?       modules/user/meta_inf.json.working
-<span class="o">[</span>...<span class="o">]</span>
+<span class="o">[</span>...]
 </code></pre></div>
 <p>The next step would be to manually remove those files, and we&#39;re going to rely on awk again, for this task. Remember how we used <code>print</code> to pipe only the filenames to Sublime Text? That&#39;s exactly what we are going to do now, but we&#39;ll add <code>.*</code> at the end of each file, as we only want to remove the <code>.merge*</code> and the <code>.working</code> files, and not our original source code, and we will pipe everything to <code>rm</code>.</p>
 

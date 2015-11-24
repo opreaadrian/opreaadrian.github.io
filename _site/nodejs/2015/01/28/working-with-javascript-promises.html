@@ -133,7 +133,7 @@ With this post I aim to share some of my practices when it comes to working with
 
 <span class="c1">// Classic usage of Promises (promise w/ resolver)</span>
 <span class="kd">var</span> <span class="nx">getData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">DataService</span><span class="p">.</span><span class="nx">getCustomerDetails</span><span class="p">(</span><span class="s1">&#39;11AFFDDDS&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">DataService</span><span class="p">.</span><span class="nx">getCustomerDetails</span><span class="p">(</span><span class="s1">'11AFFDDDS'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">resolve</span><span class="p">(</span><span class="nx">details</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -142,8 +142,8 @@ With this post I aim to share some of my practices when it comes to working with
     <span class="p">});</span>
 <span class="p">});</span>
 
-<span class="cm">/* getData is a wrapper around the &quot;task&quot; </span>
-<span class="cm">   that pulls the customer details from the backend */</span>
+<span class="cm">/* getData is a wrapper around the "task" 
+   that pulls the customer details from the backend */</span>
 <span class="nx">getData</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// This is the success callback</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -156,27 +156,27 @@ With this post I aim to share some of my practices when it comes to working with
 In order to implement the method to act as a promise, we need our code to look like below:</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// dataservice.js</span>
 
-<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./data/dbhandler&#39;</span><span class="p">),</span>
-    <span class="nx">QUERY_FAILED</span> <span class="o">=</span> <span class="s2">&quot;Database query failed.&quot;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./data/dbhandler'</span><span class="p">),</span>
+    <span class="nx">QUERY_FAILED</span> <span class="o">=</span> <span class="s2">"Database query failed."</span><span class="p">;</span>
 
 <span class="c1">// [...db configuration]</span>
 
 <span class="nx">db</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
 
 <span class="nx">DataService</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getCustomerDetails</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">customerID</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Create a deferred object that we&#39;ll use to control the execution flow</span>
+    <span class="c1">// Create a deferred object that we'll use to control the execution flow</span>
     <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
 
     <span class="nx">db</span><span class="p">.</span><span class="nx">getCustomer</span><span class="p">(</span><span class="nx">customerID</span><span class="p">,</span> <span class="p">{</span>
-        <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// We&#39;re done, query succeeded -- doesn&#39;t mean we have data</span>
+        <span class="na">success</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// We're done, query succeeded -- doesn't mean we have data</span>
             <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
         <span class="p">},</span>
-        <span class="nx">error</span>   <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="na">error</span>   <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// Something went wrong with the db. Worth investigating</span>
             <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">({</span>
-                <span class="nx">message</span> <span class="o">:</span> <span class="nx">QUERY_FAILED</span><span class="p">,</span>
-                <span class="nx">error</span>   <span class="o">:</span> <span class="nx">error</span> 
+                <span class="na">message</span> <span class="p">:</span> <span class="nx">QUERY_FAILED</span><span class="p">,</span>
+                <span class="na">error</span>   <span class="p">:</span> <span class="nx">error</span> 
             <span class="p">})</span>
         <span class="p">}</span>  
     <span class="p">});</span>
@@ -189,7 +189,7 @@ In order to implement the method to act as a promise, we need our code to look l
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 
 <span class="nx">DataService</span>
-    <span class="p">.</span><span class="nx">getCustomerDetails</span><span class="p">(</span><span class="s1">&#39;11AFFDDDS&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">getCustomerDetails</span><span class="p">(</span><span class="s1">'11AFFDDDS'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// do something with data</span>
@@ -224,8 +224,8 @@ After receiving the info, you need to set the data as properties on the <code>Or
 This way, if you would have to add a third promise, and set whatever data it returns on the current order, you only need to write 2 lines of code, instead of approx. 6 lines. I&#39;m suggesting the following structure, that promotes code reuse.</p>
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Note that this will not work currently as support for native Promises in </span>
 <span class="c1">// es6-enabling module loaders/runtimes is not that stable</span>
-<span class="kr">import</span> <span class="nx">DataService</span> <span class="nx">from</span> <span class="s1">&#39;./dataservice.js&#39;</span>
-<span class="kr">import</span> <span class="nx">Cart</span> <span class="nx">from</span> <span class="s1">&#39;./cart.js&#39;</span>
+<span class="kr">import</span> <span class="nx">DataService</span> <span class="nx">from</span> <span class="s1">'./dataservice.js'</span>
+<span class="kr">import</span> <span class="nx">Cart</span> <span class="nx">from</span> <span class="s1">'./cart.js'</span>
 
 <span class="kr">class</span> <span class="nx">Order</span> <span class="p">{</span>
     <span class="nx">constructor</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
@@ -249,7 +249,7 @@ This way, if you would have to add a third promise, and set whatever data it ret
 
     <span class="nx">ExternalService</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;An error has occurred!&#39;</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error has occurred!'</span><span class="p">);</span>
             <span class="k">return</span><span class="p">;</span>
         <span class="p">}</span>
 
@@ -266,8 +266,8 @@ This way, if you would have to add a third promise, and set whatever data it ret
     <span class="nx">DataService</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">({</span>
-                <span class="nx">message</span> <span class="o">:</span> <span class="s1">&#39;Query to the dataservice failed.&#39;</span><span class="p">,</span>
-                <span class="nx">error</span>   <span class="o">:</span> <span class="nx">err</span>
+                <span class="na">message</span> <span class="p">:</span> <span class="s1">'Query to the dataservice failed.'</span><span class="p">,</span>
+                <span class="na">error</span>   <span class="p">:</span> <span class="nx">err</span>
             <span class="p">});</span>
 
             <span class="k">return</span><span class="p">;</span>
@@ -285,9 +285,9 @@ This way, if you would have to add a third promise, and set whatever data it ret
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getOrderDetails</span><span class="p">(</span><span class="nx">orderID</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">(),</span>
         <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="nx">orderID</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="nx">items</span>   <span class="o">:</span> <span class="p">[],</span>
-            <span class="nx">amount</span>   <span class="o">:</span> <span class="mi">0</span>
+            <span class="na">orderID</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="na">items</span>   <span class="p">:</span> <span class="p">[],</span>
+            <span class="na">amount</span>   <span class="p">:</span> <span class="mi">0</span>
         <span class="p">};</span>
 
     <span class="nx">Order</span><span class="p">.</span><span class="nx">getDetails</span><span class="p">(</span><span class="nx">orderID</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">){</span> 
@@ -302,7 +302,7 @@ This way, if you would have to add a third promise, and set whatever data it ret
 <span class="p">}</span>
 
 <span class="c1">// The call looks like this</span>
-<span class="nx">getOrderDetails</span><span class="p">(</span><span class="s1">&#39;ABC123&#39;</span><span class="p">)</span>
+<span class="nx">getOrderDetails</span><span class="p">(</span><span class="s1">'ABC123'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// do something with data</span>
