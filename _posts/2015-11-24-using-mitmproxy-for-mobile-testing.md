@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Quick tip: Using mitmproxy for mobile testing"
-pubdate: 2015-11-23 12:00:00 PM
-last_modified: 2015-11-23 12:00:00 PM
+pubdate: 2015-11-24 12:00:00 PM
+last_modified: 2015-11-24 12:00:00 PM
 categories: development
 author_name: "Adrian Oprea"
 author_twitter: "@opreaadrian"
