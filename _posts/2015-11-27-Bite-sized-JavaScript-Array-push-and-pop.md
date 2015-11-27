@@ -18,7 +18,7 @@ return.
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
 remind me what each method of the `Array` object does, and to also share this knowledge with anyone
 interested in the topic. The articles won't require more than a basic experience with JavaScript's
-syntax so absolute JavaScript beginners are welcome, too.
+syntax so absolute JavaScript beginners are welcomed, too.
 
 ## What's an array?
 
