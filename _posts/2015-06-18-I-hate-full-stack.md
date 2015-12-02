@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "I hate full stack! Period!"
-pubdate: 2015-06-18 5:00:00 PM
+pub_date: 2015-06-18 5:00:00 PM
 last_modified: 2015-06-18 5:00:00 PM
 categories: life
 author_name: "Adrian Oprea"

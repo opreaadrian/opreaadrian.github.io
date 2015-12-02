@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Short tip: viewing and resolving svn conflicts in the terminal"
-pubdate: 2015-06-15 12:00:00 PM
+pub_date: 2015-06-15 12:00:00 PM
 last_modified: 2015-06-15 12:00:00 PM
 categories: workflow
 author_name: "Adrian Oprea"

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Working with JavaScript promises: handling the unexpected"
-pubdate: 2015-02-28 06:00:00 PM
+pub_date: 2015-02-28 06:00:00 PM
 last_modified: 2015-02-28 06:00:00 PM
 categories: nodejs
 author_name: 'Adrian Oprea'

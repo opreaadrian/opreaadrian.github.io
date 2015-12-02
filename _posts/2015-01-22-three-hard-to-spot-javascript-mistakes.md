@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Three hard to spot JavaScript mistakes"
-pubdate: 2015-01-22 12:00:00 AM
+pub_date: 2015-01-22 12:00:00 AM
 last_modified: 2015-01-22 12:00:00 AM
 categories: javascript
 author_name: 'Adrian Oprea'

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "There's garbage in our code"
-pubdate: 2015-11-04 12:00:00 PM
+pub_date: 2015-11-04 12:00:00 PM
 last_modified: 2015-11-04 12:00:00 PM
 categories: speaking
 author_name: "Adrian Oprea"

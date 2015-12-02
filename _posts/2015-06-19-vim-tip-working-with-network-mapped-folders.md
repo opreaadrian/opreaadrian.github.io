@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Vim tip: Working with network-mapped folders"
-pubdate: 2015-06-19 1:00:00 PM
+pub_date: 2015-06-19 1:00:00 PM
 last_modified: 2015-06-19 1:00:00 PM
 categories: productivity
 author_name: "Adrian Oprea"

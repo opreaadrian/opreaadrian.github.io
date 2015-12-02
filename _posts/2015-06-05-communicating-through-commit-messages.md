@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Communicating through commit messages"
-pubdate: 2015-06-05 03:50:00 PM
+pub_date: 2015-06-05 03:50:00 PM
 last_modified: 2015-06-05 03:50:00 PM
 categories: workflow
 author_name: "Adrian Oprea"

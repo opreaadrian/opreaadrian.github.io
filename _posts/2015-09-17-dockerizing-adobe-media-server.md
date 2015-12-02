@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dockerizing Adobe Media Server"
-pubdate: 2015-09-17 12:00:00 PM
+pub_date: 2015-09-17 12:00:00 PM
 last_modified: 2015-09-17 12:00:00 PM
 categories: docker
 author_name: "Adrian Oprea"

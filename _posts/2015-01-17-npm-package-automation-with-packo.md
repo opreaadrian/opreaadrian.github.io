@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Npm package automation with packo"
-pubdate: 2015-01-17 8:00:00 AM
+pub_date: 2015-01-17 8:00:00 AM
 last_modified: 2015-01-26 12:30:00 AM
 categories: nodejs
 author_name: "Adrian Oprea"

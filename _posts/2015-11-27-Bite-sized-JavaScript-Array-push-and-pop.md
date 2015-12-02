@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Bite-sized JavaScript - Meet Array"
-pubdate: 2015-11-27 10:00:00 PM
+pub_date: 2015-11-27 10:00:00 PM
 last_modified: 2015-11-27 10:00:00 PM
 categories: development
 author_name: "Adrian Oprea"

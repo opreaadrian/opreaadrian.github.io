@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unlearning and re-learning stuff"
-pubdate: 2015-09-22 2:00:00 PM
+pub_date: 2015-09-22 2:00:00 PM
 last_modified: 2015-09-22 2:00:00 PM
 categories: frontend
 author_name: "Adrian Oprea"
