@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Things that kill my interest"
+title: "Interest killers"
 pub_date: 2015-12-03 10:00:00 AM
 last_modified: 2015-12-03 10:00:00 AM
 categories: life
