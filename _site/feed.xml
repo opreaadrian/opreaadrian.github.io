@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
+<link href="codesi.nz/feed.xml" rel="self" type="application/atom+xml" />
+<link href="codesi.nz/" rel="alternate" type="text/html" />
+<updated>2015-12-04T01:19:36+02:00</updated>
+<id>codesi.nz/</id>
+<title>codesins. - The blog of Adrian Oprea, freelance web developer.</title>
+<subtitle>Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle>
+<author>
+<name>Adrian Oprea</name>
+<email>adrian@codesi.nz</email>
+<uri>https://ro.linkedin.com/in/opreageorgeadrian</uri>
+</author>
+<entry>
+<title>Interest killers</title>
+<link href="codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" />
+<published>2015-12-03T00:00:00+02:00</published>
+<updated>2015-12-03T00:00:00+02:00</updated>
+<id>codesi.nz/things-that-kill-my-interest</id>
+<content type="html" xml:base="codesi.nz/things-that-kill-my-interest/">&lt;p&gt;I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.  &lt;/p&gt;
+
+&lt;p&gt;Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// blah&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;At that exact moment, I immediately close any open tabs with that material and hate the Interwebs for being that dumb.&lt;/p&gt;
+
+&lt;p&gt;Bottom line, content creators, please take best practices into account when authoring for tech people or you&amp;#39;ll lose them. Better yet, take best practices into account when catering towards aspiring tech people, because at some point, you&amp;#39;ll end up working with &amp;quot;your creation&amp;quot;, and it won&amp;#39;t be pretty.&lt;/p&gt;
+
+&lt;p&gt;Cheers!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Credits:&lt;br&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/archer10/&quot;&gt;Dennis Jarvis&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/4oULGp&quot;&gt;New Hampshire-5132 - Slanted Boiler&lt;/a&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<summary>I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.  </summary>
+</entry>
+<entry>
+<title>Bite-sized JavaScript - Meet Array</title>
+<link href="codesi.nz/bite-sized-javascript-meet-array/" rel="alternate" type="text/html" title="Bite-sized JavaScript - Meet Array" />
+<published>2015-11-27T00:00:00+02:00</published>
+<updated>2015-11-27T00:00:00+02:00</updated>
+<id>codesi.nz/bite-sized-javascript-meet-array</id>
+<content type="html" xml:base="codesi.nz/bite-sized-javascript-meet-array/">&lt;p&gt;I don&amp;#39;t know about you but I&amp;#39;m working with JavaScript all day long and I always trip over arrays
+when it comes to &amp;quot;what method for which use case&amp;quot;. 
+Whether I need to get an element from an array, check if an element exists or just create a new 
+array, I always fail to remember which method does what, and of course, what each of the methods
+return.&lt;br&gt;
+This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
+remind me what each method of the &lt;code&gt;Array&lt;/code&gt; object does, and to also share this knowledge with anyone
+interested in the topic. The articles won&amp;#39;t require more than a basic experience with JavaScript&amp;#39;s
+syntax so absolute JavaScript beginners are welcomed, too.&lt;/p&gt;
+
+&lt;h2&gt;What&amp;#39;s an array?&lt;/h2&gt;
+
+&lt;p&gt;At its core, an array is simply an ordered collection of items, nothing more, nothing less. When I was first
+learning to program, I always thought of an array, as my shopping list.&lt;br&gt;
+Please note that I did not say &amp;quot;sorted&amp;quot; list of items, that is something we are going to learn more 
+about in future posts. The &amp;quot;ordered&amp;quot; part comes from the fact that an array keeps track of its
+items through indexes numbered from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;length - 1&lt;/code&gt;.&lt;br&gt;
+Basically, if you have an array like the one below, its length is 5 and the index of the last item
+is 4, as index numbering starts from &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// arr[0] =&amp;gt; a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// arr[1] =&amp;gt; b&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// arr[2] =&amp;gt; c&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// arr[3] =&amp;gt; d&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// arr[4] =&amp;gt; e&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Back to the shopping list analogy, your array of things to buy, would look like below:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;carrots&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;onions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;apples&quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// shoppingList[0] =&amp;gt; carrots&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// shoppingList[1] =&amp;gt; onions&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// shoppingList[2] =&amp;gt; apples&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;There&amp;#39;s one more thing you need to know before we end for the day and that is the &lt;code&gt;length&lt;/code&gt; property
+of an array. Every time you query for the &lt;code&gt;length&lt;/code&gt; property of an array, you will get the exact
+number of items it holds.&lt;br&gt;
+Going back to our shopping list, let&amp;#39;s see how many items do we need to
+buy:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, we will learn how to perform classic iteration on arrays, and also familiarize ourselves with
+our first &lt;code&gt;Array&lt;/code&gt; method, &lt;code&gt;Array.prototype.forEach&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Credits:&lt;br&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/cibomahto/&quot;&gt;Matt Mets&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/4qqJzZ&quot;&gt;7x7 tri-color LED array&lt;/a&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>I don&amp;#39;t know about you but I&amp;#39;m working with JavaScript all day long and I always trip over arrayswhen it comes to &amp;quot;what method for which use case&amp;quot;. Whether I need to get an element from an array, check if an element exists or just create a new array, I always fail to remember which method does what, and of course, what each of the methodsreturn.This post is the first of a series of bite-sized(like the title states) posts aimed to first of allremind me what each method of the Array object does, and to also share this knowledge with anyoneinterested in the topic. The articles won&amp;#39;t require more than a basic experience with JavaScript&amp;#39;ssyntax so absolute JavaScript beginners are welcomed, too.</summary>
+</entry>
+<entry>
+<title>Quick tip: Using mitmproxy for mobile testing</title>
+<link href="codesi.nz/using-mitmproxy-for-mobile-testing/" rel="alternate" type="text/html" title="Quick tip: Using mitmproxy for mobile testing" />
+<published>2015-11-24T00:00:00+02:00</published>
+<updated>2015-11-24T00:00:00+02:00</updated>
+<id>codesi.nz/using-mitmproxy-for-mobile-testing</id>
+<content type="html" xml:base="codesi.nz/using-mitmproxy-for-mobile-testing/">&lt;p&gt;This article is meant to offer a hopefully simple solution for testing web applications that run on 
+your local machine, on actual mobile devices, without altering your router&amp;#39;s DNS configuration, 
+or resorting to other, less elegant solutions.&lt;/p&gt;
+
+&lt;h2&gt;Use case&lt;/h2&gt;
+
+&lt;p&gt;I have an application running on my machine, and I access it on &lt;code&gt;http://myapp.dev&lt;/code&gt; as it depends on
+the domain it is running on, in order to bootstrap itself and offer different functionality based
+on the domain where it is being loaded.&lt;br&gt;
+I want to be able to navigate to &lt;code&gt;http://myapp.dev&lt;/code&gt; on my phone and get the application running on 
+my computer.&lt;/p&gt;
+
+&lt;h2&gt;Solution 1&lt;/h2&gt;
+
+&lt;p&gt;Have the mapping added to my local DNS(the router&amp;#39;s DNS) and every time a device on my network
+navigates to &lt;code&gt;http://myapp.dev&lt;/code&gt; it will be redirected to my machine &amp;mdash; highly impractical as
+I have multiple devices and I&amp;#39;d probably like to keep my router&amp;#39;s config as sane as possible.&lt;/p&gt;
+
+&lt;h2&gt;Solution 2&lt;/h2&gt;
+
+&lt;p&gt;Set my computer as a 
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&quot; 
+    title=&quot;Wikipedia link to Man-In-The-Middle attack definition&quot; 
+    target=&quot;_blank&quot;&gt;Man-In-The-Middle&lt;/a&gt;
+between my phone and the Internet &amp;mdash; in other words, make my computer act as an HTTP proxy. 
+This way, I can trick the phone into believeing that all its traffic needs to be routed through my laptop.&lt;/p&gt;
+
+&lt;h2&gt;How DNS resolution works&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I navigate to &lt;code&gt;http://myapp.dev&lt;/code&gt; from my phone&lt;/li&gt;
+&lt;li&gt;My phone looks at its internal hostfile &amp;mdash; usually &lt;code&gt;/etc/hosts&lt;/code&gt; on UNIX-like operating 
+systems &amp;mdash; for entries resolving to that specific hostname.&lt;/li&gt;
+&lt;li&gt;If it doesn&amp;#39;t find anything it looks at the local DNS (the router&amp;#39;s DNS) &lt;/li&gt;
+&lt;li&gt;If no result is returned by the local DNS, then the external DNS is queried - via recursion&lt;/li&gt;
+&lt;li&gt;If nothing comes back from the external DNS, then it means that the address is either inexistent
+or down.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;The setup&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A copy of &lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot;
+target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A mobile device to test on&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Workflow&lt;/h2&gt;
+
+&lt;p&gt;What I want to do is to trick my phone into thinking that &lt;code&gt;http://myapp.dev&lt;/code&gt; resolves to 
+192.168.xxx.xxx &amp;mdash; my laptop&amp;#39;s local IP address &amp;mdash; and the way I can do that is by using 
+&lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot; target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#39;re on a Mac, you have two options for installing &lt;code&gt;mitmproxy&lt;/code&gt;: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Through &lt;a href=&quot;https://pip.pypa.io/en/stable/&quot; title=&quot;Link to Python package manager, pip&quot;
+target=&quot;_blank&quot;&gt;pip&lt;/a&gt; by issuing &lt;code&gt;pip install mitmproxy&lt;/code&gt; at your 
+terminal prompt.&lt;/li&gt;
+&lt;li&gt;Through &lt;a href=&quot;http://brew.sh/&quot; title=&quot;Link to Homebrew - Mac OS X package manager&quot; target=&quot;_blank&quot;&gt;homebrew&lt;/a&gt; 
+by issuing another command at your terminal prompt: &lt;code&gt;brew install mitmproxy&lt;/code&gt;.&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you are on a different operating system please check the 
+&lt;a href=&quot;http://docs.mitmproxy.org/en/stable/install.html&quot; title=&quot;Mitmproxy official installation docs&quot; target=&quot;_blank&quot;&gt;mitmproxy installation guide&lt;/a&gt;  &lt;/p&gt;
+
+&lt;h2&gt;Proxy server setup&lt;/h2&gt;
+
+&lt;p&gt;All you have to do now is to start the proxy server, and set your machine&amp;#39;s local IP
+(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Start the proxy server on port 7654&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mitmproxy -p 7654
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After starting the proxy server go to your phone&amp;#39;s wireless network settings, and add your 
+computer&amp;#39;s ip as an HTTP proxy that every connection on your phone goes through.&lt;br&gt;
+Note that the phone and the computer need to be on the same network, or otherwise you will need to
+get the public IP that your computer uses when it accesses the Internet.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# UNIX - Get your computer&#39;s router-assigned IP (see image below)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ifconfig -a | grep inet
+
+&lt;span class=&quot;c&quot;&gt;# Windows - Get the network configuration for all interfaces&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;ipconfig /all
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure&gt;
+&lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png&quot; alt=&quot;Image of the output of the ifconfig
+command on UNIX like systems.&quot;&gt;
+&lt;!--- &lt;figcaption&gt;Using ifconfig to get your IP address&lt;/figcaption&gt; ---&gt;
+&lt;/figure&gt;
+
+&lt;h2&gt;iPhone proxy setup&lt;/h2&gt;
+
+&lt;p&gt;In order to add a proxy to your wireless connection, navigate to &amp;quot;Settings -&amp;gt; Wi-Fi&amp;quot;, find the 
+network you whish to connect to and tap the &amp;quot;i&amp;quot; symbol, to the far  right of the network&amp;#39;s name.&lt;br&gt;
+This will move you to the network&amp;#39;s settings panel, and at the bottom of this panel you have the 
+&amp;quot;HTTP PROXY&amp;quot; section, which is set to &amp;quot;Off&amp;quot; by default.&lt;br&gt;
+Tap &amp;quot;Manual&amp;quot; and add your machine&amp;#39;s IP and the port you used when you started &lt;code&gt;mitmproxy&lt;/code&gt;. The
+setup should look like the image below.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png&quot; alt=&quot;Image of HTTP PROXY settings on the iPhone&quot;&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Once you&amp;#39;re done performing the steps above, you should try and visit any web page, and you will
+see some activity in the terminal window where you started &lt;code&gt;mitmproxy&lt;/code&gt;.&lt;br&gt;
+This means that the proxy is working correctly and that your phone&amp;#39;s connection is routed through 
+your laptop.&lt;br&gt;
+Now, you can start your application on your machine, add an entry to your &lt;code&gt;/etc/hosts&lt;/code&gt; file, that
+makes &lt;code&gt;myapp.dev&lt;/code&gt; point to your local machine&amp;#39;s IP, and visit &lt;code&gt;http://myapp.dev:&amp;lt;port&amp;gt;&lt;/code&gt; from your
+phone.  &lt;/p&gt;
+
+&lt;p&gt;You&amp;#39;re done! You should now be able to see the application that is running on your computer.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Credits:&lt;br&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/believekevin/&quot;&gt;kevin&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/8mGycA&quot;&gt;Lot of mobile phones + accessories (FREE)&lt;/a&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>This article is meant to offer a hopefully simple solution for testing web applications that run on your local machine, on actual mobile devices, without altering your router&amp;#39;s DNS configuration, or resorting to other, less elegant solutions.</summary>
+</entry>
+<entry>
+<title>There&amp;#39;s garbage in our code</title>
+<link href="codesi.nz/there-s-garbage-in-our-code/" rel="alternate" type="text/html" title="There&#39;s garbage in our code" />
+<published>2015-11-04T00:00:00+02:00</published>
+<updated>2015-11-04T00:00:00+02:00</updated>
+<id>codesi.nz/there-s-garbage-in-our-code</id>
+<content type="html" xml:base="codesi.nz/there-s-garbage-in-our-code/">&lt;p&gt;Last week we had our &lt;a href=&quot;https://www.facebook.com/events/180867725583584/&quot; target=&quot;_blank&quot; title=&quot;October BucharestJS meetup - facebook event&quot;&gt;October BucharestJS meetup&lt;/a&gt; 
+and they made the mistake of letting me speak, again.&lt;br&gt;
+Last time I presented something, was in June, when I tried to teach developers how to be
+lazy at work, and use their time intelligently &amp;mdash; &lt;a href=&quot;http://codesi.nz/speaking/2015/06/29/a-different-look-at-nodejs-application-architecture.html&quot; target=&quot;_blank&quot; title=&quot;Older article about Node.js application architecture&quot;&gt;A different look at Node.js application architecture&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This time, I took on a challenge bigger than myself: explaining to people what garbage collection
+is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn&amp;#39;t own.&lt;br&gt;
+Now, I don&amp;#39;t know if it was a success or not, but we sure had a good time, and the audience was
+kind enough not to ask any questions &amp;mdash; not sure if it was because pizza arrived at the end of
+my presentation or they were just being nice and didn&amp;#39;t want to put me in difficulty.
+I wrote this small article to thank the organisers for their courage and dedication in maintaining
+this community and to the patient crowd that stood and listened to me rambling about garbage
+collection algorithms and my Chinese Crested friend,
+Sniffles.&lt;/p&gt;
+
+&lt;p&gt;The slides are available on &lt;a href=&quot;http://www.slideshare.net/AdrianOprea3/theres-garbage-in-our-code&quot; target=&quot;_blank&quot; title=&quot;There&#39;s garbage in our code - SlideShare presentation&quot;&gt;SlideShare&lt;/a&gt;.&lt;br&gt;
+Enjoy!&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/posts/there-s-garbage-in-our-code/sniffles.jpg&quot; alt=&quot;Chinese Crested dog in
+    tuxedo&quot;&gt;
+    &lt;figcaption&gt;Sniffles&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Credits:&lt;br&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/annrkiszt/&quot;&gt;Yolanda&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/foxypar4/&quot;&gt;John Haslam&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>Last week we had our October BucharestJS meetup and they made the mistake of letting me speak, again.Last time I presented something, was in June, when I tried to teach developers how to belazy at work, and use their time intelligently &amp;mdash; A different look at Node.js application architecture</summary>
+</entry>
+<entry>
+<title>Short tip: Working with docker-compose container names</title>
+<link href="codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" rel="alternate" type="text/html" title="Short tip: Working with docker-compose container names" />
+<published>2015-11-01T00:00:00+02:00</published>
+<updated>2015-11-01T00:00:00+02:00</updated>
+<id>codesi.nz/short-tip-get-docker-compose-generated-names-in-bash</id>
+<content type="html" xml:base="codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/">&lt;p&gt;In this short tip I will show you how to get the name of a  container created with&lt;br&gt;
+&lt;code&gt;docker-compose&lt;/code&gt;, so you can manipulate it.&lt;/p&gt;
+
+&lt;h2&gt;The problem&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;docker-compose&lt;/code&gt; generates container names going by the following convention: 
+&lt;code&gt;&amp;lt;CURRENT_DIR&amp;gt;_&amp;lt;CONTAINER_NAME&amp;gt;_&amp;lt;INSTANCE_NUMBER&amp;gt;&lt;/code&gt;.&lt;br&gt;
+I needed to get my hands on container names so I can individually kill and remove them without
+messing up with the whole infrastructure.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s first dissect the structure:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CURRENT_DIR&lt;/code&gt; is the directory where the &lt;code&gt;docker-compose.yml&lt;/code&gt; file is located&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CONTAINER_NAME&lt;/code&gt; is the name you gave to your service in &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;INSTANCE_NUMBER&lt;/code&gt; is self-explanatory&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So for a config file like the one below, placed in &lt;code&gt;~/Documents/projects/webapp&lt;/code&gt;, your 
+container would be named &lt;code&gt;webapp_nginx_1&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-YAML&quot; data-lang=&quot;YAML&quot;&gt;nginx:
+    image: nginx
+    ports:
+        - &quot;80:80&quot;
+        - &quot;443:443&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;The solution&lt;/h2&gt;
+
+&lt;p&gt;No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
+&lt;a href=&quot;http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top&quot; 
+    target=&quot;_blank&quot; 
+    title=&quot;StackOverflow question: Get current directory name (without full path) in Bash Script&quot;&gt;
+    there was a way to parse only the &lt;code&gt;basename&lt;/code&gt;&lt;/a&gt;
+from the whole &lt;code&gt;pwd&lt;/code&gt; string, without complicated splits and parsing.&lt;br&gt;
+The thing I was looking for was 
+&lt;a href=&quot;http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html&quot; 
+    target=&quot;_blank&quot; 
+    title=&quot;gnu.org: Shell Parameter Expansion documentation&quot;&gt;
+    Shell Parameter Expansion&lt;/a&gt;, which got me this thing: &lt;code&gt;CONTAINER_NAME=${PWD##*/}_nginx_1&lt;/code&gt;.&lt;br&gt;
+What this allowed me to do was to get the current directory name, without the full path and concatenate that with what
+I wanted. Now I could &lt;code&gt;docker rm&lt;/code&gt; my container peacefully.  &lt;/p&gt;
+
+&lt;p&gt;There&amp;#39;s another problem, though, the fact that directory names like this:
+&lt;code&gt;webapp-authentication-project&lt;/code&gt;, get turned into &lt;code&gt;webappauthenticationproject&lt;/code&gt;.&lt;br&gt;
+For this, I resorted to &lt;a href=&quot;https://www.gnu.org/software/sed/manual/&quot; target=&quot;_blank&quot; title=&quot;gnu.org: GNU Sed user&#39;s manual&quot;&gt;sed&lt;/a&gt; 
+so I could take out the underscores and dashes from the filename.&lt;/p&gt;
+
+&lt;p&gt;The final version of my code looks just like the snippet below:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;CONTAINER_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PWD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;_nginx_1 | sed s&lt;span class=&quot;s1&quot;&gt;&#39;/[ -]/_/g&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now I can manipulate containers from any bash script, as long as I can get my hands on the &lt;code&gt;$PWD&lt;/code&gt;
+and as long as I know the names they get in the &lt;code&gt;YAML&lt;/code&gt; config file.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/l2f1/&quot;&gt;Glen&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>In this short tip I will show you how to get the name of a  container created withdocker-compose, so you can manipulate it.</summary>
+</entry>
+<entry>
+<title>Unlearning and re-learning stuff</title>
+<link href="codesi.nz/unlearning-and-re-learning-stuff/" rel="alternate" type="text/html" title="Unlearning and re-learning stuff" />
+<published>2015-09-22T00:00:00+03:00</published>
+<updated>2015-09-22T00:00:00+03:00</updated>
+<id>codesi.nz/unlearning-and-re-learning-stuff</id>
+<content type="html" xml:base="codesi.nz/unlearning-and-re-learning-stuff/">&lt;p&gt;There comes a time in a developer&amp;#39;s life when they need to unlearn something, in order to make way
+for something new. In fact, I believe that the right way to learn something new, be it a new
+programming technique, a new framework, a new language, sometimes means putting some concepts that
+you already know and master, behind you.  &lt;/p&gt;
+
+&lt;p&gt;I actually found that many of the people I see coming up from universities struggle with this, as 
+they get brainwashed with mathematics, Java and C++ and cannot accept or learn other programming 
+languages.  &lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ve found myself in this situation, countless times, but still haven&amp;#39;t managed to find a solution.&lt;br&gt;
+I love learning new stuff, and I&amp;#39;m an avid reader, so usually when I find something I like, things 
+usually happen as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I find something I like&lt;/li&gt;
+&lt;li&gt;I start hacking at it and fail(I always do!)&lt;/li&gt;
+&lt;li&gt;I read about that technology&lt;/li&gt;
+&lt;li&gt;I hack some more.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It&amp;#39;s always about &amp;quot;I&amp;quot;.  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But in order to keep up with the pace of technology nowadays, we usually end up with a lot of loops
+similar to the one I described above, and need to &amp;quot;unlearn&amp;quot; something, like I previously said.&lt;br&gt;
+This is not necessarily a bad thing, as you need to make room for that extra knowledge, but 
+sometimes you &amp;quot;unlearn&amp;quot; important stuff, and that&amp;#39;s when you start losing track.&lt;/p&gt;
+
+&lt;p&gt;This is exactly what happened to me, with CSS. I invested so much time into learning backend
+technologies, that I forgot how to use CSS. I realised this today, while attending 
+&lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt;&amp;#39;s talk at &lt;a href=&quot;http://www.smartwebconf.com/&quot;&gt;Smartweb&lt;/a&gt;, about 
+&lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;.&lt;br&gt;
+This felt really awkward, as I come from a front-end background, and losing track of a core 
+front-end technology is not quite satisfying.&lt;br&gt;
+I&amp;#39;m not saying that I forgot the basic concepts, I still know what floats are, how to do 
+positioning, but as you well know, technology changes at a very rapid pace, and now we have 
+&lt;code&gt;flexbox&lt;/code&gt;, &lt;code&gt;clip&lt;/code&gt;, critical CSS, quantity queries, and CSS animations.  &lt;/p&gt;
+
+&lt;p&gt;Bottom line, I set myself to re-learn CSS, and I sure didn&amp;#39;t know that &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; 
+knows so many tricks, so I&amp;#39;m planning to also learn to use &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; better.&lt;br&gt;
+As a closing thought, I&amp;#39;d like to thank &lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt; for reminding me that some
+things really don&amp;#39;t need leave your brain, and for showing us the versatility of &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;. :)&lt;/p&gt;
+
+&lt;p&gt;Cheers!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/jakerust/&quot;&gt;GotCredit&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>There comes a time in a developer&amp;#39;s life when they need to unlearn something, in order to make wayfor something new. In fact, I believe that the right way to learn something new, be it a newprogramming technique, a new framework, a new language, sometimes means putting some concepts thatyou already know and master, behind you.  </summary>
+</entry>
+<entry>
+<title>Dockerizing Adobe Media Server</title>
+<link href="codesi.nz/dockerizing-adobe-media-server/" rel="alternate" type="text/html" title="Dockerizing Adobe Media Server" />
+<published>2015-09-17T00:00:00+03:00</published>
+<updated>2015-09-17T00:00:00+03:00</updated>
+<id>codesi.nz/dockerizing-adobe-media-server</id>
+<content type="html" xml:base="codesi.nz/dockerizing-adobe-media-server/">&lt;p&gt;New job, new technologies, new problems to solve &amp;mdash; that&amp;#39;s how it all started for me.&lt;br&gt;
+After switching jobs few months ago, I found myself working on an application that makes heavy use of
+Adobe Media Server(AMS) for audio and video streaming.&lt;br&gt;
+Nothing too hard, or too complicated, except for the fact that all developers were using a single
+install of AMS which was somewhere on a central server.&lt;br&gt;
+This started all my single-point-of-failure alarms, and started to ockerize the whole development
+environment, including AMS. In this article, I will explain the steps I followed in order to
+properly create a &lt;a href=&quot;https://www.docker.com/&quot;&gt;docker&lt;/a&gt; container running Adobe Media Server, with 
+full RTMP/RTMPS support, &lt;/p&gt;
+
+&lt;p&gt;By now, many of the developers with an interest in DevOps should know about Docker, so I wont waste
+time explaining what Docker is, there are plenty of resources out there, starting with the
+&lt;a href=&quot;https://docs.docker.com/&quot;&gt;official docker documentation&lt;/a&gt;, very rich in examples and explanations.&lt;/p&gt;
+
+&lt;p&gt;So, back to our AMS setup, there&amp;#39;s one &amp;quot;small&amp;quot; problem, setting it up inside a Docker container 
+&amp;mdash; it doesn&amp;#39;t work straight out of the box.&lt;br&gt;
+This is because when you install Adobe Media Server, you get the application&amp;#39;s  license, &lt;code&gt;less&lt;/code&gt;-ed 
+to you, and you need to press the spacebar(or the down arrow if you feel a  bit crazy) and hit a 
+key when you reach the bottom, confirming that you&amp;#39;ve read and agreed with the license.&lt;br&gt;
+In my opinion, this is complicated stuff, so let&amp;#39;s simplify. As it turns out, just by going to the 
+directory where the AMS archive is extracted, and removing &amp;quot;License.txt&amp;quot;, you can aviod having to 
+&amp;quot;read&amp;quot; the whole license before continuing.&lt;br&gt;
+So much for the first part of the problem. But there is still something to be done! The install
+script is still waiting for user input, to continue with the setup, so what you have to do
+next is to comment out the line that halts the  installation until it gets a keypress, in the 
+&lt;code&gt;installAMS&lt;/code&gt; script. For this matter in particular, you will need to use 
+&lt;a href=&quot;https://www.gnu.org/software/sed/manual/sed.html&quot;&gt;&lt;code&gt;sed&lt;/code&gt;&lt;/a&gt;, just like in the snippet below.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ams_setup_directory
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rm -Rf License.txt
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
+you have to provide various answers to the installer. This is where the second problem appears, as 
+you aren&amp;#39;t able to answer those questions yourself, because everything takes place when you&amp;#39;re 
+building your Docker image.&lt;br&gt;
+At one point, when I was at my lowest self-esteem level of all times, somebody suggested using 
+&lt;a href=&quot;http://expect.sourceforge.net/&quot;&gt;Expect&lt;/a&gt; to autofill the answers, but I wasn&amp;#39;t in the mood for
+reading at that time. Besides, I knew that it had to be simpler than that, and I was right.  &lt;/p&gt;
+
+&lt;p&gt;The answer lies in the setup itself. What you have to do is to do is to open your editor, and 
+manually go through the setup, while writing down each answer you put in (including &lt;code&gt;RETURN&lt;/code&gt;s).
+At the end of the setup you will have something looking like the snippet below 
+(whitespace is relevant):&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# begin input file&lt;/span&gt;
+
+n
+/opt/adobe/ams 
+admin
+123456789
+123456789
+ams
+y
+ams
+y
+y
+
+ams
+1935,-443
+1111
+y
+n
+y
+
+
+&lt;span class=&quot;c&quot;&gt;# end input file&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;that you can validate against AMS&amp;#39;s &amp;quot;Install Action Summary&amp;quot;, outlined below:  &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;----------- Install Action Summary -----------
+
+Installation directory         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /opt/adobe/ams
+
+Adobe Media Server Port        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1935,-443
+Adobe Media Admin Server Port  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1111
+Interface &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;IP address&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; AMS will listen on  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; auto
+
+Apache Install                 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes
+
+
+Administrative username        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; admin
+Administrative password        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;suppressed&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+service owner                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
+
+service user                   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
+service group                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
+
+Run as daemon                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
+of your container, and simply &lt;code&gt;pipe&lt;/code&gt; it through &lt;code&gt;installAMS&lt;/code&gt;. I would recommend naming the file 
+&lt;code&gt;installAMS.input&lt;/code&gt;, so you can easily identify which is which. After you&amp;#39;ve created your input file, 
+all you need to do is to execute one of the following commands, in the directory where the AMS 
+archive was extracted: &lt;code&gt;./installAMS &amp;lt; installAMS.input&lt;/code&gt; or &lt;code&gt;cat installAMS.input | ./installAMS&lt;/code&gt;.  &lt;/p&gt;
+
+&lt;p&gt;Having this knowledge under our belts, it&amp;#39;s pretty straightforward to create a &lt;code&gt;Dockerfile&lt;/code&gt; with 
+the afore-mentioned setup, and with a bit more effort, to have a fully isolated Adobe Media Server
+install, easily reproducible from version control.&lt;br&gt;
+Your &lt;code&gt;Dockerfile&lt;/code&gt; will probably look like the one below, with minor tweaks based on your needs:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM centos:6
+MAINTAINER Adrian Oprea&amp;lt;adrian@codesi.nz&amp;gt;
+
+RUN rpm --import https://getfedora.org/static/0608B895.txt
+RUN yum update -y &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; yum install -y tar python-setuptools
+RUN easy_install supervisor
+
+RUN mkdir -p /var/log/supervisor
+COPY conf/supervisord.conf /etc/supervisord.conf
+
+WORKDIR /tmp
+RUN curl -O http://download.macromedia.com/pub/adobemediaserver/5_0_8/AdobeMediaServer5_x64.tar.gz
+WORKDIR /tmp/ams_latest
+RUN tar zxvf ../AdobeMediaServer5_x64.tar.gz -C . --strip-components&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+RUN rm -Rf License.txt
+RUN sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS
+
+COPY conf/installAMS.input installAMS.input
+
+RUN ./installAMS &amp;lt; installAMS.input
+COPY certs /opt/adobe/certs
+COPY conf/Adaptor.xml /opt/adobe/ams/conf/_defaultRoot_/Adaptor.xml
+
+&lt;span class=&quot;c&quot;&gt;# CLEANUP&lt;/span&gt;
+WORKDIR /tmp
+RUN rm -Rf ams_latest AdobeMediaServer5_x64.tar.gz
+
+VOLUME &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/opt/adobe/ams/applications&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+EXPOSE 80 443 1111 1935
+
+CMD &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/supervisord&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
+connection, and a ready-made configuration for &lt;code&gt;docker-compose&lt;/code&gt; is available on 
+&lt;a href=&quot;https://github.com/opreaadrian/docker-adobe-media-server&quot;&gt;my GitHub account&lt;/a&gt;.&lt;br&gt;
+Make sure to get back via Twitter(&lt;a href=&quot;https://twitter.com/opreaadrian&quot;&gt;@opreaadrian&lt;/a&gt;) with feedback, 
+questions and suggestions, and also make use of the comments section.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/bevgoodwin/&quot;&gt;Beverley Goodwin&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>New job, new technologies, new problems to solve &amp;mdash; that&amp;#39;s how it all started for me.After switching jobs few months ago, I found myself working on an application that makes heavy use ofAdobe Media Server(AMS) for audio and video streaming.Nothing too hard, or too complicated, except for the fact that all developers were using a singleinstall of AMS which was somewhere on a central server.This started all my single-point-of-failure alarms, and started to ockerize the whole developmentenvironment, including AMS. In this article, I will explain the steps I followed in order toproperly create a docker container running Adobe Media Server, with full RTMP/RTMPS support, </summary>
+</entry>
+<entry>
+<title>A different look at Node.js application architecture</title>
+<link href="codesi.nz/a-different-look-at-nodejs-application-architecture/" rel="alternate" type="text/html" title="A different look at Node.js application architecture" />
+<published>2015-06-29T00:00:00+03:00</published>
+<updated>2015-06-29T00:00:00+03:00</updated>
+<id>codesi.nz/a-different-look-at-nodejs-application-architecture</id>
+<content type="html" xml:base="codesi.nz/a-different-look-at-nodejs-application-architecture/">&lt;p&gt;Wednesday, June 24th, I attended the &lt;a href=&quot;http://www.meetup.com/BucharestJS/&quot;&gt;BucharestJS meetup&lt;/a&gt; as a speaker, with a presentation titled &lt;a target=&quot;_blank&quot; title=&quot;BucharestJS presentation: A different way to node&quot; href=&quot;http://codesi.nz/presentations/a-different-way-to-node/index.html&quot;&gt;A different way to node&lt;/a&gt;, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.&lt;br&gt;
+In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  &lt;/p&gt;
+
+&lt;p&gt;The gist of the presentation is as follows:&lt;br&gt;
+I&amp;#39;m one hell of a lazy developer, and I hate having to manage everything &amp;quot;by hand&amp;quot;. If I see myself doing something more than once, I immediately try to automate it, and that&amp;#39;s what I did with my Node.js development workflow. I found myself in situations where I had to perform cross-directory &lt;code&gt;require&lt;/code&gt; calls, and I ended up with a lot of &lt;code&gt;require(&amp;#39;./../../lib/util.js&amp;#39;);&lt;/code&gt; and all hell broke loose when I had to reuse logic, or maintain my own code. That&amp;#39;s exactly the reason I developed &lt;a href=&quot;https://www.npmjs.com/package/packo&quot;&gt;packo&lt;/a&gt;: to help me save time and toasted neurons.&lt;br&gt;
+I confess, I&amp;#39;m not less busy once I started developing with &lt;a href=&quot;https://www.npmjs.com/package/packo&quot;&gt;packo&lt;/a&gt;, as I immediately found something to do with the seconds I save by using it, but I seem to enjoy more of the things I want to do, as opposed to the things I have to do. This is precisely the effect I whish this presentation has on both attendees and regular blog readers, and I would like people to get into the mindset of sifting through the mundane quicker, and save their creative juices for the really important problems, rather than for figuring out if &lt;code&gt;__dirname&lt;/code&gt; is the current directory their module is in, or if it has been reset based on where the application was instantiated.  &lt;/p&gt;
+
+&lt;p&gt;I would like to thank the organisers for having the patience and determination to keep the group alive and appealing to developers.
+This article is a follow-up to my presentation and will serve as an entrypoint for people whishing to get access to the slides.&lt;/p&gt;
+
+&lt;p&gt;The slides are available here: &lt;a target=&quot;_blank&quot; title=&quot;BucharestJS presentation: A different way to node&quot; href=&quot;http://codesi.nz/presentations/a-different-way-to-node/index.html&quot;&gt;http://codesi.nz/presentations/a-different-way-to-node/index.html&lt;/a&gt;.&lt;br&gt;
+All the assets including the private npm repository configuration, are availble on GitHub: &lt;a href=&quot;https://github.com/opreaadrian/different-way-to-node&quot;&gt;https://github.com/opreaadrian/different-way-to-node&lt;/a&gt;. There&amp;#39;s one issue with the sinopia Dockerfile so I would recommend using the &lt;a href=&quot;https://www.npmjs.com/package/sinopia&quot;&gt;sinopia module from npm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Cheers!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/beglen/&quot;&gt;Kate Ter Haar&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>Wednesday, June 24th, I attended the BucharestJS meetup as a speaker, with a presentation titled A different way to node, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  </summary>
+</entry>
+<entry>
+<title>Vim tip: Working with network-mapped folders</title>
+<link href="codesi.nz/vim-tip-working-with-network-mapped-folders/" rel="alternate" type="text/html" title="Vim tip: Working with network-mapped folders" />
+<published>2015-06-19T00:00:00+03:00</published>
+<updated>2015-06-19T00:00:00+03:00</updated>
+<id>codesi.nz/vim-tip-working-with-network-mapped-folders</id>
+<content type="html" xml:base="codesi.nz/vim-tip-working-with-network-mapped-folders/">&lt;p&gt;Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?&lt;br&gt;
+Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,
+but I still dreaded the fact that I could not use Vim, as there have been some situations where I 
+would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.&lt;br&gt;
+Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just 
+doesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to create 
+custom commands/mappings, the way you do in Vim, for example.&lt;/p&gt;
+
+&lt;p&gt;Back on track with the Vim part, I have been living with this pain for quite some time, 
+until 3 days ago when I realised that I wasn&amp;#39;t able to see the trees because of the forest.
+I thought about all possible solutions, &lt;code&gt;scp&lt;/code&gt; being the most reliable of them all.&lt;br&gt;
+To clarify, I had no problem creating a bash function that would use &lt;code&gt;scp&lt;/code&gt; to upload everything to the remote server, which I actually did it.
+The only problem was that it would re-upload all the files and I didn&amp;#39;t want that. 
+Knowing this, I would rely on a trick I presented in 
+&lt;a href=&quot;http://codesi.nz/workflow/2015/06/15/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal.html&quot;&gt;Short tip: viewing and resolving svn conflicts in the terminal&lt;/a&gt;, 
+namely, I would take the filenames from &lt;code&gt;svn status&lt;/code&gt;, and upload them one by one &amp;mdash; talk about thinking like a programmer. The result is in the snippet below.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;scpsync&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;changed_files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;svn status | awk &lt;span class=&quot;s1&quot;&gt;&#39;{print $2}&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Syncing &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$changed_files&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;file &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$changed_files&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;do
+        &lt;/span&gt;scp &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; goprea@&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;:/&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;/&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;done
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Sync done&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, everything looked fine but I started hating it when I read the code out loud.
+I had a function that would upload all my SVN modified files…every damn time! 
+This meant that if I would commit once a day(SVN users know what I&amp;#39;m talking about), 
+I would upload every modified file, every time, even if I only changed the code ONCE, for some files.&lt;br&gt;
+This is the part where the over-engineer in me felt like a million bucks.
+I have created something that repeats a task even when it is not needed. Although it was ugly as hell, 
+it was useful to me so I had to brag about it, but there was still a little voice in the back of my head, 
+telling me that I once used a tool that would sync with the server through &lt;code&gt;ssh&lt;/code&gt;, in a flawless manner.&lt;br&gt;
+That&amp;#39;s why I went to my co-worker &lt;a href=&quot;https://github.com/pennycoders&quot;&gt;Alex Pica&lt;/a&gt;, as he has the eye of a critic and will argue with me over anything. 
+After letting me brag about my absolutely marvellous function, he went something along the lines of: &amp;quot;Well, why don&amp;#39;t you use &lt;a href=&quot;https://en.wikipedia.org/wiki/Rsync&quot;&gt;rsync&lt;/a&gt;?&amp;quot;.&lt;br&gt;
+At that moment I had the epiphany! That was the tool that I used in the past and does all the neat stuff I told you before, and more.&lt;br&gt;
+I&amp;#39;m writing this article to both share the solution with the Vim users going through the same pain I went to, and to thank Alex for being a walking encyclopedia.&lt;br&gt;
+The solution is outlined below, and it can be used directly from within Vim by issuing the following command in the Vim command line &amp;mdash; &lt;code&gt;:!syncremote . user@ip:/remote/path&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;syncremote &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  rsync -WavP --human-readable --progress &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Cheers, and happy hacking!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Image credits: Me&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,but I still dreaded the fact that I could not use Vim, as there have been some situations where I would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just doesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to create custom commands/mappings, the way you do in Vim, for example.</summary>
+</entry>
+<entry>
+<title>I hate full stack! Period!</title>
+<link href="codesi.nz/I-hate-full-stack/" rel="alternate" type="text/html" title="I hate full stack! Period!" />
+<published>2015-06-18T00:00:00+03:00</published>
+<updated>2015-06-18T00:00:00+03:00</updated>
+<id>codesi.nz/I-hate-full-stack</id>
+<content type="html" xml:base="codesi.nz/I-hate-full-stack/">&lt;p&gt;I&amp;#39;ve always loved to call myself different names/titles. I&amp;#39;ve been a software engineer, I&amp;#39;ve even been a &amp;quot;Lead Senior Front End Developer&amp;quot;; that&amp;#39;s a mouthful, isn&amp;#39;t it?. 
+Titles are what make people feel important in their social environment. Certain people could argue that we&amp;#39;re rational beings, and we have values, and they&amp;#39;re right. 
+But for the majority of us, the &amp;quot;name&amp;quot; we&amp;#39;re called by, is deeply engrained in our self-worth. I&amp;#39;ve experienced this countless times. &lt;/p&gt;
+
+&lt;p&gt;I recently read Remy Sharp&amp;#39;s inspiring article &lt;a href=&quot;https://remysharp.com/2015/02/26/i-am-web-developer&quot;&gt;I&amp;#39;m a developer, not an engineer&lt;/a&gt;, and I resonated with it fully. I have my own frustration,
+and it&amp;#39;s related to the fact that I&amp;#39;m seeing a trend which is more and more prominent in recruiter messages, a trend that triggered a cascade of bad things. &lt;/p&gt;
+
+&lt;p&gt;You&amp;#39;ve all received at some point a message from a recruiter with a subject line similar to: &amp;quot;Full stack &lt;fill_in_the_blanks&gt; engineer needed for...&amp;quot;. It&amp;#39;s this type of message that led 
+to the birth of the second worst thing in JavaScript history, after the &amp;quot;Angular developer&amp;quot;: the &amp;quot;Full stack developer&amp;quot;.
+Now, let&amp;#39;s sit down and look at the facts. &lt;/p&gt;
+
+&lt;p&gt;There is an increasing need for JavaScript developers on the job market, right? Not only that, but businesses need JavaScript developers that 
+can do both frontend and backend, thus, they invented the notion of &amp;quot;Full-stack developer&amp;quot;.&lt;br&gt;
+I have a big question here: &amp;quot;What stack are you talking about?!&amp;quot;, because we currently have the following.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://mean.io/&quot;&gt;MEAN stack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sanestack.com/&quot;&gt;SANE stack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Name yours&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I can make up my own &amp;quot;stack&amp;quot; if I want to, right? So we could have: &lt;em&gt;MHAN&lt;/em&gt; where I switch &lt;a href=&quot;http://expressjs.com/&quot;&gt;ExpressJS&lt;/a&gt; with &lt;a href=&quot;http://hapijs.com/&quot;&gt;Hapi&lt;/a&gt;, or I could have HANE, or all sorts of 
+weird combinations. This sounds just as ridiculous as the LAMP stack.&lt;/p&gt;
+
+&lt;p&gt;Another reason besides these made-up names and the fact that anyone can take a bunch of technologies, make up a cool name and then call that a &amp;quot;stack&amp;quot;, is the fact that calling yourself an 
+X stack developer means you&amp;#39;re married to that technology. 
+It&amp;#39;s just like tatooing &amp;quot;J2EE architect for life!&amp;quot; on your belly. &lt;/p&gt;
+
+&lt;p&gt;!&lt;img src=&quot;https://i.imgflip.com/n2owy.jpg&quot; alt=&quot;THUG LIFE&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, what do you know, J2EE is EOL, so what are you going to do? Are you going to go EOL too? Are you going to go out of work?&lt;/p&gt;
+
+&lt;p&gt;Now, to get back on track with my ramblings, I consider that if one is in need to let people know they&amp;#39;re skilled in both client-side and server-side JavaScript, for example, or if a recruiter is in need of such
+a person, they should at least try to use: &amp;quot;Cross-competency JavaScript Developer&amp;quot; or &amp;quot;Cross-trained JavaScript developer&amp;quot; or &amp;quot;Multidisciplinary developer skilled with JavaScript&amp;quot; instead of &amp;quot;Full-stack ...&amp;quot;. 
+In my opinion this is way less ambiguous and is more likely to appeal to the right type of people, on both the recruiter&amp;#39;s and the professional&amp;#39;s ends.&lt;/p&gt;
+
+&lt;p&gt;This being said, I&amp;#39;d love to hear some thoughts from people more skilled than me, and what their opinion is on the subject, so I encourage everyone to take a bit of their time and comment here, or on Twitter,
+using the #ihatefullstack hash.&lt;/p&gt;
+
+&lt;p&gt;Cheers!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Image credits: &lt;a href=&quot;https://pixabay.com/en/users/Unsplash-242387/&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>I&amp;#39;ve always loved to call myself different names/titles. I&amp;#39;ve been a software engineer, I&amp;#39;ve even been a &amp;quot;Lead Senior Front End Developer&amp;quot;; that&amp;#39;s a mouthful, isn&amp;#39;t it?. Titles are what make people feel important in their social environment. Certain people could argue that we&amp;#39;re rational beings, and we have values, and they&amp;#39;re right. But for the majority of us, the &amp;quot;name&amp;quot; we&amp;#39;re called by, is deeply engrained in our self-worth. I&amp;#39;ve experienced this countless times. </summary>
+</entry>
+</feed>

@@ -1,19 +1,21 @@
 # Site settings
 title: 'codesins.' # Your Title
-site_title: 'codesins. - The blog of Adrian Oprea, freelance web developer.'
+name: 'codesins. - The blog of Adrian Oprea, freelance web developer.'
 tagline: 'Of JavaScript, life, and everything inbetween.' # A brief tagline for your site
 keywords : 'programming, tutorials, javascript, html, css, frontend, nodejs, react, angular'
 description : 'Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.'
 sidebar_image: /images/cover.png
-domain_name: 'codesi.nz'
+url: 'codesi.nz'
 permalink: '/:title/'
 
-creator :
-    name : 'Adrian Oprea'
-    twitter : '@opreaadrian'
+author:
+  name: "Adrian Oprea"
+  email: "adrian@codesi.nz"
+  uri: "https://ro.linkedin.com/in/opreageorgeadrian"
 
 gems :
     - jekyll-sitemap
+    - jekyll-feed
 
 # Build settings
 markdown: redcarpet
