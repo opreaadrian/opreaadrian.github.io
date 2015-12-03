@@ -4,8 +4,8 @@ title: "Quick tip: Using mitmproxy for mobile testing"
 pub_date: 2015-11-24 12:00:00 PM
 last_modified: 2015-11-24 12:00:00 PM
 categories: development
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: mobile, testing, mitmproxy, hosts, hostfile, nodejs
 featured_image: /images/posts/using-mitmproxy-for-mobile-testing/post.jpg
 ---

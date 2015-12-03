@@ -4,8 +4,8 @@ title: "Interest killers"
 pub_date: 2015-12-03 10:00:00 AM
 last_modified: 2015-12-03 10:00:00 AM
 categories: life
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: life, tutorials, reading, content, javascript
 featured_image: /images/posts/things-that-kill-my-interest/post.jpg
 ---

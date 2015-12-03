@@ -4,8 +4,8 @@ title: "Angular services and factories for vanilla JS developers"
 pub_date: 2015-03-08 03:00:00 PM
 last_modified: 2015-03-08 03:00:00 PM
 categories: angular
-author_name: 'Adrian Oprea'
-author_twitter: '@opreaadrian'
+author: 'Adrian Oprea'
+twitter: '@opreaadrian'
 keywords: angular, javascript, service, factory, modules
 featured_image: /images/posts/confused.jpg
 ---

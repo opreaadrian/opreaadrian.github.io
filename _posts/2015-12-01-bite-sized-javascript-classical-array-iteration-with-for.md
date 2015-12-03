@@ -5,8 +5,8 @@ title: "Bite-sized JavaScript - Array iteration with for"
 pub_date: 2015-12-01 10:00:00 PM
 last_modified: 2015-12-01 10:00:00 PM
 categories: javascript
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: javascript, array, programming, beginner, iteration, for, loop
 featured_image: /images/posts/bite-sized-javascript-classical-array-iteration/post.jpg
 ---

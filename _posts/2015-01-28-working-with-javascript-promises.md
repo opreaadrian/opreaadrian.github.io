@@ -4,8 +4,8 @@ title: "Working with JavaScript promises: practices and mistakes"
 pub_date: 2015-01-28 8:00:00 AM
 last_modified: 2015-01-28 10:00:00 PM
 categories: nodejs
-author_name: 'Adrian Oprea'
-author_twitter: '@opreaadrian'
+author: 'Adrian Oprea'
+twitter: '@opreaadrian'
 keywords: nodejs, workflow, javascript, promises, async
 featured_image: /images/posts/promises.jpg
 ---

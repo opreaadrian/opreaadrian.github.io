@@ -4,8 +4,8 @@ title: "Dockerizing Adobe Media Server"
 pub_date: 2015-09-17 12:00:00 PM
 last_modified: 2015-09-17 12:00:00 PM
 categories: docker
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: workflow, productivity, fms, ams, docker, adobe, media, server, flash, commitments, blog
 featured_image: /images/posts/dockerizing-adobe-media-server/dock.jpg
 ---

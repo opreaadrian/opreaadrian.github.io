@@ -4,8 +4,8 @@ title: "Npm package automation with packo"
 pub_date: 2015-01-17 8:00:00 AM
 last_modified: 2015-01-26 12:30:00 AM
 categories: nodejs
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: nodejs, workflow, automation, npm, packages, cli
 featured_image: /images/posts/automation.jpg
 ---

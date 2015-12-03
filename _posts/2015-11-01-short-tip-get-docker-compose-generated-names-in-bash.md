@@ -4,8 +4,8 @@ title: "Short tip: Working with docker-compose container names"
 pub_date: 2015-11-02 12:00:00 PM
 last_modified: 2015-11-02 12:00:00 PM
 categories: tips
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: workflow, docker, dev-ops, docker-compose, bash
 featured_image: /images/posts/short-tip-docker-compose-dynamic-container-names/post.jpg
 ---

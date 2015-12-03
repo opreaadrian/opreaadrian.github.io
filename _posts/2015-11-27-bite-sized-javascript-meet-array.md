@@ -4,8 +4,8 @@ title: "Bite-sized JavaScript - Meet Array"
 pub_date: 2015-11-27 10:00:00 PM
 last_modified: 2015-11-27 10:00:00 PM
 categories: development
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: javascript, array, programming, beginner
 featured_image: /images/posts/bite-sized-javascript-meet-array/array-of-leds.jpg
 ---

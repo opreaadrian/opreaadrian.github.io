@@ -4,8 +4,8 @@ title: "There's garbage in our code"
 pub_date: 2015-11-04 12:00:00 PM
 last_modified: 2015-11-04 12:00:00 PM
 categories: speaking
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: workflow, garbage collection, v8, chrome
 featured_image: /images/posts/there-s-garbage-in-our-code/caber-toss.jpg
 ---

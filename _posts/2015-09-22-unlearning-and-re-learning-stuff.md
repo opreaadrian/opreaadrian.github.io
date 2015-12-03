@@ -4,8 +4,8 @@ title: "Unlearning and re-learning stuff"
 pub_date: 2015-09-22 2:00:00 PM
 last_modified: 2015-09-22 2:00:00 PM
 categories: frontend
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: frontend, html, css, animations, css3, sass
 featured_image: /images/posts/unlearning-and-re-learning-stuff/post.jpg
 ---

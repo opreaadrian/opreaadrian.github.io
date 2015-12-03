@@ -4,8 +4,8 @@ title: "Short tip: viewing and resolving svn conflicts in the terminal"
 pub_date: 2015-06-15 12:00:00 PM
 last_modified: 2015-06-15 12:00:00 PM
 categories: workflow
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: svn, workflow, automation, subversion, sublimetext, st3, terminal, iterm2
 featured_image: /images/posts/short_tip_svn_conflicts/owl.jpg
 ---

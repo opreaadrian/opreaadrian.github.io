@@ -4,8 +4,8 @@ title: "Development war tactics: staying current"
 pub_date: 2015-05-05 02:00:00 AM
 last_modified: 2015-05-05 02:00:00 AM
 categories: inspiration
-author_name: 'Adrian Oprea'
-author_twitter: '@opreaadrian'
+author: 'Adrian Oprea'
+twitter: '@opreaadrian'
 keywords: inspiration, keeping current, tech, documentation, learning
 featured_image: /images/posts/change_alley.jpg
 ---

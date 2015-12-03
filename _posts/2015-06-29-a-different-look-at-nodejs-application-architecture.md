@@ -4,8 +4,8 @@ title: "A different look at Node.js application architecture"
 pub_date: 2015-06-29 12:00:00 PM
 last_modified: 2015-06-29 12:00:00 PM
 categories: speaking
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: workflow, productivity, nodejs, node, node.js, npm, packo, automation, node_modules, module, package
 featured_image: /images/posts/a_different_look_at_nodejs_application_architecture/different.jpg
 ---

@@ -4,8 +4,8 @@ title: "I hate full stack! Period!"
 pub_date: 2015-06-18 5:00:00 PM
 last_modified: 2015-06-18 5:00:00 PM
 categories: life
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: life, jobs, facts
 featured_image: /images/posts/i_hate_full_stack/books_stack.jpg
 ---

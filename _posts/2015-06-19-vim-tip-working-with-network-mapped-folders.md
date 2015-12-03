@@ -4,8 +4,8 @@ title: "Vim tip: Working with network-mapped folders"
 pub_date: 2015-06-19 1:00:00 PM
 last_modified: 2015-06-19 1:00:00 PM
 categories: productivity
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: workflow, vim, productivity, sshfs, rsync
 featured_image: /images/posts/working_with_network_mapped_folders_in_vim/paper_vim.jpg
 ---

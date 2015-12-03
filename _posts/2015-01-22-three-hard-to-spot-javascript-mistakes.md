@@ -4,8 +4,8 @@ title: "Three hard to spot JavaScript mistakes"
 pub_date: 2015-01-22 12:00:00 AM
 last_modified: 2015-01-22 12:00:00 AM
 categories: javascript
-author_name: 'Adrian Oprea'
-author_twitter: '@opreaadrian'
+author: 'Adrian Oprea'
+twitter: '@opreaadrian'
 keywords: javascript, validation, mistakes, beginner, code, programming, objects, indexOf, for-in, loops
 featured_image: /images/posts/mistakes.jpg
 ---

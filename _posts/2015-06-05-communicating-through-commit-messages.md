@@ -4,8 +4,8 @@ title: "Communicating through commit messages"
 pub_date: 2015-06-05 03:50:00 PM
 last_modified: 2015-06-05 03:50:00 PM
 categories: workflow
-author_name: "Adrian Oprea"
-author_twitter: "@opreaadrian"
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
 keywords: git, workflow, github
 featured_image: /images/posts/communicating_through_commit_messages/committment.jpg
 ---
