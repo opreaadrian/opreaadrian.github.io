@@ -19,7 +19,7 @@ layout: default
         <li>
           <h2><a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title }}">{{ post.title }}</a></h2>
           <span class="meta">
-            <a class="post-author" href="//twitter.com/{{ post.author_twitter }}" title="{{ post.author_name }}'s twitter feed">{{ post.author_name }}</a> on {{ post.date | date_to_string }}
+            <a class="post-author" href="//twitter.com/{{ post.twitter }}" title="{{ post.author }}'s twitter feed">{{ post.author }}</a> on {{ post.date | date_to_string }}
           </span>
           {{ post.excerpt }}
         </li>

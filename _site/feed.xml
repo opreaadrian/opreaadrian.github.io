@@ -3,7 +3,7 @@
 <generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
 <link href="codesi.nz/feed.xml" rel="self" type="application/atom+xml" />
 <link href="codesi.nz/" rel="alternate" type="text/html" />
-<updated>2015-12-04T01:19:36+02:00</updated>
+<updated>2015-12-04T01:22:46+02:00</updated>
 <id>codesi.nz/</id>
 <title>codesins. - The blog of Adrian Oprea, freelance web developer.</title>
 <subtitle>Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle>
@@ -36,6 +36,9 @@
 &lt;a href=&quot;https://www.flickr.com/photos/archer10/&quot;&gt;Dennis Jarvis&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/4oULGp&quot;&gt;New Hampshire-5132 - Slanted Boiler&lt;/a&gt;  &lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
+<author>
+<name>Adrian Oprea</name>
+</author>
 <summary>I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.  </summary>
 </entry>
 <entry>
