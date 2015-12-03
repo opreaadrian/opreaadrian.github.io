@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 <generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
-<link href="codesi.nz/feed.xml" rel="self" type="application/atom+xml" />
-<link href="codesi.nz/" rel="alternate" type="text/html" />
-<updated>2015-12-04T01:22:46+02:00</updated>
-<id>codesi.nz/</id>
+<link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" />
+<link href="https://codesi.nz/" rel="alternate" type="text/html" />
+<updated>2015-12-04T01:37:46+02:00</updated>
+<id>https://codesi.nz/</id>
 <title>codesins. - The blog of Adrian Oprea, freelance web developer.</title>
 <subtitle>Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle>
 <author>
@@ -14,11 +14,11 @@
 </author>
 <entry>
 <title>Interest killers</title>
-<link href="codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" />
+<link href="https://codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" />
 <published>2015-12-03T00:00:00+02:00</published>
 <updated>2015-12-03T00:00:00+02:00</updated>
-<id>codesi.nz/things-that-kill-my-interest</id>
-<content type="html" xml:base="codesi.nz/things-that-kill-my-interest/">&lt;p&gt;I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.  &lt;/p&gt;
+<id>https://codesi.nz/things-that-kill-my-interest</id>
+<content type="html" xml:base="https://codesi.nz/things-that-kill-my-interest/">&lt;p&gt;I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.  &lt;/p&gt;
 
 &lt;p&gt;Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -43,11 +43,11 @@
 </entry>
 <entry>
 <title>Bite-sized JavaScript - Meet Array</title>
-<link href="codesi.nz/bite-sized-javascript-meet-array/" rel="alternate" type="text/html" title="Bite-sized JavaScript - Meet Array" />
+<link href="https://codesi.nz/bite-sized-javascript-meet-array/" rel="alternate" type="text/html" title="Bite-sized JavaScript - Meet Array" />
 <published>2015-11-27T00:00:00+02:00</published>
 <updated>2015-11-27T00:00:00+02:00</updated>
-<id>codesi.nz/bite-sized-javascript-meet-array</id>
-<content type="html" xml:base="codesi.nz/bite-sized-javascript-meet-array/">&lt;p&gt;I don&amp;#39;t know about you but I&amp;#39;m working with JavaScript all day long and I always trip over arrays
+<id>https://codesi.nz/bite-sized-javascript-meet-array</id>
+<content type="html" xml:base="https://codesi.nz/bite-sized-javascript-meet-array/">&lt;p&gt;I don&amp;#39;t know about you but I&amp;#39;m working with JavaScript all day long and I always trip over arrays
 when it comes to &amp;quot;what method for which use case&amp;quot;. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
@@ -105,11 +105,11 @@ our first &lt;code&gt;Array&lt;/code&gt; method, &lt;code&gt;Array.prototype.for
 </entry>
 <entry>
 <title>Quick tip: Using mitmproxy for mobile testing</title>
-<link href="codesi.nz/using-mitmproxy-for-mobile-testing/" rel="alternate" type="text/html" title="Quick tip: Using mitmproxy for mobile testing" />
+<link href="https://codesi.nz/using-mitmproxy-for-mobile-testing/" rel="alternate" type="text/html" title="Quick tip: Using mitmproxy for mobile testing" />
 <published>2015-11-24T00:00:00+02:00</published>
 <updated>2015-11-24T00:00:00+02:00</updated>
-<id>codesi.nz/using-mitmproxy-for-mobile-testing</id>
-<content type="html" xml:base="codesi.nz/using-mitmproxy-for-mobile-testing/">&lt;p&gt;This article is meant to offer a hopefully simple solution for testing web applications that run on 
+<id>https://codesi.nz/using-mitmproxy-for-mobile-testing</id>
+<content type="html" xml:base="https://codesi.nz/using-mitmproxy-for-mobile-testing/">&lt;p&gt;This article is meant to offer a hopefully simple solution for testing web applications that run on 
 your local machine, on actual mobile devices, without altering your router&amp;#39;s DNS configuration, 
 or resorting to other, less elegant solutions.&lt;/p&gt;
 
@@ -233,14 +233,14 @@ phone.  &lt;/p&gt;
 </entry>
 <entry>
 <title>There&amp;#39;s garbage in our code</title>
-<link href="codesi.nz/there-s-garbage-in-our-code/" rel="alternate" type="text/html" title="There&#39;s garbage in our code" />
+<link href="https://codesi.nz/there-s-garbage-in-our-code/" rel="alternate" type="text/html" title="There&#39;s garbage in our code" />
 <published>2015-11-04T00:00:00+02:00</published>
 <updated>2015-11-04T00:00:00+02:00</updated>
-<id>codesi.nz/there-s-garbage-in-our-code</id>
-<content type="html" xml:base="codesi.nz/there-s-garbage-in-our-code/">&lt;p&gt;Last week we had our &lt;a href=&quot;https://www.facebook.com/events/180867725583584/&quot; target=&quot;_blank&quot; title=&quot;October BucharestJS meetup - facebook event&quot;&gt;October BucharestJS meetup&lt;/a&gt; 
+<id>https://codesi.nz/there-s-garbage-in-our-code</id>
+<content type="html" xml:base="https://codesi.nz/there-s-garbage-in-our-code/">&lt;p&gt;Last week we had our &lt;a href=&quot;https://www.facebook.com/events/180867725583584/&quot; target=&quot;_blank&quot; title=&quot;October BucharestJS meetup - facebook event&quot;&gt;October BucharestJS meetup&lt;/a&gt;
 and they made the mistake of letting me speak, again.&lt;br&gt;
 Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently &amp;mdash; &lt;a href=&quot;http://codesi.nz/speaking/2015/06/29/a-different-look-at-nodejs-application-architecture.html&quot; target=&quot;_blank&quot; title=&quot;Older article about Node.js application architecture&quot;&gt;A different look at Node.js application architecture&lt;/a&gt;&lt;/p&gt;
+lazy at work, and use their time intelligently &amp;mdash; &lt;a href=&quot;https://codesi.nz/a-different-look-at-nodejs-application-architecture/&quot; target=&quot;_blank&quot; title=&quot;Older article about Node.js application architecture&quot;&gt;A different look at Node.js application architecture&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;This time, I took on a challenge bigger than myself: explaining to people what garbage collection
 is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn&amp;#39;t own.&lt;br&gt;
@@ -270,15 +270,15 @@ Enjoy!&lt;/p&gt;
 <author>
 <name>Adrian Oprea</name>
 </author>
-<summary>Last week we had our October BucharestJS meetup and they made the mistake of letting me speak, again.Last time I presented something, was in June, when I tried to teach developers how to belazy at work, and use their time intelligently &amp;mdash; A different look at Node.js application architecture</summary>
+<summary>Last week we had our October BucharestJS meetupand they made the mistake of letting me speak, again.Last time I presented something, was in June, when I tried to teach developers how to belazy at work, and use their time intelligently &amp;mdash; A different look at Node.js application architecture</summary>
 </entry>
 <entry>
 <title>Short tip: Working with docker-compose container names</title>
-<link href="codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" rel="alternate" type="text/html" title="Short tip: Working with docker-compose container names" />
+<link href="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" rel="alternate" type="text/html" title="Short tip: Working with docker-compose container names" />
 <published>2015-11-01T00:00:00+02:00</published>
 <updated>2015-11-01T00:00:00+02:00</updated>
-<id>codesi.nz/short-tip-get-docker-compose-generated-names-in-bash</id>
-<content type="html" xml:base="codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/">&lt;p&gt;In this short tip I will show you how to get the name of a  container created with&lt;br&gt;
+<id>https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash</id>
+<content type="html" xml:base="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/">&lt;p&gt;In this short tip I will show you how to get the name of a  container created with&lt;br&gt;
 &lt;code&gt;docker-compose&lt;/code&gt;, so you can manipulate it.&lt;/p&gt;
 
 &lt;h2&gt;The problem&lt;/h2&gt;
@@ -342,11 +342,11 @@ and as long as I know the names they get in the &lt;code&gt;YAML&lt;/code&gt; co
 </entry>
 <entry>
 <title>Unlearning and re-learning stuff</title>
-<link href="codesi.nz/unlearning-and-re-learning-stuff/" rel="alternate" type="text/html" title="Unlearning and re-learning stuff" />
+<link href="https://codesi.nz/unlearning-and-re-learning-stuff/" rel="alternate" type="text/html" title="Unlearning and re-learning stuff" />
 <published>2015-09-22T00:00:00+03:00</published>
 <updated>2015-09-22T00:00:00+03:00</updated>
-<id>codesi.nz/unlearning-and-re-learning-stuff</id>
-<content type="html" xml:base="codesi.nz/unlearning-and-re-learning-stuff/">&lt;p&gt;There comes a time in a developer&amp;#39;s life when they need to unlearn something, in order to make way
+<id>https://codesi.nz/unlearning-and-re-learning-stuff</id>
+<content type="html" xml:base="https://codesi.nz/unlearning-and-re-learning-stuff/">&lt;p&gt;There comes a time in a developer&amp;#39;s life when they need to unlearn something, in order to make way
 for something new. In fact, I believe that the right way to learn something new, be it a new
 programming technique, a new framework, a new language, sometimes means putting some concepts that
 you already know and master, behind you.  &lt;/p&gt;
@@ -403,11 +403,11 @@ things really don&amp;#39;t need leave your brain, and for showing us the versat
 </entry>
 <entry>
 <title>Dockerizing Adobe Media Server</title>
-<link href="codesi.nz/dockerizing-adobe-media-server/" rel="alternate" type="text/html" title="Dockerizing Adobe Media Server" />
+<link href="https://codesi.nz/dockerizing-adobe-media-server/" rel="alternate" type="text/html" title="Dockerizing Adobe Media Server" />
 <published>2015-09-17T00:00:00+03:00</published>
 <updated>2015-09-17T00:00:00+03:00</updated>
-<id>codesi.nz/dockerizing-adobe-media-server</id>
-<content type="html" xml:base="codesi.nz/dockerizing-adobe-media-server/">&lt;p&gt;New job, new technologies, new problems to solve &amp;mdash; that&amp;#39;s how it all started for me.&lt;br&gt;
+<id>https://codesi.nz/dockerizing-adobe-media-server</id>
+<content type="html" xml:base="https://codesi.nz/dockerizing-adobe-media-server/">&lt;p&gt;New job, new technologies, new problems to solve &amp;mdash; that&amp;#39;s how it all started for me.&lt;br&gt;
 After switching jobs few months ago, I found myself working on an application that makes heavy use of
 Adobe Media Server(AMS) for audio and video streaming.&lt;br&gt;
 Nothing too hard, or too complicated, except for the fact that all developers were using a single
@@ -555,11 +555,11 @@ questions and suggestions, and also make use of the comments section.&lt;/p&gt;
 </entry>
 <entry>
 <title>A different look at Node.js application architecture</title>
-<link href="codesi.nz/a-different-look-at-nodejs-application-architecture/" rel="alternate" type="text/html" title="A different look at Node.js application architecture" />
+<link href="https://codesi.nz/a-different-look-at-nodejs-application-architecture/" rel="alternate" type="text/html" title="A different look at Node.js application architecture" />
 <published>2015-06-29T00:00:00+03:00</published>
 <updated>2015-06-29T00:00:00+03:00</updated>
-<id>codesi.nz/a-different-look-at-nodejs-application-architecture</id>
-<content type="html" xml:base="codesi.nz/a-different-look-at-nodejs-application-architecture/">&lt;p&gt;Wednesday, June 24th, I attended the &lt;a href=&quot;http://www.meetup.com/BucharestJS/&quot;&gt;BucharestJS meetup&lt;/a&gt; as a speaker, with a presentation titled &lt;a target=&quot;_blank&quot; title=&quot;BucharestJS presentation: A different way to node&quot; href=&quot;http://codesi.nz/presentations/a-different-way-to-node/index.html&quot;&gt;A different way to node&lt;/a&gt;, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.&lt;br&gt;
+<id>https://codesi.nz/a-different-look-at-nodejs-application-architecture</id>
+<content type="html" xml:base="https://codesi.nz/a-different-look-at-nodejs-application-architecture/">&lt;p&gt;Wednesday, June 24th, I attended the &lt;a href=&quot;http://www.meetup.com/BucharestJS/&quot;&gt;BucharestJS meetup&lt;/a&gt; as a speaker, with a presentation titled &lt;a target=&quot;_blank&quot; title=&quot;BucharestJS presentation: A different way to node&quot; href=&quot;https://codesi.nz/presentations/a-different-way-to-node/index.html&quot;&gt;A different way to node&lt;/a&gt;, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.&lt;br&gt;
 In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  &lt;/p&gt;
 
 &lt;p&gt;The gist of the presentation is as follows:&lt;br&gt;
@@ -569,7 +569,7 @@ I confess, I&amp;#39;m not less busy once I started developing with &lt;a href=&
 &lt;p&gt;I would like to thank the organisers for having the patience and determination to keep the group alive and appealing to developers.
 This article is a follow-up to my presentation and will serve as an entrypoint for people whishing to get access to the slides.&lt;/p&gt;
 
-&lt;p&gt;The slides are available here: &lt;a target=&quot;_blank&quot; title=&quot;BucharestJS presentation: A different way to node&quot; href=&quot;http://codesi.nz/presentations/a-different-way-to-node/index.html&quot;&gt;http://codesi.nz/presentations/a-different-way-to-node/index.html&lt;/a&gt;.&lt;br&gt;
+&lt;p&gt;The slides are available here: &lt;a target=&quot;_blank&quot; title=&quot;BucharestJS presentation: A different way to node&quot; href=&quot;https://codesi.nz/presentations/a-different-way-to-node/index.html&quot;&gt;https://codesi.nz/presentations/a-different-way-to-node/index.html&lt;/a&gt;.&lt;br&gt;
 All the assets including the private npm repository configuration, are availble on GitHub: &lt;a href=&quot;https://github.com/opreaadrian/different-way-to-node&quot;&gt;https://github.com/opreaadrian/different-way-to-node&lt;/a&gt;. There&amp;#39;s one issue with the sinopia Dockerfile so I would recommend using the &lt;a href=&quot;https://www.npmjs.com/package/sinopia&quot;&gt;sinopia module from npm&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Cheers!&lt;/p&gt;
@@ -585,25 +585,25 @@ All the assets including the private npm repository configuration, are availble 
 </entry>
 <entry>
 <title>Vim tip: Working with network-mapped folders</title>
-<link href="codesi.nz/vim-tip-working-with-network-mapped-folders/" rel="alternate" type="text/html" title="Vim tip: Working with network-mapped folders" />
+<link href="https://codesi.nz/vim-tip-working-with-network-mapped-folders/" rel="alternate" type="text/html" title="Vim tip: Working with network-mapped folders" />
 <published>2015-06-19T00:00:00+03:00</published>
 <updated>2015-06-19T00:00:00+03:00</updated>
-<id>codesi.nz/vim-tip-working-with-network-mapped-folders</id>
-<content type="html" xml:base="codesi.nz/vim-tip-working-with-network-mapped-folders/">&lt;p&gt;Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?&lt;br&gt;
+<id>https://codesi.nz/vim-tip-working-with-network-mapped-folders</id>
+<content type="html" xml:base="https://codesi.nz/vim-tip-working-with-network-mapped-folders/">&lt;p&gt;Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?&lt;br&gt;
 Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,
-but I still dreaded the fact that I could not use Vim, as there have been some situations where I 
+but I still dreaded the fact that I could not use Vim, as there have been some situations where I
 would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.&lt;br&gt;
-Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just 
-doesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to create 
+Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
+doesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to create
 custom commands/mappings, the way you do in Vim, for example.&lt;/p&gt;
 
-&lt;p&gt;Back on track with the Vim part, I have been living with this pain for quite some time, 
+&lt;p&gt;Back on track with the Vim part, I have been living with this pain for quite some time,
 until 3 days ago when I realised that I wasn&amp;#39;t able to see the trees because of the forest.
 I thought about all possible solutions, &lt;code&gt;scp&lt;/code&gt; being the most reliable of them all.&lt;br&gt;
 To clarify, I had no problem creating a bash function that would use &lt;code&gt;scp&lt;/code&gt; to upload everything to the remote server, which I actually did it.
-The only problem was that it would re-upload all the files and I didn&amp;#39;t want that. 
-Knowing this, I would rely on a trick I presented in 
-&lt;a href=&quot;http://codesi.nz/workflow/2015/06/15/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal.html&quot;&gt;Short tip: viewing and resolving svn conflicts in the terminal&lt;/a&gt;, 
+The only problem was that it would re-upload all the files and I didn&amp;#39;t want that.
+Knowing this, I would rely on a trick I presented in
+&lt;a href=&quot;https://codesi.nz/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal/&quot;&gt;Short tip: viewing and resolving svn conflicts in the terminal&lt;/a&gt;, 
 namely, I would take the filenames from &lt;code&gt;svn status&lt;/code&gt;, and upload them one by one &amp;mdash; talk about thinking like a programmer. The result is in the snippet below.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;scpsync&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;changed_files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;svn status | awk &lt;span class=&quot;s1&quot;&gt;&#39;{print $2}&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
@@ -615,14 +615,14 @@ namely, I would take the filenames from &lt;code&gt;svn status&lt;/code&gt;, and
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, everything looked fine but I started hating it when I read the code out loud.
-I had a function that would upload all my SVN modified files…every damn time! 
-This meant that if I would commit once a day(SVN users know what I&amp;#39;m talking about), 
+I had a function that would upload all my SVN modified files…every damn time!
+This meant that if I would commit once a day(SVN users know what I&amp;#39;m talking about),
 I would upload every modified file, every time, even if I only changed the code ONCE, for some files.&lt;br&gt;
 This is the part where the over-engineer in me felt like a million bucks.
-I have created something that repeats a task even when it is not needed. Although it was ugly as hell, 
-it was useful to me so I had to brag about it, but there was still a little voice in the back of my head, 
+I have created something that repeats a task even when it is not needed. Although it was ugly as hell,
+it was useful to me so I had to brag about it, but there was still a little voice in the back of my head,
 telling me that I once used a tool that would sync with the server through &lt;code&gt;ssh&lt;/code&gt;, in a flawless manner.&lt;br&gt;
-That&amp;#39;s why I went to my co-worker &lt;a href=&quot;https://github.com/pennycoders&quot;&gt;Alex Pica&lt;/a&gt;, as he has the eye of a critic and will argue with me over anything. 
+That&amp;#39;s why I went to my co-worker &lt;a href=&quot;https://github.com/pennycoders&quot;&gt;Alex Pica&lt;/a&gt;, as he has the eye of a critic and will argue with me over anything.
 After letting me brag about my absolutely marvellous function, he went something along the lines of: &amp;quot;Well, why don&amp;#39;t you use &lt;a href=&quot;https://en.wikipedia.org/wiki/Rsync&quot;&gt;rsync&lt;/a&gt;?&amp;quot;.&lt;br&gt;
 At that moment I had the epiphany! That was the tool that I used in the past and does all the neat stuff I told you before, and more.&lt;br&gt;
 I&amp;#39;m writing this article to both share the solution with the Vim users going through the same pain I went to, and to thank Alex for being a walking encyclopedia.&lt;br&gt;
@@ -640,15 +640,15 @@ The solution is outlined below, and it can be used directly from within Vim by i
 <author>
 <name>Adrian Oprea</name>
 </author>
-<summary>Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,but I still dreaded the fact that I could not use Vim, as there have been some situations where I would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just doesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to create custom commands/mappings, the way you do in Vim, for example.</summary>
+<summary>Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,but I still dreaded the fact that I could not use Vim, as there have been some situations where Iwould have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that justdoesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to createcustom commands/mappings, the way you do in Vim, for example.</summary>
 </entry>
 <entry>
 <title>I hate full stack! Period!</title>
-<link href="codesi.nz/I-hate-full-stack/" rel="alternate" type="text/html" title="I hate full stack! Period!" />
+<link href="https://codesi.nz/I-hate-full-stack/" rel="alternate" type="text/html" title="I hate full stack! Period!" />
 <published>2015-06-18T00:00:00+03:00</published>
 <updated>2015-06-18T00:00:00+03:00</updated>
-<id>codesi.nz/I-hate-full-stack</id>
-<content type="html" xml:base="codesi.nz/I-hate-full-stack/">&lt;p&gt;I&amp;#39;ve always loved to call myself different names/titles. I&amp;#39;ve been a software engineer, I&amp;#39;ve even been a &amp;quot;Lead Senior Front End Developer&amp;quot;; that&amp;#39;s a mouthful, isn&amp;#39;t it?. 
+<id>https://codesi.nz/I-hate-full-stack</id>
+<content type="html" xml:base="https://codesi.nz/I-hate-full-stack/">&lt;p&gt;I&amp;#39;ve always loved to call myself different names/titles. I&amp;#39;ve been a software engineer, I&amp;#39;ve even been a &amp;quot;Lead Senior Front End Developer&amp;quot;; that&amp;#39;s a mouthful, isn&amp;#39;t it?. 
 Titles are what make people feel important in their social environment. Certain people could argue that we&amp;#39;re rational beings, and we have values, and they&amp;#39;re right. 
 But for the majority of us, the &amp;quot;name&amp;quot; we&amp;#39;re called by, is deeply engrained in our self-worth. I&amp;#39;ve experienced this countless times. &lt;/p&gt;
 

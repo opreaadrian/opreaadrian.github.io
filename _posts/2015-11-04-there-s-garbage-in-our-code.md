@@ -10,10 +10,10 @@ keywords: workflow, garbage collection, v8, chrome
 featured_image: /images/posts/there-s-garbage-in-our-code/caber-toss.jpg
 ---
 
-Last week we had our <a href="https://www.facebook.com/events/180867725583584/" target="_blank" title="October BucharestJS meetup - facebook event">October BucharestJS meetup</a> 
+Last week we had our <a href="https://www.facebook.com/events/180867725583584/" target="_blank" title="October BucharestJS meetup - facebook event">October BucharestJS meetup</a>
 and they made the mistake of letting me speak, again.  
 Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently &mdash; <a href="http://codesi.nz/speaking/2015/06/29/a-different-look-at-nodejs-application-architecture.html" target="_blank" title="Older article about Node.js application architecture">A different look at Node.js application architecture</a>
+lazy at work, and use their time intelligently &mdash; <a href="https://codesi.nz/a-different-look-at-nodejs-application-architecture/" target="_blank" title="Older article about Node.js application architecture">A different look at Node.js application architecture</a>
 
 This time, I took on a challenge bigger than myself: explaining to people what garbage collection
 is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn't own.  
