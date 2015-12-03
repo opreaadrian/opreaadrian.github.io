@@ -17,9 +17,9 @@ layout: default
     <ul class="posts">
       {% for post in site.posts %}
         <li>
-          <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+          <h2><a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title }}">{{ post.title }}</a></h2>
           <span class="meta">
-            <a class="post-author" href="https://twitter.com/{{ post.author_twitter }}">{{ post.author_name }}</a> on {{ post.date | date_to_string }}
+            <a class="post-author" href="//twitter.com/{{ post.author_twitter }}" title="{{ post.author_name }}'s twitter feed">{{ post.author_name }}</a> on {{ post.date | date_to_string }}
           </span>
           {{ post.excerpt }}
         </li>
