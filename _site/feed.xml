@@ -3,7 +3,7 @@
 <generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
 <link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" />
 <link href="https://codesi.nz/" rel="alternate" type="text/html" />
-<updated>2015-12-05T02:41:39+02:00</updated>
+<updated>2015-12-05T11:03:49+02:00</updated>
 <id>https://codesi.nz/</id>
 <title>codesins. - The blog of Adrian Oprea, freelance web developer.</title>
 <subtitle>Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle>
@@ -28,7 +28,9 @@ Today I&amp;#39;m going share with you which are my favorite podcasts, but befor
 &lt;h2&gt;&lt;a href=&quot;https://devchat.tv/js-jabber&quot; target=&quot;_blank&quot; title=&quot;JavaScript Jabber&quot;&gt;JavaScript Jabber&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;If you want to find out what are the latest and greatest in terms of JS libraries, frameworks, programming techniques, analytics tools, application monitoring, this is your go-to podcast. They have a great panel and they always invite people that are highly relevant in the JavaScript community.
-They have an absolutely awesome format, that you will see in both &amp;quot;Adventures In Angular&amp;quot; and &amp;quot;The Freelancers&amp;#39; Show&amp;quot;, and at the end of the show they do &amp;quot;picks&amp;quot;, so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don&amp;#39;t(that&amp;#39;s an anti-pick :D).&lt;/p&gt;
+They have an absolutely awesome format, that you will see in both &amp;quot;Adventures In Angular&amp;quot; and &amp;quot;The Freelancers&amp;#39; Show&amp;quot;, and at the end of the show they do &amp;quot;picks&amp;quot;, so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don&amp;#39;t(that&amp;#39;s an anti-pick :D).&lt;br&gt;
+Besides the regular panelists, one of them struck me as being a highly ambitious and motivated person &amp;mdash; &lt;a href=&quot;https://twitter.com/Aimee_Knight&quot;&gt;Aimee Knight&lt;/a&gt;. The reason for my admiration is that before becoming a developer, she was a figure skater and in my opinion, it takes a lot of courage and effort to make that kind of switch; it&amp;#39;s totally different from becoming a developer after working as an accountant.&lt;br&gt;
+Aimee gave a great talk at &lt;a href=&quot;http://angularconnect.com/&quot;&gt;AngularConnect 2015&lt;/a&gt; titled &amp;quot;Getting Comfortable Being Uncomfortable&amp;quot;, available on Youtube, so check it out:  &lt;a href=&quot;https://youtu.be/B22o_yeDE_s&quot;&gt;https://youtu.be/B22o&lt;em&gt;yeDE&lt;/em&gt;s&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;&lt;a href=&quot;https://devchat.tv/adventures-in-angular&quot; target=&quot;_blank&quot; title=&quot;Adventures In Angular&quot;&gt;Adventures In Angular&lt;/a&gt;&lt;/h2&gt;
 

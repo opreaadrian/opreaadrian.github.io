@@ -21,7 +21,9 @@ So, without further ado, my list of podcasts.
 ## <a href="https://devchat.tv/js-jabber" target="_blank" title="JavaScript Jabber">JavaScript Jabber</a>
 
 If you want to find out what are the latest and greatest in terms of JS libraries, frameworks, programming techniques, analytics tools, application monitoring, this is your go-to podcast. They have a great panel and they always invite people that are highly relevant in the JavaScript community.
-They have an absolutely awesome format, that you will see in both "Adventures In Angular" and "The Freelancers' Show", and at the end of the show they do "picks", so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don't(that's an anti-pick :D).
+They have an absolutely awesome format, that you will see in both "Adventures In Angular" and "The Freelancers' Show", and at the end of the show they do "picks", so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don't(that's an anti-pick :D).  
+Besides the regular panelists, one of them struck me as being a highly ambitious and motivated person &mdash; [Aimee Knight](https://twitter.com/Aimee_Knight). The reason for my admiration is that before becoming a developer, she was a figure skater and in my opinion, it takes a lot of courage and effort to make that kind of switch; it's totally different from becoming a developer after working as an accountant.  
+Aimee gave a great talk at [AngularConnect 2015](http://angularconnect.com/) titled "Getting Comfortable Being Uncomfortable", available on Youtube, so check it out:  [https://youtu.be/B22o_yeDE_s](https://youtu.be/B22o_yeDE_s).
 
 
 ## <a href="https://devchat.tv/adventures-in-angular" target="_blank" title="Adventures In Angular">Adventures In Angular</a>
