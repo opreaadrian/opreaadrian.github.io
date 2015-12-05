@@ -3,7 +3,7 @@
 <generator uri="http://jekyllrb.com" version="3.0.1">Jekyll</generator>
 <link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" />
 <link href="https://codesi.nz/" rel="alternate" type="text/html" />
-<updated>2015-12-04T11:22:13+02:00</updated>
+<updated>2015-12-05T02:22:09+02:00</updated>
 <id>https://codesi.nz/</id>
 <title>codesins. - The blog of Adrian Oprea, freelance web developer.</title>
 <subtitle>Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle>
@@ -12,6 +12,69 @@
 <email>adrian@codesi.nz</email>
 <uri>https://ro.linkedin.com/in/opreageorgeadrian</uri>
 </author>
+<entry>
+<title>My favorite podcasts</title>
+<link href="https://codesi.nz/my-favorite-podcasts/" rel="alternate" type="text/html" title="My favorite podcasts" />
+<published>2015-12-05T00:00:00+02:00</published>
+<updated>2015-12-05T00:00:00+02:00</updated>
+<id>https://codesi.nz/my-favorite-podcasts</id>
+<content type="html" xml:base="https://codesi.nz/my-favorite-podcasts/">&lt;p&gt;The one thing I absolutely love doing when I&amp;#39;m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.&lt;br&gt;
+Today I&amp;#39;m going share with you which are my favorite podcasts, but before we get to the &amp;quot;meat&amp;quot; of the article, I want to let you know that I created &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt; where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.  &lt;/p&gt;
+
+&lt;p&gt;The idea for this article started from a question I saw on one of the Facebook groups I follow, related specifically to the subject of podcasts. After I added my answer, I thought that it would be better if I could create a list that I could refer people to, and why not, have people contribute their own preferences.&lt;/p&gt;
+
+&lt;p&gt;So, without further ado, my list of podcasts.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;https://devchat.tv/js-jabber&quot; target=&quot;_blank&quot; title=&quot;JavaScript Jabber&quot;&gt;JavaScript Jabber&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;If you want to find out what are the latest and greatest in terms of JS libraries, frameworks, programming techniques, analytics tools, application monitoring, this is your go-to podcast. They have a great panel and they always invite people that are highly relevant in the JavaScript community.
+They have an absolutely awesome format, that you will see in both &amp;quot;Adventures In Angular&amp;quot; and &amp;quot;The Freelancers&amp;#39; Show&amp;quot;, and at the end of the show they do &amp;quot;picks&amp;quot;, so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don&amp;#39;t(that&amp;#39;s an anti-pick :D).&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;https://devchat.tv/adventures-in-angular&quot; target=&quot;_blank&quot; title=&quot;Adventures In Angular&quot;&gt;Adventures In Angular&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;#39;re all about Angular, then you have a podcast all about your beloved  framework. You&amp;#39;ll hear about a lot of new directives, services to use in your Angular apps, performance tips, and more.&lt;br&gt;
+Amongst the panelists you&amp;#39;ll hear some of the people that are on &lt;a href=&quot;https://devchat.tv/js-jabber&quot;&gt;JavaScript Jabber&lt;/a&gt; as well, but they also bring in people who are very influential in the Angular community.&lt;br&gt;
+To list some of the panelists, I would mention: &lt;a href=&quot;https://twitter.com/cmaxw&quot;&gt;Charles Max Wood&lt;/a&gt; &amp;mdash; initiator of &lt;a href=&quot;https://devchat.tv&quot;&gt;devchat.tv&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/simpulton&quot;&gt;Lukas Ruebbelke&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://egghead.io&quot;&gt;egghead.io&lt;/a&gt; trainer, &lt;a href=&quot;https://twitter.com/John_Papa&quot;&gt;John Papa&lt;/a&gt; &amp;mdash; c&amp;#39;mon, it&amp;#39;s John Papa.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;https://devchat.tv/freelancers&quot; target=&quot;_blank&quot; title=&quot;The Freelancers&#39; Show&quot;&gt;The Freelancers&amp;#39; Show&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This one is my favorite. I&amp;#39;ve learned so many things from this podcast, that I recently started listening to all the episodes, to make sure I haven&amp;#39;t missed anything critical.&lt;br&gt;
+Same as with &amp;quot;JavaScript Jabber&amp;quot; and &amp;quot;Adventures In Angular&amp;quot;, there are kind of the same people talking, they bring in other people that do freelancing, or offer various services for freelancers.&lt;br&gt;
+I found a lot of useful things from this podcast, and only to name a few: what to bill for, how to pick your clients, keeping up to date, self-promotion,  Michael Port&amp;#39;s &amp;quot;Book yourself solid&amp;quot; book.
+If you&amp;#39;re doing freelancing or planning on going freelance, I wholeheartedly recommend this podcast.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;http://entreprogrammers.com/&quot; target=&quot;_blank&quot; title=&quot;Entreprogrammers Podcast&quot;&gt;Entreprogrammers Podcast&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Again, another one about self-employment, freelancing, and the whole business of being a one-person shop. They discuss about conferences, projects they work on and share tips on how to be a better developreneur :).&lt;br&gt;
+As for the panelists, if you used Backbone in their life, especially &lt;a href=&quot;http://marionettejs.com/&quot;&gt;Marionette.js&lt;/a&gt;, then you should know who &lt;a href=&quot;http://derickbailey.com&quot;&gt;Derick Bailey&lt;/a&gt; is. He used to post on &lt;a href=&quot;https://lostechies.com/&quot;&gt;the LosTechies blog&lt;/a&gt; and do a lot of other cool stuff with podcasting.
+You might have gotten used to Charles Max Wood by now. I don&amp;#39;t know where does this guy get his energy from, but, then again, that&amp;#39;s none of my business.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;https://gimletmedia.com/show/reply-all/&quot; target=&quot;_blank&quot; title=&quot;Reply All&quot;&gt;Reply All&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This one is lighter on the brain. No programming involved, just the panelists&amp;#39; viewpoints on the Internet, and how everything gets shaped by it.&lt;br&gt;
+To quote their own description, &amp;quot;Reply All is a show about the internet, hosted by PJ Vogt and Alex Goldman. It features stories about how people shape the internet, and the internet shapes people.&amp;quot;&lt;br&gt;
+They have other podcasts that might interest you, so feel free to &lt;a href=&quot;https://gimletmedia.com/&quot;&gt;check them all out&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;http://integrumtech.com/category/agile-weekly-podcast/&quot; target=&quot;_blank&quot; title=&quot;Agile Weekly Podcast&quot;&gt;Agile Weekly Podcast&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This podcast helped me in a time where my knowledge about Agile methodologies was close to -1. It&amp;#39;s not that active lately, and the owners left it unmaintained for quite some time, but they still have very useful info into development teams&amp;#39; dynamics, and how stuff is supposed to work in Agile environments.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;https://teamtreehouse.com/library/the-treehouse-show&quot; target=&quot;_blank&quot; title=&quot;The Treehouse Show&quot;&gt;The Treehouse Show&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;If you are a frontend developer, there&amp;#39;s a good chance you probably landed at one point on &lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;www.teamtreehouse.com&lt;/a&gt; while looking for training material. If you&amp;#39;re more into the front-end side of things, this is definitely a podcast worth checking out. It&amp;#39;s hosted by Treehouses&amp;#39; most prolific authors: &lt;a href=&quot;http://nickpettit.com/&quot;&gt;Nick Petitt&lt;/a&gt; and &lt;a href=&quot;http://jasonseifer.com/&quot;&gt;Jason Seifer&lt;/a&gt;.  &lt;/p&gt;
+
+&lt;p&gt;This is the end of my podcasts list and I&amp;#39;m sure there are many more great podcasts and podcasters out there, so be sure to add your favorite podcast to &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Credits:&lt;br&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/pasukaru76/&quot;&gt;Pascal&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/6uzLyN&quot;&gt;Some old Beyer Dynamics headphones.&lt;/a&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+<author>
+<name>Adrian Oprea</name>
+</author>
+<summary>The one thing I absolutely love doing when I&amp;#39;m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.Today I&amp;#39;m going share with you which are my favorite podcasts, but before we get to the &amp;quot;meat&amp;quot; of the article, I want to let you know that I created this github repository where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.  </summary>
+</entry>
 <entry>
 <title>Interest killers</title>
 <link href="https://codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" />
@@ -641,61 +704,5 @@ The solution is outlined below, and it can be used directly from within Vim by i
 <name>Adrian Oprea</name>
 </author>
 <summary>Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,but I still dreaded the fact that I could not use Vim, as there have been some situations where Iwould have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.Don&amp;#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that justdoesn&amp;#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&amp;#39;s Vintage  doesn&amp;#39;t allow you to createcustom commands/mappings, the way you do in Vim, for example.</summary>
-</entry>
-<entry>
-<title>I hate full stack! Period!</title>
-<link href="https://codesi.nz/I-hate-full-stack/" rel="alternate" type="text/html" title="I hate full stack! Period!" />
-<published>2015-06-18T00:00:00+03:00</published>
-<updated>2015-06-18T00:00:00+03:00</updated>
-<id>https://codesi.nz/I-hate-full-stack</id>
-<content type="html" xml:base="https://codesi.nz/I-hate-full-stack/">&lt;p&gt;I&amp;#39;ve always loved to call myself different names/titles. I&amp;#39;ve been a software engineer, I&amp;#39;ve even been a &amp;quot;Lead Senior Front End Developer&amp;quot;; that&amp;#39;s a mouthful, isn&amp;#39;t it?. 
-Titles are what make people feel important in their social environment. Certain people could argue that we&amp;#39;re rational beings, and we have values, and they&amp;#39;re right. 
-But for the majority of us, the &amp;quot;name&amp;quot; we&amp;#39;re called by, is deeply engrained in our self-worth. I&amp;#39;ve experienced this countless times. &lt;/p&gt;
-
-&lt;p&gt;I recently read Remy Sharp&amp;#39;s inspiring article &lt;a href=&quot;https://remysharp.com/2015/02/26/i-am-web-developer&quot;&gt;I&amp;#39;m a developer, not an engineer&lt;/a&gt;, and I resonated with it fully. I have my own frustration,
-and it&amp;#39;s related to the fact that I&amp;#39;m seeing a trend which is more and more prominent in recruiter messages, a trend that triggered a cascade of bad things. &lt;/p&gt;
-
-&lt;p&gt;You&amp;#39;ve all received at some point a message from a recruiter with a subject line similar to: &amp;quot;Full stack &lt;fill_in_the_blanks&gt; engineer needed for...&amp;quot;. It&amp;#39;s this type of message that led 
-to the birth of the second worst thing in JavaScript history, after the &amp;quot;Angular developer&amp;quot;: the &amp;quot;Full stack developer&amp;quot;.
-Now, let&amp;#39;s sit down and look at the facts. &lt;/p&gt;
-
-&lt;p&gt;There is an increasing need for JavaScript developers on the job market, right? Not only that, but businesses need JavaScript developers that 
-can do both frontend and backend, thus, they invented the notion of &amp;quot;Full-stack developer&amp;quot;.&lt;br&gt;
-I have a big question here: &amp;quot;What stack are you talking about?!&amp;quot;, because we currently have the following.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://mean.io/&quot;&gt;MEAN stack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://sanestack.com/&quot;&gt;SANE stack&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Name yours&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I can make up my own &amp;quot;stack&amp;quot; if I want to, right? So we could have: &lt;em&gt;MHAN&lt;/em&gt; where I switch &lt;a href=&quot;http://expressjs.com/&quot;&gt;ExpressJS&lt;/a&gt; with &lt;a href=&quot;http://hapijs.com/&quot;&gt;Hapi&lt;/a&gt;, or I could have HANE, or all sorts of 
-weird combinations. This sounds just as ridiculous as the LAMP stack.&lt;/p&gt;
-
-&lt;p&gt;Another reason besides these made-up names and the fact that anyone can take a bunch of technologies, make up a cool name and then call that a &amp;quot;stack&amp;quot;, is the fact that calling yourself an 
-X stack developer means you&amp;#39;re married to that technology. 
-It&amp;#39;s just like tatooing &amp;quot;J2EE architect for life!&amp;quot; on your belly. &lt;/p&gt;
-
-&lt;p&gt;!&lt;img src=&quot;https://i.imgflip.com/n2owy.jpg&quot; alt=&quot;THUG LIFE&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, what do you know, J2EE is EOL, so what are you going to do? Are you going to go EOL too? Are you going to go out of work?&lt;/p&gt;
-
-&lt;p&gt;Now, to get back on track with my ramblings, I consider that if one is in need to let people know they&amp;#39;re skilled in both client-side and server-side JavaScript, for example, or if a recruiter is in need of such
-a person, they should at least try to use: &amp;quot;Cross-competency JavaScript Developer&amp;quot; or &amp;quot;Cross-trained JavaScript developer&amp;quot; or &amp;quot;Multidisciplinary developer skilled with JavaScript&amp;quot; instead of &amp;quot;Full-stack ...&amp;quot;. 
-In my opinion this is way less ambiguous and is more likely to appeal to the right type of people, on both the recruiter&amp;#39;s and the professional&amp;#39;s ends.&lt;/p&gt;
-
-&lt;p&gt;This being said, I&amp;#39;d love to hear some thoughts from people more skilled than me, and what their opinion is on the subject, so I encourage everyone to take a bit of their time and comment here, or on Twitter,
-using the #ihatefullstack hash.&lt;/p&gt;
-
-&lt;p&gt;Cheers!&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Image credits: &lt;a href=&quot;https://pixabay.com/en/users/Unsplash-242387/&quot;&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-<author>
-<name>Adrian Oprea</name>
-</author>
-<summary>I&amp;#39;ve always loved to call myself different names/titles. I&amp;#39;ve been a software engineer, I&amp;#39;ve even been a &amp;quot;Lead Senior Front End Developer&amp;quot;; that&amp;#39;s a mouthful, isn&amp;#39;t it?. Titles are what make people feel important in their social environment. Certain people could argue that we&amp;#39;re rational beings, and we have values, and they&amp;#39;re right. But for the majority of us, the &amp;quot;name&amp;quot; we&amp;#39;re called by, is deeply engrained in our self-worth. I&amp;#39;ve experienced this countless times. </summary>
 </entry>
 </feed>
