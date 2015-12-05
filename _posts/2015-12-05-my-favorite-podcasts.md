@@ -35,7 +35,7 @@ To list some of the panelists, I would mention: [Charles Max Wood](https://twitt
 
 This one is my favorite. I've learned so many things from this podcast, that I recently started listening to all the episodes, to make sure I haven't missed anything critical.  
 Same as with "JavaScript Jabber" and "Adventures In Angular", there are kind of the same people talking, they bring in other people that do freelancing, or offer various services for freelancers.  
-I found a lot of useful things from this podcast, and only to name a few: what to bill for, how to pick your clients, keeping up to date, self-promotion,  Michael Port's "Book yourself solid" book.
+I found a lot of useful things from this podcast, and only to name a few: what to bill for, how to pick your clients, keeping up to date, self-promotion,  <a href="http://www.bookyourselfsolid.com/" title="Link to Book yourself solid website" target="_blank">Michael Port's "Book yourself solid" program</a>.
 If you're doing freelancing or planning on going freelance, I wholeheartedly recommend this podcast.
 
 
