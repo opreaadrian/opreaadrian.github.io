@@ -3,7 +3,7 @@ layout: post
 title: "My favorite podcasts"
 published: true
 pub_date: 2015-12-05 01:00:00 AM
-last_modified: 2015-12-05 01:00:00 AM
+last_modified: 2015-12-05 11:05:00 AM
 categories: podcasts
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
