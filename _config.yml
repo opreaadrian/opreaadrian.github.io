@@ -3,7 +3,7 @@ title: 'codesins.' # Your Title
 name: 'codesins. - The blog of Adrian Oprea, freelance web developer.'
 tagline: 'Of JavaScript, life, and everything inbetween.' # A brief tagline for your site
 keywords : 'programming, tutorials, javascript, html, css, frontend, nodejs, react, angular'
-description : 'Code Sinz is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.'
+description : 'codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.'
 sidebar_image: /images/cover.png
 url: 'https://codesi.nz'
 permalink: '/:title/'
