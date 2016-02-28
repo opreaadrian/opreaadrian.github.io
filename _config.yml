@@ -16,6 +16,7 @@ author:
 gems :
     - jekyll-sitemap
     - jekyll-feed
+    - jekyll-gist
 
 # Build settings
 markdown: redcarpet

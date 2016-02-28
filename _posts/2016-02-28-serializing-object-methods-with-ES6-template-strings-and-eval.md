@@ -7,7 +7,7 @@ categories: javascript
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
 keywords: javascript, hacks, tricks, es6, ecmascript 6, es2015, template strings, json, stringify
-featured_image: /images/posts/becoming-a-better-javascript-developer/post.jpg
+featured_image: /images/posts/serializing-object-methods-using-es6-template-strings-and-eval/post.jpg
 ---
 
 Understanding the way JSON manipulation works in JavaScript could make the 
@@ -327,5 +327,5 @@ makes the most sense for you and gets the job done in an elegant manner.
 - [Eval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/eval)
 
 
-> Credits:  
-> [DVIDSHUB](https://www.flickr.com/photos/dvids/) &mdash; [Fitness Test Shows Marines a Taste of Combat](https://flic.kr/p/5KpvAf)
+> Photo credits:  
+> [Sergio Delgado](https://www.flickr.com/photos/sdelgado) &mdash; [Three-toed sloth in the Dallas World Aquarium](https://en.wikipedia.org/wiki/Sloth)
