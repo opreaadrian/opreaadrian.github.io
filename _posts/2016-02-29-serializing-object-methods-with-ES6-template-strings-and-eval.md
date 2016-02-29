@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Serializing object methods using ES6 template strings and eval"
-pub_date: 2016-02-25 11:00:00 AM
-last_modified: 2016-02-25 11:00:00 AM
+pub_date: 2016-02-29 02:30:00 PM
+last_modified: 2016-02-29 02:30:00 PM
 categories: javascript
 published: true
 author: "Adrian Oprea"
