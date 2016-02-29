@@ -195,3 +195,5 @@ makes the most sense for you and gets the job done in an elegant manner.
 
 > Photo credits:  
 > [Sergio Delgado](https://www.flickr.com/photos/sdelgado) &mdash; [Three-toed sloth in the Dallas World Aquarium](https://en.wikipedia.org/wiki/Sloth)
+
+[Read on medium.com](https://medium.com/@opreaadrian/serializing-object-methods-using-es6-template-strings-and-eval-c77c894651f0#.vhkho9fp6)
