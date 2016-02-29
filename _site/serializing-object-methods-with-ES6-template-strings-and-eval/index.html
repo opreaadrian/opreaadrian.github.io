@@ -17,22 +17,26 @@
   <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
 
   
-    <meta name="description" itemprop="description" content="Understanding the way JSON manipulation works in JavaScript could make the 
-difference between writing an elegant, easy to reason about application, 
-and a crude hack. As far as my experience goes, 9 out of 10 teams who fail 
-to find a reasonable solution to a problem in 1 or 2 meetings, abandon the 
-investigation and resort to third-party solutions &mdash; this is not always 
-the best case.
+    <meta name="description" itemprop="description" content="Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+the difference between writing an elegant, easy to reason about application, 
+and a crude hack. As far as my experience goes, only a small number of developers 
+I’ve talked to in the past year or so, know how to write a vanilla 
+XMLHttpRequest, from scratch. I do agree that it is important to get the 
+job done in a timely manner and not reinvent the wheel, but using something 
+without understanding it’s substance is something that I cannot come to terms 
+with, for someone other than a junior developer.
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Serializing object methods using ES6 template strings and eval" />
-    <meta property="og:description" content="Understanding the way JSON manipulation works in JavaScript could make the 
-difference between writing an elegant, easy to reason about application, 
-and a crude hack. As far as my experience goes, 9 out of 10 teams who fail 
-to find a reasonable solution to a problem in 1 or 2 meetings, abandon the 
-investigation and resort to third-party solutions &mdash; this is not always 
-the best case.
+    <meta property="og:description" content="Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+the difference between writing an elegant, easy to reason about application, 
+and a crude hack. As far as my experience goes, only a small number of developers 
+I’ve talked to in the past year or so, know how to write a vanilla 
+XMLHttpRequest, from scratch. I do agree that it is important to get the 
+job done in a timely manner and not reinvent the wheel, but using something 
+without understanding it’s substance is something that I cannot come to terms 
+with, for someone other than a junior developer.
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/serializing-object-methods-using-es6-template-strings-and-eval/post.jpg" />
     <meta property="og:url" content="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" />
@@ -45,12 +49,14 @@ the best case.
     <meta name="twitter:url" content="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/
     ">
     <meta name="twitter:title" content="Serializing object methods using ES6 template strings and eval">
-    <meta name="twitter:description" content="Understanding the way JSON manipulation works in JavaScript could make the 
-difference between writing an elegant, easy to reason about application, 
-and a crude hack. As far as my experience goes, 9 out of 10 teams who fail 
-to find a reasonable solution to a problem in 1 or 2 meetings, abandon the 
-investigation and resort to third-party solutions &mdash; this is not always 
-the best case.
+    <meta name="twitter:description" content="Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+the difference between writing an elegant, easy to reason about application, 
+and a crude hack. As far as my experience goes, only a small number of developers 
+I’ve talked to in the past year or so, know how to write a vanilla 
+XMLHttpRequest, from scratch. I do agree that it is important to get the 
+job done in a timely manner and not reinvent the wheel, but using something 
+without understanding it’s substance is something that I cannot come to terms 
+with, for someone other than a junior developer.
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/serializing-object-methods-using-es6-template-strings-and-eval/post.jpg">
 
@@ -122,23 +128,20 @@ the best case.
 <meta itemprop="dateModified" content="2016-02-25T11:00:00+02:00">
 <meta itemprop="keywords" content="javascript, hacks, tricks, es6, ecmascript 6, es2015, template strings, json, stringify">
   <section itemprop="articleBody" class="container">
-    <p>Understanding the way JSON manipulation works in JavaScript could make the 
-difference between writing an elegant, easy to reason about application, 
-and a crude hack. As far as my experience goes, 9 out of 10 teams who fail 
-to find a reasonable solution to a problem in 1 or 2 meetings, abandon the 
-investigation and resort to third-party solutions &mdash; this is not always 
-the best case.</p>
-
-<p>Now, don&#39;t get me wrong, I am all in favor of libraries and try as hard as I can 
-not to reinvent the wheel every time I work on a new project, but at the same 
-time, I strongly believe that once you have a set of tools that you&#39;ve built, you can 
-reuse them on every future project that needs it.</p>
+    <p>Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+the difference between writing an elegant, easy to reason about application, 
+and a crude hack. As far as my experience goes, only a small number of developers 
+I’ve talked to in the past year or so, know how to write a vanilla 
+XMLHttpRequest, from scratch. I do agree that it is important to get the 
+job done in a timely manner and not reinvent the wheel, but using something 
+without understanding it’s substance is something that I cannot come to terms 
+with, for someone other than a junior developer.</p>
 
 <h2>A bit of background</h2>
 
 <p>I&#39;ve been working with JSON since 2009 and all I knew is that you are able to 
-serialize JavaScript objects, by using <code>JSON.stringify</code> but only the properties 
-&mdash; values &mdash; get serialized, and the methods get left behind.
+serialize JavaScript objects, by using <code>JSON.stringify</code> but only the properties
+(values) get serialized, and the methods get left behind.
 I started looking into the literature around JSON serialization in JavaScript 
 and the only information I found on JSON.org and the Mozilla Developer Network 
 confirmed what I already said before, so then I started to think about the 
@@ -146,10 +149,10 @@ confirmed what I already said before, so then I started to think about the
 
 <p>In my case, I started learning JavaScript reading
 <a href="http://amzn.com/0596517742">JavaScript The Good Parts</a> written by 
-<a href="http://crockford.com/">Douglas Crockford</a> and if you&#39;re like me 
+<a href="http://crockford.com/">Douglas Crockford</a> and if you&#39;re like me, 
 the rest of your career was highly influenced by that book and Crockford&#39;s 
 approach to JavaScript and software development. But everything comes at a cost, 
-and the cost I had to pay was believing too much in &quot;Eval is evil&quot;.</p>
+and the cost I had to pay was believing too much in the &quot;Eval is evil&quot; mantra.</p>
 
 <h2>What is JSON?</h2>
 
@@ -172,95 +175,97 @@ some JavaScript is not JSON, and some JSON is not JavaScript. </p>
 </blockquote>
 
 <p>Both definitions tell us one thing: JSON is a format for distributing data 
-accross &quot;the wire&quot; and can be easily understood and generated by both 
+across &quot;the wire&quot; and can be easily understood and generated by both 
 humans and computers.</p>
 
 <h2>What is serialization?</h2>
 
 <p>Again, in order to continue, we first need to establish what serialization is, 
 and without having to resort to external resources for this, I will give you 
-my own definition: Serialization is a process through which one data format gets 
-translated to an intermediary data format, for the purpose of distribution. 
-The reverse of serialization is de-serialization, where you take a the 
-intermediary data format and turn it back into its original form, so you can 
-manipulate it and use it in your application.</p>
+my own definition: &quot;Serialization is a process through which one data format gets 
+translated to an intermediary data format, for the purpose of distribution&quot;.  </p>
 
-<p>Now, with theory out of the way, let&#39;s get to the code.</p>
+<p>The reverse of serialization is de-serialization, where you take a the 
+intermediary data format and turn it back into its original form, so you can 
+manipulate it and use it in your application.<br>
+Now, with theory out of the way, let&#39;s get to the code.</p>
 
 <h2>Object serialization and the <code>replacer</code> function</h2>
 
 <p>Based on the knowledge we have at this point, we can now demonstrate how exactly 
 serialization works, so let&#39;s take an object, run it through <code>JSON.stringify</code> 
 and see what we get.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span><span class="p">;</span>
 
-<span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Susan'</span><span class="p">,</span>
-  <span class="na">age</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
-  <span class="na">sayHi</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Susan says hi!'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
+<p><noscript><pre>&#39;use strict&#39;;</p>
 
-<span class="kr">const</span> <span class="nx">serialized</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<p>let person = {
+  name: &#39;Susan&#39;,
+  age: 24,
+  sayHi: function() {
+    console.log(&#39;Susan says hi!&#39;);
+  }
+};</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">serialized</span><span class="p">);</span> <span class="c1">// {"name":"Susan","age":24} </span>
+<p>const serialized = JSON.stringify(person);</p>
 
-<span class="k">typeof</span> <span class="nx">serialized</span> <span class="o">===</span> <span class="s1">'string'</span> <span class="c1">// true</span>
-</code></pre></div>
+<p>console.log(serialized); // {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24} </p>
+
+<p>typeof serialized === &#39;string&#39; // true</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify.js"> </script></p>
+
 <p>As you can see, the <code>sayHi</code> method is nowhere to be seen. The reason is that 
 <code>JSON.stringify</code> serializes only the properties of the object, leaving its 
 methods behind.<br>
 Now, let&#39;s say we want to also serialize the <code>sayHi</code> method. How would we go about 
 that? First, let&#39;s take a look at <code>JSON.stringify</code>&#39;s signature, outlined below.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">[,</span> <span class="nx">replacer</span><span class="p">[,</span> <span class="nx">space</span><span class="p">]])</span>
 
-<span class="c1">// =&gt; value(required) - the object we want to serialize </span>
-<span class="c1">// =&gt; replacer(optional) - a function that will be called for each of the </span>
-<span class="c1">//    object's properties, or an array of strings and numbers that serve </span>
-<span class="c1">//    as a whitelist for the property selection process</span>
-<span class="c1">// =&gt; space(optional) - the number of spaces each key will receive as indent</span>
-</code></pre></div>
+<p><noscript><pre>JSON.stringify(value[, replacer[, space]])</p>
+
+<p>// =&gt; value(required) - the object we want to serialize 
+// =&gt; replacer(optional) - a function that will be called for each of the 
+//    object&#39;s properties, or an array of strings and numbers that serve 
+//    as a whitelist for the property selection process
+// =&gt; space(optional) - the number of spaces each key will receive as indent</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_signature.js"> </script></p>
+
 <p>Our main interest is the <code>replacer</code> argument, and we are going to use its function form. In order 
 for this trick to work and for the <code>sayHi</code> method&#39;s code to be properly converted to a string, 
 we can call its <code>toString()</code> method.<br>
 Calling <code>toString()</code> on a function, returns a string representation of the function&#39;s body. 
 This way, if we call <code>person.sayHi.toString()</code> we will get the following output:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s2">"function () {
-  console.log('Susan says hi!');
-  }"</span>
-</code></pre></div>
+
+<p><noscript><pre>&quot;function () { console.log(&#39;Susan says hi!&#39;); }&quot;</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_method_output.js"> </script></p>
+
 <p>So now that we know how to get our method&#39;s body, let&#39;s build the logic to serialize the whole 
-<code>person</code> object, includinc its method.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span><span class="p">;</span>
+<code>person</code> object, including its method.</p>
 
-<span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Susan'</span><span class="p">,</span>
-  <span class="na">age</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
-  <span class="na">sayHi</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Susan says hi!'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
+<p><noscript><pre>&#39;use strict&#39;;</p>
 
-<span class="kd">let</span> <span class="nx">replacer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// if we get a function give us the code for that function</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
-  <span class="p">}</span>
+<p>let person = {
+  name: &#39;Susan&#39;,
+  age: 24,
+  sayHi: function() {
+    console.log(&#39;Susan says hi!&#39;);
+  }
+};</p>
 
-  <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
+<p>let replacer = (key, value) =&gt; {
+  // if we get a function, give us the code for that function
+  if (typeof value === &#39;function&#39;) {
+    return value.toString();
+  }</p>
 
-<span class="c1">// get a stringified version of our object, and indent the keys at 2 spaces</span>
-<span class="kr">const</span> <span class="nx">serialized</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<p>return value;
+}</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">serialized</span><span class="p">);</span> 
-<span class="c1">// {"name":"Susan","age":24,"sayHi":"function () {\n\tconsole.log('Susan says hi!');\n  }"}</span>
-</code></pre></div>
+<p>// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);</p>
+
+<p>console.log(serialized); 
+// {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24,&quot;sayHi&quot;:&quot;function () {\n\tconsole.log(&#39;Susan says hi!&#39;);\n  }&quot;}</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_with_replacer.js"> </script></p>
+
 <h2>De-serialization and reviving properties</h2>
 
 <p>As you can see, we now have our method, properly serialized and ready for 
-transportation &quot;accross the wire&quot;. What we need to do next is to de-serialize 
+transportation &quot;across the wire&quot;. What we need to do next is to de-serialize 
 our object and make the <code>sayHi</code> method executable, again, and this can be 
 accomplished using <code>JSON.parse</code>.</p>
 
@@ -270,33 +275,35 @@ perform the de-serialization process in such a way that we can convert our
 current <code>sayHi</code> string into a function, again.  </p>
 
 <p><code>JSON.parse</code> has the following signature, according to the Mozilla Developer Network: </p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">text</span><span class="p">[,</span> <span class="nx">reviver</span><span class="p">])</span>
 
-<span class="c1">// =&gt; text(required) - the string we whish to de-serialize and convert back</span>
-<span class="c1">//    to a standard JavaScript object(JSON)</span>
-<span class="c1">// =&gt; reviver(optional) - function used to pre-process keys and values in order </span>
-<span class="c1">//    to render a specific object structure</span>
-</code></pre></div>
+<p><noscript><pre>JSON.parse(text[, reviver])</p>
+
+<p>// =&gt; text(required) - the string we wish to de-serialize and convert back
+//    to a standard JavaScript object(JSON)
+// =&gt; reviver(optional) - function used to pre-process keys and values in order 
+//    to render a specific object structure</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_signature.js"> </script></p>
+
 <p>Before going any further with the solution, let&#39;s first see what template 
 strings are, at their most basic level.
 According to MDN, template literals(usually called template strings) are string 
 literals that allow embedded expressions. To simplify this explanation, let&#39;s 
 take a look at a piece of code using ES6 template strings and compare it to the 
-way we used to mimick this in ES5.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//ES6 template strings</span>
-<span class="kd">let</span> <span class="nx">someComputedValue</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">theTemplate</span> <span class="o">=</span> <span class="err">`</span><span class="nx">This</span> <span class="nx">is</span> <span class="nx">the</span> <span class="nx">result</span> <span class="nx">of</span> <span class="nx">the</span> <span class="nx">computation</span><span class="err">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">someComputedValue</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+way we used to mimic this in ES5.</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">theTemplate</span><span class="p">);</span>
-<span class="c1">// "This is the result of the computation: 8"</span>
+<p><noscript><pre>//ES6 template strings
+let someComputedValue = 5 + 3;
+let theTemplate = <code>This is the result of the computation: ${someComputedValue}</code>;</p>
 
-<span class="c1">// ES5 version</span>
-<span class="kd">let</span> <span class="nx">someComputedValue</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">theTemplate</span> <span class="o">=</span> <span class="s1">'This is the result of the computation: '</span> <span class="o">+</span> <span class="nx">someComputedValue</span><span class="p">;</span>
+<p>console.log(theTemplate);
+// &quot;This is the result of the computation: 8&quot;</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">theTemplate</span><span class="p">);</span>
-<span class="c1">// "This is the result of the computation: 8"</span>
-</code></pre></div>
+<p>// ES5 version
+var someComputedValue = 5 + 3;
+var theTemplate = &#39;This is the result of the computation: &#39; + someComputedValue;</p>
+
+<p>console.log(theTemplate);
+// &quot;This is the result of the computation: 8&quot;</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=es6_template_literals.js"> </script></p>
+
 <p>You can probably see some good use-cases for template literals, one of them 
 being DOM templates. If you&#39;d like 
 more info on the topic, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">this page on the Mozilla Developer Network</a> 
@@ -318,62 +325,63 @@ the next <a href="https://jsbin.com">jsbin.com</a> or the next <a href="https://
 
 <p>With the knowledge we have about <code>eval</code> and template strings, we can now 
 build our <code>reviver</code> function as follows:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">reviver</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">key</span> <span class="o">===</span> <span class="s1">'string'</span> <span class="o">&amp;&amp;</span> <span class="nx">key</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'function '</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">functionTemplate</span> <span class="o">=</span> <span class="err">`</span><span class="p">(</span><span class="nx">$</span><span class="p">{</span><span class="nx">value</span><span class="p">})</span><span class="err">`</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">functionTemplate</span><span class="p">);</span>
-  <span class="p">}</span>
 
-  <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+<p><noscript><pre>let reviver = (key, value) =&gt; {
+  if (typeof key === &#39;string&#39; &amp;&amp; key.indexOf(&#39;function &#39;) === 0) {
+    let functionTemplate = <code>(${value})</code>;
+    return eval(functionTemplate);
+  }</p>
+
+<p>return value;
+}</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_eval.js"> </script></p>
+
 <p>The code is pretty self-explanatory, but for extra clarity, we&#39;re building a new 
 template for all the items in the string we&#39;re parsing, that contain the 
 &#39;function&#39; keyword followed by a space, at the very beginning and then we&#39;re 
 evaluating the resulting expression and returning it to <code>JSON.parse</code> in order to 
 be added to the final object.<br>
 The final version of the code would look like the snippet below:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="s1">'use strict'</span><span class="p">;</span>
 
-<span class="c1">// serialize.js</span>
+<p><noscript><pre>&#39;use strict&#39;;</p>
 
-<span class="kd">let</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Susan'</span><span class="p">,</span>
-  <span class="na">age</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
-  <span class="na">sayHi</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Susan says hi!'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">};</span>
+<p>// serialize.js</p>
 
-<span class="kd">let</span> <span class="nx">replacer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// if we get a function give us the code for that function</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
-  <span class="p">}</span>
+<p>let person = {
+  name: &#39;Susan&#39;,
+  age: 24,
+  sayHi: function() {
+    console.log(&#39;Susan says hi!&#39;);
+  }
+};</p>
 
-  <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
+<p>let replacer = (key, value) =&gt; {
+  // if we get a function, give us the code for that function
+  if (typeof value === &#39;function&#39;) {
+    return value.toString();
+  }</p>
 
-<span class="c1">// get a stringified version of our object, and indent the keys at 2 spaces</span>
-<span class="kr">const</span> <span class="nx">serialized</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<p>return value;
+}</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">serialized</span><span class="p">);</span> 
-<span class="c1">// {"name":"Susan","age":24,"sayHi":"function () {\n\tconsole.log('Susan says hi!');\n  }"}</span>
+<p>// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);</p>
 
+<p>console.log(serialized); 
+// {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24,&quot;sayHi&quot;:&quot;function () {\n\tconsole.log(&#39;Susan says hi!&#39;);\n  }&quot;}</p>
 
-<span class="c1">// de_serialize.js</span>
-<span class="kd">let</span> <span class="nx">reviver</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">'string'</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'function '</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">functionTemplate</span> <span class="o">=</span> <span class="err">`</span><span class="p">(</span><span class="nx">$</span><span class="p">{</span><span class="nx">value</span><span class="p">})</span><span class="err">`</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">functionTemplate</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-<span class="p">}</span>
+<p>// de_serialize.js
+let reviver = (key, value) =&gt; {
+  if (typeof value === &#39;string&#39; &amp;&amp; value.indexOf(&#39;function &#39;) === 0) {
+    let functionTemplate = <code>(${value})</code>;
+    return eval(functionTemplate);
+  }
+  return value;
+}</p>
 
-<span class="kr">const</span> <span class="nx">parsedObject</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">serialized</span><span class="p">,</span> <span class="nx">reviver</span><span class="p">);</span>
+<p>const parsedObject = JSON.parse(serialized, reviver);</p>
 
-<span class="nx">parsedObject</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// Susan says hi!</span>
-</code></pre></div>
+<p>parsedObject.sayHi(); // Susan says hi!</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=full_example.js"> </script></p>
+
 <p>The reason that we wrap the function in parentheses is that we need to force 
 the vm to evaluate the function in an expression context, and our function 
 needs to be a function expression as it is missing its name. We are only operating 
@@ -390,13 +398,15 @@ versions of JavaScript engines.
 If performance is something that is critical for you, there&#39;s an option to use 
 the <code>Function</code> constructor instead of <code>eval</code> in your <code>reviver</code> function like 
 in the snippet below:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">reviver</span> <span class="o">=</span> <span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">'string'</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'function '</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">functionTemplate</span> <span class="o">=</span> <span class="err">`</span><span class="p">(</span><span class="nx">$</span><span class="p">{</span><span class="nx">value</span><span class="p">}).</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="err">`</span><span class="p">;</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="nx">functionTemplate</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
-</code></pre></div>
+
+<p><noscript><pre>let reviver = (key, value) =&gt; {
+  if (typeof value === &#39;string&#39; &amp;&amp; value.indexOf(&#39;function &#39;) === 0) {
+    let functionTemplate = <code>(${value}).call(this)</code>;
+    return new Function(functionTemplate);
+  }
+  return value;
+}</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_function_constructor.js"> </script></p>
+
 <p>Even though it is said that the <code>Function</code> constructor is faster than <code>eval</code>, 
 be cautious that in this case, you have to create 2 functions in-memory &mdash;
 the outer IIFE that gets auto-executed and returns the method we want.<br>
