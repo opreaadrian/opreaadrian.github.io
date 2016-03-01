@@ -2,7 +2,7 @@
 layout: post
 title: "Serializing object methods using ES6 template strings and eval"
 pub_date: 2016-02-29 02:30:00 PM
-last_modified: 2016-02-29 02:30:00 PM
+last_modified: 2016-03-01 11:00:00 AM
 categories: javascript
 published: true
 author: "Adrian Oprea"
@@ -15,7 +15,7 @@ Understanding the way AJAX and JSON manipulation work in JavaScript could make
 the difference between writing an elegant, easy to reason about application, 
 and a crude hack. As far as my experience goes, only a small number of developers 
 I’ve talked to in the past year or so, know how to write a vanilla 
-XMLHttpRequest, from scratch. I do agree that it is important to get the 
+`XMLHttpRequest`, from scratch. I do agree that it is important to get the 
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.
