@@ -6,6 +6,7 @@ keywords : 'programming, tutorials, javascript, html, css, frontend, nodejs, rea
 description : 'codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.'
 sidebar_image: /images/cover.png
 url: 'https://codesi.nz'
+enforce_ssl: 'codesi.nz'
 permalink: '/:title/'
 
 author:

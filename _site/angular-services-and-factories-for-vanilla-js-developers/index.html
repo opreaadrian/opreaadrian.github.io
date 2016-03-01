@@ -60,7 +60,12 @@
 
   <!-- Fonts -->
   <link href='//fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
-
+  <script>
+    var host = "codesi.nz";
+    if ((host == window.location.host) && (window.location.protocol != "https:")) {
+      window.location.protocol = "https";
+    }
+  </script>
 </head>
 <body>
   <header style="background-image: url(/images/posts/confused.jpg);">
