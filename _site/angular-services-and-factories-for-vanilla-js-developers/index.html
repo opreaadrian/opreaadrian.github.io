@@ -17,12 +17,14 @@
   <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
 
   
-    <meta name="description" itemprop="description" content="If you ever worked on an AngularJS application that went past &quot;Hello world!&quot; you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I&#39;ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the &quot;factory pattern&quot; that was confusing the hell out of me at that time.
+    <meta name="description" itemprop="description" content="If you ever worked on an AngularJS application that went past “Hello world!” you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I’ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the “factory pattern” that was confusing the hell out of me at that time.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Angular services and factories for vanilla JS developers" />
-    <meta property="og:description" content="If you ever worked on an AngularJS application that went past &quot;Hello world!&quot; you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I&#39;ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the &quot;factory pattern&quot; that was confusing the hell out of me at that time.
+    <meta property="og:description" content="If you ever worked on an AngularJS application that went past “Hello world!” you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I’ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the “factory pattern” that was confusing the hell out of me at that time.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/confused.jpg" />
     <meta property="og:url" content="https://codesi.nz/angular-services-and-factories-for-vanilla-js-developers/" />
@@ -35,7 +37,8 @@
     <meta name="twitter:url" content="https://codesi.nz/angular-services-and-factories-for-vanilla-js-developers/
     ">
     <meta name="twitter:title" content="Angular services and factories for vanilla JS developers">
-    <meta name="twitter:description" content="If you ever worked on an AngularJS application that went past &quot;Hello world!&quot; you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I&#39;ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the &quot;factory pattern&quot; that was confusing the hell out of me at that time.
+    <meta name="twitter:description" content="If you ever worked on an AngularJS application that went past “Hello world!” you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I’ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the “factory pattern” that was confusing the hell out of me at that time.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/confused.jpg">
 
@@ -118,20 +121,17 @@
 <meta itemprop="dateModified" content="2015-03-08T15:00:00+02:00">
 <meta itemprop="keywords" content="angular, javascript, service, factory, modules">
   <section itemprop="articleBody" class="container">
-    <p>If you ever worked on an AngularJS application that went past &quot;Hello world!&quot; you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I&#39;ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the &quot;factory pattern&quot; that was confusing the hell out of me at that time.</p>
+    <p>If you ever worked on an AngularJS application that went past “Hello world!” you probably hit the service vs. factory wall. Being a vanilla JavaScript developer, it was a bit hard for me to grasp these concepts, especially because I’ve also worked with other frameworks and I had an opinion already formed about what a service should be, not to speak about the “factory pattern” that was confusing the hell out of me at that time.</p>
 
-<p>The way I finally understood what services and factories are all about, was by actually trying to map them to vanilla JavaScript. </p>
+<p>The way I finally understood what services and factories are all about, was by actually trying to map them to vanilla JavaScript.</p>
 
-<h2>Services</h2>
+<h2 id="services">Services</h2>
+<p>In the Angular docs the definition for a service looks like this: 
+&gt; “Angular services are substitutable objects that are wired together using dependency injection (DI). You can use services to organize and share code across your app.”</p>
 
-<p>In the Angular docs the definition for a service looks like this: </p>
+<p>Not too shabby, huh? But not too explicit either. What I like to say is that you can <code class="highlighter-rouge">new</code> angular services. Basically if you think you need a class, then you probably need a service.</p>
 
-<blockquote>
-<p>&quot;Angular services are substitutable objects that are wired together using dependency injection (DI). You can use services to organize and share code across your app.&quot;</p>
-</blockquote>
-
-<p>Not too shabby, huh? But not too explicit either. What I like to say is that you can <code>new</code> angular services. Basically if you think you need a class, then you probably need a service.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myService.js]</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myService.js]</span>
 <span class="kd">function</span> <span class="nx">MyService</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">doStuff</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stuff</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// I'm doing something with stuff</span>
@@ -152,9 +152,12 @@
     <span class="kd">var</span> <span class="nx">moreStuff</span> <span class="o">=</span> <span class="s1">'There\'s so much to do!'</span><span class="p">;</span>
     <span class="nx">myServiceInstance</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>And the AngularJS couterpart:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myAngularService.js]</span>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myAngularService.js]</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'application'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'myAngularService'</span><span class="p">,</span> <span class="nx">myAngularService</span><span class="p">);</span>
@@ -180,11 +183,13 @@
     <span class="kd">var</span> <span class="nx">moreStuff</span> <span class="o">=</span> <span class="s1">'There\'s so much to do!'</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">stuffIdid</span> <span class="o">=</span> <span class="nx">myAngularService</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>
-<h2>Factories</h2>
+</code></pre>
+</div>
 
-<p>Simply put, you return a module ... you create an object and return it for whoever wants to use it.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myFactory.js]</span>
+<h2 id="factories">Factories</h2>
+<p>Simply put, you return a module … you create an object and return it for whoever wants to use it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myFactory.js]</span>
 <span class="kd">var</span> <span class="nx">myFactory</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">doStuff</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stuff</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// I'm doing something with stuff</span>
@@ -206,9 +211,12 @@
     <span class="nx">myFactory</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// ---------------------------------------------------------- //</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>Take a look at how this compares to an Angular factory:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myAngularFactory.js]</span>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myAngularFactory.js]</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'application'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'myAngularFactory'</span><span class="p">,</span> <span class="nx">myAngularFactory</span><span class="p">);</span>
@@ -239,16 +247,19 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">stuffIdid</span> <span class="o">=</span> <span class="nx">myAngularFactory</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="c1">// ---------------------------------------------------------- //</span>
-</code></pre></div>
-<p>Factories can be compared to modules hosting functionality that you want to reuse all over the application. </p>
+</code></pre>
+</div>
 
-<p>I tried to make this explanation as short as possible; hopefully you got my point, and hopefully I understood the concepts right, otherwise, I&#39;ve been living in a lie for the past year.</p>
+<p>Factories can be compared to modules hosting functionality that you want to reuse all over the application.</p>
+
+<p>I tried to make this explanation as short as possible; hopefully you got my point, and hopefully I understood the concepts right, otherwise, I’ve been living in a lie for the past year.</p>
 
 <p>Cheers!</p>
 
 <blockquote>
-<p>Image credits: <a href="https://flic.kr/p/9fwoMs">I&#39;m So Confused!</a> by <a href="https://www.flickr.com/photos/31246066@N04/">Ian Sane</a></p>
+  <p>Image credits: <a href="https://flic.kr/p/9fwoMs">I’m So Confused!</a> by <a href="https://www.flickr.com/photos/31246066@N04/">Ian Sane</a></p>
 </blockquote>
+
 
 
   <section>

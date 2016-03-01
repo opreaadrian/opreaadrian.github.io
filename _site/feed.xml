@@ -1,304 +1,314 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-03-01T23:05:14+02:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-03-01T23:09:06+02:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
 the difference between writing an elegant, easy to reason about application, 
 and a crude hack. As far as my experience goes, only a small number of developers 
 I’ve talked to in the past year or so, know how to write a vanilla 
-&lt;code&gt;XMLHttpRequest&lt;/code&gt;, from scratch. I do agree that it is important to get the 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;XMLHttpRequest&lt;/code&gt;, from scratch. I do agree that it is important to get the 
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.&lt;/p&gt;
 
-&lt;h2&gt;A bit of background&lt;/h2&gt;
+&lt;h2 id=&quot;a-bit-of-background&quot;&gt;A bit of background&lt;/h2&gt;
 
-&lt;p&gt;I&amp;#39;ve been working with JSON since 2009 and all I knew is that you are able to 
-serialize JavaScript objects, by using &lt;code&gt;JSON.stringify&lt;/code&gt; but only the properties
+&lt;p&gt;I’ve been working with JSON since 2009 and all I knew is that you are able to 
+serialize JavaScript objects, by using &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify&lt;/code&gt; but only the properties
 (values) get serialized, and the methods get left behind.
 I started looking into the literature around JSON serialization in JavaScript 
 and the only information I found on JSON.org and the Mozilla Developer Network 
 confirmed what I already said before, so then I started to think about the 
-&amp;quot;forbidden&amp;quot; parts of JavaScript.&lt;/p&gt;
+“forbidden” parts of JavaScript.&lt;/p&gt;
 
 &lt;p&gt;In my case, I started learning JavaScript reading
 &lt;a href=&quot;http://amzn.com/0596517742&quot;&gt;JavaScript The Good Parts&lt;/a&gt; written by 
-&lt;a href=&quot;http://crockford.com/&quot;&gt;Douglas Crockford&lt;/a&gt; and if you&amp;#39;re like me, 
-the rest of your career was highly influenced by that book and Crockford&amp;#39;s 
+&lt;a href=&quot;http://crockford.com/&quot;&gt;Douglas Crockford&lt;/a&gt; and if you’re like me, 
+the rest of your career was highly influenced by that book and Crockford’s 
 approach to JavaScript and software development. But everything comes at a cost, 
-and the cost I had to pay was believing too much in the &amp;quot;Eval is evil&amp;quot; mantra.&lt;/p&gt;
+and the cost I had to pay was believing too much in the “Eval is evil” mantra.&lt;/p&gt;
 
-&lt;h2&gt;What is JSON?&lt;/h2&gt;
+&lt;h2 id=&quot;what-is-json&quot;&gt;What is JSON?&lt;/h2&gt;
 
-&lt;p&gt;First, let&amp;#39;s start with some basics, namely, let&amp;#39;s see what JSON is. &lt;/p&gt;
+&lt;p&gt;First, let’s start with some basics, namely, let’s see what JSON is.&lt;/p&gt;
 
 &lt;p&gt;According to &lt;a href=&quot;http://www.json.org/&quot;&gt;JSON.org&lt;/a&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;JSON (JavaScript Object Notation) is a lightweight data-interchange format. [...]
+  &lt;p&gt;JSON (JavaScript Object Notation) is a lightweight data-interchange format. […]
 JSON is a text format that is completely language independent but uses 
-conventions that are familiar to programmers of the C-family of languages [...]&lt;/p&gt;
+conventions that are familiar to programmers of the C-family of languages […]&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;According to the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON&quot;&gt;Mozilla Developer Network&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, 
+  &lt;p&gt;JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, 
 and null. It is based upon JavaScript syntax but is distinct from it: 
-some JavaScript is not JSON, and some JSON is not JavaScript. &lt;/p&gt;
+some JavaScript is not JSON, and some JSON is not JavaScript.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Both definitions tell us one thing: JSON is a format for distributing data 
-across &amp;quot;the wire&amp;quot; and can be easily understood and generated by both 
+across “the wire” and can be easily understood and generated by both 
 humans and computers.&lt;/p&gt;
 
-&lt;h2&gt;What is serialization?&lt;/h2&gt;
+&lt;h2 id=&quot;what-is-serialization&quot;&gt;What is serialization?&lt;/h2&gt;
 
 &lt;p&gt;Again, in order to continue, we first need to establish what serialization is, 
 and without having to resort to external resources for this, I will give you 
-my own definition: &amp;quot;Serialization is a process through which one data format gets 
-translated to an intermediary data format, for the purpose of distribution&amp;quot;.  &lt;/p&gt;
+my own definition: “Serialization is a process through which one data format gets 
+translated to an intermediary data format, for the purpose of distribution”.&lt;/p&gt;
 
 &lt;p&gt;The reverse of serialization is de-serialization, where you take a the 
 intermediary data format and turn it back into its original form, so you can 
-manipulate it and use it in your application.&lt;br&gt;
-Now, with theory out of the way, let&amp;#39;s get to the code.&lt;/p&gt;
+manipulate it and use it in your application.&lt;br /&gt;
+Now, with theory out of the way, let’s get to the code.&lt;/p&gt;
 
-&lt;h2&gt;Object serialization and the &lt;code&gt;replacer&lt;/code&gt; function&lt;/h2&gt;
+&lt;h2 id=&quot;object-serialization-and-the-replacer-function&quot;&gt;Object serialization and the &lt;code class=&quot;highlighter-rouge&quot;&gt;replacer&lt;/code&gt; function&lt;/h2&gt;
 
 &lt;p&gt;Based on the knowledge we have at this point, we can now demonstrate how exactly 
-serialization works, so let&amp;#39;s take an object, run it through &lt;code&gt;JSON.stringify&lt;/code&gt; 
+serialization works, so let’s take an object, run it through &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify&lt;/code&gt; 
 and see what we get.&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;&amp;#39;use strict&amp;#39;;&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;&amp;#39;use strict&amp;#39;;
 
-&lt;p&gt;let person = {
+let person = {
   name: &amp;#39;Susan&amp;#39;,
   age: 24,
   sayHi: function() {
-    console.log(&amp;#39;Susan says hi!&amp;#39;);
+	console.log(&amp;#39;Susan says hi!&amp;#39;);
   }
-};&lt;/p&gt;
+};
 
-&lt;p&gt;const serialized = JSON.stringify(person);&lt;/p&gt;
+const serialized = JSON.stringify(person);
 
-&lt;p&gt;console.log(serialized); // {&amp;quot;name&amp;quot;:&amp;quot;Susan&amp;quot;,&amp;quot;age&amp;quot;:24} &lt;/p&gt;
+console.log(serialized); // {&amp;quot;name&amp;quot;:&amp;quot;Susan&amp;quot;,&amp;quot;age&amp;quot;:24} 
 
-&lt;p&gt;typeof serialized === &amp;#39;string&amp;#39; // true&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+typeof serialized === &amp;#39;string&amp;#39; // true&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;As you can see, the &lt;code&gt;sayHi&lt;/code&gt; method is nowhere to be seen. The reason is that 
-&lt;code&gt;JSON.stringify&lt;/code&gt; serializes only the properties of the object, leaving its 
-methods behind.&lt;br&gt;
-Now, let&amp;#39;s say we want to also serialize the &lt;code&gt;sayHi&lt;/code&gt; method. How would we go about 
-that? First, let&amp;#39;s take a look at &lt;code&gt;JSON.stringify&lt;/code&gt;&amp;#39;s signature, outlined below.&lt;/p&gt;
+&lt;p&gt;As you can see, the &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; method is nowhere to be seen. The reason is that 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify&lt;/code&gt; serializes only the properties of the object, leaving its 
+methods behind.&lt;br /&gt;
+Now, let’s say we want to also serialize the &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; method. How would we go about 
+that? First, let’s take a look at &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify&lt;/code&gt;’s signature, outlined below.&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;JSON.stringify(value[, replacer[, space]])&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;JSON.stringify(value[, replacer[, space]])
 
-&lt;p&gt;// =&amp;gt; value(required) - the object we want to serialize 
+// =&amp;gt; value(required) - the object we want to serialize 
 // =&amp;gt; replacer(optional) - a function that will be called for each of the 
 //    object&amp;#39;s properties, or an array of strings and numbers that serve 
 //    as a whitelist for the property selection process
-// =&amp;gt; space(optional) - the number of spaces each key will receive as indent&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_signature.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+// =&amp;gt; space(optional) - the number of spaces each key will receive as indent&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_signature.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;Our main interest is the &lt;code&gt;replacer&lt;/code&gt; argument, and we are going to use its function form. In order 
-for this trick to work and for the &lt;code&gt;sayHi&lt;/code&gt; method&amp;#39;s code to be properly converted to a string, 
-we can call its &lt;code&gt;toString()&lt;/code&gt; method.&lt;br&gt;
-Calling &lt;code&gt;toString()&lt;/code&gt; on a function, returns a string representation of the function&amp;#39;s body. 
-This way, if we call &lt;code&gt;person.sayHi.toString()&lt;/code&gt; we will get the following output:&lt;/p&gt;
+&lt;p&gt;Our main interest is the &lt;code class=&quot;highlighter-rouge&quot;&gt;replacer&lt;/code&gt; argument, and we are going to use its function form. In order 
+for this trick to work and for the &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; method’s code to be properly converted to a string, 
+we can call its &lt;code class=&quot;highlighter-rouge&quot;&gt;toString()&lt;/code&gt; method.&lt;br /&gt;
+Calling &lt;code class=&quot;highlighter-rouge&quot;&gt;toString()&lt;/code&gt; on a function, returns a string representation of the function’s body. 
+This way, if we call &lt;code class=&quot;highlighter-rouge&quot;&gt;person.sayHi.toString()&lt;/code&gt; we will get the following output:&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;&amp;quot;function () { console.log(&amp;#39;Susan says hi!&amp;#39;); }&amp;quot;&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_method_output.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;&amp;quot;function () { console.log(&amp;#39;Susan says hi!&amp;#39;); }&amp;quot;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_method_output.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;So now that we know how to get our method&amp;#39;s body, let&amp;#39;s build the logic to serialize the whole 
-&lt;code&gt;person&lt;/code&gt; object, including its method.&lt;/p&gt;
+&lt;p&gt;So now that we know how to get our method’s body, let’s build the logic to serialize the whole 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;person&lt;/code&gt; object, including its method.&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;&amp;#39;use strict&amp;#39;;&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;&amp;#39;use strict&amp;#39;;
 
-&lt;p&gt;let person = {
+let person = {
   name: &amp;#39;Susan&amp;#39;,
   age: 24,
   sayHi: function() {
     console.log(&amp;#39;Susan says hi!&amp;#39;);
   }
-};&lt;/p&gt;
+};
 
-&lt;p&gt;let replacer = (key, value) =&amp;gt; {
+let replacer = (key, value) =&amp;gt; {
   // if we get a function, give us the code for that function
   if (typeof value === &amp;#39;function&amp;#39;) {
     return value.toString();
-  }&lt;/p&gt;
+  }
 
-&lt;p&gt;return value;
-}&lt;/p&gt;
+  return value;
+}
 
-&lt;p&gt;// get a stringified version of our object, and indent the keys at 2 spaces
-const serialized = JSON.stringify(person, replacer, 2);&lt;/p&gt;
+// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);
 
-&lt;p&gt;console.log(serialized); 
-// {&amp;quot;name&amp;quot;:&amp;quot;Susan&amp;quot;,&amp;quot;age&amp;quot;:24,&amp;quot;sayHi&amp;quot;:&amp;quot;function () {\n\tconsole.log(&amp;#39;Susan says hi!&amp;#39;);\n  }&amp;quot;}&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_with_replacer.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+console.log(serialized); 
+// {&amp;quot;name&amp;quot;:&amp;quot;Susan&amp;quot;,&amp;quot;age&amp;quot;:24,&amp;quot;sayHi&amp;quot;:&amp;quot;function () {\n\tconsole.log(&amp;#39;Susan says hi!&amp;#39;);\n  }&amp;quot;}&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_with_replacer.js&quot;&gt; &lt;/script&gt;
 
-&lt;h2&gt;De-serialization and reviving properties&lt;/h2&gt;
+&lt;h2 id=&quot;de-serialization-and-reviving-properties&quot;&gt;De-serialization and reviving properties&lt;/h2&gt;
 
 &lt;p&gt;As you can see, we now have our method, properly serialized and ready for 
-transportation &amp;quot;across the wire&amp;quot;. What we need to do next is to de-serialize 
-our object and make the &lt;code&gt;sayHi&lt;/code&gt; method executable, again, and this can be 
-accomplished using &lt;code&gt;JSON.parse&lt;/code&gt;.&lt;/p&gt;
+transportation “across the wire”. What we need to do next is to de-serialize 
+our object and make the &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; method executable, again, and this can be 
+accomplished using &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.parse&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Similar to what we did with &lt;code&gt;JSON.stringify&lt;/code&gt;, we will have to take a look at 
-&lt;code&gt;JSON.parse&lt;/code&gt;&amp;#39;s signature in order to get a clearer view of how we will 
+&lt;p&gt;Similar to what we did with &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.stringify&lt;/code&gt;, we will have to take a look at 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.parse&lt;/code&gt;’s signature in order to get a clearer view of how we will 
 perform the de-serialization process in such a way that we can convert our 
-current &lt;code&gt;sayHi&lt;/code&gt; string into a function, again.  &lt;/p&gt;
+current &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; string into a function, again.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;JSON.parse&lt;/code&gt; has the following signature, according to the Mozilla Developer Network: &lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.parse&lt;/code&gt; has the following signature, according to the Mozilla Developer Network:&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;JSON.parse(text[, reviver])&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;JSON.parse(text[, reviver])
 
-&lt;p&gt;// =&amp;gt; text(required) - the string we wish to de-serialize and convert back
+// =&amp;gt; text(required) - the string we wish to de-serialize and convert back
 //    to a standard JavaScript object(JSON)
 // =&amp;gt; reviver(optional) - function used to pre-process keys and values in order 
-//    to render a specific object structure&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_signature.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+//    to render a specific object structure&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_signature.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;Before going any further with the solution, let&amp;#39;s first see what template 
+&lt;p&gt;Before going any further with the solution, let’s first see what template 
 strings are, at their most basic level.
 According to MDN, template literals(usually called template strings) are string 
-literals that allow embedded expressions. To simplify this explanation, let&amp;#39;s 
+literals that allow embedded expressions. To simplify this explanation, let’s 
 take a look at a piece of code using ES6 template strings and compare it to the 
 way we used to mimic this in ES5.&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;//ES6 template strings
+&lt;noscript&gt;&lt;pre&gt;//ES6 template strings
 let someComputedValue = 5 + 3;
-let theTemplate = &lt;code&gt;This is the result of the computation: ${someComputedValue}&lt;/code&gt;;&lt;/p&gt;
+let theTemplate = `This is the result of the computation: ${someComputedValue}`;
 
-&lt;p&gt;console.log(theTemplate);
-// &amp;quot;This is the result of the computation: 8&amp;quot;&lt;/p&gt;
+console.log(theTemplate);
+// &amp;quot;This is the result of the computation: 8&amp;quot;
 
-&lt;p&gt;// ES5 version
+// ES5 version
 var someComputedValue = 5 + 3;
-var theTemplate = &amp;#39;This is the result of the computation: &amp;#39; + someComputedValue;&lt;/p&gt;
+var theTemplate = &amp;#39;This is the result of the computation: &amp;#39; + someComputedValue;
 
-&lt;p&gt;console.log(theTemplate);
-// &amp;quot;This is the result of the computation: 8&amp;quot;&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=es6_template_literals.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+console.log(theTemplate);
+// &amp;quot;This is the result of the computation: 8&amp;quot;&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=es6_template_literals.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;You can probably see some good use-cases for template literals, one of them 
-being DOM templates. If you&amp;#39;d like 
+being DOM templates. If you’d like 
 more info on the topic, &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals&quot;&gt;this page on the Mozilla Developer Network&lt;/a&gt; 
 sums it up pretty well.&lt;/p&gt;
 
-&lt;p&gt;Given that we already have our serialized version of the &lt;code&gt;person&lt;/code&gt; object, along 
-with its &lt;code&gt;sayHi&lt;/code&gt; method, let&amp;#39;s now try to convert the body of the method back to 
-executable code.&lt;br&gt;
-For this matter, we&amp;#39;re going to have to resort to the &amp;quot;evil&amp;quot; &lt;code&gt;eval&lt;/code&gt; and before 
-using something that so many people labelled as evil, let&amp;#39;s see what it does, 
-so we are conscious about the risks we&amp;#39;re taking.&lt;/p&gt;
+&lt;p&gt;Given that we already have our serialized version of the &lt;code class=&quot;highlighter-rouge&quot;&gt;person&lt;/code&gt; object, along 
+with its &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; method, let’s now try to convert the body of the method back to 
+executable code.&lt;br /&gt;
+For this matter, we’re going to have to resort to the “evil” &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; and before 
+using something that so many people labelled as evil, let’s see what it does, 
+so we are conscious about the risks we’re taking.&lt;/p&gt;
 
-&lt;p&gt;In a nutshell, &lt;code&gt;eval&lt;/code&gt; takes strings and treats them as executable code. One of 
-the biggest risks you&amp;#39;re exposing yourself and your application to would be 
+&lt;p&gt;In a nutshell, &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; takes strings and treats them as executable code. One of 
+the biggest risks you’re exposing yourself and your application to would be 
 &lt;a href=&quot;https://www.owasp.org/index.php/Code_Injection&quot;&gt;code injection&lt;/a&gt;. If you end up 
 serializing user-inserted data, be sure to thoroughly validate their input and 
-as a rule of thumb, don&amp;#39;t run code inserted by your user, unless you&amp;#39;re building 
+as a rule of thumb, don’t run code inserted by your user, unless you’re building 
 the next &lt;a href=&quot;https://jsbin.com&quot;&gt;jsbin.com&lt;/a&gt; or the next &lt;a href=&quot;https://codepen.io&quot;&gt;codepen.io&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;With the knowledge we have about &lt;code&gt;eval&lt;/code&gt; and template strings, we can now 
-build our &lt;code&gt;reviver&lt;/code&gt; function as follows:&lt;/p&gt;
+&lt;p&gt;With the knowledge we have about &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; and template strings, we can now 
+build our &lt;code class=&quot;highlighter-rouge&quot;&gt;reviver&lt;/code&gt; function as follows:&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;let reviver = (key, value) =&amp;gt; {
+&lt;noscript&gt;&lt;pre&gt;let reviver = (key, value) =&amp;gt; {
   if (typeof key === &amp;#39;string&amp;#39; &amp;amp;&amp;amp; key.indexOf(&amp;#39;function &amp;#39;) === 0) {
-    let functionTemplate = &lt;code&gt;(${value})&lt;/code&gt;;
+    let functionTemplate = `(${value})`;
     return eval(functionTemplate);
-  }&lt;/p&gt;
+  }
 
-&lt;p&gt;return value;
-}&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_eval.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+  return value;
+}&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_eval.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;The code is pretty self-explanatory, but for extra clarity, we&amp;#39;re building a new 
-template for all the items in the string we&amp;#39;re parsing, that contain the 
-&amp;#39;function&amp;#39; keyword followed by a space, at the very beginning and then we&amp;#39;re 
-evaluating the resulting expression and returning it to &lt;code&gt;JSON.parse&lt;/code&gt; in order to 
-be added to the final object.&lt;br&gt;
+&lt;p&gt;The code is pretty self-explanatory, but for extra clarity, we’re building a new 
+template for all the items in the string we’re parsing, that contain the 
+‘function’ keyword followed by a space, at the very beginning and then we’re 
+evaluating the resulting expression and returning it to &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON.parse&lt;/code&gt; in order to 
+be added to the final object.&lt;br /&gt;
 The final version of the code would look like the snippet below:&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;&amp;#39;use strict&amp;#39;;&lt;/p&gt;
+&lt;noscript&gt;&lt;pre&gt;&amp;#39;use strict&amp;#39;;
 
-&lt;p&gt;// serialize.js&lt;/p&gt;
+// serialize.js
 
-&lt;p&gt;let person = {
+let person = {
   name: &amp;#39;Susan&amp;#39;,
   age: 24,
   sayHi: function() {
     console.log(&amp;#39;Susan says hi!&amp;#39;);
   }
-};&lt;/p&gt;
+};
 
-&lt;p&gt;let replacer = (key, value) =&amp;gt; {
+let replacer = (key, value) =&amp;gt; {
   // if we get a function, give us the code for that function
   if (typeof value === &amp;#39;function&amp;#39;) {
     return value.toString();
-  }&lt;/p&gt;
+  }
 
-&lt;p&gt;return value;
-}&lt;/p&gt;
+  return value;
+}
 
-&lt;p&gt;// get a stringified version of our object, and indent the keys at 2 spaces
-const serialized = JSON.stringify(person, replacer, 2);&lt;/p&gt;
+// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);
 
-&lt;p&gt;console.log(serialized); 
-// {&amp;quot;name&amp;quot;:&amp;quot;Susan&amp;quot;,&amp;quot;age&amp;quot;:24,&amp;quot;sayHi&amp;quot;:&amp;quot;function () {\n\tconsole.log(&amp;#39;Susan says hi!&amp;#39;);\n  }&amp;quot;}&lt;/p&gt;
+console.log(serialized); 
+// {&amp;quot;name&amp;quot;:&amp;quot;Susan&amp;quot;,&amp;quot;age&amp;quot;:24,&amp;quot;sayHi&amp;quot;:&amp;quot;function () {\n\tconsole.log(&amp;#39;Susan says hi!&amp;#39;);\n  }&amp;quot;}
 
-&lt;p&gt;// de_serialize.js
+
+// de_serialize.js
 let reviver = (key, value) =&amp;gt; {
   if (typeof value === &amp;#39;string&amp;#39; &amp;amp;&amp;amp; value.indexOf(&amp;#39;function &amp;#39;) === 0) {
-    let functionTemplate = &lt;code&gt;(${value})&lt;/code&gt;;
+    let functionTemplate = `(${value})`;
     return eval(functionTemplate);
   }
   return value;
-}&lt;/p&gt;
+}
 
-&lt;p&gt;const parsedObject = JSON.parse(serialized, reviver);&lt;/p&gt;
+const parsedObject = JSON.parse(serialized, reviver);
 
-&lt;p&gt;parsedObject.sayHi(); // Susan says hi!&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=full_example.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+parsedObject.sayHi(); // Susan says hi!&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=full_example.js&quot;&gt; &lt;/script&gt;
 
 &lt;p&gt;The reason that we wrap the function in parentheses is that we need to force 
 the vm to evaluate the function in an expression context, and our function 
 needs to be a function expression as it is missing its name. We are only operating 
-with &lt;code&gt;eval&lt;/code&gt; on the value of the &lt;code&gt;sayHi&lt;/code&gt; key, which is an unnamed function. If 
-you&amp;#39;d like more info about this limitation of &lt;code&gt;eval&lt;/code&gt; take a look at 
-&lt;a href=&quot;http://stackoverflow.com/a/9076377/2423398&quot;&gt;this answer on StackOverflow&lt;/a&gt;.&lt;br&gt;
-As you can see, the newly resulted object has the &lt;code&gt;sayHi&lt;/code&gt; method available and 
-ready for use and executing the method prints the same message as &lt;code&gt;person.sayHi&lt;/code&gt;.&lt;/p&gt;
+with &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; on the value of the &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; key, which is an unnamed function. If 
+you’d like more info about this limitation of &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; take a look at 
+&lt;a href=&quot;http://stackoverflow.com/a/9076377/2423398&quot;&gt;this answer on StackOverflow&lt;/a&gt;.&lt;br /&gt;
+As you can see, the newly resulted object has the &lt;code class=&quot;highlighter-rouge&quot;&gt;sayHi&lt;/code&gt; method available and 
+ready for use and executing the method prints the same message as &lt;code class=&quot;highlighter-rouge&quot;&gt;person.sayHi&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Another issue I ommitted to mention about &lt;code&gt;eval&lt;/code&gt; is that it is pretty slow, 
+&lt;p&gt;Another issue I ommitted to mention about &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; is that it is pretty slow, 
 because it has to invoke the VM in order to evaluate the code, 
-unlike the built-in &lt;code&gt;Function&lt;/code&gt; constructor, which is highly optimised in newer 
+unlike the built-in &lt;code class=&quot;highlighter-rouge&quot;&gt;Function&lt;/code&gt; constructor, which is highly optimised in newer 
 versions of JavaScript engines.
-If performance is something that is critical for you, there&amp;#39;s an option to use 
-the &lt;code&gt;Function&lt;/code&gt; constructor instead of &lt;code&gt;eval&lt;/code&gt; in your &lt;code&gt;reviver&lt;/code&gt; function like 
+If performance is something that is critical for you, there’s an option to use 
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;Function&lt;/code&gt; constructor instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; in your &lt;code class=&quot;highlighter-rouge&quot;&gt;reviver&lt;/code&gt; function like 
 in the snippet below:&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;let reviver = (key, value) =&amp;gt; {
+&lt;noscript&gt;&lt;pre&gt;let reviver = (key, value) =&amp;gt; {
   if (typeof value === &amp;#39;string&amp;#39; &amp;amp;&amp;amp; value.indexOf(&amp;#39;function &amp;#39;) === 0) {
-    let functionTemplate = &lt;code&gt;(${value}).call(this)&lt;/code&gt;;
+    let functionTemplate = `(${value}).call(this)`;
     return new Function(functionTemplate);
   }
   return value;
-}&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_function_constructor.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+}&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_function_constructor.js&quot;&gt; &lt;/script&gt;
 
-&lt;p&gt;Even though it is said that the &lt;code&gt;Function&lt;/code&gt; constructor is faster than &lt;code&gt;eval&lt;/code&gt;, 
-be cautious that in this case, you have to create 2 functions in-memory &amp;mdash;
-the outer IIFE that gets auto-executed and returns the method we want.&lt;br&gt;
-You also need to use &lt;code&gt;Function.prototype.call&lt;/code&gt; in order to keep &lt;code&gt;this&lt;/code&gt; 
-relative to the current object, and not to the window/global object. &lt;/p&gt;
+&lt;p&gt;Even though it is said that the &lt;code class=&quot;highlighter-rouge&quot;&gt;Function&lt;/code&gt; constructor is faster than &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt;, 
+be cautious that in this case, you have to create 2 functions in-memory —
+the outer IIFE that gets auto-executed and returns the method we want.&lt;br /&gt;
+You also need to use &lt;code class=&quot;highlighter-rouge&quot;&gt;Function.prototype.call&lt;/code&gt; in order to keep &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; 
+relative to the current object, and not to the window/global object.&lt;/p&gt;
 
-&lt;p&gt;Ultimately, it all comes down to personal preference so whether you use &lt;code&gt;eval&lt;/code&gt; 
+&lt;p&gt;Ultimately, it all comes down to personal preference so whether you use &lt;code class=&quot;highlighter-rouge&quot;&gt;eval&lt;/code&gt; 
 or another method it is all up to you, the important thing is to use what 
-makes the most sense for you and gets the job done in an elegant manner. &lt;/p&gt;
+makes the most sense for you and gets the job done in an elegant manner.&lt;/p&gt;
 
-&lt;h2&gt;Reference&lt;/h2&gt;
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://json.org/&quot;&gt;JSON.org&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/9076377/2423398&quot;&gt;JavaScript eval() “syntax error” on parsing a function string&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON&quot;&gt;JSON&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/eval&quot;&gt;Eval&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://json.org/&quot;&gt;JSON.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/9076377/2423398&quot;&gt;JavaScript eval() “syntax error” on parsing a function string&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON&quot;&gt;JSON&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/eval&quot;&gt;Eval&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Photo credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/sdelgado&quot;&gt;Sergio Delgado&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://en.wikipedia.org/wiki/Sloth&quot;&gt;Three-toed sloth in the Dallas World Aquarium&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;Photo credits:&lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/sdelgado&quot;&gt;Sergio Delgado&lt;/a&gt; — &lt;a href=&quot;https://en.wikipedia.org/wiki/Sloth&quot;&gt;Three-toed sloth in the Dallas World Aquarium&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://medium.com/@opreaadrian/serializing-object-methods-using-es6-template-strings-and-eval-c77c894651f0#.vhkho9fp6&quot;&gt;Read on medium.com&lt;/a&gt;&lt;/p&gt;</content><author><name>Adrian Oprea</name></author><summary>Understanding the way AJAX and JSON manipulation work in JavaScript could make 
@@ -308,520 +318,532 @@ I’ve talked to in the past year or so, know how to write a vanilla
 XMLHttpRequest, from scratch. I do agree that it is important to get the 
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
-with, for someone other than a junior developer.</summary></entry><entry><title>Becoming a better JavaScript developer</title><link href="https://codesi.nz/becoming-a-better-javascript-developer/" rel="alternate" type="text/html" title="Becoming a better JavaScript developer" /><published>2015-12-21T00:00:00+02:00</published><updated>2015-12-21T00:00:00+02:00</updated><id>https://codesi.nz/becoming-a-better-javascript-developer</id><content type="html" xml:base="https://codesi.nz/becoming-a-better-javascript-developer/">&lt;p&gt;A week ago I saw a very interesting question on Quora, titled:  &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I&amp;#39;d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
-One thing worth mentioning is the fact that I don&amp;#39;t yet consider myself an &amp;quot;enterprise JavaScript developer&amp;quot;, even though I have been called by that name. I&amp;#39;m a software developer with a sweet tooth for JavaScript, that&amp;#39;s it.&lt;/p&gt;
+with, for someone other than a junior developer.</summary></entry><entry><title>Becoming a better JavaScript developer</title><link href="https://codesi.nz/becoming-a-better-javascript-developer/" rel="alternate" type="text/html" title="Becoming a better JavaScript developer" /><published>2015-12-21T00:00:00+02:00</published><updated>2015-12-21T00:00:00+02:00</updated><id>https://codesi.nz/becoming-a-better-javascript-developer</id><content type="html" xml:base="https://codesi.nz/becoming-a-better-javascript-developer/">&lt;p&gt;A week ago I saw a very interesting question on Quora, titled:  &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I’d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
+One thing worth mentioning is the fact that I don’t yet consider myself an “enterprise JavaScript developer”, even though I have been called by that name. I’m a software developer with a sweet tooth for JavaScript, that’s it.&lt;/p&gt;
 
-&lt;h2&gt;The actual answer&lt;/h2&gt;
-
-&lt;p&gt;First and foremost let me start by saying that I met &amp;quot;enterprise JavaScript&amp;quot; developers who are not that skilled in JavaScript, simply because the &amp;quot;enterprise&amp;quot; limits all their creativity by being more restrictive in terms of technologies.
+&lt;h2 id=&quot;the-actual-answer&quot;&gt;The actual answer&lt;/h2&gt;
+&lt;p&gt;First and foremost let me start by saying that I met “enterprise JavaScript” developers who are not that skilled in JavaScript, simply because the “enterprise” limits all their creativity by being more restrictive in terms of technologies.
 On the other hand, they tend to be good at overall architecture, they think a lot in terms of scalability and durability.&lt;/p&gt;
 
 &lt;p&gt;Now, on to the list:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Learn JavaScript. I mean it! Learn the language, how it works, what is lexical scoping, how do all the data types work.&lt;/li&gt;
-&lt;li&gt;Find some coding standards documents - there are quite a few - and take the gist from all of them(i&amp;#39;ll provide a list at the end)&lt;/li&gt;
-&lt;li&gt;Learn some utility libraries like jQuery, lodash,  zepto&lt;/li&gt;
-&lt;li&gt;Learn object-oriented programming&lt;/li&gt;
-&lt;li&gt;Learn functional programming&lt;/li&gt;
-&lt;li&gt;Learn a framework or two - at least the basic concepts - Angular and React are good candidates for that.&lt;/li&gt;
-&lt;li&gt;Learn design pattenrs - &lt;a href=&quot;http://addyosmani.com/resources/essentialjsdesignpatterns/book/&quot;&gt;Essential JavaScript Design patterns by Addy Osmani&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Look at the frameworks again, from a different perspective, that of the implementation&lt;/li&gt;
-&lt;li&gt;Learn how to optimize for performance, in the browser&lt;/li&gt;
-&lt;li&gt;Learn NodeJS, if you plan on going full stack&lt;/li&gt;
-&lt;li&gt;Find some interesting, open source projects that you can work on, or create your own.&lt;/li&gt;
-&lt;li&gt;Read a lot of code - get a project that you like and simply observe the structure, the patterns, the coding style.&lt;/li&gt;
-&lt;li&gt;Write a lot of code - nothing sticks unless you use it, reading is not enough, you need to write JavaScript, day-in-day-out&lt;/li&gt;
-&lt;li&gt;Be humble. Don&amp;#39;t think that if you know a lot, you&amp;#39;re better than others. We tend to fall into this trap too often.&lt;/li&gt;
-&lt;li&gt;Share your knowledge. Blog, tweet, go to meetups and give presentations do podcasting, whatever your preferred method of expression is
+  &lt;li&gt;Learn JavaScript. I mean it! Learn the language, how it works, what is lexical scoping, how do all the data types work.&lt;/li&gt;
+  &lt;li&gt;Find some coding standards documents - there are quite a few - and take the gist from all of them(i’ll provide a list at the end)&lt;/li&gt;
+  &lt;li&gt;Learn some utility libraries like jQuery, lodash,  zepto&lt;/li&gt;
+  &lt;li&gt;Learn object-oriented programming&lt;/li&gt;
+  &lt;li&gt;Learn functional programming&lt;/li&gt;
+  &lt;li&gt;Learn a framework or two - at least the basic concepts - Angular and React are good candidates for that.&lt;/li&gt;
+  &lt;li&gt;Learn design pattenrs - &lt;a href=&quot;http://addyosmani.com/resources/essentialjsdesignpatterns/book/&quot;&gt;Essential JavaScript Design patterns by Addy Osmani&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Look at the frameworks again, from a different perspective, that of the implementation&lt;/li&gt;
+  &lt;li&gt;Learn how to optimize for performance, in the browser&lt;/li&gt;
+  &lt;li&gt;Learn NodeJS, if you plan on going full stack&lt;/li&gt;
+  &lt;li&gt;Find some interesting, open source projects that you can work on, or create your own.&lt;/li&gt;
+  &lt;li&gt;Read a lot of code - get a project that you like and simply observe the structure, the patterns, the coding style.&lt;/li&gt;
+  &lt;li&gt;Write a lot of code - nothing sticks unless you use it, reading is not enough, you need to write JavaScript, day-in-day-out&lt;/li&gt;
+  &lt;li&gt;Be humble. Don’t think that if you know a lot, you’re better than others. We tend to fall into this trap too often.&lt;/li&gt;
+  &lt;li&gt;Share your knowledge. Blog, tweet, go to meetups and give presentations do podcasting, whatever your preferred method of expression is
 Here are some resources to get you on your way:&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;strong&gt;Books:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596517748.do&quot;&gt;JavaScript, the Good Parts by Douglas Crockford&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9781118026694.do&quot;&gt;Professional JavaScript for web developers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596805531.do&quot;&gt;JavaScript The definitive Guide by David Flanagan&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/0636920025245.do&quot;&gt;Maintainable JavaScript by Nicholas Zakas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596517748.do&quot;&gt;JavaScript, the Good Parts by Douglas Crockford&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9781118026694.do&quot;&gt;Professional JavaScript for web developers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596805531.do&quot;&gt;JavaScript The definitive Guide by David Flanagan&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/0636920025245.do&quot;&gt;Maintainable JavaScript by Nicholas Zakas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Blogs:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.nczonline.net&quot;&gt;Nicholas Zakas&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.2ality.com/&quot;&gt;Dr. Axel Rauschmayer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.sitepoint.com/&quot;&gt;Sitepoint&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://robots.thoughtbot.com/&quot;&gt;Thoughtbot&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.airpair.com&quot;&gt;AirPair&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://ponyfoo.com/&quot;&gt;Nicolas Bevacqua&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.smashingmagazine.com/&quot;&gt;Smashing Magazine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.nczonline.net&quot;&gt;Nicholas Zakas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.2ality.com/&quot;&gt;Dr. Axel Rauschmayer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.sitepoint.com/&quot;&gt;Sitepoint&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://robots.thoughtbot.com/&quot;&gt;Thoughtbot&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.airpair.com&quot;&gt;AirPair&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ponyfoo.com/&quot;&gt;Nicolas Bevacqua&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.smashingmagazine.com/&quot;&gt;Smashing Magazine&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Style guides:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://google.github.io/styleguide/javascriptguide.xml&quot;&gt;Google&amp;#39;s JavaScript style guide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/airbnb/javascript&quot;&gt;AirBnB&amp;#39;s JavaScript style guide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/rwaldron/idiomatic.js/&quot;&gt;IdiomaticJS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/styleguide/javascript&quot;&gt;Github&amp;#39;s style guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://google.github.io/styleguide/javascriptguide.xml&quot;&gt;Google’s JavaScript style guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/airbnb/javascript&quot;&gt;AirBnB’s JavaScript style guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/rwaldron/idiomatic.js/&quot;&gt;IdiomaticJS&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/styleguide/javascript&quot;&gt;Github’s style guide&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Online training:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://pluralsight.com&quot;&gt;Pluralsight&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://egghead.io&quot;&gt;egghead.io&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.bento.io/&quot;&gt;Bento.io&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://code.tutsplus.com/&quot;&gt;Envato Tuts+ Free Code Tutorials&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://superherojs.com/&quot;&gt;SuperheroJS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/&quot;&gt;Codecademy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://pluralsight.com&quot;&gt;Pluralsight&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://egghead.io&quot;&gt;egghead.io&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.bento.io/&quot;&gt;Bento.io&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://code.tutsplus.com/&quot;&gt;Envato Tuts+ Free Code Tutorials&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://superherojs.com/&quot;&gt;SuperheroJS&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/&quot;&gt;Codecademy&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Podcasts&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;An article I wrote : &lt;a href=&quot;https://codesi.nz/my-favorite-podcasts/&quot;&gt;My favorite podcasts&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot;&gt;A git repository with interesting dev podcasts&lt;/a&gt; - feel free to contribute&lt;/li&gt;
+  &lt;li&gt;An article I wrote : &lt;a href=&quot;https://codesi.nz/my-favorite-podcasts/&quot;&gt;My favorite podcasts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot;&gt;A git repository with interesting dev podcasts&lt;/a&gt; - feel free to contribute&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;One last thing: don&amp;#39;t go learning everything out there in terms of frameworks, if you&amp;#39;re not planning on using them.
+&lt;p&gt;One last thing: don’t go learning everything out there in terms of frameworks, if you’re not planning on using them.
 You will only waste precious time and memory on useless stuff. Set small(reaaaaally small) achievable goals for yourself and make sure you stick to them.&lt;/p&gt;
 
 &lt;p&gt;Good luck!&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;My Quora answer &amp;mdash; &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/answer/Adrian-Oprea&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;My Quora answer — &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/answer/Adrian-Oprea&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/dvids/&quot;&gt;DVIDSHUB&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/5KpvAf&quot;&gt;Fitness Test Shows Marines a Taste of Combat&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>A week ago I saw a very interesting question on Quora, titled:  What should I do to become an enterprise level professional in JavaScript?. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I&amp;#39;d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
-One thing worth mentioning is the fact that I don&amp;#39;t yet consider myself an &amp;quot;enterprise JavaScript developer&amp;quot;, even though I have been called by that name. I&amp;#39;m a software developer with a sweet tooth for JavaScript, that&amp;#39;s it.</summary></entry><entry><title>My favorite podcasts</title><link href="https://codesi.nz/my-favorite-podcasts/" rel="alternate" type="text/html" title="My favorite podcasts" /><published>2015-12-05T00:00:00+02:00</published><updated>2015-12-05T00:00:00+02:00</updated><id>https://codesi.nz/my-favorite-podcasts</id><content type="html" xml:base="https://codesi.nz/my-favorite-podcasts/">&lt;p&gt;The one thing I absolutely love doing when I&amp;#39;m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.&lt;br&gt;
-Today I&amp;#39;m going share with you which are my favorite podcasts, but before we get to the &amp;quot;meat&amp;quot; of the article, I want to let you know that I created &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt; where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.  &lt;/p&gt;
+  &lt;p&gt;Credits:&lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/dvids/&quot;&gt;DVIDSHUB&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/5KpvAf&quot;&gt;Fitness Test Shows Marines a Taste of Combat&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>A week ago I saw a very interesting question on Quora, titled:  What should I do to become an enterprise level professional in JavaScript?. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I’d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
+One thing worth mentioning is the fact that I don’t yet consider myself an “enterprise JavaScript developer”, even though I have been called by that name. I’m a software developer with a sweet tooth for JavaScript, that’s it.</summary></entry><entry><title>My favorite podcasts</title><link href="https://codesi.nz/my-favorite-podcasts/" rel="alternate" type="text/html" title="My favorite podcasts" /><published>2015-12-05T00:00:00+02:00</published><updated>2015-12-05T00:00:00+02:00</updated><id>https://codesi.nz/my-favorite-podcasts</id><content type="html" xml:base="https://codesi.nz/my-favorite-podcasts/">&lt;p&gt;The one thing I absolutely love doing when I’m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.&lt;br /&gt;
+Today I’m going share with you which are my favorite podcasts, but before we get to the “meat” of the article, I want to let you know that I created &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt; where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.&lt;/p&gt;
 
 &lt;p&gt;The idea for this article started from a question I saw on one of the Facebook groups I follow, related specifically to the subject of podcasts. After I added my answer, I thought that it would be better if I could create a list that I could refer people to, and why not, have people contribute their own preferences.&lt;/p&gt;
 
 &lt;p&gt;So, without further ado, my list of podcasts.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;https://devchat.tv/js-jabber&quot; target=&quot;_blank&quot; title=&quot;JavaScript Jabber&quot;&gt;JavaScript Jabber&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpsdevchattvjs-jabber-targetblank-titlejavascript-jabberjavascript-jabbera&quot;&gt;&lt;a href=&quot;https://devchat.tv/js-jabber&quot; target=&quot;_blank&quot; title=&quot;JavaScript Jabber&quot;&gt;JavaScript Jabber&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;If you want to find out what are the latest and greatest in terms of JS libraries, frameworks, programming techniques, analytics tools, application monitoring, this is your go-to podcast. They have a great panel and they always invite people that are highly relevant in the JavaScript community.
-They have an absolutely awesome format, that you will see in both &amp;quot;Adventures In Angular&amp;quot; and &amp;quot;The Freelancers&amp;#39; Show&amp;quot;, and at the end of the show they do &amp;quot;picks&amp;quot;, so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don&amp;#39;t(that&amp;#39;s an anti-pick :D).&lt;br&gt;
-Besides the regular panelists, one of them struck me as being a highly ambitious and motivated person &amp;mdash; &lt;a href=&quot;https://twitter.com/Aimee_Knight&quot;&gt;Aimee Knight&lt;/a&gt;. The reason for my admiration is that before becoming a developer, she was a figure skater and in my opinion, it takes a lot of courage and effort to make that kind of switch; it&amp;#39;s totally different from becoming a developer after working as an accountant.&lt;br&gt;
-Aimee gave a great talk at &lt;a href=&quot;http://angularconnect.com/&quot;&gt;AngularConnect 2015&lt;/a&gt; titled &amp;quot;Getting Comfortable Being Uncomfortable&amp;quot;, available on Youtube, so check it out:  &lt;a href=&quot;https://youtu.be/B22o_yeDE_s&quot;&gt;https://youtu.be/B22o&lt;em&gt;yeDE&lt;/em&gt;s&lt;/a&gt;.&lt;/p&gt;
+They have an absolutely awesome format, that you will see in both “Adventures In Angular” and “The Freelancers’ Show”, and at the end of the show they do “picks”, so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don’t(that’s an anti-pick :D).&lt;br /&gt;
+Besides the regular panelists, one of them struck me as being a highly ambitious and motivated person — &lt;a href=&quot;https://twitter.com/Aimee_Knight&quot;&gt;Aimee Knight&lt;/a&gt;. The reason for my admiration is that before becoming a developer, she was a figure skater and in my opinion, it takes a lot of courage and effort to make that kind of switch; it’s totally different from becoming a developer after working as an accountant.&lt;br /&gt;
+Aimee gave a great talk at &lt;a href=&quot;http://angularconnect.com/&quot;&gt;AngularConnect 2015&lt;/a&gt; titled “Getting Comfortable Being Uncomfortable”, available on Youtube, so check it out:  &lt;a href=&quot;https://youtu.be/B22o_yeDE_s&quot;&gt;https://youtu.be/B22o_yeDE_s&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;https://devchat.tv/adventures-in-angular&quot; target=&quot;_blank&quot; title=&quot;Adventures In Angular&quot;&gt;Adventures In Angular&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpsdevchattvadventures-in-angular-targetblank-titleadventures-in-angularadventures-in-angulara&quot;&gt;&lt;a href=&quot;https://devchat.tv/adventures-in-angular&quot; target=&quot;_blank&quot; title=&quot;Adventures In Angular&quot;&gt;Adventures In Angular&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;If you&amp;#39;re all about Angular, then you have a podcast all about your beloved  framework. You&amp;#39;ll hear about a lot of new directives, services to use in your Angular apps, performance tips, and more.&lt;br&gt;
-Amongst the panelists you&amp;#39;ll hear some of the people that are on &lt;a href=&quot;https://devchat.tv/js-jabber&quot;&gt;JavaScript Jabber&lt;/a&gt; as well, but they also bring in people who are very influential in the Angular community.&lt;br&gt;
-To list some of the panelists, I would mention: &lt;a href=&quot;https://twitter.com/cmaxw&quot;&gt;Charles Max Wood&lt;/a&gt; &amp;mdash; initiator of &lt;a href=&quot;https://devchat.tv&quot;&gt;devchat.tv&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/simpulton&quot;&gt;Lukas Ruebbelke&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://egghead.io&quot;&gt;egghead.io&lt;/a&gt; trainer, &lt;a href=&quot;https://twitter.com/John_Papa&quot;&gt;John Papa&lt;/a&gt; &amp;mdash; c&amp;#39;mon, it&amp;#39;s John Papa.&lt;/p&gt;
+&lt;p&gt;If you’re all about Angular, then you have a podcast all about your beloved  framework. You’ll hear about a lot of new directives, services to use in your Angular apps, performance tips, and more.&lt;br /&gt;
+Amongst the panelists you’ll hear some of the people that are on &lt;a href=&quot;https://devchat.tv/js-jabber&quot;&gt;JavaScript Jabber&lt;/a&gt; as well, but they also bring in people who are very influential in the Angular community.&lt;br /&gt;
+To list some of the panelists, I would mention: &lt;a href=&quot;https://twitter.com/cmaxw&quot;&gt;Charles Max Wood&lt;/a&gt; — initiator of &lt;a href=&quot;https://devchat.tv&quot;&gt;devchat.tv&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/simpulton&quot;&gt;Lukas Ruebbelke&lt;/a&gt; — &lt;a href=&quot;https://egghead.io&quot;&gt;egghead.io&lt;/a&gt; trainer, &lt;a href=&quot;https://twitter.com/John_Papa&quot;&gt;John Papa&lt;/a&gt; — c’mon, it’s John Papa.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;https://devchat.tv/freelancers&quot; target=&quot;_blank&quot; title=&quot;The Freelancers&#39; Show&quot;&gt;The Freelancers&amp;#39; Show&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpsdevchattvfreelancers-targetblank-titlethe-freelancers-showthe-freelancers-showa&quot;&gt;&lt;a href=&quot;https://devchat.tv/freelancers&quot; target=&quot;_blank&quot; title=&quot;The Freelancers&#39; Show&quot;&gt;The Freelancers’ Show&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;This one is my favorite. I&amp;#39;ve learned so many things from this podcast, that I recently started listening to all the episodes, to make sure I haven&amp;#39;t missed anything critical.&lt;br&gt;
-Same as with &amp;quot;JavaScript Jabber&amp;quot; and &amp;quot;Adventures In Angular&amp;quot;, there are kind of the same people talking, they bring in other people that do freelancing, or offer various services for freelancers.&lt;br&gt;
-I found a lot of useful things from this podcast, and only to name a few: what to bill for, how to pick your clients, keeping up to date, self-promotion,  &lt;a href=&quot;http://www.bookyourselfsolid.com/&quot; title=&quot;Link to Book yourself solid website&quot; target=&quot;_blank&quot;&gt;Michael Port&amp;#39;s &amp;quot;Book yourself solid&amp;quot; program&lt;/a&gt;.
-If you&amp;#39;re doing freelancing or planning on going freelance, I wholeheartedly recommend this podcast.&lt;/p&gt;
+&lt;p&gt;This one is my favorite. I’ve learned so many things from this podcast, that I recently started listening to all the episodes, to make sure I haven’t missed anything critical.&lt;br /&gt;
+Same as with “JavaScript Jabber” and “Adventures In Angular”, there are kind of the same people talking, they bring in other people that do freelancing, or offer various services for freelancers.&lt;br /&gt;
+I found a lot of useful things from this podcast, and only to name a few: what to bill for, how to pick your clients, keeping up to date, self-promotion,  &lt;a href=&quot;http://www.bookyourselfsolid.com/&quot; title=&quot;Link to Book yourself solid website&quot; target=&quot;_blank&quot;&gt;Michael Port’s “Book yourself solid” program&lt;/a&gt;.
+If you’re doing freelancing or planning on going freelance, I wholeheartedly recommend this podcast.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;http://entreprogrammers.com/&quot; target=&quot;_blank&quot; title=&quot;Entreprogrammers Podcast&quot;&gt;Entreprogrammers Podcast&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpentreprogrammerscom-targetblank-titleentreprogrammers-podcastentreprogrammers-podcasta&quot;&gt;&lt;a href=&quot;http://entreprogrammers.com/&quot; target=&quot;_blank&quot; title=&quot;Entreprogrammers Podcast&quot;&gt;Entreprogrammers Podcast&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;Again, another one about self-employment, freelancing, and the whole business of being a one-person shop. They discuss about conferences, projects they work on and share tips on how to be a better developreneur :).&lt;br&gt;
+&lt;p&gt;Again, another one about self-employment, freelancing, and the whole business of being a one-person shop. They discuss about conferences, projects they work on and share tips on how to be a better developreneur :).&lt;br /&gt;
 As for the panelists, if you used Backbone in their life, especially &lt;a href=&quot;http://marionettejs.com/&quot;&gt;Marionette.js&lt;/a&gt;, then you should know who &lt;a href=&quot;http://derickbailey.com&quot;&gt;Derick Bailey&lt;/a&gt; is. He used to post on &lt;a href=&quot;https://lostechies.com/&quot;&gt;the LosTechies blog&lt;/a&gt; and do a lot of other cool stuff with podcasting.
-You might have gotten used to Charles Max Wood by now. I don&amp;#39;t know where does this guy get his energy from, but, then again, that&amp;#39;s none of my business.&lt;/p&gt;
+You might have gotten used to Charles Max Wood by now. I don’t know where does this guy get his energy from, but, then again, that’s none of my business.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;https://gimletmedia.com/show/reply-all/&quot; target=&quot;_blank&quot; title=&quot;Reply All&quot;&gt;Reply All&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpsgimletmediacomshowreply-all-targetblank-titlereply-allreply-alla&quot;&gt;&lt;a href=&quot;https://gimletmedia.com/show/reply-all/&quot; target=&quot;_blank&quot; title=&quot;Reply All&quot;&gt;Reply All&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;This one is lighter on the brain. No programming involved, just the panelists&amp;#39; viewpoints on the Internet, and how everything gets shaped by it.&lt;br&gt;
-To quote their own description, &amp;quot;Reply All is a show about the internet, hosted by PJ Vogt and Alex Goldman. It features stories about how people shape the internet, and the internet shapes people.&amp;quot;&lt;br&gt;
+&lt;p&gt;This one is lighter on the brain. No programming involved, just the panelists’ viewpoints on the Internet, and how everything gets shaped by it.&lt;br /&gt;
+To quote their own description, “Reply All is a show about the internet, hosted by PJ Vogt and Alex Goldman. It features stories about how people shape the internet, and the internet shapes people.”&lt;br /&gt;
 They have other podcasts that might interest you, so feel free to &lt;a href=&quot;https://gimletmedia.com/&quot;&gt;check them all out&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;http://integrumtech.com/category/agile-weekly-podcast/&quot; target=&quot;_blank&quot; title=&quot;Agile Weekly Podcast&quot;&gt;Agile Weekly Podcast&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpintegrumtechcomcategoryagile-weekly-podcast-targetblank-titleagile-weekly-podcastagile-weekly-podcasta&quot;&gt;&lt;a href=&quot;http://integrumtech.com/category/agile-weekly-podcast/&quot; target=&quot;_blank&quot; title=&quot;Agile Weekly Podcast&quot;&gt;Agile Weekly Podcast&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;This podcast helped me in a time where my knowledge about Agile methodologies was close to -1. It&amp;#39;s not that active lately, and the owners left it unmaintained for quite some time, but they still have very useful info into development teams&amp;#39; dynamics, and how stuff is supposed to work in Agile environments.&lt;/p&gt;
+&lt;p&gt;This podcast helped me in a time where my knowledge about Agile methodologies was close to -1. It’s not that active lately, and the owners left it unmaintained for quite some time, but they still have very useful info into development teams’ dynamics, and how stuff is supposed to work in Agile environments.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a href=&quot;https://teamtreehouse.com/library/the-treehouse-show&quot; target=&quot;_blank&quot; title=&quot;The Treehouse Show&quot;&gt;The Treehouse Show&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-hrefhttpsteamtreehousecomlibrarythe-treehouse-show-targetblank-titlethe-treehouse-showthe-treehouse-showa&quot;&gt;&lt;a href=&quot;https://teamtreehouse.com/library/the-treehouse-show&quot; target=&quot;_blank&quot; title=&quot;The Treehouse Show&quot;&gt;The Treehouse Show&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;If you are a frontend developer, there&amp;#39;s a good chance you probably landed at one point on &lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;www.teamtreehouse.com&lt;/a&gt; while looking for training material. If you&amp;#39;re more into the front-end side of things, this is definitely a podcast worth checking out. It&amp;#39;s hosted by Treehouses&amp;#39; most prolific authors: &lt;a href=&quot;http://nickpettit.com/&quot;&gt;Nick Petitt&lt;/a&gt; and &lt;a href=&quot;http://jasonseifer.com/&quot;&gt;Jason Seifer&lt;/a&gt;.  &lt;/p&gt;
+&lt;p&gt;If you are a frontend developer, there’s a good chance you probably landed at one point on &lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;www.teamtreehouse.com&lt;/a&gt; while looking for training material. If you’re more into the front-end side of things, this is definitely a podcast worth checking out. It’s hosted by Treehouses’ most prolific authors: &lt;a href=&quot;http://nickpettit.com/&quot;&gt;Nick Petitt&lt;/a&gt; and &lt;a href=&quot;http://jasonseifer.com/&quot;&gt;Jason Seifer&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;This is the end of my podcasts list and I&amp;#39;m sure there are many more great podcasts and podcasters out there, so be sure to add your favorite podcast to &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is the end of my podcasts list and I’m sure there are many more great podcasts and podcasters out there, so be sure to add your favorite podcast to &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/pasukaru76/&quot;&gt;Pascal&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/6uzLyN&quot;&gt;Some old Beyer Dynamics headphones.&lt;/a&gt;  &lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>The one thing I absolutely love doing when I&amp;#39;m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.
-Today I&amp;#39;m going share with you which are my favorite podcasts, but before we get to the &amp;quot;meat&amp;quot; of the article, I want to let you know that I created this github repository where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.</summary></entry><entry><title>Interest killers</title><link href="https://codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" /><published>2015-12-03T00:00:00+02:00</published><updated>2015-12-03T00:00:00+02:00</updated><id>https://codesi.nz/things-that-kill-my-interest</id><content type="html" xml:base="https://codesi.nz/things-that-kill-my-interest/">&lt;p&gt;I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.  &lt;/p&gt;
+  &lt;p&gt;Credits: &lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/pasukaru76/&quot;&gt;Pascal&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/6uzLyN&quot;&gt;Some old Beyer Dynamics headphones.&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>The one thing I absolutely love doing when I’m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.
+Today I’m going share with you which are my favorite podcasts, but before we get to the “meat” of the article, I want to let you know that I created this github repository where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.</summary></entry><entry><title>Interest killers</title><link href="https://codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" /><published>2015-12-03T00:00:00+02:00</published><updated>2015-12-03T00:00:00+02:00</updated><id>https://codesi.nz/things-that-kill-my-interest</id><content type="html" xml:base="https://codesi.nz/things-that-kill-my-interest/">&lt;p&gt;I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I’m only talking about planned stuff, I don’t count the times I take a break and I’m not busy eating — one of my biggest “hobbies” — because those add up, too.&lt;/p&gt;
 
 &lt;p&gt;Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;// blah&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;At that exact moment, I immediately close any open tabs with that material and hate the Interwebs for being that dumb.&lt;/p&gt;
 
-&lt;p&gt;Bottom line, content creators, please take best practices into account when authoring for tech people or you&amp;#39;ll lose them. Better yet, take best practices into account when catering towards aspiring tech people, because at some point, you&amp;#39;ll end up working with &amp;quot;your creation&amp;quot;, and it won&amp;#39;t be pretty.&lt;/p&gt;
+&lt;p&gt;Bottom line, content creators, please take best practices into account when authoring for tech people or you’ll lose them. Better yet, take best practices into account when catering towards aspiring tech people, because at some point, you’ll end up working with “your creation”, and it won’t be pretty.&lt;/p&gt;
 
 &lt;p&gt;Cheers!&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/archer10/&quot;&gt;Dennis Jarvis&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/4oULGp&quot;&gt;New Hampshire-5132 - Slanted Boiler&lt;/a&gt;  &lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I&amp;#39;m only talking about planned stuff, I don&amp;#39;t count the times I take a break and I&amp;#39;m not busy eating &amp;mdash; one of my biggest &amp;quot;hobbies&amp;quot; &amp;mdash; because those add up, too.</summary></entry><entry><title>Bite-sized JavaScript - Meet Array</title><link href="https://codesi.nz/bite-sized-javascript-meet-array/" rel="alternate" type="text/html" title="Bite-sized JavaScript - Meet Array" /><published>2015-11-27T00:00:00+02:00</published><updated>2015-11-27T00:00:00+02:00</updated><id>https://codesi.nz/bite-sized-javascript-meet-array</id><content type="html" xml:base="https://codesi.nz/bite-sized-javascript-meet-array/">&lt;p&gt;I don&amp;#39;t know about you but I&amp;#39;m working with JavaScript all day long and I always trip over arrays
-when it comes to &amp;quot;what method for which use case&amp;quot;. 
+  &lt;p&gt;Credits: &lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/archer10/&quot;&gt;Dennis Jarvis&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/4oULGp&quot;&gt;New Hampshire-5132 - Slanted Boiler&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I’m only talking about planned stuff, I don’t count the times I take a break and I’m not busy eating — one of my biggest “hobbies” — because those add up, too.</summary></entry><entry><title>Bite-sized JavaScript - Meet Array</title><link href="https://codesi.nz/bite-sized-javascript-meet-array/" rel="alternate" type="text/html" title="Bite-sized JavaScript - Meet Array" /><published>2015-11-27T00:00:00+02:00</published><updated>2015-11-27T00:00:00+02:00</updated><id>https://codesi.nz/bite-sized-javascript-meet-array</id><content type="html" xml:base="https://codesi.nz/bite-sized-javascript-meet-array/">&lt;p&gt;I don’t know about you but I’m working with JavaScript all day long and I always trip over arrays
+when it comes to “what method for which use case”. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
-return.&lt;br&gt;
+return.&lt;br /&gt;
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
-remind me what each method of the &lt;code&gt;Array&lt;/code&gt; object does, and to also share this knowledge with anyone
-interested in the topic. The articles won&amp;#39;t require more than a basic experience with JavaScript&amp;#39;s
+remind me what each method of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt; object does, and to also share this knowledge with anyone
+interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.&lt;/p&gt;
 
-&lt;h2&gt;What&amp;#39;s an array?&lt;/h2&gt;
+&lt;h2 id=&quot;whats-an-array&quot;&gt;What’s an array?&lt;/h2&gt;
 
 &lt;p&gt;At its core, an array is simply an ordered collection of items, nothing more, nothing less. When I was first
-learning to program, I always thought of an array, as my shopping list.&lt;br&gt;
-Please note that I did not say &amp;quot;sorted&amp;quot; list of items, that is something we are going to learn more 
-about in future posts. The &amp;quot;ordered&amp;quot; part comes from the fact that an array keeps track of its
-items through indexes numbered from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;length - 1&lt;/code&gt;.&lt;br&gt;
+learning to program, I always thought of an array, as my shopping list.&lt;br /&gt;
+Please note that I did not say “sorted” list of items, that is something we are going to learn more 
+about in future posts. The “ordered” part comes from the fact that an array keeps track of its
+items through indexes numbered from &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;length - 1&lt;/code&gt;.&lt;br /&gt;
 Basically, if you have an array like the one below, its length is 5 and the index of the last item
-is 4, as index numbering starts from &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+is 4, as index numbering starts from &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[0] =&amp;gt; a&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[1] =&amp;gt; b&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[2] =&amp;gt; c&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[3] =&amp;gt; d&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[4] =&amp;gt; e&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;Back to the shopping list analogy, your array of things to buy, would look like below:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;carrots&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;onions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;apples&quot;&lt;/span&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;carrots&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;onions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;s2&quot;&gt;&quot;apples&quot;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// shoppingList[0] =&amp;gt; carrots&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// shoppingList[1] =&amp;gt; onions&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// shoppingList[2] =&amp;gt; apples&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;There&amp;#39;s one more thing you need to know before we end for the day and that is the &lt;code&gt;length&lt;/code&gt; property
-of an array. Every time you query for the &lt;code&gt;length&lt;/code&gt; property of an array, you will get the exact
-number of items it holds.&lt;br&gt;
-Going back to our shopping list, let&amp;#39;s see how many items do we need to
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There’s one more thing you need to know before we end for the day and that is the &lt;code class=&quot;highlighter-rouge&quot;&gt;length&lt;/code&gt; property
+of an array. Every time you query for the &lt;code class=&quot;highlighter-rouge&quot;&gt;length&lt;/code&gt; property of an array, you will get the exact
+number of items it holds.&lt;br /&gt;
+Going back to our shopping list, let’s see how many items do we need to
 buy:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 3&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;Next, we will learn how to perform classic iteration on arrays, and also familiarize ourselves with
-our first &lt;code&gt;Array&lt;/code&gt; method, &lt;code&gt;Array.prototype.forEach&lt;/code&gt;.&lt;/p&gt;
+our first &lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt; method, &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.prototype.forEach&lt;/code&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/cibomahto/&quot;&gt;Matt Mets&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/4qqJzZ&quot;&gt;7x7 tri-color LED array&lt;/a&gt;  &lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>I don&amp;#39;t know about you but I&amp;#39;m working with JavaScript all day long and I always trip over arrays
-when it comes to &amp;quot;what method for which use case&amp;quot;. 
+  &lt;p&gt;Credits: &lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/cibomahto/&quot;&gt;Matt Mets&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/4qqJzZ&quot;&gt;7x7 tri-color LED array&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>I don’t know about you but I’m working with JavaScript all day long and I always trip over arrays
+when it comes to “what method for which use case”. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
 return.
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
 remind me what each method of the Array object does, and to also share this knowledge with anyone
-interested in the topic. The articles won&amp;#39;t require more than a basic experience with JavaScript&amp;#39;s
+interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.</summary></entry><entry><title>Quick tip: Using mitmproxy for mobile testing</title><link href="https://codesi.nz/using-mitmproxy-for-mobile-testing/" rel="alternate" type="text/html" title="Quick tip: Using mitmproxy for mobile testing" /><published>2015-11-24T00:00:00+02:00</published><updated>2015-11-24T00:00:00+02:00</updated><id>https://codesi.nz/using-mitmproxy-for-mobile-testing</id><content type="html" xml:base="https://codesi.nz/using-mitmproxy-for-mobile-testing/">&lt;p&gt;This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router&amp;#39;s DNS configuration, 
+your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
 or resorting to other, less elegant solutions.&lt;/p&gt;
 
-&lt;h2&gt;Use case&lt;/h2&gt;
+&lt;h2 id=&quot;use-case&quot;&gt;Use case&lt;/h2&gt;
 
-&lt;p&gt;I have an application running on my machine, and I access it on &lt;code&gt;http://myapp.dev&lt;/code&gt; as it depends on
+&lt;p&gt;I have an application running on my machine, and I access it on &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; as it depends on
 the domain it is running on, in order to bootstrap itself and offer different functionality based
-on the domain where it is being loaded.&lt;br&gt;
-I want to be able to navigate to &lt;code&gt;http://myapp.dev&lt;/code&gt; on my phone and get the application running on 
+on the domain where it is being loaded.&lt;br /&gt;
+I want to be able to navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; on my phone and get the application running on 
 my computer.&lt;/p&gt;
 
-&lt;h2&gt;Solution 1&lt;/h2&gt;
+&lt;h2 id=&quot;solution-1&quot;&gt;Solution 1&lt;/h2&gt;
+&lt;p&gt;Have the mapping added to my local DNS(the router’s DNS) and every time a device on my network
+navigates to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; it will be redirected to my machine — highly impractical as
+I have multiple devices and I’d probably like to keep my router’s config as sane as possible.&lt;/p&gt;
 
-&lt;p&gt;Have the mapping added to my local DNS(the router&amp;#39;s DNS) and every time a device on my network
-navigates to &lt;code&gt;http://myapp.dev&lt;/code&gt; it will be redirected to my machine &amp;mdash; highly impractical as
-I have multiple devices and I&amp;#39;d probably like to keep my router&amp;#39;s config as sane as possible.&lt;/p&gt;
-
-&lt;h2&gt;Solution 2&lt;/h2&gt;
+&lt;h2 id=&quot;solution-2&quot;&gt;Solution 2&lt;/h2&gt;
 
 &lt;p&gt;Set my computer as a 
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&quot; 
-    title=&quot;Wikipedia link to Man-In-The-Middle attack definition&quot; 
-    target=&quot;_blank&quot;&gt;Man-In-The-Middle&lt;/a&gt;
-between my phone and the Internet &amp;mdash; in other words, make my computer act as an HTTP proxy. 
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&quot; title=&quot;Wikipedia link to Man-In-The-Middle attack definition&quot; target=&quot;_blank&quot;&gt;Man-In-The-Middle&lt;/a&gt;
+between my phone and the Internet — in other words, make my computer act as an HTTP proxy. 
 This way, I can trick the phone into believeing that all its traffic needs to be routed through my laptop.&lt;/p&gt;
 
-&lt;h2&gt;How DNS resolution works&lt;/h2&gt;
+&lt;h2 id=&quot;how-dns-resolution-works&quot;&gt;How DNS resolution works&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;I navigate to &lt;code&gt;http://myapp.dev&lt;/code&gt; from my phone&lt;/li&gt;
-&lt;li&gt;My phone looks at its internal hostfile &amp;mdash; usually &lt;code&gt;/etc/hosts&lt;/code&gt; on UNIX-like operating 
-systems &amp;mdash; for entries resolving to that specific hostname.&lt;/li&gt;
-&lt;li&gt;If it doesn&amp;#39;t find anything it looks at the local DNS (the router&amp;#39;s DNS) &lt;/li&gt;
-&lt;li&gt;If no result is returned by the local DNS, then the external DNS is queried - via recursion&lt;/li&gt;
-&lt;li&gt;If nothing comes back from the external DNS, then it means that the address is either inexistent
+  &lt;li&gt;I navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; from my phone&lt;/li&gt;
+  &lt;li&gt;My phone looks at its internal hostfile — usually &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; on UNIX-like operating 
+systems — for entries resolving to that specific hostname.&lt;/li&gt;
+  &lt;li&gt;If it doesn’t find anything it looks at the local DNS (the router’s DNS)&lt;/li&gt;
+  &lt;li&gt;If no result is returned by the local DNS, then the external DNS is queried - via recursion&lt;/li&gt;
+  &lt;li&gt;If nothing comes back from the external DNS, then it means that the address is either inexistent
 or down.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;The setup&lt;/h2&gt;
+&lt;h2 id=&quot;the-setup&quot;&gt;The setup&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;A copy of &lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot;
-target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;A mobile device to test on&lt;/li&gt;
+  &lt;li&gt;A copy of &lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot; target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;A mobile device to test on&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;Workflow&lt;/h2&gt;
+&lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;/h2&gt;
 
-&lt;p&gt;What I want to do is to trick my phone into thinking that &lt;code&gt;http://myapp.dev&lt;/code&gt; resolves to 
-192.168.xxx.xxx &amp;mdash; my laptop&amp;#39;s local IP address &amp;mdash; and the way I can do that is by using 
+&lt;p&gt;What I want to do is to trick my phone into thinking that &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; resolves to 
+192.168.xxx.xxx — my laptop’s local IP address — and the way I can do that is by using 
 &lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot; target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you&amp;#39;re on a Mac, you have two options for installing &lt;code&gt;mitmproxy&lt;/code&gt;: &lt;/p&gt;
+&lt;p&gt;If you’re on a Mac, you have two options for installing &lt;code class=&quot;highlighter-rouge&quot;&gt;mitmproxy&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Through &lt;a href=&quot;https://pip.pypa.io/en/stable/&quot; title=&quot;Link to Python package manager, pip&quot;
-target=&quot;_blank&quot;&gt;pip&lt;/a&gt; by issuing &lt;code&gt;pip install mitmproxy&lt;/code&gt; at your 
+  &lt;li&gt;Through &lt;a href=&quot;https://pip.pypa.io/en/stable/&quot; title=&quot;Link to Python package manager, pip&quot; target=&quot;_blank&quot;&gt;pip&lt;/a&gt; by issuing &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install mitmproxy&lt;/code&gt; at your 
 terminal prompt.&lt;/li&gt;
-&lt;li&gt;Through &lt;a href=&quot;http://brew.sh/&quot; title=&quot;Link to Homebrew - Mac OS X package manager&quot; target=&quot;_blank&quot;&gt;homebrew&lt;/a&gt; 
-by issuing another command at your terminal prompt: &lt;code&gt;brew install mitmproxy&lt;/code&gt;.&lt;br&gt;&lt;/li&gt;
+  &lt;li&gt;Through &lt;a href=&quot;http://brew.sh/&quot; title=&quot;Link to Homebrew - Mac OS X package manager&quot; target=&quot;_blank&quot;&gt;homebrew&lt;/a&gt; 
+by issuing another command at your terminal prompt: &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install mitmproxy&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;If you are on a different operating system please check the 
-&lt;a href=&quot;http://docs.mitmproxy.org/en/stable/install.html&quot; title=&quot;Mitmproxy official installation docs&quot; target=&quot;_blank&quot;&gt;mitmproxy installation guide&lt;/a&gt;  &lt;/p&gt;
+&lt;a href=&quot;http://docs.mitmproxy.org/en/stable/install.html&quot; title=&quot;Mitmproxy official installation docs&quot; target=&quot;_blank&quot;&gt;mitmproxy installation guide&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2&gt;Proxy server setup&lt;/h2&gt;
+&lt;h2 id=&quot;proxy-server-setup&quot;&gt;Proxy server setup&lt;/h2&gt;
+&lt;p&gt;All you have to do now is to start the proxy server, and set your machine’s local IP
+(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.&lt;/p&gt;
 
-&lt;p&gt;All you have to do now is to start the proxy server, and set your machine&amp;#39;s local IP
-(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.  &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Start the proxy server on port 7654&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Start the proxy server on port 7654&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mitmproxy -p 7654
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;After starting the proxy server go to your phone&amp;#39;s wireless network settings, and add your 
-computer&amp;#39;s ip as an HTTP proxy that every connection on your phone goes through.&lt;br&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;After starting the proxy server go to your phone’s wireless network settings, and add your 
+computer’s ip as an HTTP proxy that every connection on your phone goes through.&lt;br /&gt;
 Note that the phone and the computer need to be on the same network, or otherwise you will need to
 get the public IP that your computer uses when it accesses the Internet.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# UNIX - Get your computer&#39;s router-assigned IP (see image below)&lt;/span&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# UNIX - Get your computer&#39;s router-assigned IP (see image below)&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ifconfig -a | grep inet
 
 &lt;span class=&quot;c&quot;&gt;# Windows - Get the network configuration for all interfaces&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;ipconfig /all
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;figure&gt;
 &lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png&quot; alt=&quot;Image of the output of the ifconfig
-command on UNIX like systems.&quot;&gt;
+command on UNIX like systems.&quot; /&gt;
 &lt;!--- &lt;figcaption&gt;Using ifconfig to get your IP address&lt;/figcaption&gt; ---&gt;
 &lt;/figure&gt;
 
-&lt;h2&gt;iPhone proxy setup&lt;/h2&gt;
+&lt;h2 id=&quot;iphone-proxy-setup&quot;&gt;iPhone proxy setup&lt;/h2&gt;
 
-&lt;p&gt;In order to add a proxy to your wireless connection, navigate to &amp;quot;Settings -&amp;gt; Wi-Fi&amp;quot;, find the 
-network you whish to connect to and tap the &amp;quot;i&amp;quot; symbol, to the far  right of the network&amp;#39;s name.&lt;br&gt;
-This will move you to the network&amp;#39;s settings panel, and at the bottom of this panel you have the 
-&amp;quot;HTTP PROXY&amp;quot; section, which is set to &amp;quot;Off&amp;quot; by default.&lt;br&gt;
-Tap &amp;quot;Manual&amp;quot; and add your machine&amp;#39;s IP and the port you used when you started &lt;code&gt;mitmproxy&lt;/code&gt;. The
+&lt;p&gt;In order to add a proxy to your wireless connection, navigate to “Settings -&amp;gt; Wi-Fi”, find the 
+network you whish to connect to and tap the “i” symbol, to the far  right of the network’s name.&lt;br /&gt;
+This will move you to the network’s settings panel, and at the bottom of this panel you have the 
+“HTTP PROXY” section, which is set to “Off” by default.&lt;br /&gt;
+Tap “Manual” and add your machine’s IP and the port you used when you started &lt;code class=&quot;highlighter-rouge&quot;&gt;mitmproxy&lt;/code&gt;. The
 setup should look like the image below.&lt;/p&gt;
 
 &lt;figure&gt;
-&lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png&quot; alt=&quot;Image of HTTP PROXY settings on the iPhone&quot;&gt;
+&lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png&quot; alt=&quot;Image of HTTP PROXY settings on the iPhone&quot; /&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;Once you&amp;#39;re done performing the steps above, you should try and visit any web page, and you will
-see some activity in the terminal window where you started &lt;code&gt;mitmproxy&lt;/code&gt;.&lt;br&gt;
-This means that the proxy is working correctly and that your phone&amp;#39;s connection is routed through 
-your laptop.&lt;br&gt;
-Now, you can start your application on your machine, add an entry to your &lt;code&gt;/etc/hosts&lt;/code&gt; file, that
-makes &lt;code&gt;myapp.dev&lt;/code&gt; point to your local machine&amp;#39;s IP, and visit &lt;code&gt;http://myapp.dev:&amp;lt;port&amp;gt;&lt;/code&gt; from your
-phone.  &lt;/p&gt;
+&lt;p&gt;Once you’re done performing the steps above, you should try and visit any web page, and you will
+see some activity in the terminal window where you started &lt;code class=&quot;highlighter-rouge&quot;&gt;mitmproxy&lt;/code&gt;.&lt;br /&gt;
+This means that the proxy is working correctly and that your phone’s connection is routed through 
+your laptop.&lt;br /&gt;
+Now, you can start your application on your machine, add an entry to your &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; file, that
+makes &lt;code class=&quot;highlighter-rouge&quot;&gt;myapp.dev&lt;/code&gt; point to your local machine’s IP, and visit &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev:&amp;lt;port&amp;gt;&lt;/code&gt; from your
+phone.&lt;/p&gt;
 
-&lt;p&gt;You&amp;#39;re done! You should now be able to see the application that is running on your computer.&lt;/p&gt;
+&lt;p&gt;You’re done! You should now be able to see the application that is running on your computer.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/believekevin/&quot;&gt;kevin&lt;/a&gt; &amp;mdash; &lt;a href=&quot;https://flic.kr/p/8mGycA&quot;&gt;Lot of mobile phones + accessories (FREE)&lt;/a&gt;  &lt;/p&gt;
+  &lt;p&gt;Credits: &lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/believekevin/&quot;&gt;kevin&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/8mGycA&quot;&gt;Lot of mobile phones + accessories (FREE)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router&amp;#39;s DNS configuration, 
-or resorting to other, less elegant solutions.</summary></entry><entry><title>There&amp;#39;s garbage in our code</title><link href="https://codesi.nz/there-s-garbage-in-our-code/" rel="alternate" type="text/html" title="There&#39;s garbage in our code" /><published>2015-11-04T00:00:00+02:00</published><updated>2015-11-04T00:00:00+02:00</updated><id>https://codesi.nz/there-s-garbage-in-our-code</id><content type="html" xml:base="https://codesi.nz/there-s-garbage-in-our-code/">&lt;p&gt;Last week we had our &lt;a href=&quot;https://www.facebook.com/events/180867725583584/&quot; target=&quot;_blank&quot; title=&quot;October BucharestJS meetup - facebook event&quot;&gt;October BucharestJS meetup&lt;/a&gt;
-and they made the mistake of letting me speak, again.&lt;br&gt;
+your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
+or resorting to other, less elegant solutions.</summary></entry><entry><title>There’s garbage in our code</title><link href="https://codesi.nz/there-s-garbage-in-our-code/" rel="alternate" type="text/html" title="There&#39;s garbage in our code" /><published>2015-11-04T00:00:00+02:00</published><updated>2015-11-04T00:00:00+02:00</updated><id>https://codesi.nz/there-s-garbage-in-our-code</id><content type="html" xml:base="https://codesi.nz/there-s-garbage-in-our-code/">&lt;p&gt;Last week we had our &lt;a href=&quot;https://www.facebook.com/events/180867725583584/&quot; target=&quot;_blank&quot; title=&quot;October BucharestJS meetup - facebook event&quot;&gt;October BucharestJS meetup&lt;/a&gt;
+and they made the mistake of letting me speak, again.&lt;br /&gt;
 Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently &amp;mdash; &lt;a href=&quot;https://codesi.nz/a-different-look-at-nodejs-application-architecture/&quot; target=&quot;_blank&quot; title=&quot;Older article about Node.js application architecture&quot;&gt;A different look at Node.js application architecture&lt;/a&gt;&lt;/p&gt;
+lazy at work, and use their time intelligently — &lt;a href=&quot;https://codesi.nz/a-different-look-at-nodejs-application-architecture/&quot; target=&quot;_blank&quot; title=&quot;Older article about Node.js application architecture&quot;&gt;A different look at Node.js application architecture&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;This time, I took on a challenge bigger than myself: explaining to people what garbage collection
-is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn&amp;#39;t own.&lt;br&gt;
-Now, I don&amp;#39;t know if it was a success or not, but we sure had a good time, and the audience was
-kind enough not to ask any questions &amp;mdash; not sure if it was because pizza arrived at the end of
-my presentation or they were just being nice and didn&amp;#39;t want to put me in difficulty.
+is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn’t own.&lt;br /&gt;
+Now, I don’t know if it was a success or not, but we sure had a good time, and the audience was
+kind enough not to ask any questions — not sure if it was because pizza arrived at the end of
+my presentation or they were just being nice and didn’t want to put me in difficulty.
 I wrote this small article to thank the organisers for their courage and dedication in maintaining
 this community and to the patient crowd that stood and listened to me rambling about garbage
 collection algorithms and my Chinese Crested friend,
 Sniffles.&lt;/p&gt;
 
-&lt;p&gt;The slides are available on &lt;a href=&quot;http://www.slideshare.net/AdrianOprea3/theres-garbage-in-our-code&quot; target=&quot;_blank&quot; title=&quot;There&#39;s garbage in our code - SlideShare presentation&quot;&gt;SlideShare&lt;/a&gt;.&lt;br&gt;
+&lt;p&gt;The slides are available on &lt;a href=&quot;http://www.slideshare.net/AdrianOprea3/theres-garbage-in-our-code&quot; target=&quot;_blank&quot; title=&quot;There&#39;s garbage in our code - SlideShare presentation&quot;&gt;SlideShare&lt;/a&gt;.&lt;br /&gt;
 Enjoy!&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/images/posts/there-s-garbage-in-our-code/sniffles.jpg&quot; alt=&quot;Chinese Crested dog in
-    tuxedo&quot;&gt;
-    &lt;figcaption&gt;Sniffles&lt;/figcaption&gt;
+	&lt;img src=&quot;/images/posts/there-s-garbage-in-our-code/sniffles.jpg&quot; alt=&quot;Chinese Crested dog in
+	tuxedo&quot; /&gt;
+	&lt;figcaption&gt;Sniffles&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Credits:&lt;br&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/annrkiszt/&quot;&gt;Yolanda&lt;/a&gt;&lt;br&gt;
+  &lt;p&gt;Credits: &lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/annrkiszt/&quot;&gt;Yolanda&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;https://www.flickr.com/photos/foxypar4/&quot;&gt;John Haslam&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>Last week we had our October BucharestJS meetup
 and they made the mistake of letting me speak, again.
 Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently &amp;mdash; A different look at Node.js application architecture</summary></entry><entry><title>Short tip: Working with docker-compose container names</title><link href="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" rel="alternate" type="text/html" title="Short tip: Working with docker-compose container names" /><published>2015-11-01T00:00:00+02:00</published><updated>2015-11-01T00:00:00+02:00</updated><id>https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash</id><content type="html" xml:base="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/">&lt;p&gt;In this short tip I will show you how to get the name of a  container created with&lt;br&gt;
-&lt;code&gt;docker-compose&lt;/code&gt;, so you can manipulate it.&lt;/p&gt;
+lazy at work, and use their time intelligently — A different look at Node.js application architecture</summary></entry><entry><title>Short tip: Working with docker-compose container names</title><link href="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" rel="alternate" type="text/html" title="Short tip: Working with docker-compose container names" /><published>2015-11-01T00:00:00+02:00</published><updated>2015-11-01T00:00:00+02:00</updated><id>https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash</id><content type="html" xml:base="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/">&lt;p&gt;In this short tip I will show you how to get the name of a  container created with&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt;, so you can manipulate it.&lt;/p&gt;
 
-&lt;h2&gt;The problem&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;docker-compose&lt;/code&gt; generates container names going by the following convention: 
-&lt;code&gt;&amp;lt;CURRENT_DIR&amp;gt;_&amp;lt;CONTAINER_NAME&amp;gt;_&amp;lt;INSTANCE_NUMBER&amp;gt;&lt;/code&gt;.&lt;br&gt;
+&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; generates container names going by the following convention: 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;CURRENT_DIR&amp;gt;_&amp;lt;CONTAINER_NAME&amp;gt;_&amp;lt;INSTANCE_NUMBER&amp;gt;&lt;/code&gt;.&lt;br /&gt;
 I needed to get my hands on container names so I can individually kill and remove them without
 messing up with the whole infrastructure.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#39;s first dissect the structure:&lt;/p&gt;
+&lt;p&gt;Let’s first dissect the structure:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;CURRENT_DIR&lt;/code&gt; is the directory where the &lt;code&gt;docker-compose.yml&lt;/code&gt; file is located&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;CONTAINER_NAME&lt;/code&gt; is the name you gave to your service in &lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;INSTANCE_NUMBER&lt;/code&gt; is self-explanatory&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CURRENT_DIR&lt;/code&gt; is the directory where the &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; file is located&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CONTAINER_NAME&lt;/code&gt; is the name you gave to your service in &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;INSTANCE_NUMBER&lt;/code&gt; is self-explanatory&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;So for a config file like the one below, placed in &lt;code&gt;~/Documents/projects/webapp&lt;/code&gt;, your 
-container would be named &lt;code&gt;webapp_nginx_1&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-YAML&quot; data-lang=&quot;YAML&quot;&gt;nginx:
-    image: nginx
-    ports:
-        - &quot;80:80&quot;
-        - &quot;443:443&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;The solution&lt;/h2&gt;
+&lt;p&gt;So for a config file like the one below, placed in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Documents/projects/webapp&lt;/code&gt;, your 
+container would be named &lt;code class=&quot;highlighter-rouge&quot;&gt;webapp_nginx_1&lt;/code&gt;:&lt;/p&gt;
 
+&lt;pre&gt;&lt;code class=&quot;language-YAML&quot;&gt;nginx:
+	image: nginx
+	ports:
+		- &quot;80:80&quot;
+		- &quot;443:443&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;/h2&gt;
 &lt;p&gt;No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
-&lt;a href=&quot;http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top&quot; 
-    target=&quot;_blank&quot; 
-    title=&quot;StackOverflow question: Get current directory name (without full path) in Bash Script&quot;&gt;
-    there was a way to parse only the &lt;code&gt;basename&lt;/code&gt;&lt;/a&gt;
-from the whole &lt;code&gt;pwd&lt;/code&gt; string, without complicated splits and parsing.&lt;br&gt;
+&lt;a href=&quot;http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top&quot; target=&quot;_blank&quot; title=&quot;StackOverflow question: Get current directory name (without full path) in Bash Script&quot;&gt;
+	there was a way to parse only the &lt;code class=&quot;highlighter-rouge&quot;&gt;basename&lt;/code&gt;&lt;/a&gt;
+from the whole &lt;code class=&quot;highlighter-rouge&quot;&gt;pwd&lt;/code&gt; string, without complicated splits and parsing.&lt;br /&gt;
 The thing I was looking for was 
-&lt;a href=&quot;http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html&quot; 
-    target=&quot;_blank&quot; 
-    title=&quot;gnu.org: Shell Parameter Expansion documentation&quot;&gt;
-    Shell Parameter Expansion&lt;/a&gt;, which got me this thing: &lt;code&gt;CONTAINER_NAME=${PWD##*/}_nginx_1&lt;/code&gt;.&lt;br&gt;
+&lt;a href=&quot;http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html&quot; target=&quot;_blank&quot; title=&quot;gnu.org: Shell Parameter Expansion documentation&quot;&gt;
+	Shell Parameter Expansion&lt;/a&gt;, which got me this thing: &lt;code class=&quot;highlighter-rouge&quot;&gt;CONTAINER_NAME=${PWD##*/}_nginx_1&lt;/code&gt;.&lt;br /&gt;
 What this allowed me to do was to get the current directory name, without the full path and concatenate that with what
-I wanted. Now I could &lt;code&gt;docker rm&lt;/code&gt; my container peacefully.  &lt;/p&gt;
+I wanted. Now I could &lt;code class=&quot;highlighter-rouge&quot;&gt;docker rm&lt;/code&gt; my container peacefully.&lt;/p&gt;
 
-&lt;p&gt;There&amp;#39;s another problem, though, the fact that directory names like this:
-&lt;code&gt;webapp-authentication-project&lt;/code&gt;, get turned into &lt;code&gt;webappauthenticationproject&lt;/code&gt;.&lt;br&gt;
+&lt;p&gt;There’s another problem, though, the fact that directory names like this:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;webapp-authentication-project&lt;/code&gt;, get turned into &lt;code class=&quot;highlighter-rouge&quot;&gt;webappauthenticationproject&lt;/code&gt;.&lt;br /&gt;
 For this, I resorted to &lt;a href=&quot;https://www.gnu.org/software/sed/manual/&quot; target=&quot;_blank&quot; title=&quot;gnu.org: GNU Sed user&#39;s manual&quot;&gt;sed&lt;/a&gt; 
 so I could take out the underscores and dashes from the filename.&lt;/p&gt;
 
 &lt;p&gt;The final version of my code looks just like the snippet below:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;CONTAINER_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PWD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;_nginx_1 | sed s&lt;span class=&quot;s1&quot;&gt;&#39;/[ -]/_/g&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now I can manipulate containers from any bash script, as long as I can get my hands on the &lt;code&gt;$PWD&lt;/code&gt;
-and as long as I know the names they get in the &lt;code&gt;YAML&lt;/code&gt; config file.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;CONTAINER_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PWD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;_nginx_1 | sed s&lt;span class=&quot;s1&quot;&gt;&#39;/[ -]/_/g&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now I can manipulate containers from any bash script, as long as I can get my hands on the &lt;code class=&quot;highlighter-rouge&quot;&gt;$PWD&lt;/code&gt;
+and as long as I know the names they get in the &lt;code class=&quot;highlighter-rouge&quot;&gt;YAML&lt;/code&gt; config file.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/l2f1/&quot;&gt;Glen&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/l2f1/&quot;&gt;Glen&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>In this short tip I will show you how to get the name of a  container created with
-docker-compose, so you can manipulate it.</summary></entry><entry><title>Unlearning and re-learning stuff</title><link href="https://codesi.nz/unlearning-and-re-learning-stuff/" rel="alternate" type="text/html" title="Unlearning and re-learning stuff" /><published>2015-09-22T00:00:00+03:00</published><updated>2015-09-22T00:00:00+03:00</updated><id>https://codesi.nz/unlearning-and-re-learning-stuff</id><content type="html" xml:base="https://codesi.nz/unlearning-and-re-learning-stuff/">&lt;p&gt;There comes a time in a developer&amp;#39;s life when they need to unlearn something, in order to make way
+docker-compose, so you can manipulate it.</summary></entry><entry><title>Unlearning and re-learning stuff</title><link href="https://codesi.nz/unlearning-and-re-learning-stuff/" rel="alternate" type="text/html" title="Unlearning and re-learning stuff" /><published>2015-09-22T00:00:00+03:00</published><updated>2015-09-22T00:00:00+03:00</updated><id>https://codesi.nz/unlearning-and-re-learning-stuff</id><content type="html" xml:base="https://codesi.nz/unlearning-and-re-learning-stuff/">&lt;p&gt;There comes a time in a developer’s life when they need to unlearn something, in order to make way
 for something new. In fact, I believe that the right way to learn something new, be it a new
 programming technique, a new framework, a new language, sometimes means putting some concepts that
-you already know and master, behind you.  &lt;/p&gt;
+you already know and master, behind you.&lt;/p&gt;
 
 &lt;p&gt;I actually found that many of the people I see coming up from universities struggle with this, as 
 they get brainwashed with mathematics, Java and C++ and cannot accept or learn other programming 
-languages.  &lt;/p&gt;
+languages.&lt;/p&gt;
 
-&lt;p&gt;I&amp;#39;ve found myself in this situation, countless times, but still haven&amp;#39;t managed to find a solution.&lt;br&gt;
-I love learning new stuff, and I&amp;#39;m an avid reader, so usually when I find something I like, things 
+&lt;p&gt;I’ve found myself in this situation, countless times, but still haven’t managed to find a solution.&lt;br /&gt;
+I love learning new stuff, and I’m an avid reader, so usually when I find something I like, things 
 usually happen as follows:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;I find something I like&lt;/li&gt;
-&lt;li&gt;I start hacking at it and fail(I always do!)&lt;/li&gt;
-&lt;li&gt;I read about that technology&lt;/li&gt;
-&lt;li&gt;I hack some more.&lt;/li&gt;
+  &lt;li&gt;I find something I like&lt;/li&gt;
+  &lt;li&gt;I start hacking at it and fail(I always do!)&lt;/li&gt;
+  &lt;li&gt;I read about that technology&lt;/li&gt;
+  &lt;li&gt;I hack some more.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;It&amp;#39;s always about &amp;quot;I&amp;quot;.  &lt;/p&gt;
+  &lt;p&gt;It’s always about “I”.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;But in order to keep up with the pace of technology nowadays, we usually end up with a lot of loops
-similar to the one I described above, and need to &amp;quot;unlearn&amp;quot; something, like I previously said.&lt;br&gt;
+similar to the one I described above, and need to “unlearn” something, like I previously said.&lt;br /&gt;
 This is not necessarily a bad thing, as you need to make room for that extra knowledge, but 
-sometimes you &amp;quot;unlearn&amp;quot; important stuff, and that&amp;#39;s when you start losing track.&lt;/p&gt;
+sometimes you “unlearn” important stuff, and that’s when you start losing track.&lt;/p&gt;
 
 &lt;p&gt;This is exactly what happened to me, with CSS. I invested so much time into learning backend
 technologies, that I forgot how to use CSS. I realised this today, while attending 
-&lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt;&amp;#39;s talk at &lt;a href=&quot;http://www.smartwebconf.com/&quot;&gt;Smartweb&lt;/a&gt;, about 
-&lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;.&lt;br&gt;
+&lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt;’s talk at &lt;a href=&quot;http://www.smartwebconf.com/&quot;&gt;Smartweb&lt;/a&gt;, about 
+&lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;.&lt;br /&gt;
 This felt really awkward, as I come from a front-end background, and losing track of a core 
-front-end technology is not quite satisfying.&lt;br&gt;
-I&amp;#39;m not saying that I forgot the basic concepts, I still know what floats are, how to do 
+front-end technology is not quite satisfying.&lt;br /&gt;
+I’m not saying that I forgot the basic concepts, I still know what floats are, how to do 
 positioning, but as you well know, technology changes at a very rapid pace, and now we have 
-&lt;code&gt;flexbox&lt;/code&gt;, &lt;code&gt;clip&lt;/code&gt;, critical CSS, quantity queries, and CSS animations.  &lt;/p&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;flexbox&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;clip&lt;/code&gt;, critical CSS, quantity queries, and CSS animations.&lt;/p&gt;
 
-&lt;p&gt;Bottom line, I set myself to re-learn CSS, and I sure didn&amp;#39;t know that &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; 
-knows so many tricks, so I&amp;#39;m planning to also learn to use &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; better.&lt;br&gt;
-As a closing thought, I&amp;#39;d like to thank &lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt; for reminding me that some
-things really don&amp;#39;t need leave your brain, and for showing us the versatility of &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;. :)&lt;/p&gt;
+&lt;p&gt;Bottom line, I set myself to re-learn CSS, and I sure didn’t know that &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; 
+knows so many tricks, so I’m planning to also learn to use &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; better.&lt;br /&gt;
+As a closing thought, I’d like to thank &lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt; for reminding me that some
+things really don’t need leave your brain, and for showing us the versatility of &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;. :)&lt;/p&gt;
 
 &lt;p&gt;Cheers!&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/jakerust/&quot;&gt;GotCredit&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>There comes a time in a developer&amp;#39;s life when they need to unlearn something, in order to make way
+  &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/jakerust/&quot;&gt;GotCredit&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>There comes a time in a developer’s life when they need to unlearn something, in order to make way
 for something new. In fact, I believe that the right way to learn something new, be it a new
 programming technique, a new framework, a new language, sometimes means putting some concepts that
-you already know and master, behind you.</summary></entry><entry><title>Dockerizing Adobe Media Server</title><link href="https://codesi.nz/dockerizing-adobe-media-server/" rel="alternate" type="text/html" title="Dockerizing Adobe Media Server" /><published>2015-09-17T00:00:00+03:00</published><updated>2015-09-17T00:00:00+03:00</updated><id>https://codesi.nz/dockerizing-adobe-media-server</id><content type="html" xml:base="https://codesi.nz/dockerizing-adobe-media-server/">&lt;p&gt;New job, new technologies, new problems to solve &amp;mdash; that&amp;#39;s how it all started for me.&lt;br&gt;
+you already know and master, behind you.</summary></entry><entry><title>Dockerizing Adobe Media Server</title><link href="https://codesi.nz/dockerizing-adobe-media-server/" rel="alternate" type="text/html" title="Dockerizing Adobe Media Server" /><published>2015-09-17T00:00:00+03:00</published><updated>2015-09-17T00:00:00+03:00</updated><id>https://codesi.nz/dockerizing-adobe-media-server</id><content type="html" xml:base="https://codesi.nz/dockerizing-adobe-media-server/">&lt;p&gt;New job, new technologies, new problems to solve — that’s how it all started for me.&lt;br /&gt;
 After switching jobs few months ago, I found myself working on an application that makes heavy use of
-Adobe Media Server(AMS) for audio and video streaming.&lt;br&gt;
+Adobe Media Server(AMS) for audio and video streaming.&lt;br /&gt;
 Nothing too hard, or too complicated, except for the fact that all developers were using a single
-install of AMS which was somewhere on a central server.&lt;br&gt;
+install of AMS which was somewhere on a central server.&lt;br /&gt;
 This started all my single-point-of-failure alarms, and started to ockerize the whole development
 environment, including AMS. In this article, I will explain the steps I followed in order to
 properly create a &lt;a href=&quot;https://www.docker.com/&quot;&gt;docker&lt;/a&gt; container running Adobe Media Server, with 
-full RTMP/RTMPS support, &lt;/p&gt;
+full RTMP/RTMPS support,&lt;/p&gt;
 
 &lt;p&gt;By now, many of the developers with an interest in DevOps should know about Docker, so I wont waste
 time explaining what Docker is, there are plenty of resources out there, starting with the
 &lt;a href=&quot;https://docs.docker.com/&quot;&gt;official docker documentation&lt;/a&gt;, very rich in examples and explanations.&lt;/p&gt;
 
-&lt;p&gt;So, back to our AMS setup, there&amp;#39;s one &amp;quot;small&amp;quot; problem, setting it up inside a Docker container 
-&amp;mdash; it doesn&amp;#39;t work straight out of the box.&lt;br&gt;
-This is because when you install Adobe Media Server, you get the application&amp;#39;s  license, &lt;code&gt;less&lt;/code&gt;-ed 
+&lt;p&gt;So, back to our AMS setup, there’s one “small” problem, setting it up inside a Docker container 
+— it doesn’t work straight out of the box.&lt;br /&gt;
+This is because when you install Adobe Media Server, you get the application’s  license, &lt;code class=&quot;highlighter-rouge&quot;&gt;less&lt;/code&gt;-ed 
 to you, and you need to press the spacebar(or the down arrow if you feel a  bit crazy) and hit a 
-key when you reach the bottom, confirming that you&amp;#39;ve read and agreed with the license.&lt;br&gt;
-In my opinion, this is complicated stuff, so let&amp;#39;s simplify. As it turns out, just by going to the 
-directory where the AMS archive is extracted, and removing &amp;quot;License.txt&amp;quot;, you can aviod having to 
-&amp;quot;read&amp;quot; the whole license before continuing.&lt;br&gt;
+key when you reach the bottom, confirming that you’ve read and agreed with the license.&lt;br /&gt;
+In my opinion, this is complicated stuff, so let’s simplify. As it turns out, just by going to the 
+directory where the AMS archive is extracted, and removing “License.txt”, you can aviod having to 
+“read” the whole license before continuing.&lt;br /&gt;
 So much for the first part of the problem. But there is still something to be done! The install
 script is still waiting for user input, to continue with the setup, so what you have to do
 next is to comment out the line that halts the  installation until it gets a keypress, in the 
-&lt;code&gt;installAMS&lt;/code&gt; script. For this matter in particular, you will need to use 
-&lt;a href=&quot;https://www.gnu.org/software/sed/manual/sed.html&quot;&gt;&lt;code&gt;sed&lt;/code&gt;&lt;/a&gt;, just like in the snippet below.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ams_setup_directory
+&lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS&lt;/code&gt; script. For this matter in particular, you will need to use 
+&lt;a href=&quot;https://www.gnu.org/software/sed/manual/sed.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;&lt;/a&gt;, just like in the snippet below.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ams_setup_directory
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rm -Rf License.txt
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
 you have to provide various answers to the installer. This is where the second problem appears, as 
-you aren&amp;#39;t able to answer those questions yourself, because everything takes place when you&amp;#39;re 
-building your Docker image.&lt;br&gt;
+you aren’t able to answer those questions yourself, because everything takes place when you’re 
+building your Docker image.&lt;br /&gt;
 At one point, when I was at my lowest self-esteem level of all times, somebody suggested using 
-&lt;a href=&quot;http://expect.sourceforge.net/&quot;&gt;Expect&lt;/a&gt; to autofill the answers, but I wasn&amp;#39;t in the mood for
-reading at that time. Besides, I knew that it had to be simpler than that, and I was right.  &lt;/p&gt;
+&lt;a href=&quot;http://expect.sourceforge.net/&quot;&gt;Expect&lt;/a&gt; to autofill the answers, but I wasn’t in the mood for
+reading at that time. Besides, I knew that it had to be simpler than that, and I was right.&lt;/p&gt;
 
 &lt;p&gt;The answer lies in the setup itself. What you have to do is to do is to open your editor, and 
-manually go through the setup, while writing down each answer you put in (including &lt;code&gt;RETURN&lt;/code&gt;s).
+manually go through the setup, while writing down each answer you put in (including &lt;code class=&quot;highlighter-rouge&quot;&gt;RETURN&lt;/code&gt;s).
 At the end of the setup you will have something looking like the snippet below 
 (whitespace is relevant):&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# begin input file&lt;/span&gt;
 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# begin input file&lt;/span&gt;
+      
 n
 /opt/adobe/ams 
 admin
@@ -839,12 +861,15 @@ ams
 y
 n
 y
-
-
+      
+     
 &lt;span class=&quot;c&quot;&gt;# end input file&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;that you can validate against AMS&amp;#39;s &amp;quot;Install Action Summary&amp;quot;, outlined below:  &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;----------- Install Action Summary -----------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;that you can validate against AMS’s “Install Action Summary”, outlined below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------- Install Action Summary -----------
 
 Installation directory         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /opt/adobe/ams
 
@@ -864,18 +889,21 @@ service user                   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; am
 service group                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
 
 Run as daemon                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
-of your container, and simply &lt;code&gt;pipe&lt;/code&gt; it through &lt;code&gt;installAMS&lt;/code&gt;. I would recommend naming the file 
-&lt;code&gt;installAMS.input&lt;/code&gt;, so you can easily identify which is which. After you&amp;#39;ve created your input file, 
-all you need to do is to execute one of the following commands, in the directory where the AMS 
-archive was extracted: &lt;code&gt;./installAMS &amp;lt; installAMS.input&lt;/code&gt; or &lt;code&gt;cat installAMS.input | ./installAMS&lt;/code&gt;.  &lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Having this knowledge under our belts, it&amp;#39;s pretty straightforward to create a &lt;code&gt;Dockerfile&lt;/code&gt; with 
+&lt;p&gt;Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
+of your container, and simply &lt;code class=&quot;highlighter-rouge&quot;&gt;pipe&lt;/code&gt; it through &lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS&lt;/code&gt;. I would recommend naming the file 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS.input&lt;/code&gt;, so you can easily identify which is which. After you’ve created your input file, 
+all you need to do is to execute one of the following commands, in the directory where the AMS 
+archive was extracted: &lt;code class=&quot;highlighter-rouge&quot;&gt;./installAMS &amp;lt; installAMS.input&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;cat installAMS.input | ./installAMS&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Having this knowledge under our belts, it’s pretty straightforward to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; with 
 the afore-mentioned setup, and with a bit more effort, to have a fully isolated Adobe Media Server
-install, easily reproducible from version control.&lt;br&gt;
-Your &lt;code&gt;Dockerfile&lt;/code&gt; will probably look like the one below, with minor tweaks based on your needs:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM centos:6
+install, easily reproducible from version control.&lt;br /&gt;
+Your &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; will probably look like the one below, with minor tweaks based on your needs:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM centos:6
 MAINTAINER Adrian Oprea&amp;lt;adrian@codesi.nz&amp;gt;
 
 RUN rpm --import https://getfedora.org/static/0608B895.txt
@@ -907,16 +935,18 @@ VOLUME &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quo
 EXPOSE 80 443 1111 1935
 
 CMD &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/supervisord&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
-connection, and a ready-made configuration for &lt;code&gt;docker-compose&lt;/code&gt; is available on 
-&lt;a href=&quot;https://github.com/opreaadrian/docker-adobe-media-server&quot;&gt;my GitHub account&lt;/a&gt;.&lt;br&gt;
+connection, and a ready-made configuration for &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; is available on 
+&lt;a href=&quot;https://github.com/opreaadrian/docker-adobe-media-server&quot;&gt;my GitHub account&lt;/a&gt;.&lt;br /&gt;
 Make sure to get back via Twitter(&lt;a href=&quot;https://twitter.com/opreaadrian&quot;&gt;@opreaadrian&lt;/a&gt;) with feedback, 
 questions and suggestions, and also make use of the comments section.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/bevgoodwin/&quot;&gt;Beverley Goodwin&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>New job, new technologies, new problems to solve &amp;mdash; that&amp;#39;s how it all started for me.
+  &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/bevgoodwin/&quot;&gt;Beverley Goodwin&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>New job, new technologies, new problems to solve — that’s how it all started for me.
 After switching jobs few months ago, I found myself working on an application that makes heavy use of
 Adobe Media Server(AMS) for audio and video streaming.
 Nothing too hard, or too complicated, except for the fact that all developers were using a single

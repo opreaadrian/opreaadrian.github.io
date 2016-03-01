@@ -19,12 +19,14 @@
   
     <meta name="description" itemprop="description" content="Having worked with JavaScript Promises extensively in the past year, I often found myself in situations where handling output and errors was very hard to perform, from a semantic standpoint.
 I plan on sharing my experience with promises, especially error-handling, but this is by no mean something that should be taken as a best practice, it is only my take on this issue, and you are encouraged to share your experience and practices.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Working with JavaScript promises: handling the unexpected" />
     <meta property="og:description" content="Having worked with JavaScript Promises extensively in the past year, I often found myself in situations where handling output and errors was very hard to perform, from a semantic standpoint.
 I plan on sharing my experience with promises, especially error-handling, but this is by no mean something that should be taken as a best practice, it is only my take on this issue, and you are encouraged to share your experience and practices.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/error_handling_missile.jpg" />
     <meta property="og:url" content="https://codesi.nz/working-with-javascript-promises-handling-the-unexpected/" />
@@ -39,6 +41,7 @@ I plan on sharing my experience with promises, especially error-handling, but th
     <meta name="twitter:title" content="Working with JavaScript promises: handling the unexpected">
     <meta name="twitter:description" content="Having worked with JavaScript Promises extensively in the past year, I often found myself in situations where handling output and errors was very hard to perform, from a semantic standpoint.
 I plan on sharing my experience with promises, especially error-handling, but this is by no mean something that should be taken as a best practice, it is only my take on this issue, and you are encouraged to share your experience and practices.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/error_handling_missile.jpg">
 
@@ -121,28 +124,28 @@ I plan on sharing my experience with promises, especially error-handling, but th
 <meta itemprop="dateModified" content="2015-02-28T18:00:00+02:00">
 <meta itemprop="keywords" content="nodejs, workflow, javascript, promises, errors">
   <section itemprop="articleBody" class="container">
-    <p>Having worked with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">JavaScript Promises</a> extensively in the past year, I often found myself in situations where handling output and errors was very hard to perform, from a semantic standpoint.<br>
+    <p>Having worked with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">JavaScript Promises</a> extensively in the past year, I often found myself in situations where handling output and errors was very hard to perform, from a semantic standpoint.<br />
 I plan on sharing my experience with promises, especially error-handling, but this is by no mean something that should be taken as a best practice, it is only my take on this issue, and you are encouraged to share your experience and practices.</p>
 
-<h2>What&#39;s an <a href="http://en.wikipedia.org/wiki/Error">Error</a></h2>
-
+<h2 id="whats-an-errorhttpenwikipediaorgwikierror">What’s an <a href="http://en.wikipedia.org/wiki/Error">Error</a></h2>
 <blockquote>
-<p>The concrete meaning of the Latin word &quot;error&quot; is &quot;wandering&quot; or &quot;straying&quot;. [...] an error or a mistake can sometimes be dispelled through knowledge.</p>
+  <p>The concrete meaning of the Latin word “error” is “wandering” or “straying”. […] an error or a mistake can sometimes be dispelled through knowledge.</p>
 </blockquote>
 
-<p>So basically an error can be interpreted as a state that can(sometimes, of course) be resolved/repaired by applying corrective action. This is exactly how I feel about JavaScript promises and what error-handling means when working with such a concept.<br>
+<p>So basically an error can be interpreted as a state that can(sometimes, of course) be resolved/repaired by applying corrective action. This is exactly how I feel about JavaScript promises and what error-handling means when working with such a concept.<br />
 In my opinion, there are situations or states that involve for example killing the process, and there are other situations that only involve setting some default data if no proper response is given. These cases are to be treated in a different way, as they involve different application states.</p>
 
-<h2>A pattern for handling the <code>unexpected</code> and the <code>uncaught</code></h2>
+<h2 id="a-pattern-for-handling-the-unexpected-and-the-uncaught">A pattern for handling the <code class="highlighter-rouge">unexpected</code> and the <code class="highlighter-rouge">uncaught</code></h2>
 
-<p>Let&#39;s say for example that we have to implement a method that performs an async call to a REST service and returns the data to be used in the UI. The implementation    would probably look as follows:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
+<p>Let’s say for example that we have to implement a method that performs an async call to a REST service and returns the data to be used in the UI. The implementation    would probably look as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
     <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'config'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">Customer</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">getData</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
-
+        
         <span class="nx">request</span><span class="p">({</span>
             <span class="na">method</span>  <span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
             <span class="na">uri</span> <span class="p">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">uri</span>
@@ -157,13 +160,16 @@ In my opinion, there are situations or states that involve for example killing t
     <span class="p">}</span>
 <span class="p">};</span>
 
-</code></pre></div>
-<p>You would be tempted to structure your code like the above snippet, and look for an error, and if no error is provided, then you can just resolve with the body, as nothing could have gone wrong.<br>
-I say no to that approach, because you can bump into situations where you don&#39;t get an <code>Error</code> object, but you do get a <code>500 Internal Server Error</code>. </p>
+</code></pre>
+</div>
 
-<p>Even though many of the NodeJS development best practices articles, and even the NodeJS documentation itself suggests that you should have an error-first approach when working with callbacks, in situations like the one above, it&#39;s best to check for the status code and the presence of data, and forward the data to whoever is calling the method. If that&#39;s not the case, reject the promise with MEANINGFUL INFORMATION.<br>
-I&#39;m stressing the &quot;meaningful information&quot; part so much because I&#39;m a firm believer in these words: &quot;Do unto others as you would have them do unto you&quot;. This doesn&#39;t mean in any way that I&#39;m a religious type of person, not that it would be a shame, but I strongly believe in the power of setting examples, so if enough people are going to be able to quickly debug and track down possible issues because I added enough error-related information, they&#39;ll soon follow that example &mdash; and I would love to see the same amout of details when I&#39;m debugging someone else&#39;s code.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [core/customer.js]</span>
+<p>You would be tempted to structure your code like the above snippet, and look for an error, and if no error is provided, then you can just resolve with the body, as nothing could have gone wrong.<br />
+I say no to that approach, because you can bump into situations where you don’t get an <code class="highlighter-rouge">Error</code> object, but you do get a <code class="highlighter-rouge">500 Internal Server Error</code>.</p>
+
+<p>Even though many of the NodeJS development best practices articles, and even the NodeJS documentation itself suggests that you should have an error-first approach when working with callbacks, in situations like the one above, it’s best to check for the status code and the presence of data, and forward the data to whoever is calling the method. If that’s not the case, reject the promise with MEANINGFUL INFORMATION.<br />
+I’m stressing the “meaningful information” part so much because I’m a firm believer in these words: “Do unto others as you would have them do unto you”. This doesn’t mean in any way that I’m a religious type of person, not that it would be a shame, but I strongly believe in the power of setting examples, so if enough people are going to be able to quickly debug and track down possible issues because I added enough error-related information, they’ll soon follow that example — and I would love to see the same amout of details when I’m debugging someone else’s code.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [core/customer.js]</span>
 <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
     <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'config'</span><span class="p">);</span>
 
@@ -220,19 +226,21 @@ I&#39;m stressing the &quot;meaningful information&quot; part so much because I&
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'FAILURE_SET_DEFAULTS_AND_RECOVER'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">});</span>
-</code></pre></div>
-<p>By following the pattern above, I make sure that I only deal with successful actions, when a promise is resolved, and for the errors/exceptions part, I have that all handled in the <code>catch</code> callback. To make things better, we could top it off with an error handler, that is separate from our library, and that has handlers for all statuses that are of interest. An example of such a concept can be found on GitHub &mdash; see <a href="https://gist.github.com/opreaadrian/fac301833af8bcb2b8d5">this gist</a> &mdash; or if you want to give it a spin without saving on disk, on <a href="http://jsbin.com/yocese/1/edit?js,console">jsbin.com</a></p>
+</code></pre>
+</div>
 
-<h2>Conclusions</h2>
+<p>By following the pattern above, I make sure that I only deal with successful actions, when a promise is resolved, and for the errors/exceptions part, I have that all handled in the <code class="highlighter-rouge">catch</code> callback. To make things better, we could top it off with an error handler, that is separate from our library, and that has handlers for all statuses that are of interest. An example of such a concept can be found on GitHub — see <a href="https://gist.github.com/opreaadrian/fac301833af8bcb2b8d5">this gist</a> — or if you want to give it a spin without saving on disk, on <a href="http://jsbin.com/yocese/1/edit?js,console">jsbin.com</a></p>
 
-<p>Either way you do implement error handling, it&#39;s best to keep in mind that when you have the means to signal that there was an error, namely <code>reject</code> in our little <code>Promise</code>s world, please use that, and use meaningful information to go along with it, as it is way better to set 2 breakpoints, one for the <code>success</code> and one for the <code>error</code> callback, and then blindly click through the application until you stop on one of those breakpoints, than to obsessively stare at the debugger every 2 clicks to see if you got actual data or an error.</p>
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Either way you do implement error handling, it’s best to keep in mind that when you have the means to signal that there was an error, namely <code class="highlighter-rouge">reject</code> in our little <code class="highlighter-rouge">Promise</code>s world, please use that, and use meaningful information to go along with it, as it is way better to set 2 breakpoints, one for the <code class="highlighter-rouge">success</code> and one for the <code class="highlighter-rouge">error</code> callback, and then blindly click through the application until you stop on one of those breakpoints, than to obsessively stare at the debugger every 2 clicks to see if you got actual data or an error.</p>
 
 <p>Cheers!</p>
 
-<p><em>P.S.</em> For an alternate flow that uses a JavaScript object to hold actions for each error, based on it&#39;s severity, you can refer to <a href="http://jsbin.com/yocese/3/edit">this bin that I put up a couple of weeks ago</a> &mdash; open it with Chrome as it uses native JavaScript promises.</p>
+<p><em>P.S.</em> For an alternate flow that uses a JavaScript object to hold actions for each error, based on it’s severity, you can refer to <a href="http://jsbin.com/yocese/3/edit">this bin that I put up a couple of weeks ago</a> — open it with Chrome as it uses native JavaScript promises.</p>
 
 <blockquote>
-<p>Image credits: <a href="https://flic.kr/p/r5cB7u">Sailors verify serial numbers on a Sidewinder practice missile.</a> by <a href="https://www.flickr.com/photos/42973403@N07/">Official U.S. Navy Page</a></p>
+  <p>Image credits: <a href="https://flic.kr/p/r5cB7u">Sailors verify serial numbers on a Sidewinder practice missile.</a> by <a href="https://www.flickr.com/photos/42973403@N07/">Official U.S. Navy Page</a></p>
 </blockquote>
 
 

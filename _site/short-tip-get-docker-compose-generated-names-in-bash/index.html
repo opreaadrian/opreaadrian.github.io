@@ -19,12 +19,14 @@
   
     <meta name="description" itemprop="description" content="In this short tip I will show you how to get the name of a  container created with
 docker-compose, so you can manipulate it.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Short tip: Working with docker-compose container names" />
     <meta property="og:description" content="In this short tip I will show you how to get the name of a  container created with
 docker-compose, so you can manipulate it.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/short-tip-docker-compose-dynamic-container-names/post.jpg" />
     <meta property="og:url" content="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" />
@@ -39,6 +41,7 @@ docker-compose, so you can manipulate it.
     <meta name="twitter:title" content="Short tip: Working with docker-compose container names">
     <meta name="twitter:description" content="In this short tip I will show you how to get the name of a  container created with
 docker-compose, so you can manipulate it.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/short-tip-docker-compose-dynamic-container-names/post.jpg">
 
@@ -121,61 +124,60 @@ docker-compose, so you can manipulate it.
 <meta itemprop="dateModified" content="2015-11-02T12:00:00+02:00">
 <meta itemprop="keywords" content="workflow, docker, dev-ops, docker-compose, bash">
   <section itemprop="articleBody" class="container">
-    <p>In this short tip I will show you how to get the name of a  container created with<br>
-<code>docker-compose</code>, so you can manipulate it.</p>
+    <p>In this short tip I will show you how to get the name of a  container created with<br />
+<code class="highlighter-rouge">docker-compose</code>, so you can manipulate it.</p>
 
-<h2>The problem</h2>
-
-<p><code>docker-compose</code> generates container names going by the following convention: 
-<code>&lt;CURRENT_DIR&gt;_&lt;CONTAINER_NAME&gt;_&lt;INSTANCE_NUMBER&gt;</code>.<br>
+<h2 id="the-problem">The problem</h2>
+<p><code class="highlighter-rouge">docker-compose</code> generates container names going by the following convention: 
+<code class="highlighter-rouge">&lt;CURRENT_DIR&gt;_&lt;CONTAINER_NAME&gt;_&lt;INSTANCE_NUMBER&gt;</code>.<br />
 I needed to get my hands on container names so I can individually kill and remove them without
 messing up with the whole infrastructure.</p>
 
-<p>Let&#39;s first dissect the structure:</p>
+<p>Let’s first dissect the structure:</p>
 
 <ul>
-<li><code>CURRENT_DIR</code> is the directory where the <code>docker-compose.yml</code> file is located</li>
-<li><code>CONTAINER_NAME</code> is the name you gave to your service in <code>docker-compose.yml</code></li>
-<li><code>INSTANCE_NUMBER</code> is self-explanatory</li>
+  <li><code class="highlighter-rouge">CURRENT_DIR</code> is the directory where the <code class="highlighter-rouge">docker-compose.yml</code> file is located</li>
+  <li><code class="highlighter-rouge">CONTAINER_NAME</code> is the name you gave to your service in <code class="highlighter-rouge">docker-compose.yml</code></li>
+  <li><code class="highlighter-rouge">INSTANCE_NUMBER</code> is self-explanatory</li>
 </ul>
 
-<p>So for a config file like the one below, placed in <code>~/Documents/projects/webapp</code>, your 
-container would be named <code>webapp_nginx_1</code>:</p>
-<div class="highlight"><pre><code class="language-YAML" data-lang="YAML">nginx:
-    image: nginx
-    ports:
-        - "80:80"
-        - "443:443"
-</code></pre></div>
-<h2>The solution</h2>
+<p>So for a config file like the one below, placed in <code class="highlighter-rouge">~/Documents/projects/webapp</code>, your 
+container would be named <code class="highlighter-rouge">webapp_nginx_1</code>:</p>
 
+<pre><code class="language-YAML">nginx:
+	image: nginx
+	ports:
+		- "80:80"
+		- "443:443"
+</code></pre>
+
+<h2 id="the-solution">The solution</h2>
 <p>No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
-<a href="http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top" 
-    target="_blank" 
-    title="StackOverflow question: Get current directory name (without full path) in Bash Script">
-    there was a way to parse only the <code>basename</code></a>
-from the whole <code>pwd</code> string, without complicated splits and parsing.<br>
+<a href="http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top" target="_blank" title="StackOverflow question: Get current directory name (without full path) in Bash Script">
+	there was a way to parse only the <code class="highlighter-rouge">basename</code></a>
+from the whole <code class="highlighter-rouge">pwd</code> string, without complicated splits and parsing.<br />
 The thing I was looking for was 
-<a href="http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html" 
-    target="_blank" 
-    title="gnu.org: Shell Parameter Expansion documentation">
-    Shell Parameter Expansion</a>, which got me this thing: <code>CONTAINER_NAME=${PWD##*/}_nginx_1</code>.<br>
+<a href="http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html" target="_blank" title="gnu.org: Shell Parameter Expansion documentation">
+	Shell Parameter Expansion</a>, which got me this thing: <code class="highlighter-rouge">CONTAINER_NAME=${PWD##*/}_nginx_1</code>.<br />
 What this allowed me to do was to get the current directory name, without the full path and concatenate that with what
-I wanted. Now I could <code>docker rm</code> my container peacefully.  </p>
+I wanted. Now I could <code class="highlighter-rouge">docker rm</code> my container peacefully.</p>
 
-<p>There&#39;s another problem, though, the fact that directory names like this:
-<code>webapp-authentication-project</code>, get turned into <code>webappauthenticationproject</code>.<br>
+<p>There’s another problem, though, the fact that directory names like this:
+<code class="highlighter-rouge">webapp-authentication-project</code>, get turned into <code class="highlighter-rouge">webappauthenticationproject</code>.<br />
 For this, I resorted to <a href="https://www.gnu.org/software/sed/manual/" target="_blank" title="gnu.org: GNU Sed user's manual">sed</a> 
 so I could take out the underscores and dashes from the filename.</p>
 
 <p>The final version of my code looks just like the snippet below:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 | sed s<span class="s1">'/[ -]/_/g'</span><span class="k">)</span>
-</code></pre></div>
-<p>Now I can manipulate containers from any bash script, as long as I can get my hands on the <code>$PWD</code>
-and as long as I know the names they get in the <code>YAML</code> config file.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 | sed s<span class="s1">'/[ -]/_/g'</span><span class="k">)</span>
+</code></pre>
+</div>
+
+<p>Now I can manipulate containers from any bash script, as long as I can get my hands on the <code class="highlighter-rouge">$PWD</code>
+and as long as I know the names they get in the <code class="highlighter-rouge">YAML</code> config file.</p>
 
 <blockquote>
-<p>Image credits: <a href="https://www.flickr.com/photos/l2f1/">Glen</a></p>
+  <p>Image credits: <a href="https://www.flickr.com/photos/l2f1/">Glen</a></p>
 </blockquote>
 
 

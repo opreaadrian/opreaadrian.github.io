@@ -21,9 +21,10 @@
 Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,
 but I still dreaded the fact that I could not use Vim, as there have been some situations where I
 would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.
-Don&#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
-doesn&#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&#39;s Vintage  doesn&#39;t allow you to create
+Don’t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
+doesn’t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3’s Vintage  doesn’t allow you to create
 custom commands/mappings, the way you do in Vim, for example.
+
 ">
 
     <meta property="og:type" content="article" />
@@ -32,9 +33,10 @@ custom commands/mappings, the way you do in Vim, for example.
 Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,
 but I still dreaded the fact that I could not use Vim, as there have been some situations where I
 would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.
-Don&#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
-doesn&#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&#39;s Vintage  doesn&#39;t allow you to create
+Don’t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
+doesn’t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3’s Vintage  doesn’t allow you to create
 custom commands/mappings, the way you do in Vim, for example.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/working_with_network_mapped_folders_in_vim/paper_vim.jpg" />
     <meta property="og:url" content="https://codesi.nz/vim-tip-working-with-network-mapped-folders/" />
@@ -51,9 +53,10 @@ custom commands/mappings, the way you do in Vim, for example.
 Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,
 but I still dreaded the fact that I could not use Vim, as there have been some situations where I
 would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.
-Don&#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
-doesn&#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&#39;s Vintage  doesn&#39;t allow you to create
+Don’t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
+doesn’t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3’s Vintage  doesn’t allow you to create
 custom commands/mappings, the way you do in Vim, for example.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/working_with_network_mapped_folders_in_vim/paper_vim.jpg">
 
@@ -136,23 +139,24 @@ custom commands/mappings, the way you do in Vim, for example.
 <meta itemprop="dateModified" content="2015-06-19T13:00:00+03:00">
 <meta itemprop="keywords" content="workflow, vim, productivity, sshfs, rsync">
   <section itemprop="articleBody" class="container">
-    <p>Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?<br>
+    <p>Working with mapped network drives in VIM? Me too! I always wondered why go through all this pain?<br />
 Because of this, I resorted to Sublime Text for this type of work, as it is very fast in most situations,
 but I still dreaded the fact that I could not use Vim, as there have been some situations where I
-would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.<br>
-Don&#39;t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
-doesn&#39;t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3&#39;s Vintage  doesn&#39;t allow you to create
+would have been much more productive and would have gotten to the bottom of the task way quicker if I could have used Vim instead of ST3.<br />
+Don’t get me wrong, I find Sublime Text awesome and really fast, and yes, I am aware of its Vintage Mode, but that just
+doesn’t cut it for me. I can fake Vim in Sublime, but as far as I know, ST3’s Vintage  doesn’t allow you to create
 custom commands/mappings, the way you do in Vim, for example.</p>
 
 <p>Back on track with the Vim part, I have been living with this pain for quite some time,
-until 3 days ago when I realised that I wasn&#39;t able to see the trees because of the forest.
-I thought about all possible solutions, <code>scp</code> being the most reliable of them all.<br>
-To clarify, I had no problem creating a bash function that would use <code>scp</code> to upload everything to the remote server, which I actually did it.
-The only problem was that it would re-upload all the files and I didn&#39;t want that.
+until 3 days ago when I realised that I wasn’t able to see the trees because of the forest.
+I thought about all possible solutions, <code class="highlighter-rouge">scp</code> being the most reliable of them all.<br />
+To clarify, I had no problem creating a bash function that would use <code class="highlighter-rouge">scp</code> to upload everything to the remote server, which I actually did it.
+The only problem was that it would re-upload all the files and I didn’t want that.
 Knowing this, I would rely on a trick I presented in
 <a href="https://codesi.nz/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal/">Short tip: viewing and resolving svn conflicts in the terminal</a>, 
-namely, I would take the filenames from <code>svn status</code>, and upload them one by one &mdash; talk about thinking like a programmer. The result is in the snippet below.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">function </span>scpsync<span class="o">()</span> <span class="o">{</span>
+namely, I would take the filenames from <code class="highlighter-rouge">svn status</code>, and upload them one by one — talk about thinking like a programmer. The result is in the snippet below.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">function </span>scpsync<span class="o">()</span> <span class="o">{</span>
     <span class="nb">local </span><span class="nv">changed_files</span><span class="o">=</span><span class="k">$(</span>svn status | awk <span class="s1">'{print $2}'</span><span class="k">)</span>
     <span class="nb">echo</span> <span class="s2">"Syncing </span><span class="nv">$changed_files</span><span class="se">\n</span><span class="s2">"</span>
     <span class="k">for </span>file <span class="k">in</span> <span class="nv">$changed_files</span>; <span class="k">do
@@ -160,28 +164,33 @@ namely, I would take the filenames from <code>svn status</code>, and upload them
     <span class="k">done
     </span><span class="nb">echo</span> <span class="s2">"Sync done</span><span class="se">\n</span><span class="s2">"</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>Now, everything looked fine but I started hating it when I read the code out loud.
 I had a function that would upload all my SVN modified files…every damn time!
-This meant that if I would commit once a day(SVN users know what I&#39;m talking about),
-I would upload every modified file, every time, even if I only changed the code ONCE, for some files.<br>
+This meant that if I would commit once a day(SVN users know what I’m talking about),
+I would upload every modified file, every time, even if I only changed the code ONCE, for some files.<br />
 This is the part where the over-engineer in me felt like a million bucks.
 I have created something that repeats a task even when it is not needed. Although it was ugly as hell,
 it was useful to me so I had to brag about it, but there was still a little voice in the back of my head,
-telling me that I once used a tool that would sync with the server through <code>ssh</code>, in a flawless manner.<br>
-That&#39;s why I went to my co-worker <a href="https://github.com/pennycoders">Alex Pica</a>, as he has the eye of a critic and will argue with me over anything.
-After letting me brag about my absolutely marvellous function, he went something along the lines of: &quot;Well, why don&#39;t you use <a href="https://en.wikipedia.org/wiki/Rsync">rsync</a>?&quot;.<br>
-At that moment I had the epiphany! That was the tool that I used in the past and does all the neat stuff I told you before, and more.<br>
-I&#39;m writing this article to both share the solution with the Vim users going through the same pain I went to, and to thank Alex for being a walking encyclopedia.<br>
-The solution is outlined below, and it can be used directly from within Vim by issuing the following command in the Vim command line &mdash; <code>:!syncremote . user@ip:/remote/path</code></p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">syncremote <span class="o">()</span> <span class="o">{</span>
+telling me that I once used a tool that would sync with the server through <code class="highlighter-rouge">ssh</code>, in a flawless manner.<br />
+That’s why I went to my co-worker <a href="https://github.com/pennycoders">Alex Pica</a>, as he has the eye of a critic and will argue with me over anything.
+After letting me brag about my absolutely marvellous function, he went something along the lines of: “Well, why don’t you use <a href="https://en.wikipedia.org/wiki/Rsync">rsync</a>?”.<br />
+At that moment I had the epiphany! That was the tool that I used in the past and does all the neat stuff I told you before, and more.<br />
+I’m writing this article to both share the solution with the Vim users going through the same pain I went to, and to thank Alex for being a walking encyclopedia.<br />
+The solution is outlined below, and it can be used directly from within Vim by issuing the following command in the Vim command line — <code class="highlighter-rouge">:!syncremote . user@ip:/remote/path</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>syncremote <span class="o">()</span> <span class="o">{</span>
   rsync -WavP --human-readable --progress <span class="nv">$1</span> <span class="nv">$2</span>
 <span class="o">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>Cheers, and happy hacking!</p>
 
 <blockquote>
-<p>Image credits: Me</p>
+  <p>Image credits: Me</p>
 </blockquote>
 
 

@@ -18,13 +18,15 @@
 
   
     <meta name="description" itemprop="description" content="Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.
-I&#39;m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like import package.*;. 
+I’m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like import package.*;.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Npm package automation with packo" />
     <meta property="og:description" content="Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.
-I&#39;m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like import package.*;. 
+I’m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like import package.*;.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/automation.jpg" />
     <meta property="og:url" content="https://codesi.nz/npm-package-automation-with-packo/" />
@@ -38,7 +40,8 @@ I&#39;m not a huge fan of compiled languages, and after college I was really rel
     ">
     <meta name="twitter:title" content="Npm package automation with packo">
     <meta name="twitter:description" content="Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.
-I&#39;m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like import package.*;. 
+I’m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like import package.*;.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/automation.jpg">
 
@@ -115,39 +118,43 @@ I&#39;m not a huge fan of compiled languages, and after college I was really rel
 <meta itemprop="dateModified" content="2015-01-26T00:30:00+02:00">
 <meta itemprop="keywords" content="nodejs, workflow, automation, npm, packages, cli">
   <section itemprop="articleBody" class="container">
-    <p>Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.<br>
-I&#39;m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like <code>import package.*;</code>. </p>
+    <p>Developing NodeJS applications for the past year meant that I often found myself in front of monolythic applications, that clunked all-things-functionality in 3 or 4 so-called libraries.<br />
+I’m not a huge fan of compiled languages, and after college I was really reluctant towards languages like Java, but one thing I really learned to  appreciate is the modularity that you can reach with it, especially with statements like <code class="highlighter-rouge">import package.*;</code>.</p>
 
-<p>Not to say that NodeJS doesn&#39;t have a similar system, it&#39;s just that we&#39;re using it wrong. 
-We tend to stack functionality in one file, just because &quot;we think&quot; it belongs to that &quot;module&quot;. In fact, the &quot;module&quot; is not a module at all, as in the majority of cases, I found JavaScript files that had a huge, 300+ lines of code function as <code>module.exports</code>, and that would be included in the application using <code>require(&#39;../somefolder/module);</code>.<br>
-To me, this seems like a whole lot of coupling, just because you have to actually &quot;crawl&quot; through the application&#39;s directory structure like that.
+<p>Not to say that NodeJS doesn’t have a similar system, it’s just that we’re using it wrong. 
+We tend to stack functionality in one file, just because “we think” it belongs to that “module”. In fact, the “module” is not a module at all, as in the majority of cases, I found JavaScript files that had a huge, 300+ lines of code function as <code class="highlighter-rouge">module.exports</code>, and that would be included in the application using <code class="highlighter-rouge">require('../somefolder/module);</code>.<br />
+To me, this seems like a whole lot of coupling, just because you have to actually “crawl” through the application’s directory structure like that.
 Think what it would be like, to have to include that file in 3 more places, in other areas of the application. 
-If further down the road you decide to refactor the module and place it in a <code>lib/</code> folder, things start to get complicated, as now you have to update all the different paths in the application using the following workflow: open file-&gt;update-&gt;save-&gt;reload application-&gt;check logs/ui for errors.<br>
-Wouldn&#39;t it have been easier to simply type this: <code>require(&#39;my-super-package&#39;);</code>?<br>
-The answer for me is YES, and for this exact purpose I built <a href="https://www.npmjs.com/package/packo">packo</a>, a npm package generator that takes away the work of having to manually create your package&#39;s boilerplate structure, and all of this while keeping best practices in mind. </p>
+If further down the road you decide to refactor the module and place it in a <code class="highlighter-rouge">lib/</code> folder, things start to get complicated, as now you have to update all the different paths in the application using the following workflow: open file-&gt;update-&gt;save-&gt;reload application-&gt;check logs/ui for errors.<br />
+Wouldn’t it have been easier to simply type this: <code class="highlighter-rouge">require('my-super-package');</code>?<br />
+The answer for me is YES, and for this exact purpose I built <a href="https://www.npmjs.com/package/packo">packo</a>, a npm package generator that takes away the work of having to manually create your package’s boilerplate structure, and all of this while keeping best practices in mind.</p>
 
-<h2>Reasoning</h2>
+<h2 id="reasoning">Reasoning</h2>
 
-<p>While analysing the codebase that I currently work with at the office, I advocated the idea that we should rebuild/rething some of our modules as npm packages, and just install them through <code>npm install</code>.
+<p>While analysing the codebase that I currently work with at the office, I advocated the idea that we should rebuild/rething some of our modules as npm packages, and just install them through <code class="highlighter-rouge">npm install</code>.
 But given the fact that I work for a company that heavily manipulates sensitive user data, we cannot afford to have all our code published on <a href="http://npmjs.com">npmjs.com</a>, so we hit a roadblock. Fortunately, <a href="https://github.com/npm/npm">npm</a> is open source, so this means that we can configure it to work with an internally-managed repository.
 With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how they will fit nicely into their own packages, until I realised that for each of these packages I have to create the folder structure,
-<code>touch</code> the JavaScript files, create the <code>package.json</code>, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 packages on <a href="http://npmjs.com">npmjs.com</a> -- <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> -- and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">    package/
+<code class="highlighter-rouge">touch</code> the JavaScript files, create the <code class="highlighter-rouge">package.json</code>, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 packages on <a href="http://npmjs.com">npmjs.com</a> – <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> – and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    package/
         bin/
         doc/
         examples/
         lib/
         test/
-</code></pre></div>
-<p>so I made <a href="https://www.npmjs.com/package/packo">packo</a> create this exact directory structure.<br>
+</code></pre>
+</div>
+
+<p>so I made <a href="https://www.npmjs.com/package/packo">packo</a> create this exact directory structure.<br />
 I also added preference files for various tools, but this was more of a personal touch, as I use <a href="http://editorconfig.org/">EditorConfig</a> to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using <a href="http://jshint.com/">JSHint</a> as it is more relaxed, and less opinionated than other tools out there.</p>
 
-<h2>Usage</h2>
+<h2 id="usage">Usage</h2>
 
-<p>In order to use packo you need to install it globally, so you will need to open a terminal window and type: <code>$ npm install -g packo</code></p>
+<p>In order to use packo you need to install it globally, so you will need to open a terminal window and type: <code class="highlighter-rouge">$ npm install -g packo</code></p>
 
-<p>After npm has finished installing it, you&#39;re ready to scaffold your first package, so navigate to your <code>Projects/</code> folder and run the following command:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    $ packo create awesome-package
+<p>After npm has finished installing it, you’re ready to scaffold your first package, so navigate to your <code class="highlighter-rouge">Projects/</code> folder and run the following command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    $ packo create awesome-package
     This utility will walk you through creating a package.json file.
     It only covers the most common items, and tries to guess sane defaults.
 
@@ -168,17 +175,20 @@ I also added preference files for various tools, but this was more of a personal
     author: Adrian Oprea
     license: (ISC) MIT
     About to write to /Users/adrianoprea/Projects/awesome-package/package.json:
-</code></pre></div>
-<p>After this message, if you hit <code>RETURN</code>, <code>package.json</code> will be generated and you&#39;re all done, your package is available in the <code>awesome-package</code> directory.</p>
+</code></pre>
+</div>
 
-<p>More info about how to use packo is available on the project&#39;s npm page, so be sure to check it out: <a href="https://www.npmjs.com/package/packo">https://www.npmjs.com/package/packo</a>.</p>
+<p>After this message, if you hit <code class="highlighter-rouge">RETURN</code>, <code class="highlighter-rouge">package.json</code> will be generated and you’re all done, your package is available in the <code class="highlighter-rouge">awesome-package</code> directory.</p>
 
-<p>I really appreciate feedback, so if you have some suggestions, be sure to tweet me -- <a href="https://twitter.com/opreaadrian">@opreaadrian</a>, or get in touch via the <a href="https://github.com/opreaadrian/packo/issues">project&#39;s issues board</a>, on GitHub.</p>
+<p>More info about how to use packo is available on the project’s npm page, so be sure to check it out: <a href="https://www.npmjs.com/package/packo">https://www.npmjs.com/package/packo</a>.</p>
 
-<h2>UPDATE 1.</h2>
+<p>I really appreciate feedback, so if you have some suggestions, be sure to tweet me – <a href="https://twitter.com/opreaadrian">@opreaadrian</a>, or get in touch via the <a href="https://github.com/opreaadrian/packo/issues">project’s issues board</a>, on GitHub.</p>
 
-<p><a href="https://www.npmjs.com/package/packo">packo</a> just got better! It now has a new subcommand -- <code>packo module</code> -- which allows developers to add library files along with their respective spec file to the package they&#39;re currently working on.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">    adrianoprea at mothership in ~/awesome-package
+<h2 id="update-1">UPDATE 1.</h2>
+
+<p><a href="https://www.npmjs.com/package/packo">packo</a> just got better! It now has a new subcommand – <code class="highlighter-rouge">packo module</code> – which allows developers to add library files along with their respective spec file to the package they’re currently working on.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    adrianoprea at mothership in ~/awesome-package
     $ packo module dataReader
     Successfully created lib/dataReader.js module and test/dataReader_spec.js.
     adrianoprea at mothership in ~/awesome-package
@@ -189,15 +199,17 @@ I also added preference files for various tools, but this was more of a personal
     dataReader.js
     adrianoprea at mothership in ~/awesome-package
     $ ls -l lib/
-</code></pre></div>
-<p>Note that in order to use this feature you must be inside of an npm package folder(not necessarily created w/ <code>packo create</code>).<br>
-It is mandatory for the package to have a <code>package.json</code> file as packo looks for that specific file in order to know that it is inside a package root file.<br>
-In the future, packo will have it&#39;s own <code>.preferences</code> file and we&#39;ll perform detection based on that.  </p>
+</code></pre>
+</div>
+
+<p>Note that in order to use this feature you must be inside of an npm package folder(not necessarily created w/ <code class="highlighter-rouge">packo create</code>).<br />
+It is mandatory for the package to have a <code class="highlighter-rouge">package.json</code> file as packo looks for that specific file in order to know that it is inside a package root file.<br />
+In the future, packo will have it’s own <code class="highlighter-rouge">.preferences</code> file and we’ll perform detection based on that.</p>
 
 <p>Please make sure to send some feedback so we can take development further and have a useful tool that gets out of your way and lets you focus on your work better.</p>
 
 <blockquote>
-<p>Image credits: <a href="https://flic.kr/p/PFDgo">Ovagraph</a> by <a href="https://www.flickr.com/photos/jurvetson/">Steve Jurvetson</a></p>
+  <p>Image credits: <a href="https://flic.kr/p/PFDgo">Ovagraph</a> by <a href="https://www.flickr.com/photos/jurvetson/">Steve Jurvetson</a></p>
 </blockquote>
 
 

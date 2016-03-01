@@ -17,28 +17,30 @@
   <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
 
   
-    <meta name="description" itemprop="description" content="I don&#39;t know about you but I&#39;m working with JavaScript all day long and I always trip over arrays
-when it comes to &quot;what method for which use case&quot;. 
+    <meta name="description" itemprop="description" content="I don’t know about you but I’m working with JavaScript all day long and I always trip over arrays
+when it comes to “what method for which use case”. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
 return.
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
 remind me what each method of the Array object does, and to also share this knowledge with anyone
-interested in the topic. The articles won&#39;t require more than a basic experience with JavaScript&#39;s
+interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Bite-sized JavaScript - Meet Array" />
-    <meta property="og:description" content="I don&#39;t know about you but I&#39;m working with JavaScript all day long and I always trip over arrays
-when it comes to &quot;what method for which use case&quot;. 
+    <meta property="og:description" content="I don’t know about you but I’m working with JavaScript all day long and I always trip over arrays
+when it comes to “what method for which use case”. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
 return.
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
 remind me what each method of the Array object does, and to also share this knowledge with anyone
-interested in the topic. The articles won&#39;t require more than a basic experience with JavaScript&#39;s
+interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/bite-sized-javascript-meet-array/array-of-leds.jpg" />
     <meta property="og:url" content="https://codesi.nz/bite-sized-javascript-meet-array/" />
@@ -51,15 +53,16 @@ syntax so absolute JavaScript beginners are welcomed, too.
     <meta name="twitter:url" content="https://codesi.nz/bite-sized-javascript-meet-array/
     ">
     <meta name="twitter:title" content="Bite-sized JavaScript - Meet Array">
-    <meta name="twitter:description" content="I don&#39;t know about you but I&#39;m working with JavaScript all day long and I always trip over arrays
-when it comes to &quot;what method for which use case&quot;. 
+    <meta name="twitter:description" content="I don’t know about you but I’m working with JavaScript all day long and I always trip over arrays
+when it comes to “what method for which use case”. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
 return.
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
 remind me what each method of the Array object does, and to also share this knowledge with anyone
-interested in the topic. The articles won&#39;t require more than a basic experience with JavaScript&#39;s
+interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/bite-sized-javascript-meet-array/array-of-leds.jpg">
 
@@ -142,55 +145,64 @@ syntax so absolute JavaScript beginners are welcomed, too.
 <meta itemprop="dateModified" content="2015-11-27T22:00:00+02:00">
 <meta itemprop="keywords" content="javascript, array, programming, beginner">
   <section itemprop="articleBody" class="container">
-    <p>I don&#39;t know about you but I&#39;m working with JavaScript all day long and I always trip over arrays
-when it comes to &quot;what method for which use case&quot;. 
+    <p>I don’t know about you but I’m working with JavaScript all day long and I always trip over arrays
+when it comes to “what method for which use case”. 
 Whether I need to get an element from an array, check if an element exists or just create a new 
 array, I always fail to remember which method does what, and of course, what each of the methods
-return.<br>
+return.<br />
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
-remind me what each method of the <code>Array</code> object does, and to also share this knowledge with anyone
-interested in the topic. The articles won&#39;t require more than a basic experience with JavaScript&#39;s
+remind me what each method of the <code class="highlighter-rouge">Array</code> object does, and to also share this knowledge with anyone
+interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.</p>
 
-<h2>What&#39;s an array?</h2>
+<h2 id="whats-an-array">What’s an array?</h2>
 
 <p>At its core, an array is simply an ordered collection of items, nothing more, nothing less. When I was first
-learning to program, I always thought of an array, as my shopping list.<br>
-Please note that I did not say &quot;sorted&quot; list of items, that is something we are going to learn more 
-about in future posts. The &quot;ordered&quot; part comes from the fact that an array keeps track of its
-items through indexes numbered from <code>0</code> to <code>length - 1</code>.<br>
+learning to program, I always thought of an array, as my shopping list.<br />
+Please note that I did not say “sorted” list of items, that is something we are going to learn more 
+about in future posts. The “ordered” part comes from the fact that an array keeps track of its
+items through indexes numbered from <code class="highlighter-rouge">0</code> to <code class="highlighter-rouge">length - 1</code>.<br />
 Basically, if you have an array like the one below, its length is 5 and the index of the last item
-is 4, as index numbering starts from <code>0</code>.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">];</span>
+is 4, as index numbering starts from <code class="highlighter-rouge">0</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">];</span>
 <span class="c1">// arr[0] =&gt; a</span>
 <span class="c1">// arr[1] =&gt; b</span>
 <span class="c1">// arr[2] =&gt; c</span>
 <span class="c1">// arr[3] =&gt; d</span>
 <span class="c1">// arr[4] =&gt; e</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>Back to the shopping list analogy, your array of things to buy, would look like below:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">shoppingList</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"carrots"</span><span class="p">,</span>
-    <span class="s2">"onions"</span><span class="p">,</span>
-    <span class="s2">"apples"</span>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">shoppingList</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="s2">"carrots"</span><span class="p">,</span>
+	<span class="s2">"onions"</span><span class="p">,</span>
+	<span class="s2">"apples"</span>
 <span class="p">];</span>
 <span class="c1">// shoppingList[0] =&gt; carrots</span>
 <span class="c1">// shoppingList[1] =&gt; onions</span>
 <span class="c1">// shoppingList[2] =&gt; apples</span>
-</code></pre></div>
-<p>There&#39;s one more thing you need to know before we end for the day and that is the <code>length</code> property
-of an array. Every time you query for the <code>length</code> property of an array, you will get the exact
-number of items it holds.<br>
-Going back to our shopping list, let&#39;s see how many items do we need to
+</code></pre>
+</div>
+
+<p>There’s one more thing you need to know before we end for the day and that is the <code class="highlighter-rouge">length</code> property
+of an array. Every time you query for the <code class="highlighter-rouge">length</code> property of an array, you will get the exact
+number of items it holds.<br />
+Going back to our shopping list, let’s see how many items do we need to
 buy:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shoppingList</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// =&gt; 3</span>
-</code></pre></div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shoppingList</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// =&gt; 3</span>
+</code></pre>
+</div>
+
 <p>Next, we will learn how to perform classic iteration on arrays, and also familiarize ourselves with
-our first <code>Array</code> method, <code>Array.prototype.forEach</code>.</p>
+our first <code class="highlighter-rouge">Array</code> method, <code class="highlighter-rouge">Array.prototype.forEach</code>.</p>
 
 <blockquote>
-<p>Credits:<br>
-<a href="https://www.flickr.com/photos/cibomahto/">Matt Mets</a> &mdash; <a href="https://flic.kr/p/4qqJzZ">7x7 tri-color LED array</a>  </p>
+  <p>Credits: <br />
+<a href="https://www.flickr.com/photos/cibomahto/">Matt Mets</a> — <a href="https://flic.kr/p/4qqJzZ">7x7 tri-color LED array</a></p>
 </blockquote>
 
 

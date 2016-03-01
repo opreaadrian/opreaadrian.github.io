@@ -17,12 +17,14 @@
   <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
 
   
-    <meta name="description" itemprop="description" content="Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one...
+    <meta name="description" itemprop="description" content="Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one…
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Three hard to spot JavaScript mistakes" />
-    <meta property="og:description" content="Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one...
+    <meta property="og:description" content="Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one…
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/mistakes.jpg" />
     <meta property="og:url" content="https://codesi.nz/three-hard-to-spot-javascript-mistakes/" />
@@ -35,7 +37,8 @@
     <meta name="twitter:url" content="https://codesi.nz/three-hard-to-spot-javascript-mistakes/
     ">
     <meta name="twitter:title" content="Three hard to spot JavaScript mistakes">
-    <meta name="twitter:description" content="Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one...
+    <meta name="twitter:description" content="Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one…
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/mistakes.jpg">
 
@@ -118,27 +121,30 @@
 <meta itemprop="dateModified" content="2015-01-22T00:00:00+02:00">
 <meta itemprop="keywords" content="javascript, validation, mistakes, beginner, code, programming, objects, indexOf, for-in, loops">
   <section itemprop="articleBody" class="container">
-    <p>Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one...</p>
+    <p>Working on a handful of big ecommerce projects for the past couple of years, I often found myself in a situation where one component, or the whole application my team was working on, was working properly in all scenarios. All except one…</p>
 
-<p>Most of the times, we thought that we had backend issues, that data wasn&#39;t consistent, that God didn&#39;t love us that day. We thought so hard that we didn&#39;t know what to think. Some of us were using debuggers, but the third time the application failed and the debugger said nothing about it, and there was no console error, nothing, we would fill up the code with <code>console.log</code>s. When none of this would work, we would simply relax, as this was something divine, something that us mortals would never understand.<br>
-The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find its way into the office.<br>
+<p>Most of the times, we thought that we had backend issues, that data wasn’t consistent, that God didn’t love us that day. We thought so hard that we didn’t know what to think. Some of us were using debuggers, but the third time the application failed and the debugger said nothing about it, and there was no console error, nothing, we would fill up the code with <code class="highlighter-rouge">console.log</code>s. When none of this would work, we would simply relax, as this was something divine, something that us mortals would never understand.<br />
+The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find its way into the office.<br />
 The aforementioned story, has an open end, and you can choose your version from the 3 options below. Enjoy!</p>
 
-<h2>indexOf()</h2>
-
+<h2 id="indexof">indexOf()</h2>
 <blockquote>
-<p><code>Array.indexOf()</code> and <code>String.indexOf()</code></p>
+  <p><code class="highlighter-rouge">Array.indexOf()</code> and <code class="highlighter-rouge">String.indexOf()</code></p>
 </blockquote>
 
-<p>In order to find if a certain substring exists within a given string, or if a certain key exists within a given array, the go-to method is <code>indexOf()</code>.</p>
+<p>In order to find if a certain substring exists within a given string, or if a certain key exists within a given array, the go-to method is <code class="highlighter-rouge">indexOf()</code>.</p>
 
-<p>Let&#39;s say that we have the following setup:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">'The quick brown fox jumps over the lazy developer\'s head'</span><span class="p">;</span>
-</code></pre></div>
-<p>Calling <code>myString.indexOf(&#39;developer&#39;);</code> would give us the index at which the word/substring &quot;developer&quot; is found within the given string, in our case <code>40</code>.</p>
+<p>Let’s say that we have the following setup:</p>
 
-<p>Let&#39;s say that we have a function that checks whether a certain word is present within a given sentence, and returns true or false based on this verification. Our code would look something like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">function</span> <span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">'The quick brown fox jumps over the lazy developer\'s head'</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Calling <code class="highlighter-rouge">myString.indexOf('developer');</code> would give us the index at which the word/substring “developer” is found within the given string, in our case <code class="highlighter-rouge">40</code>.</p>
+
+<p>Let’s say that we have a function that checks whether a certain word is present within a given sentence, and returns true or false based on this verification. Our code would look something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">word</span> <span class="o">||</span> <span class="o">!</span><span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Please provide both parameters.'</span><span class="p">);</span>
         <span class="p">}</span>
@@ -149,25 +155,28 @@ The aforementioned story, has an open end, and you can choose your version from 
             <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-
+    
     <span class="kd">var</span> <span class="nx">myString</span> <span class="o">=</span> <span class="s1">'The quick brown fox jumps over the lazy developer\'s head'</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="s1">'programmer'</span><span class="p">,</span> <span class="nx">myString</span><span class="p">))</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Found programmer'</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Programmer not found'</span><span class="p">);</span>
     <span class="p">}</span>
-</code></pre></div>
-<p>You would think that the piece of code above will say &quot;Programmer not found&quot; but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: <code>NaN</code>, <code>Null</code>, <code>undefined</code>, <code>0</code> and <code>&#39;&#39;</code>. Nowhere does it say that <code>-1</code>, the value that <code>indexOf()</code> returns if it does not find anything, will evaluate to false. </p>
+</code></pre>
+</div>
 
-<p>So basically what happens when you say <code>if (checkWordOccurrenceInSentence(&#39;programmer&#39;, myString))</code>
-is that <code>indexOf()</code> will return <code>-1</code> inside <code>checkWordOccurrenceInSentence()</code> and that will be evaluated as <code>true</code> and this will be propagated and evaluated in your <code>if</code> statement.</p>
+<p>You would think that the piece of code above will say “Programmer not found” but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: <code class="highlighter-rouge">NaN</code>, <code class="highlighter-rouge">Null</code>, <code class="highlighter-rouge">undefined</code>, <code class="highlighter-rouge">0</code> and <code class="highlighter-rouge">''</code>. Nowhere does it say that <code class="highlighter-rouge">-1</code>, the value that <code class="highlighter-rouge">indexOf()</code> returns if it does not find anything, will evaluate to false.</p>
+
+<p>So basically what happens when you say <code class="highlighter-rouge">if (checkWordOccurrenceInSentence('programmer', myString))</code>
+is that <code class="highlighter-rouge">indexOf()</code> will return <code class="highlighter-rouge">-1</code> inside <code class="highlighter-rouge">checkWordOccurrenceInSentence()</code> and that will be evaluated as <code class="highlighter-rouge">true</code> and this will be propagated and evaluated in your <code class="highlighter-rouge">if</code> statement.</p>
 
 <p>A better way to do this is to refactor your function to look like the one below:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">function</span> <span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">checkWordOccurrenceInSentence</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">word</span> <span class="o">||</span> <span class="o">!</span><span class="nx">sentence</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Please provide both parameters.'</span><span class="p">);</span>
         <span class="p">}</span>
-
+        
         <span class="c1">// Using "!=" instead of "!=="(identity operator) as indexOf() will not trick us</span>
         <span class="c1">// You can use &gt;= 0 instead of != -1</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">sentence</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -176,93 +185,112 @@ is that <code>indexOf()</code> will return <code>-1</code> inside <code>checkWor
             <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-</code></pre></div>
-<h2>Checking object properties</h2>
+</code></pre>
+</div>
 
+<h2 id="checking-object-properties">Checking object properties</h2>
 <blockquote>
-<p>Object.property/Object[&#39;key&#39;]</p>
+  <p>Object.property/Object[‘key’]</p>
 </blockquote>
 
-<p>Let&#39;s assume that you get a JSON object from an API, that returns error data from an error aggregator based on a certain query, and displays only certain errors. You will obviously need to validate if the error key exists, and display it&#39;s value.</p>
+<p>Let’s assume that you get a JSON object from an API, that returns error data from an error aggregator based on a certain query, and displays only certain errors. You will obviously need to validate if the error key exists, and display it’s value.</p>
 
-<p>Let&#39;s take the following JSON object as an example of error data, and check whether the <code>fatalErrorsCount</code> property exists as we would only want to show the fatal errors.</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// /errors/startDateMiliseconds/endDateMiliseconds</span>
+<p>Let’s take the following JSON object as an example of error data, and check whether the <code class="highlighter-rouge">fatalErrorsCount</code> property exists as we would only want to show the fatal errors.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="c1">// /errors/startDateMiliseconds/endDateMiliseconds</span>
     <span class="kd">var</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'https://api.company.com/errors/14201436816409/1421882120458'</span><span class="p">);</span>
     <span class="p">[</span><span class="nx">table</span> <span class="nx">creation</span> <span class="nx">code</span> <span class="nx">goes</span> <span class="nx">here</span><span class="p">...]</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">ui</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">'fatal-errors-count'</span><span class="p">,</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">);</span>
     <span class="p">}</span>
-</code></pre></div>
-<p>Again, like with <code>indexOf</code>, you would think that this works fine: you get data, you check if the key exists, and BAM!, you output those damn fatal errors. Not so fast!<br>
-What if there are no fatal errors for that period, so <code>errorData.fatalErrorsCount</code> is 0. Well, then our <code>if</code> statement there doesn&#39;t look so good, does it? This also happens if <code>fatalErrorsCount</code> is set to any falsy value, so a better way to do this would be to use the <code>in</code> operator as follows:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="p">[...]</span>
+</code></pre>
+</div>
+
+<p>Again, like with <code class="highlighter-rouge">indexOf</code>, you would think that this works fine: you get data, you check if the key exists, and BAM!, you output those damn fatal errors. Not so fast!<br />
+What if there are no fatal errors for that period, so <code class="highlighter-rouge">errorData.fatalErrorsCount</code> is 0. Well, then our <code class="highlighter-rouge">if</code> statement there doesn’t look so good, does it? This also happens if <code class="highlighter-rouge">fatalErrorsCount</code> is set to any falsy value, so a better way to do this would be to use the <code class="highlighter-rouge">in</code> operator as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="p">[...]</span>
     <span class="k">if</span> <span class="p">(</span><span class="s1">'fatalErrorsCount'</span> <span class="k">in</span> <span class="nx">errorData</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">ui</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="s1">'fatal-errors-count'</span><span class="p">,</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">fatalErrorsCount</span><span class="p">);</span>
     <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>and now you are safe!</p>
 
-<p>EDIT 2015/03/08: As per <a href="https://twitter.com/jacobparker/status/568519846050205696">@jakobparker&#39;s tweet</a> I promised I&#39;ll make an edit and put the information here, so here it goes.<br>
-Use the <code>in</code> operator with caution, as it triggers prototype lookups, and you might get the property that you&#39;re looking for, from another object, further up the prototype chain.</p>
+<p>EDIT 2015/03/08: As per <a href="https://twitter.com/jacobparker/status/568519846050205696">@jakobparker’s tweet</a> I promised I’ll make an edit and put the information here, so here it goes.<br />
+Use the <code class="highlighter-rouge">in</code> operator with caution, as it triggers prototype lookups, and you might get the property that you’re looking for, from another object, further up the prototype chain.</p>
 
-<p>Let&#39;s say you have the following structure:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">+ Object
+<p>Let’s say you have the following structure:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+ Object
   - toString()
     |
     + Parent
         + Child
-</code></pre></div>
-<p>If you do this: <code>var childHasTostringMethod = &#39;toString&#39; in Child;</code> you will see that your variable will be set to <code>true</code> as this will trigger a prototype lookup, that in plain english looks like this: </p>
+</code></pre>
+</div>
 
-<p>&mdash; <code>Child</code> do you have a <code>toString</code> property?<br>
-&mdash; No, I don&#39;t!<br>
-&mdash; Okay, I&#39;ll ask your father. [.. walks up the <code>prototype</code>, to ask the <code>Child</code>&#39;s <code>Parent</code>.]<br>
-&mdash; <code>Parent</code> do you have a <code>toString</code> property?<br>
-&mdash; No, I don&#39;t!<br>
-&mdash; Okay, then I guess your parent should have it, otherwise I&#39;ll tell the people who told me to ask you, that it&#39;s <code>undefined</code>.<br>
-- <code>Object</code> do you have a <code>toString</code> property?<br>
-- Yes I do, here it is!<br>
+<p>If you do this: <code class="highlighter-rouge">var childHasTostringMethod = 'toString' in Child;</code> you will see that your variable will be set to <code class="highlighter-rouge">true</code> as this will trigger a prototype lookup, that in plain english looks like this:</p>
+
+<p>— <code class="highlighter-rouge">Child</code> do you have a <code class="highlighter-rouge">toString</code> property?<br />
+— No, I don’t!<br />
+— Okay, I’ll ask your father. [.. walks up the <code class="highlighter-rouge">prototype</code>, to ask the <code class="highlighter-rouge">Child</code>’s <code class="highlighter-rouge">Parent</code>.]<br />
+— <code class="highlighter-rouge">Parent</code> do you have a <code class="highlighter-rouge">toString</code> property?<br />
+— No, I don’t!<br />
+— Okay, then I guess your parent should have it, otherwise I’ll tell the people who told me to ask you, that it’s <code class="highlighter-rouge">undefined</code>.<br />
+- <code class="highlighter-rouge">Object</code> do you have a <code class="highlighter-rouge">toString</code> property?<br />
+- Yes I do, here it is!<br />
 [FIN]</p>
 
-<p>Bottom line is that if you want to restrict your lookup to the current object and stay safe from prototype lookups, you should use the <code>hasOwnProperty()</code> method, to check if the key you&#39;re looking for is available on your object.</p>
+<p>Bottom line is that if you want to restrict your lookup to the current object and stay safe from prototype lookups, you should use the <code class="highlighter-rouge">hasOwnProperty()</code> method, to check if the key you’re looking for is available on your object.</p>
 
-<h2><code>for...in</code> on Array(s)</h2>
+<h2 id="forin-on-arrays"><code class="highlighter-rouge">for...in</code> on Array(s)</h2>
 
-<p>I&#39;ll just tell you from the start that this is an EFFIN&#39; bad idea. First of all because in JavaScript it is perfectly okay to have an array like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[];</span>
+<p>I’ll just tell you from the start that this is an EFFIN’ bad idea. First of all because in JavaScript it is perfectly okay to have an array like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[];</span>
 
     <span class="nx">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">//[ , , , 11 ]</span>
-
+    
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">el</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span> <span class="c1">// will log 3</span>
     <span class="p">}</span>
-</code></pre></div>
-<p>This means that if we perform a <code>for</code> loop on our array and log out each element would get 3xundefined and then 11.<br>
-But when performing a <code>for-in</code> loop, we get the index of the last element, as the statement treats our array as an object, treating the index <code>3</code> as the key, and 11 as the value because in JavaScript it is perfectly legal to have an object looking like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre>
+</div>
+
+<p>This means that if we perform a <code class="highlighter-rouge">for</code> loop on our array and log out each element would get 3xundefined and then 11.<br />
+But when performing a <code class="highlighter-rouge">for-in</code> loop, we get the index of the last element, as the statement treats our array as an object, treating the index <code class="highlighter-rouge">3</code> as the key, and 11 as the value because in JavaScript it is perfectly legal to have an object looking like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">'0'</span> <span class="p">:</span> <span class="s1">'First value'</span><span class="p">,</span>
         <span class="s1">'1'</span> <span class="p">:</span> <span class="s1">'Second value'</span>
     <span class="p">};</span>
-</code></pre></div>
-<p>I think it is also worth mentioning <a href="http://vimeo.com/12529436#t=272">Paul Irish&#39;s asshole effect</a> as somebody could do something like this:</p>
-<div class="highlight"><pre><code class="language-js" data-lang="js">    <span class="c1">// in another js file</span>
+</code></pre>
+</div>
+
+<p>I think it is also worth mentioning <a href="http://vimeo.com/12529436#t=272">Paul Irish’s asshole effect</a> as somebody could do something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="c1">// in another js file</span>
     <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">assholeVar</span> <span class="o">=</span> <span class="s1">'I haz a dude'</span><span class="p">;</span> <span class="c1">// http://lolcode.org/</span>
 
     <span class="c1">// in your module</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">el</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span> <span class="c1">// will log "3" and "assholeVar" for all arrays</span>
     <span class="p">}</span>
-</code></pre></div>
-<p>Key takeaway here, is <strong>NEVER USE <code>for...in</code> ON ARRAYS</strong>. Use <code>for</code>, <code>while</code>, <code>do...while</code>, <code>forEach</code> and the list goes on.</p>
+</code></pre>
+</div>
 
-<p>I hope the info that I shared here is valuable to developers, especially beginners, and if you know any other &quot;little&quot; mistakes like the ones outlined in this article, please feel free to share them in the comments section, and I might even update the post publish them, for the sake of posterity. </p>
+<p>Key takeaway here, is <strong>NEVER USE <code class="highlighter-rouge">for...in</code> ON ARRAYS</strong>. Use <code class="highlighter-rouge">for</code>, <code class="highlighter-rouge">while</code>, <code class="highlighter-rouge">do...while</code>, <code class="highlighter-rouge">forEach</code> and the list goes on.</p>
 
-<p>P.S. I had one more, about <code>i++</code> but I&#39;ll publish that one in an update to this post.</p>
+<p>I hope the info that I shared here is valuable to developers, especially beginners, and if you know any other “little” mistakes like the ones outlined in this article, please feel free to share them in the comments section, and I might even update the post publish them, for the sake of posterity.</p>
+
+<p>P.S. I had one more, about <code class="highlighter-rouge">i++</code> but I’ll publish that one in an update to this post.</p>
 
 <blockquote>
-<p>Image credits: <a href="https://flic.kr/p/nrHJrx">Some mistake, surely ...</a> by <a href="https://www.flickr.com/photos/atoach/">Tim Green</a></p>
+  <p>Image credits: <a href="https://flic.kr/p/nrHJrx">Some mistake, surely …</a> by <a href="https://www.flickr.com/photos/atoach/">Tim Green</a></p>
 </blockquote>
 
 

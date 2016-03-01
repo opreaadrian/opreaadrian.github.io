@@ -18,15 +18,17 @@
 
   
     <meta name="description" itemprop="description" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
 or resorting to other, less elegant solutions.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Quick tip: Using mitmproxy for mobile testing" />
     <meta property="og:description" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
 or resorting to other, less elegant solutions.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/using-mitmproxy-for-mobile-testing/post.jpg" />
     <meta property="og:url" content="https://codesi.nz/using-mitmproxy-for-mobile-testing/" />
@@ -40,8 +42,9 @@ or resorting to other, less elegant solutions.
     ">
     <meta name="twitter:title" content="Quick tip: Using mitmproxy for mobile testing">
     <meta name="twitter:description" content="This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
 or resorting to other, less elegant solutions.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/using-mitmproxy-for-mobile-testing/post.jpg">
 
@@ -125,120 +128,119 @@ or resorting to other, less elegant solutions.
 <meta itemprop="keywords" content="mobile, testing, mitmproxy, hosts, hostfile, nodejs">
   <section itemprop="articleBody" class="container">
     <p>This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router&#39;s DNS configuration, 
+your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
 or resorting to other, less elegant solutions.</p>
 
-<h2>Use case</h2>
+<h2 id="use-case">Use case</h2>
 
-<p>I have an application running on my machine, and I access it on <code>http://myapp.dev</code> as it depends on
+<p>I have an application running on my machine, and I access it on <code class="highlighter-rouge">http://myapp.dev</code> as it depends on
 the domain it is running on, in order to bootstrap itself and offer different functionality based
-on the domain where it is being loaded.<br>
-I want to be able to navigate to <code>http://myapp.dev</code> on my phone and get the application running on 
+on the domain where it is being loaded.<br />
+I want to be able to navigate to <code class="highlighter-rouge">http://myapp.dev</code> on my phone and get the application running on 
 my computer.</p>
 
-<h2>Solution 1</h2>
+<h2 id="solution-1">Solution 1</h2>
+<p>Have the mapping added to my local DNS(the router’s DNS) and every time a device on my network
+navigates to <code class="highlighter-rouge">http://myapp.dev</code> it will be redirected to my machine — highly impractical as
+I have multiple devices and I’d probably like to keep my router’s config as sane as possible.</p>
 
-<p>Have the mapping added to my local DNS(the router&#39;s DNS) and every time a device on my network
-navigates to <code>http://myapp.dev</code> it will be redirected to my machine &mdash; highly impractical as
-I have multiple devices and I&#39;d probably like to keep my router&#39;s config as sane as possible.</p>
-
-<h2>Solution 2</h2>
+<h2 id="solution-2">Solution 2</h2>
 
 <p>Set my computer as a 
-<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" 
-    title="Wikipedia link to Man-In-The-Middle attack definition" 
-    target="_blank">Man-In-The-Middle</a>
-between my phone and the Internet &mdash; in other words, make my computer act as an HTTP proxy. 
+<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" title="Wikipedia link to Man-In-The-Middle attack definition" target="_blank">Man-In-The-Middle</a>
+between my phone and the Internet — in other words, make my computer act as an HTTP proxy. 
 This way, I can trick the phone into believeing that all its traffic needs to be routed through my laptop.</p>
 
-<h2>How DNS resolution works</h2>
+<h2 id="how-dns-resolution-works">How DNS resolution works</h2>
 
 <ul>
-<li>I navigate to <code>http://myapp.dev</code> from my phone</li>
-<li>My phone looks at its internal hostfile &mdash; usually <code>/etc/hosts</code> on UNIX-like operating 
-systems &mdash; for entries resolving to that specific hostname.</li>
-<li>If it doesn&#39;t find anything it looks at the local DNS (the router&#39;s DNS) </li>
-<li>If no result is returned by the local DNS, then the external DNS is queried - via recursion</li>
-<li>If nothing comes back from the external DNS, then it means that the address is either inexistent
+  <li>I navigate to <code class="highlighter-rouge">http://myapp.dev</code> from my phone</li>
+  <li>My phone looks at its internal hostfile — usually <code class="highlighter-rouge">/etc/hosts</code> on UNIX-like operating 
+systems — for entries resolving to that specific hostname.</li>
+  <li>If it doesn’t find anything it looks at the local DNS (the router’s DNS)</li>
+  <li>If no result is returned by the local DNS, then the external DNS is queried - via recursion</li>
+  <li>If nothing comes back from the external DNS, then it means that the address is either inexistent
 or down.</li>
 </ul>
 
-<h2>The setup</h2>
+<h2 id="the-setup">The setup</h2>
 
 <ul>
-<li>A copy of <a href="https://mitmproxy.org/" title="Link to mitmproxy official website"
-target="_blank">mitmproxy</a></li>
-<li>A mobile device to test on</li>
+  <li>A copy of <a href="https://mitmproxy.org/" title="Link to mitmproxy official website" target="_blank">mitmproxy</a></li>
+  <li>A mobile device to test on</li>
 </ul>
 
-<h2>Workflow</h2>
+<h2 id="workflow">Workflow</h2>
 
-<p>What I want to do is to trick my phone into thinking that <code>http://myapp.dev</code> resolves to 
-192.168.xxx.xxx &mdash; my laptop&#39;s local IP address &mdash; and the way I can do that is by using 
+<p>What I want to do is to trick my phone into thinking that <code class="highlighter-rouge">http://myapp.dev</code> resolves to 
+192.168.xxx.xxx — my laptop’s local IP address — and the way I can do that is by using 
 <a href="https://mitmproxy.org/" title="Link to mitmproxy official website" target="_blank">mitmproxy</a>.</p>
 
-<p>If you&#39;re on a Mac, you have two options for installing <code>mitmproxy</code>: </p>
+<p>If you’re on a Mac, you have two options for installing <code class="highlighter-rouge">mitmproxy</code>:</p>
 
 <ul>
-<li>Through <a href="https://pip.pypa.io/en/stable/" title="Link to Python package manager, pip"
-target="_blank">pip</a> by issuing <code>pip install mitmproxy</code> at your 
+  <li>Through <a href="https://pip.pypa.io/en/stable/" title="Link to Python package manager, pip" target="_blank">pip</a> by issuing <code class="highlighter-rouge">pip install mitmproxy</code> at your 
 terminal prompt.</li>
-<li>Through <a href="http://brew.sh/" title="Link to Homebrew - Mac OS X package manager" target="_blank">homebrew</a> 
-by issuing another command at your terminal prompt: <code>brew install mitmproxy</code>.<br></li>
+  <li>Through <a href="http://brew.sh/" title="Link to Homebrew - Mac OS X package manager" target="_blank">homebrew</a> 
+by issuing another command at your terminal prompt: <code class="highlighter-rouge">brew install mitmproxy</code>.</li>
 </ul>
 
 <p>If you are on a different operating system please check the 
-<a href="http://docs.mitmproxy.org/en/stable/install.html" title="Mitmproxy official installation docs" target="_blank">mitmproxy installation guide</a>  </p>
+<a href="http://docs.mitmproxy.org/en/stable/install.html" title="Mitmproxy official installation docs" target="_blank">mitmproxy installation guide</a></p>
 
-<h2>Proxy server setup</h2>
+<h2 id="proxy-server-setup">Proxy server setup</h2>
+<p>All you have to do now is to start the proxy server, and set your machine’s local IP
+(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.</p>
 
-<p>All you have to do now is to start the proxy server, and set your machine&#39;s local IP
-(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.  </p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Start the proxy server on port 7654</span>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Start the proxy server on port 7654</span>
 <span class="gp">$ </span>mitmproxy -p 7654
-</code></pre></div>
-<p>After starting the proxy server go to your phone&#39;s wireless network settings, and add your 
-computer&#39;s ip as an HTTP proxy that every connection on your phone goes through.<br>
+</code></pre>
+</div>
+<p>After starting the proxy server go to your phone’s wireless network settings, and add your 
+computer’s ip as an HTTP proxy that every connection on your phone goes through.<br />
 Note that the phone and the computer need to be on the same network, or otherwise you will need to
 get the public IP that your computer uses when it accesses the Internet.</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># UNIX - Get your computer's router-assigned IP (see image below)</span>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># UNIX - Get your computer's router-assigned IP (see image below)</span>
 <span class="gp">$ </span>ifconfig -a | grep inet
 
 <span class="c"># Windows - Get the network configuration for all interfaces</span>
 <span class="gp">&gt; </span>ipconfig /all
-</code></pre></div>
+</code></pre>
+</div>
+
 <figure>
 <img src="/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png" alt="Image of the output of the ifconfig
-command on UNIX like systems.">
+command on UNIX like systems." />
 <!--- <figcaption>Using ifconfig to get your IP address</figcaption> --->
 </figure>
 
-<h2>iPhone proxy setup</h2>
+<h2 id="iphone-proxy-setup">iPhone proxy setup</h2>
 
-<p>In order to add a proxy to your wireless connection, navigate to &quot;Settings -&gt; Wi-Fi&quot;, find the 
-network you whish to connect to and tap the &quot;i&quot; symbol, to the far  right of the network&#39;s name.<br>
-This will move you to the network&#39;s settings panel, and at the bottom of this panel you have the 
-&quot;HTTP PROXY&quot; section, which is set to &quot;Off&quot; by default.<br>
-Tap &quot;Manual&quot; and add your machine&#39;s IP and the port you used when you started <code>mitmproxy</code>. The
+<p>In order to add a proxy to your wireless connection, navigate to “Settings -&gt; Wi-Fi”, find the 
+network you whish to connect to and tap the “i” symbol, to the far  right of the network’s name.<br />
+This will move you to the network’s settings panel, and at the bottom of this panel you have the 
+“HTTP PROXY” section, which is set to “Off” by default.<br />
+Tap “Manual” and add your machine’s IP and the port you used when you started <code class="highlighter-rouge">mitmproxy</code>. The
 setup should look like the image below.</p>
 
 <figure>
-<img src="/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png" alt="Image of HTTP PROXY settings on the iPhone">
+<img src="/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png" alt="Image of HTTP PROXY settings on the iPhone" />
 </figure>
 
-<p>Once you&#39;re done performing the steps above, you should try and visit any web page, and you will
-see some activity in the terminal window where you started <code>mitmproxy</code>.<br>
-This means that the proxy is working correctly and that your phone&#39;s connection is routed through 
-your laptop.<br>
-Now, you can start your application on your machine, add an entry to your <code>/etc/hosts</code> file, that
-makes <code>myapp.dev</code> point to your local machine&#39;s IP, and visit <code>http://myapp.dev:&lt;port&gt;</code> from your
-phone.  </p>
+<p>Once you’re done performing the steps above, you should try and visit any web page, and you will
+see some activity in the terminal window where you started <code class="highlighter-rouge">mitmproxy</code>.<br />
+This means that the proxy is working correctly and that your phone’s connection is routed through 
+your laptop.<br />
+Now, you can start your application on your machine, add an entry to your <code class="highlighter-rouge">/etc/hosts</code> file, that
+makes <code class="highlighter-rouge">myapp.dev</code> point to your local machine’s IP, and visit <code class="highlighter-rouge">http://myapp.dev:&lt;port&gt;</code> from your
+phone.</p>
 
-<p>You&#39;re done! You should now be able to see the application that is running on your computer.</p>
+<p>You’re done! You should now be able to see the application that is running on your computer.</p>
 
 <blockquote>
-<p>Credits:<br>
-<a href="https://www.flickr.com/photos/believekevin/">kevin</a> &mdash; <a href="https://flic.kr/p/8mGycA">Lot of mobile phones + accessories (FREE)</a>  </p>
+  <p>Credits: <br />
+<a href="https://www.flickr.com/photos/believekevin/">kevin</a> — <a href="https://flic.kr/p/8mGycA">Lot of mobile phones + accessories (FREE)</a></p>
 </blockquote>
 
 

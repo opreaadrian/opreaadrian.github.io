@@ -18,13 +18,15 @@
 
   
     <meta name="description" itemprop="description" content="How many times did you find yourself in a situation where you wanted to figure out how you implemented a specific feature at some point in time, or how you implemented that bugfix 6 months ago in order to fix a bug that has been reopened? For all those situations, you probably tried to go back to the code, tried to go through your commits, and you probably ended up in a situation similar to mine.
-In this article, I&#39;ll go over my research for a better commit message &quot;framework&quot;(everything is a framework these days) and how I managed to solve the &quot;I don&#39;t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!&quot; problem, when it comes to commits.
+In this article, I’ll go over my research for a better commit message “framework”(everything is a framework these days) and how I managed to solve the “I don’t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!” problem, when it comes to commits.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Communicating through commit messages" />
     <meta property="og:description" content="How many times did you find yourself in a situation where you wanted to figure out how you implemented a specific feature at some point in time, or how you implemented that bugfix 6 months ago in order to fix a bug that has been reopened? For all those situations, you probably tried to go back to the code, tried to go through your commits, and you probably ended up in a situation similar to mine.
-In this article, I&#39;ll go over my research for a better commit message &quot;framework&quot;(everything is a framework these days) and how I managed to solve the &quot;I don&#39;t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!&quot; problem, when it comes to commits.
+In this article, I’ll go over my research for a better commit message “framework”(everything is a framework these days) and how I managed to solve the “I don’t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!” problem, when it comes to commits.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/communicating_through_commit_messages/committment.jpg" />
     <meta property="og:url" content="https://codesi.nz/communicating-through-commit-messages/" />
@@ -38,7 +40,8 @@ In this article, I&#39;ll go over my research for a better commit message &quot;
     ">
     <meta name="twitter:title" content="Communicating through commit messages">
     <meta name="twitter:description" content="How many times did you find yourself in a situation where you wanted to figure out how you implemented a specific feature at some point in time, or how you implemented that bugfix 6 months ago in order to fix a bug that has been reopened? For all those situations, you probably tried to go back to the code, tried to go through your commits, and you probably ended up in a situation similar to mine.
-In this article, I&#39;ll go over my research for a better commit message &quot;framework&quot;(everything is a framework these days) and how I managed to solve the &quot;I don&#39;t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!&quot; problem, when it comes to commits.
+In this article, I’ll go over my research for a better commit message “framework”(everything is a framework these days) and how I managed to solve the “I don’t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!” problem, when it comes to commits.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/communicating_through_commit_messages/committment.jpg">
 
@@ -122,77 +125,89 @@ In this article, I&#39;ll go over my research for a better commit message &quot;
 <meta itemprop="keywords" content="git, workflow, github">
   <section itemprop="articleBody" class="container">
     <p>How many times did you find yourself in a situation where you wanted to figure out how you implemented a specific feature at some point in time, or how you implemented that bugfix 6 months ago in order to fix a bug that has been reopened? For all those situations, you probably tried to go back to the code, tried to go through your commits, and you probably ended up in a situation similar to mine.
-In this article, I&#39;ll go over my research for a better commit message &quot;framework&quot;(everything is a framework these days) and how I managed to solve the &quot;I don&#39;t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!&quot; problem, when it comes to commits.</p>
+In this article, I’ll go over my research for a better commit message “framework”(everything is a framework these days) and how I managed to solve the “I don’t know what I had for lunch yesterday, how am I supposed to know what I did 6 months ago?!” problem, when it comes to commits.</p>
 
-<p>If you&#39;re like me, you probably mess things up pretty frequently, and you need to refer back to your git history pretty often. If you&#39;re lucky, your commit logs will probably look like the ones below:</p>
+<p>If you’re like me, you probably mess things up pretty frequently, and you need to refer back to your git history pretty often. If you’re lucky, your commit logs will probably look like the ones below:</p>
 
-<p><img src="/images/posts/communicating_through_commit_messages/packo_commit_log.png" alt="Packo commit log"></p>
+<p><img src="/images/posts/communicating_through_commit_messages/packo_commit_log.png" alt="Packo commit log" /></p>
 
-<p>I&#39;m fortunate, as I&#39;m currently the only person working on that project, and I have the tendency to detail up to a certain point what I did. But what would happen if I would have to onboard more people on that project, will they know what I meant, will they know what <code>&quot;Fix weird bug -- npm skipping chalk installation&quot;</code> means? Will they know what I wanted to say by <code>&quot;Update README and examples&quot;</code>?
-What if there was a better way for me to properly describe what I did and also WHY I did it, and make everyone&#39;s life easier, including mine. 
-After doing some scanning on the Internet, I wasn&#39;t able to find something that would really fit the bill and make me say <a href="http://www.imdb.com/title/tt1477715/">&quot;This is it!&quot;</a> so I looked at how the frameworks do it and I found my answer there.</p>
+<p>I’m fortunate, as I’m currently the only person working on that project, and I have the tendency to detail up to a certain point what I did. But what would happen if I would have to onboard more people on that project, will they know what I meant, will they know what <code class="highlighter-rouge">"Fix weird bug -- npm skipping chalk installation"</code> means? Will they know what I wanted to say by <code class="highlighter-rouge">"Update README and examples"</code>?
+What if there was a better way for me to properly describe what I did and also WHY I did it, and make everyone’s life easier, including mine. 
+After doing some scanning on the Internet, I wasn’t able to find something that would really fit the bill and make me say <a href="http://www.imdb.com/title/tt1477715/">“This is it!”</a> so I looked at how the frameworks do it and I found my answer there.</p>
 
-<p>I finally settled on 2 styles of commit messages that I scrutinised for 2 whole days: <a href="https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md#commit-tagging">the EmberJS commit tagging style</a> and <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">Angular&#39;s Git commit guidelines</a>.</p>
+<p>I finally settled on 2 styles of commit messages that I scrutinised for 2 whole days: <a href="https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md#commit-tagging">the EmberJS commit tagging style</a> and <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">Angular’s Git commit guidelines</a>.</p>
 
-<p>I fancied  Ember&#39;s style, as it was very similar to what I did at work, namely tagging every commit with an issue number that was most often the issue tracking system ticket id. The drawback is that I often found that developers, no matter how &quot;dedicated&quot; to the cause they may be, they often add only the issue number and forget to describe what they did, so you often end up with commit messages like the ones below:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">* a85ad84 - [ISSUE-3344 bugfixing] (1 month ago)
+<p>I fancied  Ember’s style, as it was very similar to what I did at work, namely tagging every commit with an issue number that was most often the issue tracking system ticket id. The drawback is that I often found that developers, no matter how “dedicated” to the cause they may be, they often add only the issue number and forget to describe what they did, so you often end up with commit messages like the ones below:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>* a85ad84 - [ISSUE-3344 bugfixing] (1 month ago)
 * 58a4d05 - [ISSUE-3344 feature] (1 month ago)
 * b60b79b - [ISSUE-9933] (1 month ago)
 * 5ecefa9 - [ISSUE-1123] fixed text on response.body.answer (2 months ago)
 * 3b26757 - [ISSUE-1123] - fixed extra space (3 months ago)
 * 3993046 - [ISSUE-2344] - editorial changes (6 months ago)
-</code></pre></div>
-<p>As far as I&#39;m concerned, the above commits suck just as much as this one: <code>* 0f5f6c7 - removed console.log (6 months ago)</code> as they don&#39;t give me any context, without having to resort to the issue tracking system, and look up the issue.
-I don&#39;t know whether there was a refactoring going on, or if there was any documentation involved, if the refactoring involved modifying one, or more of the classes, modules or functions subjected to <code>ISSUE-3344</code> for example, or anything related. </p>
+</code></pre>
+</div>
 
-<p>That&#39;s what led me to look into Angular&#39;s way of structuring the commit messages. 
-Now, to clarify, I strongly believe that developers should spend as little time updating tickets, epics, boards, what-have-you, and focus their attention on programming, but commit messages are similar to documentation in a way, as they help you 6 months from now, after you&#39;ve been surfing through 3, 4 projects, to come back and be sure you know who&#39;s the retard who added that &quot;shitty piece of code&quot; that could break the application in a matter of seconds if the user would have done things in a specific way(aka edge-case). </p>
+<p>As far as I’m concerned, the above commits suck just as much as this one: <code class="highlighter-rouge">* 0f5f6c7 - removed console.log (6 months ago)</code> as they don’t give me any context, without having to resort to the issue tracking system, and look up the issue.
+I don’t know whether there was a refactoring going on, or if there was any documentation involved, if the refactoring involved modifying one, or more of the classes, modules or functions subjected to <code class="highlighter-rouge">ISSUE-3344</code> for example, or anything related.</p>
 
-<p>Angular&#39;s approach is not drastically different from Ember, as they require about the same details, but where Angular shines is in the way they require you to structure your commit message. 
+<p>That’s what led me to look into Angular’s way of structuring the commit messages. 
+Now, to clarify, I strongly believe that developers should spend as little time updating tickets, epics, boards, what-have-you, and focus their attention on programming, but commit messages are similar to documentation in a way, as they help you 6 months from now, after you’ve been surfing through 3, 4 projects, to come back and be sure you know who’s the retard who added that “shitty piece of code” that could break the application in a matter of seconds if the user would have done things in a specific way(aka edge-case).</p>
+
+<p>Angular’s approach is not drastically different from Ember, as they require about the same details, but where Angular shines is in the way they require you to structure your commit message. 
 Their commit message needs to look like the snippet below:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
 &lt;BLANK LINE&gt;
 &lt;body&gt;
 &lt;BLANK LINE&gt;
 &lt;footer&gt;
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>I really fancy this structure as it will instruct the developer, up to a certain point, on what they need to add to the subject line in order to give it meaning, so instead of having commits like this:
-<code>
+<code class="highlighter-rouge">
 * 58a4d05 - [ISSUE-3344 feature] (1 month ago)
 </code></p>
 
 <p>your commits will look like this:
-<code>
+<code class="highlighter-rouge">
 * 58a4d05 - feat(ApplicationModel): Add getter/setter methods (1 month ago)
 </code></p>
 
-<p>You&#39;ll know for example that you added getter/setter methods to the <code>ApplicationModel</code> class, so you can look that up. Another advantage is that if you follow the guideline to it&#39;s full extent, and add a <code>&lt;body&gt;</code>, you&#39;ll be able to add the issue number and a more detailed reason about your changes.</p>
-<div class="highlight"><pre><code class="language-" data-lang="">commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
+<p>You’ll know for example that you added getter/setter methods to the <code class="highlighter-rouge">ApplicationModel</code> class, so you can look that up. Another advantage is that if you follow the guideline to it’s full extent, and add a <code class="highlighter-rouge">&lt;body&gt;</code>, you’ll be able to add the issue number and a more detailed reason about your changes.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
 Author: Adrian Oprea &lt;adrian@codesi.nz&gt;
 Date:   Tue May 5 13:29:58 2015 +0300
 
     feat(ApplicationModel): Add getter/setter methods
-
+    
     [ISSUE-3344] Make instance properties private and add mechanism
     to properly retrieve their values via getters/setters.
-</code></pre></div>
-<p>You could also add a <code>&lt;footer&gt;</code> to your commit message, and you could use this to sign off commits, when performing code review, if you&#39;re working with pull requests, or if you&#39;re responsible with merging other people&#39;s work to a main branch. 
-By making use of the full structure suggested by the AngularJS team, your final commit message would look something like the message below, which is clearly more &quot;enlightening&quot; than any of the previous versions:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
+</code></pre>
+</div>
+
+<p>You could also add a <code class="highlighter-rouge">&lt;footer&gt;</code> to your commit message, and you could use this to sign off commits, when performing code review, if you’re working with pull requests, or if you’re responsible with merging other people’s work to a main branch. 
+By making use of the full structure suggested by the AngularJS team, your final commit message would look something like the message below, which is clearly more “enlightening” than any of the previous versions:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>commit 58a4d05410adab8b8575231a5c42ce8bcb907d12
 Author: Adrian Oprea &lt;adrian@codesi.nz&gt;
 Date:   Tue May 5 13:29:58 2015 +0300
 
     feat(ApplicationModel): Add getter/setter methods
-
+    
     [ISSUE-3344] Make instance properties private and add mechanism
     to properly retrieve their values via getters/setters.
 
     Signed-off-by: Adrian Oprea &lt;adrian@codesi.nz&gt;
-</code></pre></div>
-<p>To wrap things up, you should definitely check both guides and see if any of them fits your bill, but I&#39;m sticking with the Angular commit style, so if you need more information regarding the accepted commit types, scopes, etc., make sure to check out <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">this section of the CONTRIBUTING documentation</a>.</p>
+</code></pre>
+</div>
+
+<p>To wrap things up, you should definitely check both guides and see if any of them fits your bill, but I’m sticking with the Angular commit style, so if you need more information regarding the accepted commit types, scopes, etc., make sure to check out <a href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines">this section of the CONTRIBUTING documentation</a>.</p>
 
 <blockquote>
-<p>Image credits: <a href="https://flic.kr/p/ep1kv">Commit No Nuisance</a> by <a href="https://www.flickr.com/photos/beglen/">David, Bergin, Emmett and Elliott</a></p>
+  <p>Image credits: <a href="https://flic.kr/p/ep1kv">Commit No Nuisance</a> by <a href="https://www.flickr.com/photos/beglen/">David, Bergin, Emmett and Elliott</a></p>
 </blockquote>
 
 

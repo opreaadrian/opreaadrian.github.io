@@ -18,13 +18,15 @@
 
   
     <meta name="description" itemprop="description" content="Wednesday, June 24th, I attended the BucharestJS meetup as a speaker, with a presentation titled A different way to node, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.
-In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  
+In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.
+
 ">
 
     <meta property="og:type" content="article" />
     <meta property="og:title" content="A different look at Node.js application architecture" />
     <meta property="og:description" content="Wednesday, June 24th, I attended the BucharestJS meetup as a speaker, with a presentation titled A different way to node, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.
-In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  
+In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/a_different_look_at_nodejs_application_architecture/different.jpg" />
     <meta property="og:url" content="https://codesi.nz/a-different-look-at-nodejs-application-architecture/" />
@@ -38,7 +40,8 @@ In fact, I was so encouraged by their feedback that I plan on participating with
     ">
     <meta name="twitter:title" content="A different look at Node.js application architecture">
     <meta name="twitter:description" content="Wednesday, June 24th, I attended the BucharestJS meetup as a speaker, with a presentation titled A different way to node, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.
-In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  
+In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/a_different_look_at_nodejs_application_architecture/different.jpg">
 
@@ -121,23 +124,23 @@ In fact, I was so encouraged by their feedback that I plan on participating with
 <meta itemprop="dateModified" content="2015-06-29T12:00:00+03:00">
 <meta itemprop="keywords" content="workflow, productivity, nodejs, node, node.js, npm, packo, automation, node_modules, module, package">
   <section itemprop="articleBody" class="container">
-    <p>Wednesday, June 24th, I attended the <a href="http://www.meetup.com/BucharestJS/">BucharestJS meetup</a> as a speaker, with a presentation titled <a target="_blank" title="BucharestJS presentation: A different way to node" href="https://codesi.nz/presentations/a-different-way-to-node/index.html">A different way to node</a>, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.<br>
-In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.  </p>
+    <p>Wednesday, June 24th, I attended the <a href="http://www.meetup.com/BucharestJS/">BucharestJS meetup</a> as a speaker, with a presentation titled <a target="_blank" title="BucharestJS presentation: A different way to node" href="https://codesi.nz/presentations/a-different-way-to-node/index.html">A different way to node</a>, and I had a blast sharing with people the way I do things when it comes to Node.js application architecture.<br />
+In fact, I was so encouraged by their feedback that I plan on participating with more presentations on various problems that developers face, not only on the technology side, but also on the human side: motivation, health, etc.</p>
 
-<p>The gist of the presentation is as follows:<br>
-I&#39;m one hell of a lazy developer, and I hate having to manage everything &quot;by hand&quot;. If I see myself doing something more than once, I immediately try to automate it, and that&#39;s what I did with my Node.js development workflow. I found myself in situations where I had to perform cross-directory <code>require</code> calls, and I ended up with a lot of <code>require(&#39;./../../lib/util.js&#39;);</code> and all hell broke loose when I had to reuse logic, or maintain my own code. That&#39;s exactly the reason I developed <a href="https://www.npmjs.com/package/packo">packo</a>: to help me save time and toasted neurons.<br>
-I confess, I&#39;m not less busy once I started developing with <a href="https://www.npmjs.com/package/packo">packo</a>, as I immediately found something to do with the seconds I save by using it, but I seem to enjoy more of the things I want to do, as opposed to the things I have to do. This is precisely the effect I whish this presentation has on both attendees and regular blog readers, and I would like people to get into the mindset of sifting through the mundane quicker, and save their creative juices for the really important problems, rather than for figuring out if <code>__dirname</code> is the current directory their module is in, or if it has been reset based on where the application was instantiated.  </p>
+<p>The gist of the presentation is as follows:<br />
+I’m one hell of a lazy developer, and I hate having to manage everything “by hand”. If I see myself doing something more than once, I immediately try to automate it, and that’s what I did with my Node.js development workflow. I found myself in situations where I had to perform cross-directory <code class="highlighter-rouge">require</code> calls, and I ended up with a lot of <code class="highlighter-rouge">require('./../../lib/util.js');</code> and all hell broke loose when I had to reuse logic, or maintain my own code. That’s exactly the reason I developed <a href="https://www.npmjs.com/package/packo">packo</a>: to help me save time and toasted neurons.<br />
+I confess, I’m not less busy once I started developing with <a href="https://www.npmjs.com/package/packo">packo</a>, as I immediately found something to do with the seconds I save by using it, but I seem to enjoy more of the things I want to do, as opposed to the things I have to do. This is precisely the effect I whish this presentation has on both attendees and regular blog readers, and I would like people to get into the mindset of sifting through the mundane quicker, and save their creative juices for the really important problems, rather than for figuring out if <code class="highlighter-rouge">__dirname</code> is the current directory their module is in, or if it has been reset based on where the application was instantiated.</p>
 
 <p>I would like to thank the organisers for having the patience and determination to keep the group alive and appealing to developers.
 This article is a follow-up to my presentation and will serve as an entrypoint for people whishing to get access to the slides.</p>
 
-<p>The slides are available here: <a target="_blank" title="BucharestJS presentation: A different way to node" href="https://codesi.nz/presentations/a-different-way-to-node/index.html">https://codesi.nz/presentations/a-different-way-to-node/index.html</a>.<br>
-All the assets including the private npm repository configuration, are availble on GitHub: <a href="https://github.com/opreaadrian/different-way-to-node">https://github.com/opreaadrian/different-way-to-node</a>. There&#39;s one issue with the sinopia Dockerfile so I would recommend using the <a href="https://www.npmjs.com/package/sinopia">sinopia module from npm</a>.</p>
+<p>The slides are available here: <a target="_blank" title="BucharestJS presentation: A different way to node" href="https://codesi.nz/presentations/a-different-way-to-node/index.html">https://codesi.nz/presentations/a-different-way-to-node/index.html</a>.<br />
+All the assets including the private npm repository configuration, are availble on GitHub: <a href="https://github.com/opreaadrian/different-way-to-node">https://github.com/opreaadrian/different-way-to-node</a>. There’s one issue with the sinopia Dockerfile so I would recommend using the <a href="https://www.npmjs.com/package/sinopia">sinopia module from npm</a>.</p>
 
 <p>Cheers!</p>
 
 <blockquote>
-<p>Image credits: <a href="https://www.flickr.com/photos/beglen/">Kate Ter Haar</a></p>
+  <p>Image credits: <a href="https://www.flickr.com/photos/beglen/">Kate Ter Haar</a></p>
 </blockquote>
 
 

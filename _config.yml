@@ -22,7 +22,6 @@ gems :
 exclude: ['Gemfile', 'Gemfile.lock']
 
 # Build settings
-markdown: redcarpet
 highlighter_theme: tomorrow
 baseurl:  # the subpath of your site, e.g. /blog/
 

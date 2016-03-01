@@ -25,6 +25,7 @@ XMLHttpRequest, from scratch. I do agree that it is important to get the
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.
+
 ">
 
     <meta property="og:type" content="article" />
@@ -37,6 +38,7 @@ XMLHttpRequest, from scratch. I do agree that it is important to get the
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.
+
 " />
     <meta property="og:image" content="https://codesi.nz/images/posts/serializing-object-methods-using-es6-template-strings-and-eval/post.jpg" />
     <meta property="og:url" content="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" />
@@ -57,6 +59,7 @@ XMLHttpRequest, from scratch. I do agree that it is important to get the
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.
+
 ">
     <meta name="twitter:image" content="https://codesi.nz/images/posts/serializing-object-methods-using-es6-template-strings-and-eval/post.jpg">
 
@@ -137,303 +140,313 @@ with, for someone other than a junior developer.
 the difference between writing an elegant, easy to reason about application, 
 and a crude hack. As far as my experience goes, only a small number of developers 
 I’ve talked to in the past year or so, know how to write a vanilla 
-<code>XMLHttpRequest</code>, from scratch. I do agree that it is important to get the 
+<code class="highlighter-rouge">XMLHttpRequest</code>, from scratch. I do agree that it is important to get the 
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.</p>
 
-<h2>A bit of background</h2>
+<h2 id="a-bit-of-background">A bit of background</h2>
 
-<p>I&#39;ve been working with JSON since 2009 and all I knew is that you are able to 
-serialize JavaScript objects, by using <code>JSON.stringify</code> but only the properties
+<p>I’ve been working with JSON since 2009 and all I knew is that you are able to 
+serialize JavaScript objects, by using <code class="highlighter-rouge">JSON.stringify</code> but only the properties
 (values) get serialized, and the methods get left behind.
 I started looking into the literature around JSON serialization in JavaScript 
 and the only information I found on JSON.org and the Mozilla Developer Network 
 confirmed what I already said before, so then I started to think about the 
-&quot;forbidden&quot; parts of JavaScript.</p>
+“forbidden” parts of JavaScript.</p>
 
 <p>In my case, I started learning JavaScript reading
 <a href="http://amzn.com/0596517742">JavaScript The Good Parts</a> written by 
-<a href="http://crockford.com/">Douglas Crockford</a> and if you&#39;re like me, 
-the rest of your career was highly influenced by that book and Crockford&#39;s 
+<a href="http://crockford.com/">Douglas Crockford</a> and if you’re like me, 
+the rest of your career was highly influenced by that book and Crockford’s 
 approach to JavaScript and software development. But everything comes at a cost, 
-and the cost I had to pay was believing too much in the &quot;Eval is evil&quot; mantra.</p>
+and the cost I had to pay was believing too much in the “Eval is evil” mantra.</p>
 
-<h2>What is JSON?</h2>
+<h2 id="what-is-json">What is JSON?</h2>
 
-<p>First, let&#39;s start with some basics, namely, let&#39;s see what JSON is. </p>
+<p>First, let’s start with some basics, namely, let’s see what JSON is.</p>
 
 <p>According to <a href="http://www.json.org/">JSON.org</a>:</p>
 
 <blockquote>
-<p>JSON (JavaScript Object Notation) is a lightweight data-interchange format. [...]
+  <p>JSON (JavaScript Object Notation) is a lightweight data-interchange format. […]
 JSON is a text format that is completely language independent but uses 
-conventions that are familiar to programmers of the C-family of languages [...]</p>
+conventions that are familiar to programmers of the C-family of languages […]</p>
 </blockquote>
 
 <p>According to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">Mozilla Developer Network</a></p>
 
 <blockquote>
-<p>JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, 
+  <p>JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, 
 and null. It is based upon JavaScript syntax but is distinct from it: 
-some JavaScript is not JSON, and some JSON is not JavaScript. </p>
+some JavaScript is not JSON, and some JSON is not JavaScript.</p>
 </blockquote>
 
 <p>Both definitions tell us one thing: JSON is a format for distributing data 
-across &quot;the wire&quot; and can be easily understood and generated by both 
+across “the wire” and can be easily understood and generated by both 
 humans and computers.</p>
 
-<h2>What is serialization?</h2>
+<h2 id="what-is-serialization">What is serialization?</h2>
 
 <p>Again, in order to continue, we first need to establish what serialization is, 
 and without having to resort to external resources for this, I will give you 
-my own definition: &quot;Serialization is a process through which one data format gets 
-translated to an intermediary data format, for the purpose of distribution&quot;.  </p>
+my own definition: “Serialization is a process through which one data format gets 
+translated to an intermediary data format, for the purpose of distribution”.</p>
 
 <p>The reverse of serialization is de-serialization, where you take a the 
 intermediary data format and turn it back into its original form, so you can 
-manipulate it and use it in your application.<br>
-Now, with theory out of the way, let&#39;s get to the code.</p>
+manipulate it and use it in your application.<br />
+Now, with theory out of the way, let’s get to the code.</p>
 
-<h2>Object serialization and the <code>replacer</code> function</h2>
+<h2 id="object-serialization-and-the-replacer-function">Object serialization and the <code class="highlighter-rouge">replacer</code> function</h2>
 
 <p>Based on the knowledge we have at this point, we can now demonstrate how exactly 
-serialization works, so let&#39;s take an object, run it through <code>JSON.stringify</code> 
+serialization works, so let’s take an object, run it through <code class="highlighter-rouge">JSON.stringify</code> 
 and see what we get.</p>
 
-<p><noscript><pre>&#39;use strict&#39;;</p>
+<noscript><pre>&#39;use strict&#39;;
 
-<p>let person = {
+let person = {
   name: &#39;Susan&#39;,
   age: 24,
   sayHi: function() {
-    console.log(&#39;Susan says hi!&#39;);
+	console.log(&#39;Susan says hi!&#39;);
   }
-};</p>
+};
 
-<p>const serialized = JSON.stringify(person);</p>
+const serialized = JSON.stringify(person);
 
-<p>console.log(serialized); // {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24} </p>
+console.log(serialized); // {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24} 
 
-<p>typeof serialized === &#39;string&#39; // true</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify.js"> </script></p>
+typeof serialized === &#39;string&#39; // true</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify.js"> </script>
 
-<p>As you can see, the <code>sayHi</code> method is nowhere to be seen. The reason is that 
-<code>JSON.stringify</code> serializes only the properties of the object, leaving its 
-methods behind.<br>
-Now, let&#39;s say we want to also serialize the <code>sayHi</code> method. How would we go about 
-that? First, let&#39;s take a look at <code>JSON.stringify</code>&#39;s signature, outlined below.</p>
+<p>As you can see, the <code class="highlighter-rouge">sayHi</code> method is nowhere to be seen. The reason is that 
+<code class="highlighter-rouge">JSON.stringify</code> serializes only the properties of the object, leaving its 
+methods behind.<br />
+Now, let’s say we want to also serialize the <code class="highlighter-rouge">sayHi</code> method. How would we go about 
+that? First, let’s take a look at <code class="highlighter-rouge">JSON.stringify</code>’s signature, outlined below.</p>
 
-<p><noscript><pre>JSON.stringify(value[, replacer[, space]])</p>
+<noscript><pre>JSON.stringify(value[, replacer[, space]])
 
-<p>// =&gt; value(required) - the object we want to serialize 
+// =&gt; value(required) - the object we want to serialize 
 // =&gt; replacer(optional) - a function that will be called for each of the 
 //    object&#39;s properties, or an array of strings and numbers that serve 
 //    as a whitelist for the property selection process
-// =&gt; space(optional) - the number of spaces each key will receive as indent</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_signature.js"> </script></p>
+// =&gt; space(optional) - the number of spaces each key will receive as indent</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_signature.js"> </script>
 
-<p>Our main interest is the <code>replacer</code> argument, and we are going to use its function form. In order 
-for this trick to work and for the <code>sayHi</code> method&#39;s code to be properly converted to a string, 
-we can call its <code>toString()</code> method.<br>
-Calling <code>toString()</code> on a function, returns a string representation of the function&#39;s body. 
-This way, if we call <code>person.sayHi.toString()</code> we will get the following output:</p>
+<p>Our main interest is the <code class="highlighter-rouge">replacer</code> argument, and we are going to use its function form. In order 
+for this trick to work and for the <code class="highlighter-rouge">sayHi</code> method’s code to be properly converted to a string, 
+we can call its <code class="highlighter-rouge">toString()</code> method.<br />
+Calling <code class="highlighter-rouge">toString()</code> on a function, returns a string representation of the function’s body. 
+This way, if we call <code class="highlighter-rouge">person.sayHi.toString()</code> we will get the following output:</p>
 
-<p><noscript><pre>&quot;function () { console.log(&#39;Susan says hi!&#39;); }&quot;</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_method_output.js"> </script></p>
+<noscript><pre>&quot;function () { console.log(&#39;Susan says hi!&#39;); }&quot;</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_method_output.js"> </script>
 
-<p>So now that we know how to get our method&#39;s body, let&#39;s build the logic to serialize the whole 
-<code>person</code> object, including its method.</p>
+<p>So now that we know how to get our method’s body, let’s build the logic to serialize the whole 
+<code class="highlighter-rouge">person</code> object, including its method.</p>
 
-<p><noscript><pre>&#39;use strict&#39;;</p>
+<noscript><pre>&#39;use strict&#39;;
 
-<p>let person = {
+let person = {
   name: &#39;Susan&#39;,
   age: 24,
   sayHi: function() {
     console.log(&#39;Susan says hi!&#39;);
   }
-};</p>
+};
 
-<p>let replacer = (key, value) =&gt; {
+let replacer = (key, value) =&gt; {
   // if we get a function, give us the code for that function
   if (typeof value === &#39;function&#39;) {
     return value.toString();
-  }</p>
+  }
 
-<p>return value;
-}</p>
+  return value;
+}
 
-<p>// get a stringified version of our object, and indent the keys at 2 spaces
-const serialized = JSON.stringify(person, replacer, 2);</p>
+// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);
 
-<p>console.log(serialized); 
-// {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24,&quot;sayHi&quot;:&quot;function () {\n\tconsole.log(&#39;Susan says hi!&#39;);\n  }&quot;}</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_with_replacer.js"> </script></p>
+console.log(serialized); 
+// {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24,&quot;sayHi&quot;:&quot;function () {\n\tconsole.log(&#39;Susan says hi!&#39;);\n  }&quot;}</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=stringify_with_replacer.js"> </script>
 
-<h2>De-serialization and reviving properties</h2>
+<h2 id="de-serialization-and-reviving-properties">De-serialization and reviving properties</h2>
 
 <p>As you can see, we now have our method, properly serialized and ready for 
-transportation &quot;across the wire&quot;. What we need to do next is to de-serialize 
-our object and make the <code>sayHi</code> method executable, again, and this can be 
-accomplished using <code>JSON.parse</code>.</p>
+transportation “across the wire”. What we need to do next is to de-serialize 
+our object and make the <code class="highlighter-rouge">sayHi</code> method executable, again, and this can be 
+accomplished using <code class="highlighter-rouge">JSON.parse</code>.</p>
 
-<p>Similar to what we did with <code>JSON.stringify</code>, we will have to take a look at 
-<code>JSON.parse</code>&#39;s signature in order to get a clearer view of how we will 
+<p>Similar to what we did with <code class="highlighter-rouge">JSON.stringify</code>, we will have to take a look at 
+<code class="highlighter-rouge">JSON.parse</code>’s signature in order to get a clearer view of how we will 
 perform the de-serialization process in such a way that we can convert our 
-current <code>sayHi</code> string into a function, again.  </p>
+current <code class="highlighter-rouge">sayHi</code> string into a function, again.</p>
 
-<p><code>JSON.parse</code> has the following signature, according to the Mozilla Developer Network: </p>
+<p><code class="highlighter-rouge">JSON.parse</code> has the following signature, according to the Mozilla Developer Network:</p>
 
-<p><noscript><pre>JSON.parse(text[, reviver])</p>
+<noscript><pre>JSON.parse(text[, reviver])
 
-<p>// =&gt; text(required) - the string we wish to de-serialize and convert back
+// =&gt; text(required) - the string we wish to de-serialize and convert back
 //    to a standard JavaScript object(JSON)
 // =&gt; reviver(optional) - function used to pre-process keys and values in order 
-//    to render a specific object structure</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_signature.js"> </script></p>
+//    to render a specific object structure</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_signature.js"> </script>
 
-<p>Before going any further with the solution, let&#39;s first see what template 
+<p>Before going any further with the solution, let’s first see what template 
 strings are, at their most basic level.
 According to MDN, template literals(usually called template strings) are string 
-literals that allow embedded expressions. To simplify this explanation, let&#39;s 
+literals that allow embedded expressions. To simplify this explanation, let’s 
 take a look at a piece of code using ES6 template strings and compare it to the 
 way we used to mimic this in ES5.</p>
 
-<p><noscript><pre>//ES6 template strings
+<noscript><pre>//ES6 template strings
 let someComputedValue = 5 + 3;
-let theTemplate = <code>This is the result of the computation: ${someComputedValue}</code>;</p>
+let theTemplate = `This is the result of the computation: ${someComputedValue}`;
 
-<p>console.log(theTemplate);
-// &quot;This is the result of the computation: 8&quot;</p>
+console.log(theTemplate);
+// &quot;This is the result of the computation: 8&quot;
 
-<p>// ES5 version
+// ES5 version
 var someComputedValue = 5 + 3;
-var theTemplate = &#39;This is the result of the computation: &#39; + someComputedValue;</p>
+var theTemplate = &#39;This is the result of the computation: &#39; + someComputedValue;
 
-<p>console.log(theTemplate);
-// &quot;This is the result of the computation: 8&quot;</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=es6_template_literals.js"> </script></p>
+console.log(theTemplate);
+// &quot;This is the result of the computation: 8&quot;</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=es6_template_literals.js"> </script>
 
 <p>You can probably see some good use-cases for template literals, one of them 
-being DOM templates. If you&#39;d like 
+being DOM templates. If you’d like 
 more info on the topic, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">this page on the Mozilla Developer Network</a> 
 sums it up pretty well.</p>
 
-<p>Given that we already have our serialized version of the <code>person</code> object, along 
-with its <code>sayHi</code> method, let&#39;s now try to convert the body of the method back to 
-executable code.<br>
-For this matter, we&#39;re going to have to resort to the &quot;evil&quot; <code>eval</code> and before 
-using something that so many people labelled as evil, let&#39;s see what it does, 
-so we are conscious about the risks we&#39;re taking.</p>
+<p>Given that we already have our serialized version of the <code class="highlighter-rouge">person</code> object, along 
+with its <code class="highlighter-rouge">sayHi</code> method, let’s now try to convert the body of the method back to 
+executable code.<br />
+For this matter, we’re going to have to resort to the “evil” <code class="highlighter-rouge">eval</code> and before 
+using something that so many people labelled as evil, let’s see what it does, 
+so we are conscious about the risks we’re taking.</p>
 
-<p>In a nutshell, <code>eval</code> takes strings and treats them as executable code. One of 
-the biggest risks you&#39;re exposing yourself and your application to would be 
+<p>In a nutshell, <code class="highlighter-rouge">eval</code> takes strings and treats them as executable code. One of 
+the biggest risks you’re exposing yourself and your application to would be 
 <a href="https://www.owasp.org/index.php/Code_Injection">code injection</a>. If you end up 
 serializing user-inserted data, be sure to thoroughly validate their input and 
-as a rule of thumb, don&#39;t run code inserted by your user, unless you&#39;re building 
+as a rule of thumb, don’t run code inserted by your user, unless you’re building 
 the next <a href="https://jsbin.com">jsbin.com</a> or the next <a href="https://codepen.io">codepen.io</a></p>
 
-<p>With the knowledge we have about <code>eval</code> and template strings, we can now 
-build our <code>reviver</code> function as follows:</p>
+<p>With the knowledge we have about <code class="highlighter-rouge">eval</code> and template strings, we can now 
+build our <code class="highlighter-rouge">reviver</code> function as follows:</p>
 
-<p><noscript><pre>let reviver = (key, value) =&gt; {
+<noscript><pre>let reviver = (key, value) =&gt; {
   if (typeof key === &#39;string&#39; &amp;&amp; key.indexOf(&#39;function &#39;) === 0) {
-    let functionTemplate = <code>(${value})</code>;
+    let functionTemplate = `(${value})`;
     return eval(functionTemplate);
-  }</p>
+  }
 
-<p>return value;
-}</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_eval.js"> </script></p>
+  return value;
+}</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_eval.js"> </script>
 
-<p>The code is pretty self-explanatory, but for extra clarity, we&#39;re building a new 
-template for all the items in the string we&#39;re parsing, that contain the 
-&#39;function&#39; keyword followed by a space, at the very beginning and then we&#39;re 
-evaluating the resulting expression and returning it to <code>JSON.parse</code> in order to 
-be added to the final object.<br>
+<p>The code is pretty self-explanatory, but for extra clarity, we’re building a new 
+template for all the items in the string we’re parsing, that contain the 
+‘function’ keyword followed by a space, at the very beginning and then we’re 
+evaluating the resulting expression and returning it to <code class="highlighter-rouge">JSON.parse</code> in order to 
+be added to the final object.<br />
 The final version of the code would look like the snippet below:</p>
 
-<p><noscript><pre>&#39;use strict&#39;;</p>
+<noscript><pre>&#39;use strict&#39;;
 
-<p>// serialize.js</p>
+// serialize.js
 
-<p>let person = {
+let person = {
   name: &#39;Susan&#39;,
   age: 24,
   sayHi: function() {
     console.log(&#39;Susan says hi!&#39;);
   }
-};</p>
+};
 
-<p>let replacer = (key, value) =&gt; {
+let replacer = (key, value) =&gt; {
   // if we get a function, give us the code for that function
   if (typeof value === &#39;function&#39;) {
     return value.toString();
-  }</p>
+  }
 
-<p>return value;
-}</p>
+  return value;
+}
 
-<p>// get a stringified version of our object, and indent the keys at 2 spaces
-const serialized = JSON.stringify(person, replacer, 2);</p>
+// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);
 
-<p>console.log(serialized); 
-// {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24,&quot;sayHi&quot;:&quot;function () {\n\tconsole.log(&#39;Susan says hi!&#39;);\n  }&quot;}</p>
+console.log(serialized); 
+// {&quot;name&quot;:&quot;Susan&quot;,&quot;age&quot;:24,&quot;sayHi&quot;:&quot;function () {\n\tconsole.log(&#39;Susan says hi!&#39;);\n  }&quot;}
 
-<p>// de_serialize.js
+
+// de_serialize.js
 let reviver = (key, value) =&gt; {
   if (typeof value === &#39;string&#39; &amp;&amp; value.indexOf(&#39;function &#39;) === 0) {
-    let functionTemplate = <code>(${value})</code>;
+    let functionTemplate = `(${value})`;
     return eval(functionTemplate);
   }
   return value;
-}</p>
+}
 
-<p>const parsedObject = JSON.parse(serialized, reviver);</p>
+const parsedObject = JSON.parse(serialized, reviver);
 
-<p>parsedObject.sayHi(); // Susan says hi!</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=full_example.js"> </script></p>
+parsedObject.sayHi(); // Susan says hi!</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=full_example.js"> </script>
 
 <p>The reason that we wrap the function in parentheses is that we need to force 
 the vm to evaluate the function in an expression context, and our function 
 needs to be a function expression as it is missing its name. We are only operating 
-with <code>eval</code> on the value of the <code>sayHi</code> key, which is an unnamed function. If 
-you&#39;d like more info about this limitation of <code>eval</code> take a look at 
-<a href="http://stackoverflow.com/a/9076377/2423398">this answer on StackOverflow</a>.<br>
-As you can see, the newly resulted object has the <code>sayHi</code> method available and 
-ready for use and executing the method prints the same message as <code>person.sayHi</code>.</p>
+with <code class="highlighter-rouge">eval</code> on the value of the <code class="highlighter-rouge">sayHi</code> key, which is an unnamed function. If 
+you’d like more info about this limitation of <code class="highlighter-rouge">eval</code> take a look at 
+<a href="http://stackoverflow.com/a/9076377/2423398">this answer on StackOverflow</a>.<br />
+As you can see, the newly resulted object has the <code class="highlighter-rouge">sayHi</code> method available and 
+ready for use and executing the method prints the same message as <code class="highlighter-rouge">person.sayHi</code>.</p>
 
-<p>Another issue I ommitted to mention about <code>eval</code> is that it is pretty slow, 
+<p>Another issue I ommitted to mention about <code class="highlighter-rouge">eval</code> is that it is pretty slow, 
 because it has to invoke the VM in order to evaluate the code, 
-unlike the built-in <code>Function</code> constructor, which is highly optimised in newer 
+unlike the built-in <code class="highlighter-rouge">Function</code> constructor, which is highly optimised in newer 
 versions of JavaScript engines.
-If performance is something that is critical for you, there&#39;s an option to use 
-the <code>Function</code> constructor instead of <code>eval</code> in your <code>reviver</code> function like 
+If performance is something that is critical for you, there’s an option to use 
+the <code class="highlighter-rouge">Function</code> constructor instead of <code class="highlighter-rouge">eval</code> in your <code class="highlighter-rouge">reviver</code> function like 
 in the snippet below:</p>
 
-<p><noscript><pre>let reviver = (key, value) =&gt; {
+<noscript><pre>let reviver = (key, value) =&gt; {
   if (typeof value === &#39;string&#39; &amp;&amp; value.indexOf(&#39;function &#39;) === 0) {
-    let functionTemplate = <code>(${value}).call(this)</code>;
+    let functionTemplate = `(${value}).call(this)`;
     return new Function(functionTemplate);
   }
   return value;
-}</pre></noscript><script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_function_constructor.js"> </script></p>
+}</pre></noscript>
+<script src="https://gist.github.com/opreaadrian/ad8b0c32fb5baac50017.js?file=parse_reviver_function_constructor.js"> </script>
 
-<p>Even though it is said that the <code>Function</code> constructor is faster than <code>eval</code>, 
-be cautious that in this case, you have to create 2 functions in-memory &mdash;
-the outer IIFE that gets auto-executed and returns the method we want.<br>
-You also need to use <code>Function.prototype.call</code> in order to keep <code>this</code> 
-relative to the current object, and not to the window/global object. </p>
+<p>Even though it is said that the <code class="highlighter-rouge">Function</code> constructor is faster than <code class="highlighter-rouge">eval</code>, 
+be cautious that in this case, you have to create 2 functions in-memory —
+the outer IIFE that gets auto-executed and returns the method we want.<br />
+You also need to use <code class="highlighter-rouge">Function.prototype.call</code> in order to keep <code class="highlighter-rouge">this</code> 
+relative to the current object, and not to the window/global object.</p>
 
-<p>Ultimately, it all comes down to personal preference so whether you use <code>eval</code> 
+<p>Ultimately, it all comes down to personal preference so whether you use <code class="highlighter-rouge">eval</code> 
 or another method it is all up to you, the important thing is to use what 
-makes the most sense for you and gets the job done in an elegant manner. </p>
+makes the most sense for you and gets the job done in an elegant manner.</p>
 
-<h2>Reference</h2>
+<h2 id="reference">Reference</h2>
 
 <ul>
-<li><a href="http://json.org/">JSON.org</a></li>
-<li><a href="http://stackoverflow.com/a/9076377/2423398">JavaScript eval() “syntax error” on parsing a function string</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">JSON</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/eval">Eval</a></li>
+  <li><a href="http://json.org/">JSON.org</a></li>
+  <li><a href="http://stackoverflow.com/a/9076377/2423398">JavaScript eval() “syntax error” on parsing a function string</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">JSON</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/eval">Eval</a></li>
 </ul>
 
 <blockquote>
-<p>Photo credits:<br>
-<a href="https://www.flickr.com/photos/sdelgado">Sergio Delgado</a> &mdash; <a href="https://en.wikipedia.org/wiki/Sloth">Three-toed sloth in the Dallas World Aquarium</a></p>
+  <p>Photo credits:<br />
+<a href="https://www.flickr.com/photos/sdelgado">Sergio Delgado</a> — <a href="https://en.wikipedia.org/wiki/Sloth">Three-toed sloth in the Dallas World Aquarium</a></p>
 </blockquote>
 
 <p><a href="https://medium.com/@opreaadrian/serializing-object-methods-using-es6-template-strings-and-eval-c77c894651f0#.vhkho9fp6">Read on medium.com</a></p>
