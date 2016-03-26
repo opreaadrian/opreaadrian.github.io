@@ -1,129 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="https://schema.org/Blog">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+  <meta itemprop="datePublished" content="2015-01-28T08:00:00+02:00">
+  <meta itemprop="dateModified" content="2015-01-28T22:00:00+02:00">
+  <meta itemprop="keywords" content="nodejs, workflow, javascript, promises, async">
   
-    <title>Working with JavaScript promises: practices and mistakes</title>
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="programming, tutorials, javascript, html, css, frontend, nodejs, react, angular">
-
-  <meta name="author" itemprop="creator" content="">
-
-  <meta property="og:locale" content="en_US" />
-
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
-
-  
-    <meta name="description" itemprop="description" content="We use promises in our day to day grind, and not few were the occasions in which I found promise-using code improperly structured, responses handled in an inconsistent manner, as well as weak or no error handling.
-With this post I aim to share some of my practices when it comes to working with promises. Throughout the post I will use ES6 syntax, but the principles outlined are available whether you’re using native JavaScript promises, or a library that implements the Promises A+ spec.
-
-">
-
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Working with JavaScript promises: practices and mistakes" />
-    <meta property="og:description" content="We use promises in our day to day grind, and not few were the occasions in which I found promise-using code improperly structured, responses handled in an inconsistent manner, as well as weak or no error handling.
-With this post I aim to share some of my practices when it comes to working with promises. Throughout the post I will use ES6 syntax, but the principles outlined are available whether you’re using native JavaScript promises, or a library that implements the Promises A+ spec.
-
-" />
-    <meta property="og:image" content="https://codesi.nz/images/posts/promises.jpg" />
-    <meta property="og:url" content="https://codesi.nz/working-with-javascript-promises/" />
-    <meta property="article:published_time" content="28 Jan 2015" />
-    <meta property="article:modified_time" content="28 Jan 2015 " />
-    <link rel="canonical" href="https://codesi.nz/working-with-javascript-promises/">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://codesi.nz/working-with-javascript-promises/
-    ">
-    <meta name="twitter:title" content="Working with JavaScript promises: practices and mistakes">
-    <meta name="twitter:description" content="We use promises in our day to day grind, and not few were the occasions in which I found promise-using code improperly structured, responses handled in an inconsistent manner, as well as weak or no error handling.
-With this post I aim to share some of my practices when it comes to working with promises. Throughout the post I will use ES6 syntax, but the principles outlined are available whether you’re using native JavaScript promises, or a library that implements the Promises A+ spec.
-
-">
-    <meta name="twitter:image" content="https://codesi.nz/images/posts/promises.jpg">
-
-
-  
-    <meta name="”twitter:creator”" value="">
-
-  
-    <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
-    <link rel="publisher" href="https://plus.google.com/+AdrianOpreasWeb/">
+    <meta itemprop="inLanguage" content="en_US">
   
 
+  <h1 itemprop="headline">Working with JavaScript promises: practices and mistakes</h1>
+  <time itemProp="datePublished" datetime="2015-01-28T08:00:00+02:00">28 Jan 2015</time>
 
-  <!-- syntax highlighting CSS -->
-  <link rel="stylesheet" href="/css/syntax.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow.min.css">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/main.css">
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-  <!-- Fonts -->
-  <link href='//fonts.googleapis.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600|Source+Code+Pro' rel='stylesheet' type='text/css'>
-  <script>
-    var host = "codesi.nz";
-    if ((host == window.location.host) && (window.location.protocol != "https:")) {
-      window.location.protocol = "https";
-    }
-  </script>
-</head>
-<body>
-  <header style="background-image: url(/images/posts/promises.jpg);">
-  <div class="container post-container">
-    <a href="/" class="home_button"></a>
-    <div class="inner-container">
-      <h1>Working with JavaScript promises: practices and mistakes</h1>
-      <ul class="meta">
-        <li>
-          <span>
-            Author
-          </span>
-          <a class="post-author" href="https://twitter.com/@opreaadrian">Adrian Oprea</a>
-        </li>
-        <li>
-          <span>
-            Published
-          </span>
-          28 Jan 2015
-        </li>
-        <li>
-          <span>
-            Category
-          </span>
-          nodejs
-        </li>
-      </ul>
-    </div>
-    <ul class="pagination">
-      
-        <li class="previous">
-          <a href="/three-hard-to-spot-javascript-mistakes/">
-            Previous
-          </a>
-        </li>
-      
-      
-      <li class="next">
-        <a href="/working-with-javascript-promises-handling-the-unexpected/">
-          Next
-        </a>
-      </li>
-      
-    </ul>
-  </div>
-</header>
-
-<article itemscope itemtype="https://schema.org/BlogPosting">
-<meta itemprop="datePublished" content="2015-01-28T08:00:00+02:00">
-<meta itemprop="dateModified" content="2015-01-28T22:00:00+02:00">
-<meta itemprop="keywords" content="nodejs, workflow, javascript, promises, async">
-  <section itemprop="articleBody" class="container">
+   <main itemprop="articleBody">
     <p>We use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> in our day to day grind, and not few were the occasions in which I found promise-using code improperly structured, responses handled in an inconsistent manner, as well as weak or no error handling.<br />
 With this post I aim to share some of my practices when it comes to working with promises. Throughout the post I will use ES6 syntax, but the principles outlined are available whether you’re using native JavaScript promises, or a library that implements the <a href="https://promisesaplus.com/">Promises A+ spec</a>.</p>
 
@@ -378,51 +264,33 @@ In this situation, if you’re planning to short-circuit the logic, note that <c
   <p>Image credits: <a href="https://flic.kr/p/3f12JL">Promise?</a> by <a href="https://www.flickr.com/photos/13923263@N07/">Carmella Fernando</a></p>
 </blockquote>
 
+  </main>
 
-  <section>
-    <h3>Share this article:</h3>
-    <span class='st_facebook_large' displayText='Facebook'></span>
-    <span class='st_twitter_large' displayText='Tweet'></span>
-    <span class='st_linkedin_large' displayText='LinkedIn'></span>
-    <span class='st_email_large' displayText='Email'></span>
-    <span class='st_reddit_large' displayText='Reddit'></span>
-    <span class='st_googleplus_large' displayText='Google +'></span>
-    <span class='st_pinterest_large' displayText='Pinterest'></span>
-  </section>
-      <div id="disqus_thread"></div>
-      <script type="text/javascript">
-          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-          var disqus_shortname = 'codesinz'; // required: replace example with your forum shortname
+  <footer>
+    <section>
+	<h3>Spread the word</h3>
+	<span class='st_facebook_large' displayText='Facebook'></span>
+	<span class='st_twitter_large' displayText='Tweet'></span>
+	<span class='st_linkedin_large' displayText='LinkedIn'></span>
+	<span class='st_email_large' displayText='Email'></span>
+	<span class='st_reddit_large' displayText='Reddit'></span>
+	<span class='st_googleplus_large' displayText='Google +'></span>
+	<span class='st_pinterest_large' displayText='Pinterest'></span>
+</section>
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'codesinz'; // required: replace example with your forum shortname
 
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </section>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  </footer>
 </article>
-
-
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-32468134-4', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-
-</script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-<script>
-  hljs.initHighlightingOnLoad();
-</script>
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="//ws.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "92204b4b-884e-4a7f-9337-a39d86c8b368", doNotHash: true, doNotCopy: false, hashAddressBar: true, shorten: false});</script>
-</body>
-</html>

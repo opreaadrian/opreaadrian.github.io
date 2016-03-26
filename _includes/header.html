@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="https://schema.org/Blog">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  {% if page.title %}
+    <title>{{ page.title }}</title>
+  {% else %}
+    <title>{{ site.name }}</title>
+  {% endif %}
+
+  <meta name="keywords" content="{{ site.keywords }}">
+  <meta name="author" itemprop="creator" content="{{ author.name }}">
+
+  {% feed_meta %}
+
+  {% if page.title %}
+    {% include article_page_meta.html %}
+  {% else %}
+    {% include standard_page_meta.html %}
+  {% endif %}
+
+
+  {% if site.google.googleplus %}
+    <link rel="author" href="https://plus.google.com/{{ site.google.googleplus }}/">
+    <link rel="publisher" href="https://plus.google.com/{{ site.google.googleplus }}/">
+  {% endif %}
+
+
+  {% include stylesheets.html %}
+  {% include https_redirect.html %}
+</head>
+<body>

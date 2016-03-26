@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'jekyll-timeago'
 gem 'jekyll-gist'
 gem 'jekyll-sitemap'
 gem 'jekyll-feed'
