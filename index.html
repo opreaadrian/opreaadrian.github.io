@@ -1,29 +1,18 @@
 ---
 layout: default
 ---
-<header id="home-header" style="background-image: url({{ site.baseurl }}{{ site.sidebar_image }});">
-  <div class="container">
+<div class="logo">
     <h1>{{ site.title }}</h1>
-    <ul class="meta">
-      <li>
-        <span>
-          {{ site.tagline }}
-        </span>
-      </li>
-  </div>
-</header>
-<section class="article-list">
-  <div class="container">
-    <ul class="posts">
-      {% for post in site.posts %}
-        <li>
-          <h2><a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title }}">{{ post.title }}</a></h2>
-          <span class="meta">
-            <a class="post-author" href="//twitter.com/{{ post.twitter }}" title="{{ post.author }}'s twitter feed">{{ post.author }}</a> on {{ post.date | date_to_string }}
-          </span>
-          {{ post.excerpt }}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
+    <span>{{ site.tagline }}</span>
+</div>
+<nav>
+  <ul>
+    <li>Blog</li>
+    <li>About</li>
+    <li>Contact</li>
+  </ul>
+</nav>
+
+{% for post in site.posts %}
+  {% include article_small.html %}
+{% endfor %}

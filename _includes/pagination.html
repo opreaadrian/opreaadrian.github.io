@@ -1,0 +1,8 @@
+<div role="navigation">
+  {% if page.previous.url %}
+  <a href="{{ site.baseurl }}{{ page.previous.url }}" role="prev">&laquo; {{ page.previous.title }}</a>
+  {% endif %}
+  {% if page.next.url %}
+  <a href="{{ site.baseurl }}{{ page.next.url }}" role="next">{{ page.next.title }} &raquo;</a>
+  {% endif %}
+</div>

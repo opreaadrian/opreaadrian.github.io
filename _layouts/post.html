@@ -2,11 +2,17 @@
   <meta itemprop="datePublished" content="{{ page.pub_date | date_to_xmlschema}}">
   <meta itemprop="dateModified" content="{{page.last_modified | date_to_xmlschema}}">
   <meta itemprop="keywords" content="{{ page.keywords }}">
+  <meta itemprop="author" content="{{ page.author }}">
   {% if page.lang %}
     <meta itemprop="inLanguage" content="{{ page.lang }}">
   {% else %}
     <meta itemprop="inLanguage" content="en_US">
   {% endif %}
+
+  <!-- DIVERSITY IS KEY -->
+  <span itemprop="audience" itemscope itemtype="http://schema.org/PeopleAudience">
+      <meta itemprop="gender" content="any">
+  </span>
 
   <h1 itemprop="headline">{{ page.title }}</h1>
   <time itemProp="datePublished" datetime="{{  page.pub_date | date_to_xmlschema }}">{{ page.pub_date | date_to_string }}</time>
@@ -16,6 +22,7 @@
   </main>
 
   <footer>
+    {% include pagination.html %}
     {% include share_this.html %}
     {% include disqus.html %}
   </footer>
