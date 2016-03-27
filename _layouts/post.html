@@ -22,7 +22,7 @@ layout: default
   </span>
   <header>
     <h1 itemprop="headline">{{ page.title }}</h1>
-    <time itemProp="datePublished" datetime="{{  page.pub_date | date_to_xmlschema }}">{{ page.pub_date | date_to_string }}</time>
+    {% include article_full/article_info.html %}
   </header>
 
   <main itemprop="articleBody">

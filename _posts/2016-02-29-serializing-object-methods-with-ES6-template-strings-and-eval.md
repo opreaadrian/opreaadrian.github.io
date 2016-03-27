@@ -1,9 +1,11 @@
 ---
 layout: post
-title: "Serializing object methods using ES6 template strings and eval"
+title: "Serializing object methods using <strong>ES6</strong> template strings and <strong>eval</strong>"
 pub_date: 2016-02-29 02:30:00 PM
 last_modified: 2016-03-01 11:00:00 AM
-categories: javascript
+categories:
+  - javascript
+  - experiments
 published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
@@ -69,7 +71,7 @@ intermediary data format and turn it back into its original form, so you can
 manipulate it and use it in your application.  
 Now, with theory out of the way, let's get to the code.
 
-## Object serialization and the `replacer` function
+## Object serialization and the __replacer__ function
 
 Based on the knowledge we have at this point, we can now demonstrate how exactly 
 serialization works, so let's take an object, run it through `JSON.stringify` 

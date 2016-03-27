@@ -1,6 +1,7 @@
 .article-small {
-  width: 50%;
+  max-width: 56.625em;
   margin: 3.125em auto;
+  padding: 0 2.2222222222em;
 }
 
 .article-small h2 {
@@ -20,7 +21,7 @@
 }
 
 .article-small h2:hover strong {
-  background-color: tomato;
+  background-color: hsl(32.43, 100%, 46.08%);
   color: white;
 }
 
@@ -29,3 +30,13 @@
   font-weight: 300;
 }
 
+.article-small main a,
+.article-small footer a {
+  text-decoration: none;
+  border-bottom: 1px dotted hsla(185.92, 77.17%, 36.08%, 1);
+}
+
+.article-small footer a:hover,
+.article-small main a:hover {
+  border-bottom-style: solid;
+}
