@@ -14,6 +14,10 @@ author:
   email: "adrian@codesi.nz"
   uri: "https://ro.linkedin.com/in/opreageorgeadrian"
 
+sass:
+  sass_dir: _sass
+  style: compressed
+
 gems :
     - jekyll-sitemap
     - jekyll-feed

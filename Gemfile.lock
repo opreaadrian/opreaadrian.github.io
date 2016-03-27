@@ -9,7 +9,6 @@ GEM
     jekyll-gist (1.4.0)
       octokit (~> 4.2)
     jekyll-sitemap (0.10.0)
-    jekyll-timeago (0.8.2)
     jekyll-watch (1.3.1)
       listen (~> 3.0)
     kramdown (1.9.0)
@@ -35,7 +34,6 @@ DEPENDENCIES
   jekyll-feed
   jekyll-gist
   jekyll-sitemap
-  jekyll-timeago
   jekyll-watch
   kramdown
   redcarpet

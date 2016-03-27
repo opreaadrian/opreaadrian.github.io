@@ -1,4 +1,11 @@
-<article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+---
+layout: default
+---
+
+<article class="article-full" itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+  <style>
+    {% include article_full/style.css %}
+  </style>
   <meta itemprop="datePublished" content="{{ page.pub_date | date_to_xmlschema}}">
   <meta itemprop="dateModified" content="{{page.last_modified | date_to_xmlschema}}">
   <meta itemprop="keywords" content="{{ page.keywords }}">
@@ -13,17 +20,18 @@
   <span itemprop="audience" itemscope itemtype="http://schema.org/PeopleAudience">
       <meta itemprop="gender" content="any">
   </span>
+  <header>
+    <h1 itemprop="headline">{{ page.title }}</h1>
+    <time itemProp="datePublished" datetime="{{  page.pub_date | date_to_xmlschema }}">{{ page.pub_date | date_to_string }}</time>
+  </header>
 
-  <h1 itemprop="headline">{{ page.title }}</h1>
-  <time itemProp="datePublished" datetime="{{  page.pub_date | date_to_xmlschema }}">{{ page.pub_date | date_to_string }}</time>
-
-   <main itemprop="articleBody">
+  <main itemprop="articleBody">
     {{ content }}
   </main>
 
   <footer>
-    {% include pagination.html %}
-    {% include share_this.html %}
-    {% include disqus.html %}
+    {% include article_full/pagination.html %}
+    {% include article_full/share_this.html %}
+    {% include article_full/disqus.html %}
   </footer>
 </article>

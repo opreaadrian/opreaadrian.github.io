@@ -1,0 +1,31 @@
+.article-small {
+  width: 50%;
+  margin: 3.125em auto;
+}
+
+.article-small h2 {
+  font-size: 2.5em;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.article-small h2 a {
+  text-decoration: none;
+  color: #585858;
+}
+
+.article-small h2 strong {
+  transition: all .3s ease;
+  transition-property: background-color, color;
+}
+
+.article-small h2:hover strong {
+  background-color: tomato;
+  color: white;
+}
+
+.article-small main {
+  font-size: 1.125em;
+  font-weight: 300;
+}
+

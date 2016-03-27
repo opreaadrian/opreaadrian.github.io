@@ -1,0 +1,51 @@
+.article-full {
+  margin: auto;
+}
+
+.article-full header {
+  background-color: black;
+  padding: 3.125em 0 15.625em;
+}
+
+.article-full h1 {
+  color: white;
+  font-size: 5em;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: center;
+  margin: auto;
+  width: 50%;
+}
+
+.article-full h1 strong {
+  transition: all .3s ease;
+  transition-property: background-color, color;
+}
+
+.article-full h1:hover strong {
+  background-color: tomato;
+  color: white;
+}
+
+.article-full h2 {
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.article-full main {
+  max-width: 37.75em;
+  padding: 0 1.6666666667em;
+  margin: auto;
+}
+
+.article-full main {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.article-full footer {
+  font-size: 1.5em;
+  max-width: 37.75em;
+  margin: auto;
+}
+

@@ -15,9 +15,9 @@
   {% feed_meta %}
 
   {% if page.title %}
-    {% include article_page_meta.html %}
+    {% include global/article_page_meta.html %}
   {% else %}
-    {% include standard_page_meta.html %}
+    {% include global/standard_page_meta.html %}
   {% endif %}
 
 
@@ -27,7 +27,12 @@
   {% endif %}
 
 
-  {% include stylesheets.html %}
-  {% include https_redirect.html %}
+  {% include global/stylesheets.html %}
+  {% include global/https_redirect.html %}
+
+  <style>
+    {% include global/main.css %}
+  </style>
+
 </head>
 <body>

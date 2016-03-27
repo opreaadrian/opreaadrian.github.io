@@ -1,0 +1,44 @@
+<article class="article-small" itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+
+  <style>
+    {% include article_small/style.css %}
+  </style>
+
+  <meta itemprop="datePublished" content="{{ post.date | date_to_xmlschema}}">
+  <meta itemprop="dateModified" content="{{ post.last_modified | date_to_xmlschema}}">
+  <meta itemprop="keywords" content="{{ post.keywords }}">
+  {% if post.lang %}
+    <meta itemprop="inLanguage" content="{{ post.lang }}">
+  {% else %}
+    <meta itemprop="inLanguage" content="en_US">
+  {% endif %}
+
+  <!-- DIVERSITY IS KEY -->
+  <span itemprop="audience" itemscope itemtype="http://schema.org/PeopleAudience">
+      <meta itemprop="gender" content="any">
+  </span>
+
+  <header>
+
+      <h2 itemprop="headline">
+        <a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title }}">
+          {{ post.title }}
+        </a>
+      </h2>
+    </header>
+
+   <main itemprop="articleBody">
+    {{ post.excerpt }}
+  </main>
+
+  <footer>
+    <!-- <a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title }}">Read more</a> -->
+      By <a rel="author" itemprop="author" href="//twitter.com/{{ post.twitter }}" title="{{ post.author }}'s twitter feed">
+        {{ post.author }}
+      </a>
+      on
+      <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date_to_string }}
+      </time>
+  </footer>
+</article>
