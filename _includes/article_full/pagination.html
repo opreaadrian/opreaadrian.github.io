@@ -1,8 +1,11 @@
-<div role="navigation">
+<div class="pagination" role="navigation">
+  <style>
+    {% include article_full/pagination.css %}
+  </style>
   {% if page.previous.url %}
-  <a href="{{ site.baseurl }}{{ page.previous.url }}" role="prev">&laquo; {{ page.previous.title }}</a>
+  <a href="{{ site.baseurl }}{{ page.previous.url }}" role="prev">&laquo; {{ page.previous.title | truncate:60 }}</a>
   {% endif %}
   {% if page.next.url %}
-  <a href="{{ site.baseurl }}{{ page.next.url }}" role="next">{{ page.next.title }} &raquo;</a>
+  <a href="{{ site.baseurl }}{{ page.next.url }}" role="next">{{ page.next.title | truncate:60 }} &raquo;</a>
   {% endif %}
 </div>
