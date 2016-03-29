@@ -19,7 +19,7 @@ a {
 
 blockquote {
   background: #eee;
-  margin: 0 0 0 40px;
+  margin: 0;
   border-left: 10px solid #ccc;
-  padding: 10px 40px;
+  padding: 5px 40px;
 }
