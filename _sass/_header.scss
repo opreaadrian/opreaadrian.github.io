@@ -4,13 +4,13 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: hsla(0, 0%, 0%, 1);
+  background-color: $black;
   /* opacity: 0.9; */
   color: white;
 }
 
 .header a {
-  color: white;
+  color: $white;
 }
 .branding {
   text-align: left;
@@ -41,19 +41,13 @@
 }
 
 .navigation ul li:hover a {
-  background-color: hsla(32.43, 100%, 46.08%, 1);
+  background-color: $accent-color;
 }
 
 .navigation ul li a {
   text-decoration: none;
   font-weight: 600;
-  font-family: 'Lato', sans-serif;
+  font-family: $heading-font;
   padding: 0.625em;
-}
-
-.navigation ul li a {
-  text-decoration: none;
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 1.125em;
+  // font-size: 1.125em;
 }

@@ -1,21 +1,23 @@
+// $max-width: 37.75em;
+// $full-width: 50%;
+/* padding: 3.125em 0; */
+/* padding: 3.125em 0 15.625em; */
+
 .article-full {
   margin: auto;
 }
 
 .article-full header {
   background-color: black;
-  padding: 3.125em 0;
-  /* padding: 3.125em 0 15.625em; */
 }
 
 .article-full h1 {
   color: white;
-  font-size: 5em;
+  font-size: 2em;
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
-  margin: auto;
-  width: 50%;
+  width: 100%
 }
 
 .article-full h1 strong {
@@ -34,7 +36,6 @@
 }
 
 .article-full main {
-  max-width: 37.75em;
   padding: 0 1.6666666667em;
   margin: auto;
 }
@@ -97,4 +98,11 @@ a.article-author-image:hover {
 .categories-list {
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.article-full blockquote {
+  background: $light-gray;
+  margin: 0;
+  border-left: 10px solid darken($light-gray, 12%);
+  padding: 5px 40px;
 }

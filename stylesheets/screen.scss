@@ -3,29 +3,8 @@
 ---
 
 @import "variables";
-
-body {
-  font-family: 'Open Sans', Helvetica, sans-serif;
-  color: #3e3e3e;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lato', sans-serif;
-}
-
-a {
-  color: hsla(185.92, 77.17%, 36.08%, 1);
-}
-
-::selection {
-  background-color: #e92c6c;
-  background-color: hsla(339.68, 81.12%, 54.31%, 1);
-  color: hsla(0, 0%, 100%, 1);
-}
-
-blockquote {
-  background: #eee;
-  margin: 0;
-  border-left: 10px solid #ccc;
-  padding: 5px 40px;
-}
+@import "main";
+@import "header";
+@import "article_small";
+@import "article_full";
+@import "pagination";

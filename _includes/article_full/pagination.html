@@ -1,7 +1,4 @@
 <div class="pagination" role="navigation">
-  <style>
-    {% include article_full/pagination.css %}
-  </style>
   {% if page.previous.url %}
   <a href="{{ site.baseurl }}{{ page.previous.url }}" role="prev">&laquo; {{ page.previous.title | truncate:60 }}</a>
   {% endif %}
