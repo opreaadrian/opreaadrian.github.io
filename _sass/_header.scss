@@ -1,9 +1,11 @@
 .header {
-  padding: 1.875em 3.75em;
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: (30/16) * 1em;
   background-color: $black;
   /* opacity: 0.9; */
   color: white;
@@ -40,6 +42,7 @@
   margin: 0.625em;
 }
 
+.navigation ul li.active a,
 .navigation ul li:hover a {
   background-color: $accent-color;
 }
