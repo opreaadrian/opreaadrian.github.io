@@ -14,6 +14,14 @@ author:
   email: "adrian@codesi.nz"
   uri: "https://ro.linkedin.com/in/opreageorgeadrian"
 
+defaults:
+-
+  scope:
+    path: "" # an empty string here means all files in the project
+    type: "posts" # previously `post` in Jekyll 2.2.
+  values:
+    is_post: true
+
 sass:
   sass_dir: _sass
   style: compressed
