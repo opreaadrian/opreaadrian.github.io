@@ -10,3 +10,8 @@ $selection-color: hsla(339.7, 81.1%, 54.3%, 1);
 /* FONTS */
 $body-font: 'Open Sans', Helvetica, sans-serif;
 $heading-font: 'Lato', sans-serif;
+
+/* SIZES */
+$full-width: 50%;
+$max-width: (900/18) * 1em;
+$full-padding: ((50/38) * 1em) 0 ((250/38) * 1em);
