@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Serializing object methods using <strong>ES6</strong> template strings and <strong>eval</strong>"
+title: "Serializing object methods using ES6 template strings and eval"
 pub_date: 2016-02-29 02:30:00 PM
 last_modified: 2016-03-01 11:00:00 AM
 categories:
