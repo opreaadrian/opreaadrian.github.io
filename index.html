@@ -2,5 +2,9 @@
 layout: default
 ---
 {% for post in site.posts %}
+  {% if forloop.index == 1 %}
+  {% include article_featured/template.html %}
+  {% else %}
   {% include article_small/template.html %}
+  {% endif %}
 {% endfor %}
