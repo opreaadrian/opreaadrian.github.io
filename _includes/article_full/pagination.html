@@ -1,8 +1,8 @@
 <div class="pagination" role="navigation">
   {% if page.previous.url %}
-  <a href="{{ site.baseurl }}{{ page.previous.url }}" role="prev">&laquo; {{ page.previous.title | truncate:60 }}</a>
+  <a href="{{ site.baseurl }}{{ page.previous.url }}" title="Previous article: {{ page.title }}" role="prev">&larr; {{ page.previous.title | truncate:60 }}</a>
   {% endif %}
   {% if page.next.url %}
-  <a href="{{ site.baseurl }}{{ page.next.url }}" role="next">{{ page.next.title | truncate:60 }} &raquo;</a>
+  <a href="{{ site.baseurl }}{{ page.next.url }}" title="Next article: {{ page.title }}" role="next">{{ page.next.title | truncate:60 }} &rarr;</a>
   {% endif %}
 </div>

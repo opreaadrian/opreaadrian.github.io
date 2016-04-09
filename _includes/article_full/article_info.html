@@ -1,7 +1,7 @@
-<div class="article-info">
+<div class="article-info article-info--delimited">
   <div class="article-info-inner">
-    <a class="article-author-image" href="/about" title="About the author: {{ page.author }}">
-      <img src="/images/assets/adrian_oprea.png" alt="Author image: {{ page.author }}">
+    <a class="article-info__author-profile" href="/about" title="About the author: {{ page.author }}">
+      <img class="article-info__author-image" src="/images/assets/adrian_oprea.png" alt="Author image: {{ page.author }}">
     </a>
     <p>
     {{ page.author }} on <time itemProp="datePublished" datetime="{{  page.pub_date | date_to_xmlschema }}">{{ page.pub_date | date_to_string }}</time><br>
@@ -9,7 +9,7 @@
     Published in 
     <span class="categories-list">
       {% for category in page.categories %}
-      #{{ category }}
+      <span class="categories-list-item">{{ category }}</span>
       {% endfor %}
     </span>
     {% endif %}

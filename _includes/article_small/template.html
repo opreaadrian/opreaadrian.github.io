@@ -16,7 +16,7 @@
   <header>
 
       <h2 itemprop="headline">
-        <a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title }}">
+        <a href="{{ site.baseurl }}{{ post.url }}" title="Article: {{ post.title | strip_html }}">
           {{ post.title | strip_html }}
         </a>
       </h2>

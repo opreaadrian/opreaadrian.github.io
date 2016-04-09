@@ -5,23 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% if page.title %}
-    <title>{{ page.title }}</title>
+  {% if page.is_post %}
+  <title>{{ page.title }}</title>
+  <meta name="keywords" content="{{ page.keywords }}">
+  <meta name="author" itemprop="creator" content="{{ page.author }}">
+  {% include global/article_page_meta.html %}
   {% else %}
-    <title>{{ site.name }}</title>
-  {% endif %}
-
+  <title>{{ site.name }}</title>
   <meta name="keywords" content="{{ site.keywords }}">
-  <meta name="author" itemprop="creator" content="{{ author.name }}">
+  <meta name="author" itemprop="creator" content="{{ site.author.name }}">
+  {% include global/standard_page_meta.html %}
+  {% endif %}
 
   {% feed_meta %}
-
-  {% if page.title %}
-    {% include global/article_page_meta.html %}
-  {% else %}
-    {% include global/standard_page_meta.html %}
-  {% endif %}
-
 
   {% if site.google.googleplus %}
     <link rel="author" href="https://plus.google.com/{{ site.google.googleplus }}/">
