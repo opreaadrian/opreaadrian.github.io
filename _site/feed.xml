@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-04-21T18:25:55+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-04-21T19:06:02+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
 the difference between writing an elegant, easy to reason about application, 
 and a crude hack. As far as my experience goes, only a small number of developers 
 I’ve talked to in the past year or so, know how to write a vanilla 
@@ -451,11 +451,10 @@ Today I’m going share with you which are my favorite podcasts, but before we g
 
 &lt;p&gt;Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;// blah&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;At that exact moment, I immediately close any open tabs with that material and hate the Interwebs for being that dumb.&lt;/p&gt;
 
 &lt;p&gt;Bottom line, content creators, please take best practices into account when authoring for tech people or you’ll lose them. Better yet, take best practices into account when catering towards aspiring tech people, because at some point, you’ll end up working with “your creation”, and it won’t be pretty.&lt;/p&gt;
@@ -485,27 +484,23 @@ items through indexes numbered from &lt;code class=&quot;highlighter-rouge&quot;
 Basically, if you have an array like the one below, its length is 5 and the index of the last item
 is 4, as index numbering starts from &lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[0] =&amp;gt; a&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[1] =&amp;gt; b&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[2] =&amp;gt; c&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// arr[3] =&amp;gt; d&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// arr[4] =&amp;gt; e&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;span class=&quot;c1&quot;&gt;// arr[4] =&amp;gt; e&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Back to the shopping list analogy, your array of things to buy, would look like below:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
 	&lt;span class=&quot;s2&quot;&gt;&quot;carrots&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 	&lt;span class=&quot;s2&quot;&gt;&quot;onions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 	&lt;span class=&quot;s2&quot;&gt;&quot;apples&quot;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// shoppingList[0] =&amp;gt; carrots&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// shoppingList[1] =&amp;gt; onions&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// shoppingList[2] =&amp;gt; apples&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;span class=&quot;c1&quot;&gt;// shoppingList[2] =&amp;gt; apples&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;There’s one more thing you need to know before we end for the day and that is the &lt;code class=&quot;highlighter-rouge&quot;&gt;length&lt;/code&gt; property
 of an array. Every time you query for the &lt;code class=&quot;highlighter-rouge&quot;&gt;length&lt;/code&gt; property of an array, you will get the exact
@@ -513,9 +508,7 @@ number of items it holds.&lt;br /&gt;
 Going back to our shopping list, let’s see how many items do we need to
 buy:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 3&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; 3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Next, we will learn how to perform classic iteration on arrays, and also familiarize ourselves with
 our first &lt;code class=&quot;highlighter-rouge&quot;&gt;Array&lt;/code&gt; method, &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.prototype.forEach&lt;/code&gt;.&lt;/p&gt;
@@ -596,22 +589,24 @@ by issuing another command at your terminal prompt: &lt;code class=&quot;highlig
 &lt;p&gt;All you have to do now is to start the proxy server, and set your machine’s local IP
 (192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Start the proxy server on port 7654&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mitmproxy -p 7654
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;After starting the proxy server go to your phone’s wireless network settings, and add your 
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
+# Start the proxy server on port 7654
+$ mitmproxy -p 7654
+&lt;/code&gt;
+After starting the proxy server go to your phone’s wireless network settings, and add your 
 computer’s ip as an HTTP proxy that every connection on your phone goes through.&lt;br /&gt;
 Note that the phone and the computer need to be on the same network, or otherwise you will need to
 get the public IP that your computer uses when it accesses the Internet.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# UNIX - Get your computer&#39;s router-assigned IP (see image below)&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ifconfig -a | grep inet
+&lt;p&gt;```bash
+# UNIX - Get your computer’s router-assigned IP (see image below)
+$ ifconfig -a | grep inet&lt;/p&gt;
 
-&lt;span class=&quot;c&quot;&gt;# Windows - Get the network configuration for all interfaces&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;&amp;gt; &lt;/span&gt;ipconfig /all
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;h1 id=&quot;windows---get-the-network-configuration-for-all-interfaces&quot;&gt;Windows - Get the network configuration for all interfaces&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;ipconfig /all
+```&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;figure&gt;
 &lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png&quot; alt=&quot;Image of the output of the ifconfig
@@ -698,12 +693,11 @@ messing up with the whole infrastructure.&lt;/p&gt;
 &lt;p&gt;So for a config file like the one below, placed in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Documents/projects/webapp&lt;/code&gt;, your 
 container would be named &lt;code class=&quot;highlighter-rouge&quot;&gt;webapp_nginx_1&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-YAML&quot;&gt;nginx:
-	image: nginx
-	ports:
-		- &quot;80:80&quot;
-		- &quot;443:443&quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;80:80&quot;&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;443:443&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;/h2&gt;
 &lt;p&gt;No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
@@ -723,9 +717,7 @@ so I could take out the underscores and dashes from the filename.&lt;/p&gt;
 
 &lt;p&gt;The final version of my code looks just like the snippet below:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;CONTAINER_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PWD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;_nginx_1 | sed s&lt;span class=&quot;s1&quot;&gt;&#39;/[ -]/_/g&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;CONTAINER_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PWD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;_nginx_1 | sed s&lt;span class=&quot;s1&quot;&gt;&#39;/[ -]/_/g&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Now I can manipulate containers from any bash script, as long as I can get my hands on the &lt;code class=&quot;highlighter-rouge&quot;&gt;$PWD&lt;/code&gt;
 and as long as I know the names they get in the &lt;code class=&quot;highlighter-rouge&quot;&gt;YAML&lt;/code&gt; config file.&lt;/p&gt;
@@ -812,11 +804,9 @@ next is to comment out the line that halts the  installation until it gets a key
 &lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS&lt;/code&gt; script. For this matter in particular, you will need to use 
 &lt;a href=&quot;https://www.gnu.org/software/sed/manual/sed.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;&lt;/a&gt;, just like in the snippet below.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ams_setup_directory
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ams_setup_directory
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rm -Rf License.txt
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
 you have to provide various answers to the installer. This is where the second problem appears, as 
@@ -831,7 +821,7 @@ manually go through the setup, while writing down each answer you put in (includ
 At the end of the setup you will have something looking like the snippet below 
 (whitespace is relevant):&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# begin input file&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# begin input file&lt;/span&gt;
       
 n
 /opt/adobe/ams 
@@ -852,13 +842,11 @@ n
 y
       
      
-&lt;span class=&quot;c&quot;&gt;# end input file&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;span class=&quot;c&quot;&gt;# end input file&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;that you can validate against AMS’s “Install Action Summary”, outlined below:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------- Install Action Summary -----------
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;----------- Install Action Summary -----------
 
 Installation directory         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /opt/adobe/ams
 
@@ -877,9 +865,7 @@ service owner                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; am
 service user                   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
 service group                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
 
-Run as daemon                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+Run as daemon                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
 of your container, and simply &lt;code class=&quot;highlighter-rouge&quot;&gt;pipe&lt;/code&gt; it through &lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS&lt;/code&gt;. I would recommend naming the file 
@@ -892,7 +878,7 @@ the afore-mentioned setup, and with a bit more effort, to have a fully isolated 
 install, easily reproducible from version control.&lt;br /&gt;
 Your &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; will probably look like the one below, with minor tweaks based on your needs:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM centos:6
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM centos:6
 MAINTAINER Adrian Oprea&amp;lt;adrian@codesi.nz&amp;gt;
 
 RUN rpm --import https://getfedora.org/static/0608B895.txt
@@ -923,9 +909,7 @@ VOLUME &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quo
 
 EXPOSE 80 443 1111 1935
 
-CMD &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/supervisord&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+CMD &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/supervisord&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
 connection, and a ready-made configuration for &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; is available on 

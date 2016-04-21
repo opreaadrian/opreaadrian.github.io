@@ -27,7 +27,7 @@ Knowing this, I would rely on a trick I presented in
 [Short tip: viewing and resolving svn conflicts in the terminal](https://codesi.nz/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal/), 
 namely, I would take the filenames from `svn status`, and upload them one by one &mdash; talk about thinking like a programmer. The result is in the snippet below.
 
-```bash
+{% highlight bash %}
 function scpsync() {
     local changed_files=$(svn status | awk '{print $2}')
     echo "Syncing $changed_files\n"
@@ -36,7 +36,7 @@ function scpsync() {
     done
     echo "Sync done\n"
 }
-```
+{% endhighlight %}
 
 Now, everything looked fine but I started hating it when I read the code out loud.
 I had a function that would upload all my SVN modified files…every damn time!
@@ -52,11 +52,11 @@ At that moment I had the epiphany! That was the tool that I used in the past and
 I'm writing this article to both share the solution with the Vim users going through the same pain I went to, and to thank Alex for being a walking encyclopedia.  
 The solution is outlined below, and it can be used directly from within Vim by issuing the following command in the Vim command line &mdash; `:!syncremote . user@ip:/remote/path`
 
-```bash
+{% highlight bash %}
 syncremote () {
   rsync -WavP --human-readable --progress $1 $2
 }
-```
+{% endhighlight %}
 
 Cheers, and happy hacking!
 

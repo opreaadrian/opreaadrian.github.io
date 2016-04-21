@@ -54,7 +54,7 @@ custom commands/mappings, the way you do in Vim, for example.
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -153,16 +153,14 @@ Knowing this, I would rely on a trick I presented in
 <a href="https://codesi.nz/short-tip-viewing-and-resolving-svn-conflicts-in-the-terminal/">Short tip: viewing and resolving svn conflicts in the terminal</a>, 
 namely, I would take the filenames from <code class="highlighter-rouge">svn status</code>, and upload them one by one — talk about thinking like a programmer. The result is in the snippet below.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">function </span>scpsync<span class="o">()</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">function </span>scpsync<span class="o">()</span> <span class="o">{</span>
     <span class="nb">local </span><span class="nv">changed_files</span><span class="o">=</span><span class="k">$(</span>svn status | awk <span class="s1">'{print $2}'</span><span class="k">)</span>
     <span class="nb">echo</span> <span class="s2">"Syncing </span><span class="nv">$changed_files</span><span class="se">\n</span><span class="s2">"</span>
     <span class="k">for </span>file <span class="k">in</span> <span class="nv">$changed_files</span>; <span class="k">do
         </span>scp <span class="nv">$file</span> goprea@<span class="nv">$1</span>:/<span class="nv">$2</span>/<span class="nv">$file</span>
     <span class="k">done
     </span><span class="nb">echo</span> <span class="s2">"Sync done</span><span class="se">\n</span><span class="s2">"</span>
-<span class="o">}</span>
-</code></pre>
-</div>
+<span class="o">}</span></code></pre></figure>
 
 <p>Now, everything looked fine but I started hating it when I read the code out loud.
 I had a function that would upload all my SVN modified files…every damn time!
@@ -178,11 +176,9 @@ At that moment I had the epiphany! That was the tool that I used in the past and
 I’m writing this article to both share the solution with the Vim users going through the same pain I went to, and to thank Alex for being a walking encyclopedia.<br />
 The solution is outlined below, and it can be used directly from within Vim by issuing the following command in the Vim command line — <code class="highlighter-rouge">:!syncremote . user@ip:/remote/path</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>syncremote <span class="o">()</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">syncremote <span class="o">()</span> <span class="o">{</span>
   rsync -WavP --human-readable --progress <span class="nv">$1</span> <span class="nv">$2</span>
-<span class="o">}</span>
-</code></pre>
-</div>
+<span class="o">}</span></code></pre></figure>
 
 <p>Cheers, and happy hacking!</p>
 

@@ -39,7 +39,7 @@ I’m not a huge fan of compiled languages, and after college I was really reluc
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -139,14 +139,12 @@ But given the fact that I work for a company that heavily manipulates sensitive 
 With this out of the way, my thoughts went to all those tens of thousands of lines of code, and how they will fit nicely into their own packages, until I realised that for each of these packages I have to create the folder structure,
 <code class="highlighter-rouge">touch</code> the JavaScript files, create the <code class="highlighter-rouge">package.json</code>, all of these BY HAND and without a solid understanding on what are the best practices in terms of directory structure. So I started to investigate the way popular npm packages are structured, and for this I took the top 6 packages on <a href="http://npmjs.com">npmjs.com</a> – <a href="https://www.npmjs.com/packages/browserify">browserify</a>, <a href="https://www.npmjs.com/packages/express">express</a>, <a href="https://www.npmjs.com/packages/pm2">pm2</a>, <a href="https://www.npmjs.com/packages/grunt-cli">grunt-cli</a>, <a href="https://www.npmjs.com/packages/npm">npm</a>, <a href="https://www.npmjs.com/packages/karma">karma</a> – and tried to spot patterns in their structure, and I found that the most commonly used directory structure is the following:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    package/
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    package/
         bin/
         doc/
         examples/
         lib/
-        test/
-</code></pre>
-</div>
+        <span class="nb">test</span>/</code></pre></figure>
 
 <p>so I made <a href="https://www.npmjs.com/package/packo">packo</a> create this exact directory structure.<br />
 I also added preference files for various tools, but this was more of a personal touch, as I use <a href="http://editorconfig.org/">EditorConfig</a> to have an uniform editor/IDE configuration accross platforms and machines, and I also like to validate my code using <a href="http://jshint.com/">JSHint</a> as it is more relaxed, and less opinionated than other tools out there.</p>
@@ -157,29 +155,27 @@ I also added preference files for various tools, but this was more of a personal
 
 <p>After npm has finished installing it, you’re ready to scaffold your first package, so navigate to your <code class="highlighter-rouge">Projects/</code> folder and run the following command:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    $ packo create awesome-package
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ </span>packo create awesome-package
     This utility will walk you through creating a package.json file.
     It only covers the most common items, and tries to guess sane defaults.
 
-    See `npm help json` for definitive documentation on these fields
-    and exactly what they do.
+    See <span class="sb">`</span>npm <span class="nb">help </span>json<span class="sb">`</span> <span class="k">for </span>definitive documentation on these fields
+    and exactly what they <span class="k">do</span>.
 
-    Use `npm install &lt;pkg&gt; --save` afterwards to install a package and
-    save it as a dependency in the package.json file.
+    Use <span class="sb">`</span>npm install &lt;pkg&gt; --save<span class="sb">`</span> afterwards to install a package and
+    save it as a dependency <span class="k">in </span>the package.json file.
 
-    Press ^C at any time to quit.
-    name: (awesome-package)
-    version: (1.0.0)
+    Press ^C at any <span class="nb">time </span>to quit.
+    name: <span class="o">(</span>awesome-package<span class="o">)</span>
+    version: <span class="o">(</span>1.0.0<span class="o">)</span>
     description: Npm package authoring just got better!
-    entry point: (index.js)
-    test command: npm test
-    git repository:
+    entry point: <span class="o">(</span>index.js<span class="o">)</span>
+    <span class="nb">test command</span>: npm <span class="nb">test
+    </span>git repository:
     keywords: scaffolding, node_modules
     author: Adrian Oprea
-    license: (ISC) MIT
-    About to write to /Users/adrianoprea/Projects/awesome-package/package.json:
-</code></pre>
-</div>
+    license: <span class="o">(</span>ISC<span class="o">)</span> MIT
+    About to write to /Users/adrianoprea/Projects/awesome-package/package.json:</code></pre></figure>
 
 <p>After this message, if you hit <code class="highlighter-rouge">RETURN</code>, <code class="highlighter-rouge">package.json</code> will be generated and you’re all done, your package is available in the <code class="highlighter-rouge">awesome-package</code> directory.</p>
 
@@ -191,19 +187,17 @@ I also added preference files for various tools, but this was more of a personal
 
 <p><a href="https://www.npmjs.com/package/packo">packo</a> just got better! It now has a new subcommand – <code class="highlighter-rouge">packo module</code> – which allows developers to add library files along with their respective spec file to the package they’re currently working on.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    adrianoprea at mothership in ~/awesome-package
-    $ packo module dataReader
-    Successfully created lib/dataReader.js module and test/dataReader_spec.js.
-    adrianoprea at mothership in ~/awesome-package
-    $ ls test/
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    adrianoprea at mothership <span class="k">in</span> ~/awesome-package
+    <span class="nv">$ </span>packo module dataReader
+    Successfully created lib/dataReader.js module and <span class="nb">test</span>/dataReader_spec.js.
+    adrianoprea at mothership <span class="k">in</span> ~/awesome-package
+    <span class="nv">$ </span>ls <span class="nb">test</span>/
     dataReader_spec.js
-    adrianoprea at mothership in ~/awesome-package
-    $ ls lib/
+    adrianoprea at mothership <span class="k">in</span> ~/awesome-package
+    <span class="nv">$ </span>ls lib/
     dataReader.js
-    adrianoprea at mothership in ~/awesome-package
-    $ ls -l lib/
-</code></pre>
-</div>
+    adrianoprea at mothership <span class="k">in</span> ~/awesome-package
+    <span class="nv">$ </span>ls -l lib/</code></pre></figure>
 
 <p>Note that in order to use this feature you must be inside of an npm package folder(not necessarily created w/ <code class="highlighter-rouge">packo create</code>).<br />
 It is mandatory for the package to have a <code class="highlighter-rouge">package.json</code> file as packo looks for that specific file in order to know that it is inside a package root file.<br />

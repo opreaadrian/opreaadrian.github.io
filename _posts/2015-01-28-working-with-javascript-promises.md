@@ -20,7 +20,7 @@ With this post I aim to share some of my practices when it comes to working with
 
 In short, a promise object represents a wrapper around that asynchronous operation(which I sometimes call "task"), that at some point might be "resolved" or "rejected" based on whatever the completion of the operation returns. Upon resolution/rejection, the appropriate callback for the promise's resolution state, registered by the `then` method, will be called with the data/rejection reason.
 
-```javascript
+{% highlight javascript %}
 // app.js
 
 // Classic usage of Promises (promise w/ resolver)
@@ -43,12 +43,12 @@ getData.then(function(data) {
     // This is the error callback
     throw new Error(error);
 });
-```
+{% endhighlight %}
 
 Besides the previous pattern, which allows you to USE asynchronous tasks, the most common usage I find with promises is by using deferred objects, that allow you to IMPLEMENT async tasks. In this direction, we can take the example of our `getCustomerDetails` method from the DataService.  
 In order to implement the method to act as a promise, we need our code to look like below:
 
-```javascript
+{% highlight javascript %}
 // dataservice.js
 
 var db = require('./data/dbhandler'),
@@ -79,11 +79,11 @@ DataService.prototype.getCustomerDetails = function(customerID) {
     // Return this so we can do DataService.getCustomerDetails().then(...)
     return deferred.promise;
 }
-```
+{% endhighlight %}
 
 Now, istead of working with promises at our application level, we're moving all the logic related to the DataService in its own, `DataService` module, so our application code now looks like this:
 
-```javascript
+{% highlight javascript %}
 // app.js
 
 DataService
@@ -95,20 +95,20 @@ DataService
     }, function(error) {
         // perform proper error handling
     });
-```
+{% endhighlight %}
 
 ## Proper naming
 > If you can count it, give it a noun for a name!
 
 One of the things that confuse me when I bump into code that uses promises is the naming. 
 
-```javascript
+{% highlight javascript %}
 // badly named variable -- we have a DEFERRED object, not a defer action.
 var defer = Promise.defer();
 
 // Much better
 var deferred = Promise.defer();
-```
+{% endhighlight %}
 
 I'm really into clean, self-explanatory code so snippets like the one above turn my "you-re-not-respecting-the-styleguide" alarm on.
 
@@ -119,7 +119,7 @@ Let's say that you use the `DataService.getCustomerDetails` method, along with a
 After receiving the info, you need to set the data as properties on the `Order` instance. If all you're doing is `this.property = returnedData`, instead of writing 2 separate calls, you can use [`Promise.all()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), and use its `success`/`rejection` callbacks instead of having individual callbacks for each promise.  
 This way, if you would have to add a third promise, and set whatever data it returns on the current order, you only need to write 2 lines of code, instead of approx. 6 lines. I'm suggesting the following structure, that promotes code reuse.
 
-```javascript
+{% highlight javascript %}
 // Note that this will not work currently as support for native Promises in 
 // es6-enabling module loaders/runtimes is not that stable
 import DataService from './dataservice.js'
@@ -138,13 +138,13 @@ class Order {
         });
     }
 }
-```
+{% endhighlight %}
 
 ## `IF error THEN reject`
 
 Just don't do this:
 
-```javascript
+{% highlight javascript %}
 function someAsyncTask(query) {
     var deferred = Promise.defer();
 
@@ -159,11 +159,11 @@ function someAsyncTask(query) {
 
     return deferred.promise;
 }
-```
+{% endhighlight %}
 
 Add a case for rejection and always add use the rejection callback when using promises. Make sure you also add meaningful messaging, especially when dealing with errors/rejections.
 
-```javascript
+{% highlight javascript %}
 function someAsyncTask(query) {
     var deferred = Promise.defer();
 
@@ -182,13 +182,13 @@ function someAsyncTask(query) {
 
     return deferred.promise;
 }
-```
+{% endhighlight %}
 
 ## Don't `resolve` when you should `reject`
 
 You might find yourself in a situation where you're calling an external API, and if that call fails for some reason, you would still like to return some data from the promise, instead of rejecting it and probably making the rest of your code fail. In that situation you probably think the right thing to do is to choose a solution like the one below.
 
-```javascript
+{% highlight javascript %}
 function getOrderDetails(orderID) {
     var deferred = Promise.defer(),
         defaults = {
@@ -217,7 +217,7 @@ getOrderDetails('ABC123')
             // error handling
         }
     })
-```
+{% endhighlight %}
 
 The problem with the code above is that only you know how to call the getOrderDetails function. If another developer has to work with your code 3 months from now, he will probably write the `getOrderDetails` call using both success and rejection callbacks, and will probably spend some time figuring out why somewhere along the road his order `amount` is set to 0. Bottom line, please use resolve/reject thoroughly, as reject doesn't necessarily mean CRASH THE PROCESS, or BLOW UP THE APPLICATION. It's just a way of saying that something failed and you should take an action.
 
@@ -226,7 +226,7 @@ The problem with the code above is that only you know how to call the getOrderDe
 If by any chance you have to implement a method that takes a deferred as an argument and resolves/rejects it based on data resulting from further processing, you have to rely on `if-else`  statements.  
 In this situation, if you're planning to short-circuit the logic, note that `deferred.resolve()` and `deferred.reject()` don't return the control to the caller, so always use `return` after you resolve/reject(depends on your situation) the promise, as without it, the code will continue to run.
 
-```javascript
+{% highlight javascript %}
 function processData(deferred, input)
     somePromiseBasedTask(input, function(err, data) {
         if (err) {
@@ -238,7 +238,7 @@ function processData(deferred, input)
         
     });
 }
-```
+{% endhighlight %}
 
 In the previous code block, if an error occurs and no `return` exists, you will be rejecting the promise as `err == true` and then try to resolve it, as the logic will exit the `if` statement and move further to the `deferred.resolve()` statement, which will result in an error.
 

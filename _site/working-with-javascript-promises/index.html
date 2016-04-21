@@ -39,7 +39,7 @@ With this post I aim to share some of my practices when it comes to working with
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -133,7 +133,7 @@ With this post I aim to share some of my practices when it comes to working with
 
 <p>In short, a promise object represents a wrapper around that asynchronous operation(which I sometimes call “task”), that at some point might be “resolved” or “rejected” based on whatever the completion of the operation returns. Upon resolution/rejection, the appropriate callback for the promise’s resolution state, registered by the <code class="highlighter-rouge">then</code> method, will be called with the data/rejection reason.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// app.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 
 <span class="c1">// Classic usage of Promises (promise w/ resolver)</span>
 <span class="kd">var</span> <span class="nx">getData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
@@ -154,14 +154,12 @@ With this post I aim to share some of my practices when it comes to working with
 <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// This is the error callback</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre>
-</div>
+<span class="p">});</span></code></pre></figure>
 
 <p>Besides the previous pattern, which allows you to USE asynchronous tasks, the most common usage I find with promises is by using deferred objects, that allow you to IMPLEMENT async tasks. In this direction, we can take the example of our <code class="highlighter-rouge">getCustomerDetails</code> method from the DataService.<br />
 In order to implement the method to act as a promise, we need our code to look like below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// dataservice.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// dataservice.js</span>
 
 <span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./data/dbhandler'</span><span class="p">),</span>
     <span class="nx">QUERY_FAILED</span> <span class="o">=</span> <span class="s2">"Database query failed."</span><span class="p">;</span>
@@ -190,13 +188,11 @@ In order to implement the method to act as a promise, we need our code to look l
     
     <span class="c1">// Return this so we can do DataService.getCustomerDetails().then(...)</span>
     <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>Now, istead of working with promises at our application level, we’re moving all the logic related to the DataService in its own, <code class="highlighter-rouge">DataService</code> module, so our application code now looks like this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// app.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// app.js</span>
 
 <span class="nx">DataService</span>
     <span class="p">.</span><span class="nx">getCustomerDetails</span><span class="p">(</span><span class="s1">'11AFFDDDS'</span><span class="p">)</span>
@@ -206,9 +202,7 @@ In order to implement the method to act as a promise, we need our code to look l
         <span class="p">}</span>
     <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// perform proper error handling</span>
-    <span class="p">});</span>
-</code></pre>
-</div>
+    <span class="p">});</span></code></pre></figure>
 
 <h2 id="proper-naming">Proper naming</h2>
 <blockquote>
@@ -217,13 +211,11 @@ In order to implement the method to act as a promise, we need our code to look l
 
 <p>One of the things that confuse me when I bump into code that uses promises is the naming.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// badly named variable -- we have a DEFERRED object, not a defer action.</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// badly named variable -- we have a DEFERRED object, not a defer action.</span>
 <span class="kd">var</span> <span class="nx">defer</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
 
 <span class="c1">// Much better</span>
-<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
-</code></pre>
-</div>
+<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span></code></pre></figure>
 
 <p>I’m really into clean, self-explanatory code so snippets like the one above turn my “you-re-not-respecting-the-styleguide” alarm on.</p>
 
@@ -236,7 +228,7 @@ In order to implement the method to act as a promise, we need our code to look l
 After receiving the info, you need to set the data as properties on the <code class="highlighter-rouge">Order</code> instance. If all you’re doing is <code class="highlighter-rouge">this.property = returnedData</code>, instead of writing 2 separate calls, you can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"><code class="highlighter-rouge">Promise.all()</code></a>, and use its <code class="highlighter-rouge">success</code>/<code class="highlighter-rouge">rejection</code> callbacks instead of having individual callbacks for each promise.<br />
 This way, if you would have to add a third promise, and set whatever data it returns on the current order, you only need to write 2 lines of code, instead of approx. 6 lines. I’m suggesting the following structure, that promotes code reuse.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Note that this will not work currently as support for native Promises in </span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Note that this will not work currently as support for native Promises in </span>
 <span class="c1">// es6-enabling module loaders/runtimes is not that stable</span>
 <span class="kr">import</span> <span class="nx">DataService</span> <span class="nx">from</span> <span class="s1">'./dataservice.js'</span>
 <span class="kr">import</span> <span class="nx">Cart</span> <span class="nx">from</span> <span class="s1">'./cart.js'</span>
@@ -253,15 +245,13 @@ This way, if you would have to add a third promise, and set whatever data it ret
             <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
         <span class="p">});</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <h2 id="if-error-then-reject"><code class="highlighter-rouge">IF error THEN reject</code></h2>
 
 <p>Just don’t do this:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">someAsyncTask</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">someAsyncTask</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
 
     <span class="nx">ExternalService</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
@@ -274,13 +264,11 @@ This way, if you would have to add a third promise, and set whatever data it ret
     <span class="p">});</span>
 
     <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>Add a case for rejection and always add use the rejection callback when using promises. Make sure you also add meaningful messaging, especially when dealing with errors/rejections.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">someAsyncTask</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">someAsyncTask</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
 
     <span class="nx">DataService</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
@@ -297,15 +285,13 @@ This way, if you would have to add a third promise, and set whatever data it ret
     <span class="p">});</span>
 
     <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <h2 id="dont-resolve-when-you-should-reject">Don’t <code class="highlighter-rouge">resolve</code> when you should <code class="highlighter-rouge">reject</code></h2>
 
 <p>You might find yourself in a situation where you’re calling an external API, and if that call fails for some reason, you would still like to return some data from the promise, instead of rejecting it and probably making the rest of your code fail. In that situation you probably think the right thing to do is to choose a solution like the one below.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">getOrderDetails</span><span class="p">(</span><span class="nx">orderID</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getOrderDetails</span><span class="p">(</span><span class="nx">orderID</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">defer</span><span class="p">(),</span>
         <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span>
             <span class="na">orderID</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -332,9 +318,7 @@ This way, if you would have to add a third promise, and set whatever data it ret
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="c1">// error handling</span>
         <span class="p">}</span>
-    <span class="p">})</span>
-</code></pre>
-</div>
+    <span class="p">})</span></code></pre></figure>
 
 <p>The problem with the code above is that only you know how to call the getOrderDetails function. If another developer has to work with your code 3 months from now, he will probably write the <code class="highlighter-rouge">getOrderDetails</code> call using both success and rejection callbacks, and will probably spend some time figuring out why somewhere along the road his order <code class="highlighter-rouge">amount</code> is set to 0. Bottom line, please use resolve/reject thoroughly, as reject doesn’t necessarily mean CRASH THE PROCESS, or BLOW UP THE APPLICATION. It’s just a way of saying that something failed and you should take an action.</p>
 
@@ -343,7 +327,7 @@ This way, if you would have to add a third promise, and set whatever data it ret
 <p>If by any chance you have to implement a method that takes a deferred as an argument and resolves/rejects it based on data resulting from further processing, you have to rely on <code class="highlighter-rouge">if-else</code>  statements.<br />
 In this situation, if you’re planning to short-circuit the logic, note that <code class="highlighter-rouge">deferred.resolve()</code> and <code class="highlighter-rouge">deferred.reject()</code> don’t return the control to the caller, so always use <code class="highlighter-rouge">return</code> after you resolve/reject(depends on your situation) the promise, as without it, the code will continue to run.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">processData</span><span class="p">(</span><span class="nx">deferred</span><span class="p">,</span> <span class="nx">input</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">processData</span><span class="p">(</span><span class="nx">deferred</span><span class="p">,</span> <span class="nx">input</span><span class="p">)</span>
     <span class="nx">somePromiseBasedTask</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
@@ -353,9 +337,7 @@ In this situation, if you’re planning to short-circuit the logic, note that <c
         <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
         
     <span class="p">});</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>In the previous code block, if an error occurs and no <code class="highlighter-rouge">return</code> exists, you will be rejecting the promise as <code class="highlighter-rouge">err == true</code> and then try to resolve it, as the logic will exit the <code class="highlighter-rouge">if</code> statement and move further to the <code class="highlighter-rouge">deferred.resolve()</code> statement, which will result in an error.</p>
 

@@ -42,7 +42,7 @@ or resorting to other, less elegant solutions.
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -189,22 +189,24 @@ by issuing another command at your terminal prompt: <code class="highlighter-rou
 <p>All you have to do now is to start the proxy server, and set your machine’s local IP
 (192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Start the proxy server on port 7654</span>
-<span class="gp">$ </span>mitmproxy -p 7654
-</code></pre>
-</div>
-<p>After starting the proxy server go to your phone’s wireless network settings, and add your 
+<p><code class="highlighter-rouge">bash
+# Start the proxy server on port 7654
+$ mitmproxy -p 7654
+</code>
+After starting the proxy server go to your phone’s wireless network settings, and add your 
 computer’s ip as an HTTP proxy that every connection on your phone goes through.<br />
 Note that the phone and the computer need to be on the same network, or otherwise you will need to
 get the public IP that your computer uses when it accesses the Internet.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># UNIX - Get your computer's router-assigned IP (see image below)</span>
-<span class="gp">$ </span>ifconfig -a | grep inet
+<p>```bash
+# UNIX - Get your computer’s router-assigned IP (see image below)
+$ ifconfig -a | grep inet</p>
 
-<span class="c"># Windows - Get the network configuration for all interfaces</span>
-<span class="gp">&gt; </span>ipconfig /all
-</code></pre>
-</div>
+<h1 id="windows---get-the-network-configuration-for-all-interfaces">Windows - Get the network configuration for all interfaces</h1>
+<blockquote>
+  <p>ipconfig /all
+```</p>
+</blockquote>
 
 <figure>
 <img src="/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png" alt="Image of the output of the ifconfig

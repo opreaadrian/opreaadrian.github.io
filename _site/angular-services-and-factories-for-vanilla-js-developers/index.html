@@ -36,7 +36,7 @@
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -128,7 +128,7 @@
 
 <p>Not too shabby, huh? But not too explicit either. What I like to say is that you can <code class="highlighter-rouge">new</code> angular services. Basically if you think you need a class, then you probably need a service.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myService.js]</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myService.js]</span>
 <span class="kd">function</span> <span class="nx">MyService</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">doStuff</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stuff</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// I'm doing something with stuff</span>
@@ -148,13 +148,11 @@
 <span class="kd">function</span> <span class="nx">iMusingTheModuleFrommyService</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">moreStuff</span> <span class="o">=</span> <span class="s1">'There\'s so much to do!'</span><span class="p">;</span>
     <span class="nx">myServiceInstance</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <p>And the AngularJS couterpart:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myAngularService.js]</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myAngularService.js]</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'application'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'myAngularService'</span><span class="p">,</span> <span class="nx">myAngularService</span><span class="p">);</span>
@@ -179,14 +177,12 @@
 <span class="kd">function</span> <span class="nx">HomeCtrl</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">myAngularService</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">moreStuff</span> <span class="o">=</span> <span class="s1">'There\'s so much to do!'</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">stuffIdid</span> <span class="o">=</span> <span class="nx">myAngularService</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">}</span></code></pre></figure>
 
 <h2 id="factories">Factories</h2>
 <p>Simply put, you return a module … you create an object and return it for whoever wants to use it.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myFactory.js]</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myFactory.js]</span>
 <span class="kd">var</span> <span class="nx">myFactory</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">doStuff</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stuff</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// I'm doing something with stuff</span>
@@ -207,13 +203,11 @@
     <span class="kd">var</span> <span class="nx">moreStuff</span> <span class="o">=</span> <span class="s1">'There\'s so much to do!'</span><span class="p">;</span>
     <span class="nx">myFactory</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// ---------------------------------------------------------- //</span>
-</code></pre>
-</div>
+<span class="c1">// ---------------------------------------------------------- //</span></code></pre></figure>
 
 <p>Take a look at how this compares to an Angular factory:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [myAngularFactory.js]</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [myAngularFactory.js]</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'application'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'myAngularFactory'</span><span class="p">,</span> <span class="nx">myAngularFactory</span><span class="p">);</span>
@@ -243,9 +237,7 @@
     <span class="kd">var</span> <span class="nx">moreStuff</span> <span class="o">=</span> <span class="s1">'There\'s so much to do!'</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">stuffIdid</span> <span class="o">=</span> <span class="nx">myAngularFactory</span><span class="p">.</span><span class="nx">doSomeMoreStuff</span><span class="p">(</span><span class="nx">moreStuff</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// ---------------------------------------------------------- //</span>
-</code></pre>
-</div>
+<span class="c1">// ---------------------------------------------------------- //</span></code></pre></figure>
 
 <p>Factories can be compared to modules hosting functionality that you want to reuse all over the application.</p>
 

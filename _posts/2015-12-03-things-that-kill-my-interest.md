@@ -14,11 +14,12 @@ I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily,
 
 Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:
 
-```javascript
+{% highlight javascript %}
 Function.prototype.inherits = function (base) {
   // blah
 }
-```
+{% endhighlight %}
+
 At that exact moment, I immediately close any open tabs with that material and hate the Interwebs for being that dumb.
 
 Bottom line, content creators, please take best practices into account when authoring for tech people or you'll lose them. Better yet, take best practices into account when catering towards aspiring tech people, because at some point, you'll end up working with "your creation", and it won't be pretty.

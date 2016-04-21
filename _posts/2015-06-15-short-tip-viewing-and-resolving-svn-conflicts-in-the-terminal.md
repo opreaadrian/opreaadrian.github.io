@@ -20,7 +20,7 @@ If I have conflicts, I first list only the conflicted files, so I can have a cle
 
 The above command pipes `svn status` through `grep` and applies a RegExp which basically says: "Give me all the rows in `svn status`'s output that begin with a capital C". The output will look the same as below.
 
-```bash
+{% highlight bash %}
 adrian at mothership in ~/Documents/projects/svn-project
 > svn st | grep "^C"
 C       modules/user/index.js
@@ -29,7 +29,7 @@ C       modules/database/index.js
 C       modules/database/drivers/cassandra.js
 C       modules/database/drivers/redis.js
 C       package.json
-```
+{% endhighlight %}
 
 I then open all conflicted files in an editor, in this case Sublime Text 3 with the following command:
 
@@ -41,20 +41,20 @@ I'll break the command into subcommands so I can explain what each subcommand do
 
 Given the fact that we have 2 columns in our initial `svn status` output &mdash; the Cs column and the filename column &mdash; we can rely on awk to print the filename for us for each row in the output it receives. If you would issue the subcommand above in your terminal you'd get the list of conflicted files, without the leading capital "C".
 
-```bash
+{% highlight bash %}
 modules/user/index.js
 modules/user/meta_inf.json
 modules/database/index.js
 modules/database/drivers/cassandra.js
 modules/database/drivers/redis.js
 package.json
-```
+{% endhighlight %}
 
 The reason why the whole command is wrapped in `$()` is because we need to interpret that command and pass its output to our `subl` executable, which is actually a command line shortcut to open Sublime Text. The end result is that we get all the conflicted files open in tabs, in Sublime Text. We can now proceed to the conflict resolution part, which I will not detail here.
 
 After resolving the conflicts in your editor and saving the edits you made, you will notice that if you issue the `svn st | grep "^C"` command, you'll still see the files as being in a conflicted state. This is because SVN creates separate files for each side of the conflict and refers to them when it shows a file as conflicted, and they look like the output below:
 
-```bash
+{% highlight bash %}
 C       modules/user/index.js
 ?       modules/user/index.js.merge-left.r10231
 ?       modules/user/index.js.merge-right.r10255
@@ -64,7 +64,7 @@ C       modules/user/meta_inf.json
 ?       modules/user/meta_inf.json.merge-right.r10255
 ?       modules/user/meta_inf.json.working
 [...]
-```
+{% endhighlight %}
 
 The next step would be to manually remove those files, and we're going to rely on awk again, for this task. Remember how we used `print` to pipe only the filenames to Sublime Text? That's exactly what we are going to do now, but we'll add `.*` at the end of each file, as we only want to remove the `.merge* ` and the `.working` files, and not our original source code, and we will pipe everything to `rm`.
 

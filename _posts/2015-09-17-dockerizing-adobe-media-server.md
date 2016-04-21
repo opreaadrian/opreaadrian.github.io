@@ -38,11 +38,11 @@ next is to comment out the line that halts the  installation until it gets a key
 `installAMS` script. For this matter in particular, you will need to use 
 [`sed`](https://www.gnu.org/software/sed/manual/sed.html), just like in the snippet below.
 
-```bash
+{% highlight bash%}
 $ cd ams_setup_directory
 $ rm -Rf License.txt
 $ sed -i -e 's:read cont < /dev/tty:#read cont < /dev/tty:g' installAMS
-```
+{% endhighlight %}
 
 After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
 you have to provide various answers to the installer. This is where the second problem appears, as 
@@ -57,7 +57,7 @@ manually go through the setup, while writing down each answer you put in (includ
 At the end of the setup you will have something looking like the snippet below 
 (whitespace is relevant):
 
-```bash
+{% highlight bash%}
 # begin input file
       
 n
@@ -80,12 +80,12 @@ y
       
      
 # end input file
-```
+{% endhighlight %}
 
 
 that you can validate against AMS's "Install Action Summary", outlined below:  
 
-```bash
+{% highlight bash%}
 ----------- Install Action Summary -----------
 
 Installation directory         = /opt/adobe/ams
@@ -106,7 +106,7 @@ service user                   = ams
 service group                  = ams
 
 Run as daemon                  = Yes
-```
+{% endhighlight %}
 
 Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
 of your container, and simply `pipe` it through `installAMS`. I would recommend naming the file 
@@ -120,7 +120,7 @@ the afore-mentioned setup, and with a bit more effort, to have a fully isolated 
 install, easily reproducible from version control.  
 Your `Dockerfile` will probably look like the one below, with minor tweaks based on your needs:
 
-```bash
+{% highlight bash%}
 FROM centos:6
 MAINTAINER Adrian Oprea<adrian@codesi.nz>
 
@@ -153,7 +153,7 @@ VOLUME ["/opt/adobe/ams/applications"]
 EXPOSE 80 443 1111 1935
 
 CMD ["/usr/bin/supervisord"]
-```
+{% endhighlight %}
 
 The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
 connection, and a ready-made configuration for `docker-compose` is available on 

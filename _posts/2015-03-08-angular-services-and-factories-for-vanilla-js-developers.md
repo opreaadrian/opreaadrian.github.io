@@ -20,7 +20,7 @@ In the Angular docs the definition for a service looks like this:
 
 Not too shabby, huh? But not too explicit either. What I like to say is that you can `new` angular services. Basically if you think you need a class, then you probably need a service.
 
-```javascript
+{% highlight javascript %}
 // [myService.js]
 function MyService() {
     this.doStuff = function(stuff) {
@@ -42,11 +42,11 @@ function iMusingTheModuleFrommyService() {
     var moreStuff = 'There\'s so much to do!';
     myServiceInstance.doSomeMoreStuff(moreStuff);
 }
-```
+{% endhighlight %}
 
 And the AngularJS couterpart:
 
-```javascript
+{% highlight javascript %}
 // [myAngularService.js]
 
 angular.module('application')
@@ -73,12 +73,12 @@ function HomeCtrl($scope, myAngularService) {
     var moreStuff = 'There\'s so much to do!';
     this.stuffIdid = myAngularService.doSomeMoreStuff(moreStuff);
 }
-```
+{% endhighlight %}
 
 ## Factories
 Simply put, you return a module ... you create an object and return it for whoever wants to use it.
 
-```javascript
+{% highlight javascript %}
 // [myFactory.js]
 var myFactory = {
     doStuff : function(stuff) {
@@ -101,11 +101,11 @@ function iMusingTheModuleFromMyFactory() {
     myFactory.doSomeMoreStuff(moreStuff);
 }
 // ---------------------------------------------------------- //
-```
+{% endhighlight %}
 
 Take a look at how this compares to an Angular factory:
 
-```javascript
+{% highlight javascript %}
 // [myAngularFactory.js]
 
 angular.module('application')
@@ -137,7 +137,7 @@ function HomeCtrl($scope, myAngularFactory) {
     this.stuffIdid = myAngularFactory.doSomeMoreStuff(moreStuff);
 }
 // ---------------------------------------------------------- //
-```
+{% endhighlight %}
 
 Factories can be compared to modules hosting functionality that you want to reuse all over the application. 
 

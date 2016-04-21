@@ -36,7 +36,7 @@
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -128,16 +128,14 @@
 
 <p>The above command pipes <code class="highlighter-rouge">svn status</code> through <code class="highlighter-rouge">grep</code> and applies a RegExp which basically says: “Give me all the rows in <code class="highlighter-rouge">svn status</code>’s output that begin with a capital C”. The output will look the same as below.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>adrian at mothership <span class="k">in</span> ~/Documents/projects/svn-project
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">adrian at mothership <span class="k">in</span> ~/Documents/projects/svn-project
 <span class="gp">&gt; </span>svn st | grep <span class="s2">"^C"</span>
 C       modules/user/index.js
 C       modules/user/meta_inf.json
 C       modules/database/index.js
 C       modules/database/drivers/cassandra.js
 C       modules/database/drivers/redis.js
-C       package.json
-</code></pre>
-</div>
+C       package.json</code></pre></figure>
 
 <p>I then open all conflicted files in an editor, in this case Sublime Text 3 with the following command:</p>
 
@@ -149,20 +147,18 @@ C       package.json
 
 <p>Given the fact that we have 2 columns in our initial <code class="highlighter-rouge">svn status</code> output — the Cs column and the filename column — we can rely on awk to print the filename for us for each row in the output it receives. If you would issue the subcommand above in your terminal you’d get the list of conflicted files, without the leading capital “C”.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>modules/user/index.js
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">modules/user/index.js
 modules/user/meta_inf.json
 modules/database/index.js
 modules/database/drivers/cassandra.js
 modules/database/drivers/redis.js
-package.json
-</code></pre>
-</div>
+package.json</code></pre></figure>
 
 <p>The reason why the whole command is wrapped in <code class="highlighter-rouge">$()</code> is because we need to interpret that command and pass its output to our <code class="highlighter-rouge">subl</code> executable, which is actually a command line shortcut to open Sublime Text. The end result is that we get all the conflicted files open in tabs, in Sublime Text. We can now proceed to the conflict resolution part, which I will not detail here.</p>
 
 <p>After resolving the conflicts in your editor and saving the edits you made, you will notice that if you issue the <code class="highlighter-rouge">svn st | grep "^C"</code> command, you’ll still see the files as being in a conflicted state. This is because SVN creates separate files for each side of the conflict and refers to them when it shows a file as conflicted, and they look like the output below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>C       modules/user/index.js
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">C       modules/user/index.js
 ?       modules/user/index.js.merge-left.r10231
 ?       modules/user/index.js.merge-right.r10255
 ?       modules/user/index.js.working
@@ -170,9 +166,7 @@ C       modules/user/meta_inf.json
 ?       modules/user/meta_inf.json.merge-left.r10231
 ?       modules/user/meta_inf.json.merge-right.r10255
 ?       modules/user/meta_inf.json.working
-<span class="o">[</span>...]
-</code></pre>
-</div>
+<span class="o">[</span>...]</code></pre></figure>
 
 <p>The next step would be to manually remove those files, and we’re going to rely on awk again, for this task. Remember how we used <code class="highlighter-rouge">print</code> to pipe only the filenames to Sublime Text? That’s exactly what we are going to do now, but we’ll add <code class="highlighter-rouge">.*</code> at the end of each file, as we only want to remove the <code class="highlighter-rouge">.merge* </code> and the <code class="highlighter-rouge">.working</code> files, and not our original source code, and we will pipe everything to <code class="highlighter-rouge">rm</code>.</p>
 

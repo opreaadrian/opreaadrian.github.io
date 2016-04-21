@@ -39,7 +39,7 @@ I plan on sharing my experience with promises, especially error-handling, but th
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -136,7 +136,7 @@ In my opinion, there are situations or states that involve for example killing t
 
 <p>Let’s say for example that we have to implement a method that performs an async call to a REST service and returns the data to be used in the UI. The implementation    would probably look as follows:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
     <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'config'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">Customer</span> <span class="o">=</span> <span class="p">{</span>
@@ -155,10 +155,7 @@ In my opinion, there are situations or states that involve for example killing t
             <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">));</span>
         <span class="p">});</span>
     <span class="p">}</span>
-<span class="p">};</span>
-
-</code></pre>
-</div>
+<span class="p">};</span></code></pre></figure>
 
 <p>You would be tempted to structure your code like the above snippet, and look for an error, and if no error is provided, then you can just resolve with the body, as nothing could have gone wrong.<br />
 I say no to that approach, because you can bump into situations where you don’t get an <code class="highlighter-rouge">Error</code> object, but you do get a <code class="highlighter-rouge">500 Internal Server Error</code>.</p>
@@ -166,7 +163,7 @@ I say no to that approach, because you can bump into situations where you don’
 <p>Even though many of the NodeJS development best practices articles, and even the NodeJS documentation itself suggests that you should have an error-first approach when working with callbacks, in situations like the one above, it’s best to check for the status code and the presence of data, and forward the data to whoever is calling the method. If that’s not the case, reject the promise with MEANINGFUL INFORMATION.<br />
 I’m stressing the “meaningful information” part so much because I’m a firm believer in these words: “Do unto others as you would have them do unto you”. This doesn’t mean in any way that I’m a religious type of person, not that it would be a shame, but I strongly believe in the power of setting examples, so if enough people are going to be able to quickly debug and track down possible issues because I added enough error-related information, they’ll soon follow that example — and I would love to see the same amout of details when I’m debugging someone else’s code.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// [core/customer.js]</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// [core/customer.js]</span>
 <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">),</span>
     <span class="nx">config</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'config'</span><span class="p">);</span>
 
@@ -222,9 +219,7 @@ I’m stressing the “meaningful information” part so much because I’m a fi
             <span class="c1">// Just a failure, retry or set defaults.</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'FAILURE_SET_DEFAULTS_AND_RECOVER'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
         <span class="p">}</span>
-    <span class="p">});</span>
-</code></pre>
-</div>
+    <span class="p">});</span></code></pre></figure>
 
 <p>By following the pattern above, I make sure that I only deal with successful actions, when a promise is resolved, and for the errors/exceptions part, I have that all handled in the <code class="highlighter-rouge">catch</code> callback. To make things better, we could top it off with an error handler, that is separate from our library, and that has handlers for all statuses that are of interest. An example of such a concept can be found on GitHub — see <a href="https://gist.github.com/opreaadrian/fac301833af8bcb2b8d5">this gist</a> — or if you want to give it a spin without saving on disk, on <a href="http://jsbin.com/yocese/1/edit?js,console">jsbin.com</a></p>
 

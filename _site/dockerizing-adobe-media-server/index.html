@@ -60,7 +60,7 @@ full RTMP/RTMPS support,
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -170,11 +170,9 @@ next is to comment out the line that halts the  installation until it gets a key
 <code class="highlighter-rouge">installAMS</code> script. For this matter in particular, you will need to use 
 <a href="https://www.gnu.org/software/sed/manual/sed.html"><code class="highlighter-rouge">sed</code></a>, just like in the snippet below.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>ams_setup_directory
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span><span class="nb">cd </span>ams_setup_directory
 <span class="gp">$ </span>rm -Rf License.txt
-<span class="gp">$ </span>sed -i -e <span class="s1">'s:read cont &lt; /dev/tty:#read cont &lt; /dev/tty:g'</span> installAMS
-</code></pre>
-</div>
+<span class="gp">$ </span>sed -i -e <span class="s1">'s:read cont &lt; /dev/tty:#read cont &lt; /dev/tty:g'</span> installAMS</code></pre></figure>
 
 <p>After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
 you have to provide various answers to the installer. This is where the second problem appears, as 
@@ -189,7 +187,7 @@ manually go through the setup, while writing down each answer you put in (includ
 At the end of the setup you will have something looking like the snippet below 
 (whitespace is relevant):</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># begin input file</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># begin input file</span>
       
 n
 /opt/adobe/ams 
@@ -210,13 +208,11 @@ n
 y
       
      
-<span class="c"># end input file</span>
-</code></pre>
-</div>
+<span class="c"># end input file</span></code></pre></figure>
 
 <p>that you can validate against AMS’s “Install Action Summary”, outlined below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>----------- Install Action Summary -----------
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">----------- Install Action Summary -----------
 
 Installation directory         <span class="o">=</span> /opt/adobe/ams
 
@@ -235,9 +231,7 @@ service owner                  <span class="o">=</span> ams
 service user                   <span class="o">=</span> ams
 service group                  <span class="o">=</span> ams
 
-Run as daemon                  <span class="o">=</span> Yes
-</code></pre>
-</div>
+Run as daemon                  <span class="o">=</span> Yes</code></pre></figure>
 
 <p>Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
 of your container, and simply <code class="highlighter-rouge">pipe</code> it through <code class="highlighter-rouge">installAMS</code>. I would recommend naming the file 
@@ -250,7 +244,7 @@ the afore-mentioned setup, and with a bit more effort, to have a fully isolated 
 install, easily reproducible from version control.<br />
 Your <code class="highlighter-rouge">Dockerfile</code> will probably look like the one below, with minor tweaks based on your needs:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>FROM centos:6
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">FROM centos:6
 MAINTAINER Adrian Oprea&lt;adrian@codesi.nz&gt;
 
 RUN rpm --import https://getfedora.org/static/0608B895.txt
@@ -281,9 +275,7 @@ VOLUME <span class="o">[</span><span class="s2">"/opt/adobe/ams/applications"</s
 
 EXPOSE 80 443 1111 1935
 
-CMD <span class="o">[</span><span class="s2">"/usr/bin/supervisord"</span><span class="o">]</span>
-</code></pre>
-</div>
+CMD <span class="o">[</span><span class="s2">"/usr/bin/supervisord"</span><span class="o">]</span></code></pre></figure>
 
 <p>The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
 connection, and a ready-made configuration for <code class="highlighter-rouge">docker-compose</code> is available on 

@@ -39,7 +39,7 @@ docker-compose, so you can manipulate it.
 
   
 
-  <link type="application/atom+xml" rel="alternate" href="https://codesi.nz/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer." />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="codesins. - The blog of Adrian Oprea, freelance web developer.">
 
   
     <link rel="author" href="https://plus.google.com/+AdrianOpreasWeb/">
@@ -141,12 +141,11 @@ messing up with the whole infrastructure.</p>
 <p>So for a config file like the one below, placed in <code class="highlighter-rouge">~/Documents/projects/webapp</code>, your 
 container would be named <code class="highlighter-rouge">webapp_nginx_1</code>:</p>
 
-<pre><code class="language-YAML">nginx:
-	image: nginx
-	ports:
-		- "80:80"
-		- "443:443"
-</code></pre>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">nginx</span><span class="pi">:</span>
+  <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="s">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">80:80"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">443:443"</span></code></pre></figure>
 
 <h2 id="the-solution">The solution</h2>
 <p>No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
@@ -166,9 +165,7 @@ so I could take out the underscores and dashes from the filename.</p>
 
 <p>The final version of my code looks just like the snippet below:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 | sed s<span class="s1">'/[ -]/_/g'</span><span class="k">)</span>
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>_nginx_1 | sed s<span class="s1">'/[ -]/_/g'</span><span class="k">)</span></code></pre></figure>
 
 <p>Now I can manipulate containers from any bash script, as long as I can get my hands on the <code class="highlighter-rouge">$PWD</code>
 and as long as I know the names they get in the <code class="highlighter-rouge">YAML</code> config file.</p>
