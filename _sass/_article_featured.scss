@@ -1,12 +1,17 @@
 .article-featured {
+  box-sizing: border-box;
   width: 100%;
-  padding: (150/16) * 1em 0; 
-  background: $black;
+  padding: (50/16) * 1em 0;
+  margin-bottom: (50/16) * 1em;
+}
+
+.article-featured--dark {
+  background-color: $black;
 }
 
 .article-featured h1 {
   margin:0;
-  font-size: (52/16) * 1em;
+  font-size: (38/18) * 1em; 
   font-weight: 100;
   text-transform: uppercase;
 }
@@ -47,4 +52,13 @@
 .article-featured footer a:hover,
 .article-featured main a:hover {
   border-bottom-style: solid;
+}
+
+@media screen and (min-width: 800px) {
+  .article-featured {
+    padding: (150/16) * 1em 0;
+  }
+  .article-featured h1 {
+    font-size: (58/18) * 1em;
+  }
 }

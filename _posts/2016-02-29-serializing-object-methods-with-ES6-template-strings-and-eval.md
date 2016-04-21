@@ -77,7 +77,23 @@ Based on the knowledge we have at this point, we can now demonstrate how exactly
 serialization works, so let's take an object, run it through `JSON.stringify` 
 and see what we get.
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 stringify.js %}
+{% highlight javascript %}
+'use strict';
+
+let person = {
+  name: 'Susan',
+  age: 24,
+  sayHi: function() {
+	console.log('Susan says hi!');
+  }
+};
+
+const serialized = JSON.stringify(person);
+
+console.log(serialized); // {"name":"Susan","age":24} 
+
+typeof serialized === 'string' // true
+{% endhighlight %}
 
 As you can see, the `sayHi` method is nowhere to be seen. The reason is that 
 `JSON.stringify` serializes only the properties of the object, leaving its 
@@ -85,7 +101,15 @@ methods behind.
 Now, let's say we want to also serialize the `sayHi` method. How would we go about 
 that? First, let's take a look at `JSON.stringify`'s signature, outlined below.
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 stringify_signature.js %}
+{% highlight javascript %}
+JSON.stringify(value[, replacer[, space]])
+
+// => value(required) - the object we want to serialize 
+// => replacer(optional) - a function that will be called for each of the 
+//    object's properties, or an array of strings and numbers that serve 
+//    as a whitelist for the property selection process
+// => space(optional) - the number of spaces each key will receive as indent
+{% endhighlight %}
 
 Our main interest is the `replacer` argument, and we are going to use its function form. In order 
 for this trick to work and for the `sayHi` method's code to be properly converted to a string, 
@@ -93,12 +117,39 @@ we can call its `toString()` method.
 Calling `toString()` on a function, returns a string representation of the function's body. 
 This way, if we call `person.sayHi.toString()` we will get the following output:
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 stringify_method_output.js %}
+{% highlight javascript %}
+"function () { console.log('Susan says hi!'); }"
+{% endhighlight %}
 
 So now that we know how to get our method's body, let's build the logic to serialize the whole 
 `person` object, including its method.
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 stringify_with_replacer.js %}
+{% highlight javascript %}
+'use strict';
+
+let person = {
+  name: 'Susan',
+  age: 24,
+  sayHi: function() {
+    console.log('Susan says hi!');
+  }
+};
+
+let replacer = (key, value) => {
+  // if we get a function, give us the code for that function
+  if (typeof value === 'function') {
+    return value.toString();
+  }
+
+  return value;
+}
+
+// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);
+
+console.log(serialized); 
+// {"name":"Susan","age":24,"sayHi":"function () {\n\tconsole.log('Susan says hi!');\n  }"}
+{% endhighlight %}
 
 ## De-serialization and reviving properties
 
@@ -114,7 +165,14 @@ current `sayHi` string into a function, again.
 
 `JSON.parse` has the following signature, according to the Mozilla Developer Network: 
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 parse_signature.js %}
+{% highlight javascript %}
+JSON.parse(text[, reviver])
+
+// => text(required) - the string we wish to de-serialize and convert back
+//    to a standard JavaScript object(JSON)
+// => reviver(optional) - function used to pre-process keys and values in order 
+//    to render a specific object structure
+{% endhighlight %}
 
 Before going any further with the solution, let's first see what template 
 strings are, at their most basic level.
@@ -123,7 +181,21 @@ literals that allow embedded expressions. To simplify this explanation, let's
 take a look at a piece of code using ES6 template strings and compare it to the 
 way we used to mimic this in ES5.
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 es6_template_literals.js %}
+{% highlight javascript %}
+//ES6 template strings
+let someComputedValue = 5 + 3;
+let theTemplate = `This is the result of the computation: ${someComputedValue}`;
+
+console.log(theTemplate);
+// "This is the result of the computation: 8"
+
+// ES5 version
+var someComputedValue = 5 + 3;
+var theTemplate = 'This is the result of the computation: ' + someComputedValue;
+
+console.log(theTemplate);
+// "This is the result of the computation: 8"
+{% endhighlight %}
 
 You can probably see some good use-cases for template literals, one of them 
 being DOM templates. If you'd like 
@@ -147,7 +219,16 @@ the next [jsbin.com](https://jsbin.com) or the next [codepen.io](https://codepen
 With the knowledge we have about `eval` and template strings, we can now 
 build our `reviver` function as follows:
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 parse_reviver_eval.js %}
+{% highlight javascript %}
+let reviver = (key, value) => {
+  if (typeof key === 'string' && key.indexOf('function ') === 0) {
+    let functionTemplate = `(${value})`;
+    return eval(functionTemplate);
+  }
+
+  return value;
+}
+{% endhighlight %}
 
 The code is pretty self-explanatory, but for extra clarity, we're building a new 
 template for all the items in the string we're parsing, that contain the 
@@ -156,7 +237,48 @@ evaluating the resulting expression and returning it to `JSON.parse` in order to
 be added to the final object.  
 The final version of the code would look like the snippet below:
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 full_example.js %}
+{% highlight javascript %}
+'use strict';
+
+// serialize.js
+
+let person = {
+  name: 'Susan',
+  age: 24,
+  sayHi: function() {
+    console.log('Susan says hi!');
+  }
+};
+
+let replacer = (key, value) => {
+  // if we get a function, give us the code for that function
+  if (typeof value === 'function') {
+    return value.toString();
+  }
+
+  return value;
+}
+
+// get a stringified version of our object, and indent the keys at 2 spaces
+const serialized = JSON.stringify(person, replacer, 2);
+
+console.log(serialized); 
+// {"name":"Susan","age":24,"sayHi":"function () {\n\tconsole.log('Susan says hi!');\n  }"}
+
+
+// de_serialize.js
+let reviver = (key, value) => {
+  if (typeof value === 'string' && value.indexOf('function ') === 0) {
+    let functionTemplate = `(${value})`;
+    return eval(functionTemplate);
+  }
+  return value;
+}
+
+const parsedObject = JSON.parse(serialized, reviver);
+
+parsedObject.sayHi(); // Susan says hi!
+{% endhighlight %}
 
 The reason that we wrap the function in parentheses is that we need to force 
 the vm to evaluate the function in an expression context, and our function 
@@ -175,7 +297,15 @@ If performance is something that is critical for you, there's an option to use
 the `Function` constructor instead of `eval` in your `reviver` function like 
 in the snippet below:
 
-{% gist opreaadrian/ad8b0c32fb5baac50017 parse_reviver_function_constructor.js %}
+{% highlight javascript %}
+let reviver = (key, value) => {
+  if (typeof value === 'string' && value.indexOf('function ') === 0) {
+    let functionTemplate = `(${value}).call(this)`;
+    return new Function(functionTemplate);
+  }
+  return value;
+}
+{% endhighlight %}
 
 Even though it is said that the `Function` constructor is faster than `eval`, 
 be cautious that in this case, you have to create 2 functions in-memory &mdash;

@@ -3,8 +3,8 @@
 /* padding: 3.125em 0 15.625em; */
 
 .article-full {
+  box-sizing: border-box;
   width: 100%;
-
   p,
   ul,
   ol {
@@ -22,7 +22,13 @@
   font-size: (38/16) * 1em;
   font-weight: 100;
   text-transform: uppercase;
+}
+
+.article-header__heading--center {
   text-align: center;
+}
+
+.article-header__heading--white {
   color: $white;
 }
 
@@ -108,15 +114,9 @@
 }
 
 @media screen and (min-width: 800px) {
-  .article-body,
-  .article-footer {
-    max-width: $max-width;
-    margin: auto;
-  }
-
   .article-header__heading {
+    max-width: (906/58) * 1em;
     font-size: (58/18) * 1em;
-    max-width: (900/58) * 1em;
     margin: auto;
   }
 

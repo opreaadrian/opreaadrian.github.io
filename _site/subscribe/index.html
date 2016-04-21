@@ -63,29 +63,34 @@
           
         ><a title="Navigate to the blog" href="/">Blog</a></li>
         <li ><a title="Find out more about me" href="/about">Who am I</a></li>
-        <li  class="active" ><a title="Go to the contact page" href="/contact">Let's chat</a></li>
+        <li ><a title="Go to the contact page" href="/contact">Let's chat</a></li>
       </ul>
     </nav>
   </div>
 </div>
 
-  <main class="static-page">
-	<h1>Let's chat!</h1>
+  <main class="static-page drip-form">
+	<h1 data-drip-attribute="headline">Newsletter</h1>
 
-	<ul>
-		<li><a title="Email address" class="email" href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#97;&#100;&#114;&#x69;&#97;&#110;&#x40;&#99;&#x6f;&#100;&#x65;&#115;&#x69;&#x2e;&#110;&#122;"></a></li>
-		<li><a title="Phone number" class="phone" href="&#116;&#101;&#108;://+&#052;&#048;&#055;&#053;&#050;&#049;&#056;&#050;&#056;&#050;&#054;"></a></li>
-		<li>
-			Monday &mdash; Friday<br>
-			9:00AM &mdash; 5:00PM<br>
-			Eastern European Time
-		</li>
-	</ul>
-	
-	<p>
-		Not ready to talk about engagements just yet? <a title="Subscribe to newsletter" href="/subscribe/">Sign up for my newsletter</a> and you will
-		receive frequent updates and tips on how to improve your application and how to create a better overall experience for your customers.
-	</p>
+	<form action="https://www.getdrip.com/forms/40471162/submissions" method="post" data-drip-embedded-form="40471162" target="_blank">
+	  <div data-drip-attribute="description">
+		<p>Ever so often, I send updates about relevant information in the web application
+	field as well as fresh content before it gets published on the blog, and other
+	perks. If you're into any of this, be sure to sign up now!</p>  	
+	  </div>
+	    <div>
+	        <label for="fields[name]">Name</label><br />
+	        <input placeholder="George" type="text" name="fields[name]" value="">
+	    </div>
+	    <div>
+	        <label for="fields[email]">Email Address*</label><br />
+	        <input placeholder="george@example.com" type="email" name="fields[email]" value="">
+	    </div>
+	  <div>
+	    <button type="submit" name="submit" data-drip-attribute="sign-up-button">Sign Up</button>
+	  </div>
+	</form>
+
 </main>
   <!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

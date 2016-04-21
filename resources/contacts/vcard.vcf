@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Adrian Oprea
+N:Oprea;Adrian;;;
+EMAIL;TYPE=INTERNET:adrian@codesi.nz
+X-GTALK:adrian@codesi.nz
+X-SKYPE:opreaadriangeorge
+BDAY:1987-09-01
+item1.URL:https\://codesi.nz
+item1.X-ABLabel:PROFILE
+END:VCARD

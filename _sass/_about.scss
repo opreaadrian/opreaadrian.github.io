@@ -1,0 +1,53 @@
+.static-page {
+	line-height: 2;
+	padding: (20/16) * 1em;
+
+	a {
+		text-decoration: none;
+  		border-bottom: 1px dotted hsla(185.92, 77.17%, 36.08%, 1);
+	}
+
+	h2 {
+		margin-bottom: 0;
+	}
+}
+
+.phone:after {
+	content: "+(40) 752 18 28 26";
+}
+
+.email:after {
+	content: "adrian@codesi.nz"
+}
+
+.drip-form {
+	input {
+		box-sizing: border-box;
+		width: 100%;
+		padding: (10/16) * 1em;
+	}
+
+	button {
+		width: 20%;
+		padding: (10/16) * 1em;
+		margin-top: (30/16) * 1em;
+		background: $accent-color;
+		text-transform: uppercase;
+		color: $white;
+		border: none;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.static-page {
+		max-width: (906/16) * 1em;
+		margin: auto;
+	}
+
+	.drip-form {
+		input {
+			width: 40%;
+			padding: (10/16) * 1em;
+		}
+	}
+}
