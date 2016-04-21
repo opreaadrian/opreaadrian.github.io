@@ -10,9 +10,9 @@
           {% if page.url != "/about/" and page.url != "/contact/" and page.url != "/subscribe/" %}
               class="active" 
           {% endif %}
-        ><a title="Navigate to the blog" href="https://{{ site.url }}/">Blog</a></li>
-        <li {% if page.url contains "/about/" %} class="active" {% endif %}><a title="Find out more about me" href="{{ site.url }}/about">Who am I</a></li>
-        <li {% if page.url contains "/contact/" %} class="active" {% endif %}><a title="Go to the contact page" href="{{ site.url }}/contact">Let's chat</a></li>
+        ><a title="Navigate to the blog" href="/">Blog</a></li>
+        <li {% if page.url contains "/about/" %} class="active" {% endif %}><a title="Find out more about me" href="/about">Who am I</a></li>
+        <li {% if page.url contains "/contact/" %} class="active" {% endif %}><a title="Go to the contact page" href="/contact">Let's chat</a></li>
       </ul>
     </nav>
   </div>
