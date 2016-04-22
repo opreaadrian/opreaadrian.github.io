@@ -1,10 +1,8 @@
 .header {
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   padding: (30/16) * 1em;
   background-color: $black;
   /* opacity: 0.9; */
@@ -14,8 +12,9 @@
 .header a {
   color: $white;
 }
+
 .branding {
-  text-align: left;
+  margin-bottom: (50/16) * 1em;
 }
 
 .branding h1 {
@@ -23,15 +22,15 @@
   padding: 0;
 }
 
+.branding,
 .navigation {
-  text-align: right;
+  text-align: center;
 }
 
 .navigation ul {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -53,4 +52,26 @@
   font-family: $heading-font;
   padding: 0.625em;
   // font-size: 1.125em;
+}
+
+@media screen and (min-width: 800px) {
+  .branding {
+    margin-bottom: 0;
+  }
+  .navigation ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  .header {
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }
