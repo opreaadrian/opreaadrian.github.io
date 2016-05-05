@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "An SSH workflow that's easier on your brain"
-pub_date: 2016-02-29 02:30:00 PM
-last_modified: 2016-03-01 11:00:00 AM
+pub_date: 2016-05-05 02:30:00 PM
+last_modified: 2016-05-05 11:00:00 AM
 categories: productivity
 published: true
 author: "Adrian Oprea"
