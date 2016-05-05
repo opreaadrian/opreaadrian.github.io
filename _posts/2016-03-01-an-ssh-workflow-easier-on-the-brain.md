@@ -122,4 +122,4 @@ it helps you spend less time on the mundane tasks and more on the creative side
 of our jobs.
 
 > Photo credits:  
-> [Sergio Delgado](https://www.flickr.com/photos/sdelgado) &mdash; [Three-toed sloth in the Dallas World Aquarium](https://en.wikipedia.org/wiki/Sloth)
+> [BMiz](https://www.flickr.com/photos/sdelgado) &mdash; [Productivity - this is working from home...](https://flic.kr/p/fNBLwz)
