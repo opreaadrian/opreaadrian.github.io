@@ -8,7 +8,7 @@ published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
 keywords: hacks, tricks, workflow, tips, ssh, remote, servers
-featured_image: /images/posts/serializing-object-methods-using-es6-template-strings-and-eval/post.jpg
+featured_image: /images/posts/ssh-workflow-easier-on-the-brain/post.jpg
 ---
 
 In this quick tip, I will share my SSH workflow and how I manage things
