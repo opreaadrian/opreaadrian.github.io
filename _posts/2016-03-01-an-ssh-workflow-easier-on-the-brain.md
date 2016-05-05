@@ -26,10 +26,11 @@ least part of the ip addresses so I can do a quick reverse-i-search
 (`CTRL+R` on any machine using bash, zsh).  
 You're probably thinking: "Maybe you should just use the `fish` shell and rely
 on its awesome command completion functionality", and you are right, but not
-even the almighty `fish` shell save me, so I've developed a habit of using my
+even the almighty `fish` shell can save me, so I've developed a habit of using my
 ssh config as much as possible.  
 The normal way you would connect to a server through SSH would be to issue the
 following command: `ssh user@192.168.1.1`, insert your password and you're done.  
+
 The approach above makes four false assumptions about me:
 
 1. I know/remember the username(ok for 1-2 machines, not ok for 10-15)
@@ -43,10 +44,21 @@ are the same. For this, I have a solution that is called `ssh_config`.
 It usually resides on your machine, in your `$HOME/.ssh/` directory
 (assuming you have [openssh](http://www.openssh.com/) installed on your machine).
 To check whether or not you already have the file available on your system, run
-the first command from the gist below, and see if your output is similar to mine,
+the first command from the snippet below, and see if your output is similar to mine,
 and if not, follow the instructions to create it.
 
-{% gist opreaadrian/fe17eff7843f8b3dcaca 1.sh-session %}
+{% highlight bash %}
+# List all information about the config file, under the ssh/ directory
+adrian@zen ~/D/blog> ls -al ~/.ssh/config
+-rw-r--r--  1 adrian  staff  210 Mar  1 13:59 /Users/adrian/.ssh/config
+
+# If you get "No such file or directory [...]", run the command below
+adrian@zen ~/D/blog> touch ~/.ssh/config
+
+# Check again, to see if the file has been properly created
+adrian@zen ~/D/blog> ls -al ~/.ssh/config
+-rw-r--r--  1 adrian  staff  0 Mar  1 17:12 /Users/adrian/.ssh/config
+{% endhighlight %}
 
 Now that you've created the config file, let's add stuff to it. A typical
 configuration, would contain things like the alias you would like to give to
@@ -54,7 +66,14 @@ your server, your username on that machine, your preferred authentication
 method, and by putting it all together, you get something similar to the snippet
 below.
 
-{% gist opreaadrian/fe17eff7843f8b3dcaca 2.sh-session %}
+{% highlight bash %}
+Host remote-machine                       # The shorter name you will use with the ssh command
+  HostName 192.168.33.10                  # The machine's IP address or hostname
+  User adrian                             # Your username on the machine
+  IdentityFile ~/.ssh/remote_machine.key  # If you don't want to type the password every time, get one of these
+  RemoteForward 5858 5858                 # Port forwarding (for tunnelling) - I use it for NodeJS remote debug
+  ForwardAgent yes                        # Forward the ssh key to machines that you connect to from the remote machine
+{% endhighlight %}
 
 A short explanation for each line has been added for each line in the
 configuration but in order to reap all the benefits that an `ssh` config file
@@ -66,7 +85,33 @@ To get a better idea on how a full `ssh_config` file would look like, you can
 take a look at the snippet below, that shows a multi-machine config with all
 the bells and whistles.
 
-{% gist opreaadrian/fe17eff7843f8b3dcaca 3.sh-session %}
+{% highlight bash %}
+# This is my git server
+Host git
+  HostName 192.168.33.10
+  User adrian
+  IdentityFile ~/.ssh/git_server.key
+
+# I use this to connect to other machines on the same network
+# hence, I'm forwarding my connection to the authentication agent
+Host manager
+  HostName 192.168.38.1
+  User root
+  IdentityFile ~/.ssh/manager.key
+  ForwardAgent yes
+
+# Forwarding port 5858 to localhost for remote debugging  
+Host nodejs
+  HostName 192.168.33.11
+  User adrian
+  IdentityFile ~/.ssh/nodejs.key
+  RemoteForward 5858 5858
+  
+Host db
+  HostName 192.168.33.12
+  User root
+  IdentityFile ~/.ssh/db.key
+{% endhighlight %}
 
 In order to connect to any of those machines, I just need to run `ssh <Host>`, so,
 if I would like to connect to my `manager` instance, all I need to do is run

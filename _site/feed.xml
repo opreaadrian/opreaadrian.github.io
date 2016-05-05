@@ -1,4 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-04-22T10:22:21+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-05-05T15:42:57+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>An SSH workflow that’s easier on your brain</title><link href="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/" rel="alternate" type="text/html" title="An SSH workflow that&#39;s easier on your brain" /><published>2016-03-01T00:00:00+02:00</published><updated>2016-03-01T00:00:00+02:00</updated><id>https://codesi.nz/an-ssh-workflow-easier-on-the-brain</id><content type="html" xml:base="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/">&lt;p&gt;In this quick tip, I will share my SSH workflow and how I manage things
+when it comes to working with multiple remote machines.
+Unlike “the old days” when we used to have Apache installed locally on our
+machines — I see you Mamp Server users — now, with the rise of cloud
+providers like Amazon, Digital Ocean or Microsoft Azure, and  products such as
+Docker, we are working more and more on systems that are spread accross multiple
+machines, instances, containers, you name it.&lt;/p&gt;
+
+&lt;p&gt;Part of my daily routine is working on certain machines that are usually
+accessible via SSH and my biggest problem, currently, is remembering the ip
+addresses of the machines I want to connect to, or at
+least part of the ip addresses so I can do a quick reverse-i-search
+(&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL+R&lt;/code&gt; on any machine using bash, zsh).&lt;br /&gt;
+You’re probably thinking: “Maybe you should just use the &lt;code class=&quot;highlighter-rouge&quot;&gt;fish&lt;/code&gt; shell and rely
+on its awesome command completion functionality”, and you are right, but not
+even the almighty &lt;code class=&quot;highlighter-rouge&quot;&gt;fish&lt;/code&gt; shell can save me, so I’ve developed a habit of using my
+ssh config as much as possible.&lt;br /&gt;
+The normal way you would connect to a server through SSH would be to issue the
+following command: &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh user@192.168.1.1&lt;/code&gt;, insert your password and you’re done.&lt;/p&gt;
+
+&lt;p&gt;The approach above makes four false assumptions about me:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;I know/remember the username(ok for 1-2 machines, not ok for 10-15)&lt;/li&gt;
+  &lt;li&gt;I know/remember the IP address&lt;/li&gt;
+  &lt;li&gt;I know/remember the password&lt;/li&gt;
+  &lt;li&gt;I am able to type my password correctly&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Honestly, I am able to remember everything I mentioned above,for 1-2 servers,
+but I have to work with 5+ servers, and no two configurations
+are the same. For this, I have a solution that is called &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh_config&lt;/code&gt;.
+It usually resides on your machine, in your &lt;code class=&quot;highlighter-rouge&quot;&gt;$HOME/.ssh/&lt;/code&gt; directory
+(assuming you have &lt;a href=&quot;http://www.openssh.com/&quot;&gt;openssh&lt;/a&gt; installed on your machine).
+To check whether or not you already have the file available on your system, run
+the first command from the snippet below, and see if your output is similar to mine,
+and if not, follow the instructions to create it.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# List all information about the config file, under the ssh/ directory&lt;/span&gt;
+adrian@zen ~/D/blog&amp;gt; ls -al ~/.ssh/config
+-rw-r--r--  1 adrian  staff  210 Mar  1 13:59 /Users/adrian/.ssh/config
+
+&lt;span class=&quot;c&quot;&gt;# If you get &quot;No such file or directory [...]&quot;, run the command below&lt;/span&gt;
+adrian@zen ~/D/blog&amp;gt; touch ~/.ssh/config
+
+&lt;span class=&quot;c&quot;&gt;# Check again, to see if the file has been properly created&lt;/span&gt;
+adrian@zen ~/D/blog&amp;gt; ls -al ~/.ssh/config
+-rw-r--r--  1 adrian  staff  0 Mar  1 17:12 /Users/adrian/.ssh/config&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now that you’ve created the config file, let’s add stuff to it. A typical
+configuration, would contain things like the alias you would like to give to
+your server, your username on that machine, your preferred authentication
+method, and by putting it all together, you get something similar to the snippet
+below.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Host remote-machine                       &lt;span class=&quot;c&quot;&gt;# The shorter name you will use with the ssh command&lt;/span&gt;
+  HostName 192.168.33.10                  &lt;span class=&quot;c&quot;&gt;# The machine&#39;s IP address or hostname&lt;/span&gt;
+  User adrian                             &lt;span class=&quot;c&quot;&gt;# Your username on the machine&lt;/span&gt;
+  IdentityFile ~/.ssh/remote_machine.key  &lt;span class=&quot;c&quot;&gt;# If you don&#39;t want to type the password every time, get one of these&lt;/span&gt;
+  RemoteForward 5858 5858                 &lt;span class=&quot;c&quot;&gt;# Port forwarding (for tunnelling) - I use it for NodeJS remote debug&lt;/span&gt;
+  ForwardAgent yes                        &lt;span class=&quot;c&quot;&gt;# Forward the ssh key to machines that you connect to from the remote machine&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;A short explanation for each line has been added for each line in the
+configuration but in order to reap all the benefits that an &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; config file
+has to offer, I encourage you to go through
+&lt;a href=&quot;http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5&quot;&gt;the documentation for &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh_config&lt;/code&gt;&lt;/a&gt;,
+or type &lt;code class=&quot;highlighter-rouge&quot;&gt;man ssh_config&lt;/code&gt; in your preferred terminal emulator.&lt;/p&gt;
+
+&lt;p&gt;To get a better idea on how a full &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh_config&lt;/code&gt; file would look like, you can
+take a look at the snippet below, that shows a multi-machine config with all
+the bells and whistles.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# This is my git server&lt;/span&gt;
+Host git
+  HostName 192.168.33.10
+  User adrian
+  IdentityFile ~/.ssh/git_server.key
+
+&lt;span class=&quot;c&quot;&gt;# I use this to connect to other machines on the same network&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# hence, I&#39;m forwarding my connection to the authentication agent&lt;/span&gt;
+Host manager
+  HostName 192.168.38.1
+  User root
+  IdentityFile ~/.ssh/manager.key
+  ForwardAgent yes
+
+&lt;span class=&quot;c&quot;&gt;# Forwarding port 5858 to localhost for remote debugging  &lt;/span&gt;
+Host nodejs
+  HostName 192.168.33.11
+  User adrian
+  IdentityFile ~/.ssh/nodejs.key
+  RemoteForward 5858 5858
+  
+Host db
+  HostName 192.168.33.12
+  User root
+  IdentityFile ~/.ssh/db.key&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In order to connect to any of those machines, I just need to run &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh &amp;lt;Host&amp;gt;&lt;/code&gt;, so,
+if I would like to connect to my &lt;code class=&quot;highlighter-rouge&quot;&gt;manager&lt;/code&gt; instance, all I need to do is run
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ssh manager&lt;/code&gt;. Would you prefer to &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh root@192.168.38.1&lt;/code&gt; and then having
+to type your password, every time? Didn’t think so.&lt;br /&gt;
+I really hope you enjoyed this short article and that the knowledge you get from
+it helps you spend less time on the mundane tasks and more on the creative side
+of our jobs.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Photo credits:&lt;br /&gt;
+&lt;a href=&quot;https://www.flickr.com/photos/sdelgado&quot;&gt;Sergio Delgado&lt;/a&gt; — &lt;a href=&quot;https://en.wikipedia.org/wiki/Sloth&quot;&gt;Three-toed sloth in the Dallas World Aquarium&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>In this quick tip, I will share my SSH workflow and how I manage things
+when it comes to working with multiple remote machines.
+Unlike “the old days” when we used to have Apache installed locally on our
+machines — I see you Mamp Server users — now, with the rise of cloud
+providers like Amazon, Digital Ocean or Microsoft Azure, and  products such as
+Docker, we are working more and more on systems that are spread accross multiple
+machines, instances, containers, you name it.</summary></entry><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
 the difference between writing an elegant, easy to reason about application, 
 and a crude hack. As far as my experience goes, only a small number of developers 
 I’ve talked to in the past year or so, know how to write a vanilla 
@@ -776,155 +891,4 @@ things really don’t need leave your brain, and for showing us the versatility 
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>There comes a time in a developer’s life when they need to unlearn something, in order to make way
 for something new. In fact, I believe that the right way to learn something new, be it a new
 programming technique, a new framework, a new language, sometimes means putting some concepts that
-you already know and master, behind you.</summary></entry><entry><title>Dockerizing Adobe Media Server</title><link href="https://codesi.nz/dockerizing-adobe-media-server/" rel="alternate" type="text/html" title="Dockerizing Adobe Media Server" /><published>2015-09-17T00:00:00+03:00</published><updated>2015-09-17T00:00:00+03:00</updated><id>https://codesi.nz/dockerizing-adobe-media-server</id><content type="html" xml:base="https://codesi.nz/dockerizing-adobe-media-server/">&lt;p&gt;New job, new technologies, new problems to solve — that’s how it all started for me.&lt;br /&gt;
-After switching jobs few months ago, I found myself working on an application that makes heavy use of
-Adobe Media Server(AMS) for audio and video streaming.&lt;br /&gt;
-Nothing too hard, or too complicated, except for the fact that all developers were using a single
-install of AMS which was somewhere on a central server.&lt;br /&gt;
-This started all my single-point-of-failure alarms, and started to ockerize the whole development
-environment, including AMS. In this article, I will explain the steps I followed in order to
-properly create a &lt;a href=&quot;https://www.docker.com/&quot;&gt;docker&lt;/a&gt; container running Adobe Media Server, with 
-full RTMP/RTMPS support,&lt;/p&gt;
-
-&lt;p&gt;By now, many of the developers with an interest in DevOps should know about Docker, so I wont waste
-time explaining what Docker is, there are plenty of resources out there, starting with the
-&lt;a href=&quot;https://docs.docker.com/&quot;&gt;official docker documentation&lt;/a&gt;, very rich in examples and explanations.&lt;/p&gt;
-
-&lt;p&gt;So, back to our AMS setup, there’s one “small” problem, setting it up inside a Docker container 
-— it doesn’t work straight out of the box.&lt;br /&gt;
-This is because when you install Adobe Media Server, you get the application’s  license, &lt;code class=&quot;highlighter-rouge&quot;&gt;less&lt;/code&gt;-ed 
-to you, and you need to press the spacebar(or the down arrow if you feel a  bit crazy) and hit a 
-key when you reach the bottom, confirming that you’ve read and agreed with the license.&lt;br /&gt;
-In my opinion, this is complicated stuff, so let’s simplify. As it turns out, just by going to the 
-directory where the AMS archive is extracted, and removing “License.txt”, you can aviod having to 
-“read” the whole license before continuing.&lt;br /&gt;
-So much for the first part of the problem. But there is still something to be done! The install
-script is still waiting for user input, to continue with the setup, so what you have to do
-next is to comment out the line that halts the  installation until it gets a keypress, in the 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS&lt;/code&gt; script. For this matter in particular, you will need to use 
-&lt;a href=&quot;https://www.gnu.org/software/sed/manual/sed.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;&lt;/a&gt;, just like in the snippet below.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ams_setup_directory
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rm -Rf License.txt
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;After getting rid of the license, and the blocking keypress timeout, comes the normal setup, where
-you have to provide various answers to the installer. This is where the second problem appears, as 
-you aren’t able to answer those questions yourself, because everything takes place when you’re 
-building your Docker image.&lt;br /&gt;
-At one point, when I was at my lowest self-esteem level of all times, somebody suggested using 
-&lt;a href=&quot;http://expect.sourceforge.net/&quot;&gt;Expect&lt;/a&gt; to autofill the answers, but I wasn’t in the mood for
-reading at that time. Besides, I knew that it had to be simpler than that, and I was right.&lt;/p&gt;
-
-&lt;p&gt;The answer lies in the setup itself. What you have to do is to do is to open your editor, and 
-manually go through the setup, while writing down each answer you put in (including &lt;code class=&quot;highlighter-rouge&quot;&gt;RETURN&lt;/code&gt;s).
-At the end of the setup you will have something looking like the snippet below 
-(whitespace is relevant):&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# begin input file&lt;/span&gt;
-      
-n
-/opt/adobe/ams 
-admin
-123456789
-123456789
-ams
-y
-ams
-y
-y
-
-ams
-1935,-443
-1111
-y
-n
-y
-      
-     
-&lt;span class=&quot;c&quot;&gt;# end input file&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;that you can validate against AMS’s “Install Action Summary”, outlined below:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;----------- Install Action Summary -----------
-
-Installation directory         &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /opt/adobe/ams
-
-Adobe Media Server Port        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1935,-443
-Adobe Media Admin Server Port  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1111
-Interface &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;IP address&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; AMS will listen on  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; auto
-
-Apache Install                 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes
-
-
-Administrative username        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; admin
-Administrative password        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;suppressed&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-service owner                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
-
-service user                   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
-service group                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ams
-
-Run as daemon                  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Yes&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Now, to make this work, all you have to do is to save that input file, somewhere on the filesystem 
-of your container, and simply &lt;code class=&quot;highlighter-rouge&quot;&gt;pipe&lt;/code&gt; it through &lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS&lt;/code&gt;. I would recommend naming the file 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;installAMS.input&lt;/code&gt;, so you can easily identify which is which. After you’ve created your input file, 
-all you need to do is to execute one of the following commands, in the directory where the AMS 
-archive was extracted: &lt;code class=&quot;highlighter-rouge&quot;&gt;./installAMS &amp;lt; installAMS.input&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;cat installAMS.input | ./installAMS&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Having this knowledge under our belts, it’s pretty straightforward to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; with 
-the afore-mentioned setup, and with a bit more effort, to have a fully isolated Adobe Media Server
-install, easily reproducible from version control.&lt;br /&gt;
-Your &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; will probably look like the one below, with minor tweaks based on your needs:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM centos:6
-MAINTAINER Adrian Oprea&amp;lt;adrian@codesi.nz&amp;gt;
-
-RUN rpm --import https://getfedora.org/static/0608B895.txt
-RUN yum update -y &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; yum install -y tar python-setuptools
-RUN easy_install supervisor
-
-RUN mkdir -p /var/log/supervisor
-COPY conf/supervisord.conf /etc/supervisord.conf
-
-WORKDIR /tmp
-RUN curl -O http://download.macromedia.com/pub/adobemediaserver/5_0_8/AdobeMediaServer5_x64.tar.gz
-WORKDIR /tmp/ams_latest
-RUN tar zxvf ../AdobeMediaServer5_x64.tar.gz -C . --strip-components&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
-RUN rm -Rf License.txt
-RUN sed -i -e &lt;span class=&quot;s1&quot;&gt;&#39;s:read cont &amp;lt; /dev/tty:#read cont &amp;lt; /dev/tty:g&#39;&lt;/span&gt; installAMS
-
-COPY conf/installAMS.input installAMS.input
-
-RUN ./installAMS &amp;lt; installAMS.input
-COPY certs /opt/adobe/certs
-COPY conf/Adaptor.xml /opt/adobe/ams/conf/_defaultRoot_/Adaptor.xml
-
-&lt;span class=&quot;c&quot;&gt;# CLEANUP&lt;/span&gt;
-WORKDIR /tmp
-RUN rm -Rf ams_latest AdobeMediaServer5_x64.tar.gz
-
-VOLUME &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/opt/adobe/ams/applications&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-
-EXPOSE 80 443 1111 1935
-
-CMD &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/supervisord&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The whole setup, including a set of working self-signed SSL certificates so you can test the RTMPS 
-connection, and a ready-made configuration for &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; is available on 
-&lt;a href=&quot;https://github.com/opreaadrian/docker-adobe-media-server&quot;&gt;my GitHub account&lt;/a&gt;.&lt;br /&gt;
-Make sure to get back via Twitter(&lt;a href=&quot;https://twitter.com/opreaadrian&quot;&gt;@opreaadrian&lt;/a&gt;) with feedback, 
-questions and suggestions, and also make use of the comments section.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/bevgoodwin/&quot;&gt;Beverley Goodwin&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>New job, new technologies, new problems to solve — that’s how it all started for me.
-After switching jobs few months ago, I found myself working on an application that makes heavy use of
-Adobe Media Server(AMS) for audio and video streaming.
-Nothing too hard, or too complicated, except for the fact that all developers were using a single
-install of AMS which was somewhere on a central server.
-This started all my single-point-of-failure alarms, and started to ockerize the whole development
-environment, including AMS. In this article, I will explain the steps I followed in order to
-properly create a docker container running Adobe Media Server, with 
-full RTMP/RTMPS support,</summary></entry></feed>
+you already know and master, behind you.</summary></entry></feed>
