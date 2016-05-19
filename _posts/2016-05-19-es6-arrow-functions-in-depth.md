@@ -101,7 +101,9 @@ const variadicAdder = (x) => {
 
   return () => {
     let args = Array.prototype.slice.call(arguments, 0);
-    return args.reduce((accumulator, current, index, arr), x);
+    return args.reduce((accumulator, current) => {
+      return accumulator + current;
+    }, x);
   }
 }
 
