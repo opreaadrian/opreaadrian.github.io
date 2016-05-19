@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "ES6 arrow functions in depth"
-pub_date: 2016-05-18 12:00:00 AM
-last_modified: 2016-05-18 12:00:00 AM
+pub_date: 2016-05-19 4:40:00 PM
+last_modified: 2016-05-19 4:40:00 PM
 categories:
   - javascript
 published: true
@@ -94,23 +94,45 @@ In our new implementation `this` is a hard reference to the `obj` object and doe
 
 Have you ever tried to access the `arguments` object inside an arrow function? I have, and I wasted 3 solid hours trying to figure out why do I get the arguments of the outer function instead of those of the arrow functions.
 Thankfully, MDN exists, and as good practice dictates, you check the documentation at the end, when you sit in a corner, knees tucked to your chest, rocking and repeating to yourself: “I should have been a carpenter!”
-Fun aside, arrow functions do not expose an `arguments` object. If you try to access it, you will get the arguments of the surrounding function.
+Fun aside, arrow functions do not expose an `arguments` object. If you try to access it, you will get the arguments of the surrounding function. In our case, given the fact that the outer function is an arrow function as well, and we have no more functions further up the chain, we will get a `ReferenceError`.
 
 {% highlight javascript %}
-function getPalindromes() {
-  const variadicPalindromes = () => {
-    // these are actually the arguments of getPalindromes
-    let args = Array.prototype.slice.call(arguments, 0);
-    return args.filter((arg) => arg === arg.split('').reverse().join(''))
-  }
+const variadicAdder = (x) => {
 
-  return variadicPalindromes('test', 'racecar');
+  return () => {
+    let args = Array.prototype.slice.call(arguments, 0);
+    return args.reduce((accumulator, current, index, arr), x);
+  }
 }
 
-const palindromes = getPalindromes();
+const variadicAdderOf5 = variadicAdder(5);
+
+console.log(variadicAdderOf5(10, 11, 12));
+// ReferenceError: arguments is not defined
 {% endhighlight %}
 
-There is no fix here, as there is nothing broken. What we can do is to send the arguments to `getPalindromes()` and process them outside the arrow function, for clarity’s sake.
+There is no fix here, as there is nothing broken. What we can do is to return a plain function, rather than an arrow, from our `variadicAdder()`.
+This will give us the opportunity to access the `arguments` object without an issue. The updated code will look like the one below with the only difference
+that it will actually work and not throw an error.
+
+{% highlight javascript %}
+const variadicAdder = (x) => {
+
+  return function() {
+    let args = Array.prototype.slice.call(arguments, 0);
+    return args.reduce((accumulator, current) => {
+      return accumulator + current;
+    }, x);
+  }
+}
+
+const variadicAdderOf5 = variadicAdder(5);
+
+console.log(variadicAdderOf5(10, 11, 12));
+// 38
+{% endhighlight %}
+
+To find out more about `Array.prototype.reduce`, head to the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
 
 ## Other characteristics
 As I mentioned in the introductory section of this article, arrow functions have several more characteristics besides the context and the arguments.

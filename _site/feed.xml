@@ -1,4 +1,144 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-05-17T23:14:24+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>An SSH workflow that’s easier on your brain</title><link href="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/" rel="alternate" type="text/html" title="An SSH workflow that&#39;s easier on your brain" /><published>2016-05-05T00:00:00+03:00</published><updated>2016-05-05T00:00:00+03:00</updated><id>https://codesi.nz/an-ssh-workflow-easier-on-the-brain</id><content type="html" xml:base="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/">&lt;p&gt;In this quick tip, I will share my SSH workflow and how I manage things
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-05-19T16:37:37+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>ES6 arrow functions in depth</title><link href="https://codesi.nz/es6-arrow-functions-in-depth/" rel="alternate" type="text/html" title="ES6 arrow functions in depth" /><published>2016-05-19T00:00:00+03:00</published><updated>2016-05-19T00:00:00+03:00</updated><id>https://codesi.nz/es6-arrow-functions-in-depth</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-in-depth/">&lt;p&gt;One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
+As I like to explain it to the people who attend my trainings/workshops, arrow functions are &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt;-less and &lt;code class=&quot;highlighter-rouge&quot;&gt;super&lt;/code&gt;-less.
+Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.&lt;/p&gt;
+
+&lt;h1 id=&quot;lexical-bound-this&quot;&gt;Lexical-bound this&lt;/h1&gt;
+
+&lt;p&gt;Previously, regular functions would have their &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; value set to the global object if they were used as callbacks, to a new object in case they were called with the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator or, in the case of libraries like jQuery, they would be set to the object that triggered an event in case of event handlers, or the current element in a &lt;code class=&quot;highlighter-rouge&quot;&gt;$.each&lt;/code&gt; iteration.This situation proved very confusing even for experienced developers.
+Let’s say you have a piece of code like the one below.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;nameValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;initializeHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;#name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;blur&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nameValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initializeHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The problem is that &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;blur&lt;/code&gt; event handler is set to the global object rather than obj. In strict mode — &lt;code class=&quot;highlighter-rouge&quot;&gt;‘use strict’;&lt;/code&gt; — you risk breaking your application because &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt;. In order to side-step this issue we have two options:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Convert the event handler to a function bound to the outer scope, using &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Function.prototype.bind&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Use the dirty &lt;code class=&quot;highlighter-rouge&quot;&gt;var self = this;&lt;/code&gt; expression in the &lt;code class=&quot;highlighter-rouge&quot;&gt;initializeHandlers&lt;/code&gt; function (I see this as a hack)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Both options are illustrated below.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;[...]&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;initializeHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;#name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// more elegant but we can do better&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blurHandler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nameValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;blur&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;blurHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[...]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;[...]&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;initializeHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;#name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// ugly and error-prone&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;blur&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nameValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[...]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;On the other hand, arrow functions have no internal context. They inherit their context from the outer scope. Let’s take a look at how arrow functions solve this problem.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;nameValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;initializeHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;#name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;nameInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;blur&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// this references obj instead of the global object&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nameValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In our new implementation &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; is a hard reference to the &lt;code class=&quot;highlighter-rouge&quot;&gt;obj&lt;/code&gt; object and doesn’t get lost due to nesting.&lt;/p&gt;
+
+&lt;h2 id=&quot;lexical-arguments&quot;&gt;Lexical arguments&lt;/h2&gt;
+
+&lt;p&gt;Have you ever tried to access the &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt; object inside an arrow function? I have, and I wasted 3 solid hours trying to figure out why do I get the arguments of the outer function instead of those of the arrow functions.
+Thankfully, MDN exists, and as good practice dictates, you check the documentation at the end, when you sit in a corner, knees tucked to your chest, rocking and repeating to yourself: “I should have been a carpenter!”
+Fun aside, arrow functions do not expose an &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt; object. If you try to access it, you will get the arguments of the surrounding function. In our case, given the fact that the outer function is an arrow function as well, and we have no more functions further up the chain, we will get a &lt;code class=&quot;highlighter-rouge&quot;&gt;ReferenceError&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;variadicAdder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accumulator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;variadicAdderOf5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;variadicAdder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;variadicAdderOf5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ReferenceError: arguments is not defined&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;There is no fix here, as there is nothing broken. What we can do is to return a plain function, rather than an arrow, from our &lt;code class=&quot;highlighter-rouge&quot;&gt;variadicAdder()&lt;/code&gt;.
+This will give us the opportunity to access the &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt; object without an issue. The updated code will look like the one below with the only difference
+that it will actually work and not throw an error.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;variadicAdder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accumulator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accumulator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;variadicAdderOf5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;variadicAdder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;variadicAdderOf5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 38&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To find out more about &lt;code class=&quot;highlighter-rouge&quot;&gt;Array.prototype.reduce&lt;/code&gt;, head to the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;other-characteristics&quot;&gt;Other characteristics&lt;/h2&gt;
+&lt;p&gt;As I mentioned in the introductory section of this article, arrow functions have several more characteristics besides the context and the arguments.
+The first thing I would like to mention is that you are unable to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator with arrow functions. As a direct implication, arrow functions also don’t have &lt;code class=&quot;highlighter-rouge&quot;&gt;super()&lt;/code&gt;. Snippets like the one below would simply throw a &lt;code class=&quot;highlighter-rouge&quot;&gt;TypeError&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;John&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// TypeError: Person is not a constructor&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The third characteristic, which is as well, a direct implication of the inability to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator, is the fact that arrow functions don’t have &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt;. In a nutshell, &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt; allows you to detect whether or not a function has been called as a constructor.
+Arrow functions, inherit &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt; from their surrounding scope. If the outer scope is a function, and it is called like a constructor (e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;new Person(&#39;Adrian&#39;);&lt;/code&gt;), then &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt; will point to the outer function.
+The Mozilla Developer Network hosts a detailed explanation on &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt; and I encourage you to check it out.&lt;/p&gt;
+
+&lt;h2 id=&quot;closing-thoughts&quot;&gt;Closing thoughts&lt;/h2&gt;
+
+&lt;p&gt;Now that you got a bit more detail into how arrow functions work, go and use them like they were intended!
+I can’t help recommending that you go through the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference&quot;&gt;Mozilla Developer Network JavaScript Reference&lt;/a&gt; as
+there is an abundance of knowledge that will help you in the long run, in your web development career.
+Feel free to leave comments, suggest edits and especially share with your peers.&lt;/p&gt;
+
+&lt;p&gt;Cheers!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Photo credits:
+&lt;a href=&quot;https://www.flickr.com/photos/elzey/&quot;&gt;Richard Elzey&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/9ZDxat&quot;&gt;Arrow Signs&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
+As I like to explain it to the people who attend my trainings/workshops, arrow functions are this-less, arguments-less, new.target-less and super-less.
+Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.</summary></entry><entry><title>An SSH workflow that’s easier on your brain</title><link href="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/" rel="alternate" type="text/html" title="An SSH workflow that&#39;s easier on your brain" /><published>2016-05-05T00:00:00+03:00</published><updated>2016-05-05T00:00:00+03:00</updated><id>https://codesi.nz/an-ssh-workflow-easier-on-the-brain</id><content type="html" xml:base="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/">&lt;p&gt;In this quick tip, I will share my SSH workflow and how I manage things
 when it comes to working with multiple remote machines.
 Unlike “the old days” when we used to have Apache installed locally on our
 machines — I see you Mamp Server users — now, with the rise of cloud
@@ -840,55 +980,4 @@ and as long as I know the names they get in the &lt;code class=&quot;highlighter
 &lt;blockquote&gt;
   &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/l2f1/&quot;&gt;Glen&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>In this short tip I will show you how to get the name of a  container created with
-docker-compose, so you can manipulate it.</summary></entry><entry><title>Unlearning and re-learning stuff</title><link href="https://codesi.nz/unlearning-and-re-learning-stuff/" rel="alternate" type="text/html" title="Unlearning and re-learning stuff" /><published>2015-09-22T00:00:00+03:00</published><updated>2015-09-22T00:00:00+03:00</updated><id>https://codesi.nz/unlearning-and-re-learning-stuff</id><content type="html" xml:base="https://codesi.nz/unlearning-and-re-learning-stuff/">&lt;p&gt;There comes a time in a developer’s life when they need to unlearn something, in order to make way
-for something new. In fact, I believe that the right way to learn something new, be it a new
-programming technique, a new framework, a new language, sometimes means putting some concepts that
-you already know and master, behind you.&lt;/p&gt;
-
-&lt;p&gt;I actually found that many of the people I see coming up from universities struggle with this, as 
-they get brainwashed with mathematics, Java and C++ and cannot accept or learn other programming 
-languages.&lt;/p&gt;
-
-&lt;p&gt;I’ve found myself in this situation, countless times, but still haven’t managed to find a solution.&lt;br /&gt;
-I love learning new stuff, and I’m an avid reader, so usually when I find something I like, things 
-usually happen as follows:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;I find something I like&lt;/li&gt;
-  &lt;li&gt;I start hacking at it and fail(I always do!)&lt;/li&gt;
-  &lt;li&gt;I read about that technology&lt;/li&gt;
-  &lt;li&gt;I hack some more.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It’s always about “I”.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;But in order to keep up with the pace of technology nowadays, we usually end up with a lot of loops
-similar to the one I described above, and need to “unlearn” something, like I previously said.&lt;br /&gt;
-This is not necessarily a bad thing, as you need to make room for that extra knowledge, but 
-sometimes you “unlearn” important stuff, and that’s when you start losing track.&lt;/p&gt;
-
-&lt;p&gt;This is exactly what happened to me, with CSS. I invested so much time into learning backend
-technologies, that I forgot how to use CSS. I realised this today, while attending 
-&lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt;’s talk at &lt;a href=&quot;http://www.smartwebconf.com/&quot;&gt;Smartweb&lt;/a&gt;, about 
-&lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;.&lt;br /&gt;
-This felt really awkward, as I come from a front-end background, and losing track of a core 
-front-end technology is not quite satisfying.&lt;br /&gt;
-I’m not saying that I forgot the basic concepts, I still know what floats are, how to do 
-positioning, but as you well know, technology changes at a very rapid pace, and now we have 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;flexbox&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;clip&lt;/code&gt;, critical CSS, quantity queries, and CSS animations.&lt;/p&gt;
-
-&lt;p&gt;Bottom line, I set myself to re-learn CSS, and I sure didn’t know that &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; 
-knows so many tricks, so I’m planning to also learn to use &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; better.&lt;br /&gt;
-As a closing thought, I’d like to thank &lt;a href=&quot;https://twitter.com/roy&quot;&gt;@roy&lt;/a&gt; for reminding me that some
-things really don’t need leave your brain, and for showing us the versatility of &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;. :)&lt;/p&gt;
-
-&lt;p&gt;Cheers!&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/jakerust/&quot;&gt;GotCredit&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>There comes a time in a developer’s life when they need to unlearn something, in order to make way
-for something new. In fact, I believe that the right way to learn something new, be it a new
-programming technique, a new framework, a new language, sometimes means putting some concepts that
-you already know and master, behind you.</summary></entry></feed>
+docker-compose, so you can manipulate it.</summary></entry></feed>
