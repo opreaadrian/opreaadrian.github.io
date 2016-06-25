@@ -40,3 +40,11 @@ google :
     googleplus: '+AdrianOpreasWeb'
 collections:
     - presentations
+
+compress_html:
+  clippings: all
+  comments: ['<!--', '-->']
+  endings: all
+  blanklines: false
+  profile: false
+  startings: all
