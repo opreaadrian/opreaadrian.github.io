@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-06-25T16:06:11+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>ES6 arrow functions in depth</title><link href="https://codesi.nz/es6-arrow-functions-in-depth/" rel="alternate" type="text/html" title="ES6 arrow functions in depth" /><published>2016-05-19T00:00:00+03:00</published><updated>2016-05-19T00:00:00+03:00</updated><id>https://codesi.nz/es6-arrow-functions-in-depth</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-in-depth/">&lt;p&gt;One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-06-29T16:19:11+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Configuring Git - multiple identities</title><link href="https://codesi.nz/configuring-git-multiple-identities/" rel="alternate" type="text/html" title="Configuring Git - multiple identities" /><published>2016-06-29T00:00:00+03:00</published><updated>2016-06-29T00:00:00+03:00</updated><id>https://codesi.nz/configuring-git-multiple-identities</id><content type="html" xml:base="https://codesi.nz/configuring-git-multiple-identities/">&lt;p&gt;I’ve been a freelancer for quite some time, and for approximately the same amount
+of time, I’ve been making the same mistake, over and over, again. Whenever I had
+to work for multiple customers in the same period of time, I would always mix-up
+the email addresses in my Git configuration, and end up committing code on
+a client’s codebase and sign it with the email and details from another client.&lt;/p&gt;
+
+&lt;p&gt;And it was all because of the two commands below:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;$ git config --global user.name &quot;Adrian Oprea&quot;
+$ git config --global user.email &quot;company@email.com&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Whenever I looked for help on how to set my name/email configuration in Git,
+I found these two commands. It doesn’t matter which Git provider you’re using,
+GitHub or GitLab, it’s all the same. So I did what everyone would do, I copied
+and pasted those commands over and over again.&lt;/p&gt;
+
+&lt;p&gt;There’s nothing wrong with setting a global name/email in your git configuration,
+I have them set up for my public/open-source projects, but for your client projects,
+use the local config. This way, you’ll have project-specific configuration, at the
+project level, and shared settings at the global level.&lt;/p&gt;
+
+&lt;p&gt;So instead of using the &lt;code class=&quot;highlighter-rouge&quot;&gt;--global&lt;/code&gt; flag, just use the &lt;code class=&quot;highlighter-rouge&quot;&gt;--local&lt;/code&gt; flag, and
+everything will be set at the repository level, in the local config file — &lt;code class=&quot;highlighter-rouge&quot;&gt;.git/config&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to configure my details on a repository basis, all you to do is to paste
+the following lines, in the command line:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;$ git config --local user.name &quot;Adrian Oprea&quot;
+$ git config --local user.email &quot;company@email.com&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This means that you can keep your global settings intact and only update the
+configuration at the local level.&lt;/p&gt;
+
+&lt;h3 id=&quot;bonus&quot;&gt;Bonus&lt;/h3&gt;
+
+&lt;p&gt;To view all the values that are currently set at the local/global level run
+one of the following commands in your terminal emulator of choice:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config --local --list
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config --global --list&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Have a tip you would like to share with others? Feel free to do so, in the comments section.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Photo credits:
+&lt;a href=&quot;https://www.flickr.com/photos/harinaivoteza/&quot;&gt;Teza Harinaivo Ramiandrisoa&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/bKW1jF&quot;&gt;Cameleon colors&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>I’ve been a freelancer for quite some time, and for approximately the same amount
+of time, I’ve been making the same mistake, over and over, again. Whenever I had
+to work for multiple customers in the same period of time, I would always mix-up
+the email addresses in my Git configuration, and end up committing code on
+a client’s codebase and sign it with the email and details from another client.</summary></entry><entry><title>ES6 arrow functions in depth</title><link href="https://codesi.nz/es6-arrow-functions-in-depth/" rel="alternate" type="text/html" title="ES6 arrow functions in depth" /><published>2016-05-19T00:00:00+03:00</published><updated>2016-05-19T00:00:00+03:00</updated><id>https://codesi.nz/es6-arrow-functions-in-depth</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-in-depth/">&lt;p&gt;One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
 As I like to explain it to the people who attend my trainings/workshops, arrow functions are &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt;-less and &lt;code class=&quot;highlighter-rouge&quot;&gt;super&lt;/code&gt;-less.
 Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.&lt;/p&gt;
 
@@ -930,56 +980,4 @@ Enjoy!&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>Last week we had our October BucharestJS meetup
 and they made the mistake of letting me speak, again.
 Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently — A different look at Node.js application architecture</summary></entry><entry><title>Short tip: Working with docker-compose container names</title><link href="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/" rel="alternate" type="text/html" title="Short tip: Working with docker-compose container names" /><published>2015-11-01T00:00:00+02:00</published><updated>2015-11-01T00:00:00+02:00</updated><id>https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash</id><content type="html" xml:base="https://codesi.nz/short-tip-get-docker-compose-generated-names-in-bash/">&lt;p&gt;In this short tip I will show you how to get the name of a  container created with&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt;, so you can manipulate it.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; generates container names going by the following convention: 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;CURRENT_DIR&amp;gt;_&amp;lt;CONTAINER_NAME&amp;gt;_&amp;lt;INSTANCE_NUMBER&amp;gt;&lt;/code&gt;.&lt;br /&gt;
-I needed to get my hands on container names so I can individually kill and remove them without
-messing up with the whole infrastructure.&lt;/p&gt;
-
-&lt;p&gt;Let’s first dissect the structure:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CURRENT_DIR&lt;/code&gt; is the directory where the &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; file is located&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CONTAINER_NAME&lt;/code&gt; is the name you gave to your service in &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;INSTANCE_NUMBER&lt;/code&gt; is self-explanatory&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So for a config file like the one below, placed in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Documents/projects/webapp&lt;/code&gt;, your 
-container would be named &lt;code class=&quot;highlighter-rouge&quot;&gt;webapp_nginx_1&lt;/code&gt;:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;80:80&quot;&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;443:443&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;the-solution&quot;&gt;The solution&lt;/h2&gt;
-&lt;p&gt;No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
-&lt;a href=&quot;http://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-bash-script?answertab=votes#tab-top&quot; target=&quot;_blank&quot; title=&quot;StackOverflow question: Get current directory name (without full path) in Bash Script&quot;&gt;
-	there was a way to parse only the &lt;code class=&quot;highlighter-rouge&quot;&gt;basename&lt;/code&gt;&lt;/a&gt;
-from the whole &lt;code class=&quot;highlighter-rouge&quot;&gt;pwd&lt;/code&gt; string, without complicated splits and parsing.&lt;br /&gt;
-The thing I was looking for was 
-&lt;a href=&quot;http://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html&quot; target=&quot;_blank&quot; title=&quot;gnu.org: Shell Parameter Expansion documentation&quot;&gt;
-	Shell Parameter Expansion&lt;/a&gt;, which got me this thing: &lt;code class=&quot;highlighter-rouge&quot;&gt;CONTAINER_NAME=${PWD##*/}_nginx_1&lt;/code&gt;.&lt;br /&gt;
-What this allowed me to do was to get the current directory name, without the full path and concatenate that with what
-I wanted. Now I could &lt;code class=&quot;highlighter-rouge&quot;&gt;docker rm&lt;/code&gt; my container peacefully.&lt;/p&gt;
-
-&lt;p&gt;There’s another problem, though, the fact that directory names like this:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;webapp-authentication-project&lt;/code&gt;, get turned into &lt;code class=&quot;highlighter-rouge&quot;&gt;webappauthenticationproject&lt;/code&gt;.&lt;br /&gt;
-For this, I resorted to &lt;a href=&quot;https://www.gnu.org/software/sed/manual/&quot; target=&quot;_blank&quot; title=&quot;gnu.org: GNU Sed user&#39;s manual&quot;&gt;sed&lt;/a&gt; 
-so I could take out the underscores and dashes from the filename.&lt;/p&gt;
-
-&lt;p&gt;The final version of my code looks just like the snippet below:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;CONTAINER_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PWD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;##*/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;_nginx_1 | sed s&lt;span class=&quot;s1&quot;&gt;&#39;/[ -]/_/g&#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Now I can manipulate containers from any bash script, as long as I can get my hands on the &lt;code class=&quot;highlighter-rouge&quot;&gt;$PWD&lt;/code&gt;
-and as long as I know the names they get in the &lt;code class=&quot;highlighter-rouge&quot;&gt;YAML&lt;/code&gt; config file.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Image credits: &lt;a href=&quot;https://www.flickr.com/photos/l2f1/&quot;&gt;Glen&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>In this short tip I will show you how to get the name of a  container created with
-docker-compose, so you can manipulate it.</summary></entry></feed>
+lazy at work, and use their time intelligently — A different look at Node.js application architecture</summary></entry></feed>
