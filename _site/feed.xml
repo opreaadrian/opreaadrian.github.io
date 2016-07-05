@@ -1,4 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-06-29T16:19:11+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Configuring Git - multiple identities</title><link href="https://codesi.nz/configuring-git-multiple-identities/" rel="alternate" type="text/html" title="Configuring Git - multiple identities" /><published>2016-06-29T00:00:00+03:00</published><updated>2016-06-29T00:00:00+03:00</updated><id>https://codesi.nz/configuring-git-multiple-identities</id><content type="html" xml:base="https://codesi.nz/configuring-git-multiple-identities/">&lt;p&gt;I’ve been a freelancer for quite some time, and for approximately the same amount
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-07-05T11:08:54+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Event delegation in TinyMCE plugins</title><link href="https://codesi.nz/event-delegation-in-tinymce-plugins/" rel="alternate" type="text/html" title="Event delegation in TinyMCE plugins" /><published>2016-07-05T00:00:00+03:00</published><updated>2016-07-05T00:00:00+03:00</updated><id>https://codesi.nz/event-delegation-in-tinymce-plugins</id><content type="html" xml:base="https://codesi.nz/event-delegation-in-tinymce-plugins/">&lt;p&gt;For the past week or so, I’ve been working with &lt;a href=&quot;https://www.tinymce.com/&quot;&gt;TinyMCE&lt;/a&gt;. For those of you
+who don’t know what it is, I’ll just say this: it is a &lt;strong&gt;WYSIWYG&lt;/strong&gt; (What You See Is What You Get) editor, very
+similar to the ones you find in popular blogging platforms like &lt;a href=&quot;https://wordpress.com/&quot;&gt;Wordpress&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’m working on a personal project, that involves parsing the content that the user inputs in the editor,
+and generating a template that would later be rendered as a PDF. For the project’s specific needs,
+I had to develop a small plugin that would display a popup when certain elements are clicked.&lt;br /&gt;
+A thing I’ve struggled with the most was how to find elements in the editor’s DOM content. Once I had that
+figured out, what I had to do was to place some event handlers on specific elements in the content.&lt;br /&gt;
+Unfortunately, the &lt;code class=&quot;highlighter-rouge&quot;&gt;tinymce.dom.DomQuery#on()&lt;/code&gt; method, is not similar to jQuery’s &lt;code class=&quot;highlighter-rouge&quot;&gt;.on()&lt;/code&gt;. The main problem
+is that it receives only 2 arguments, instead of 3, so you are not able to specify an element identifier to
+which the application should delegate, let’s say, click events.
+Below is a comparison of the two &lt;code class=&quot;highlighter-rouge&quot;&gt;.on()&lt;/code&gt; methods:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// jQuery.on()&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.element&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;.delegate-child&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Do stuff when .element receives clicks&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// and the target is a .delegate-child element&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// tinymce.dom.DomQuery.on()&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.element&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Do stuff when .element receives clicks&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, there is no way for us to register for click events on the &lt;code class=&quot;highlighter-rouge&quot;&gt;.delegate-child&lt;/code&gt; elements,
+unless we bind a callback to each element, like below:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// tinymce.dom.DomQuery.on()&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.delegate-child&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Do stuff when .delegate-child receives clicks&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The problem with the approach above is that if we add more &lt;code class=&quot;highlighter-rouge&quot;&gt;.delegate-child&lt;/code&gt; elements, further
+down the road, those will not have the click handler registered, so clicking on them would not
+trigger the desired behavior.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, the &lt;code class=&quot;highlighter-rouge&quot;&gt;event&lt;/code&gt; is being passed as an argument to our click handler, so we can use a combination of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;event.target.nodeName&lt;/code&gt;, to figure out if the node receiving the click is of the type we would like to delegate to.
+We can also strengthen our verification by checking for a class name as well.&lt;br /&gt;
+Take a look at the snippet below for the full example:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// tinymce.dom.DomQuery.on()&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;click&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodeName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toLowerCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;span&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;classList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;.formField&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodeName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CLICKED&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you would like to learn more about event delegation, and why is it beneficial,
+check out the list of articles below:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://davidwalsh.name/event-delegate&quot;&gt;https://davidwalsh.name/event-delegate&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learn.jquery.com/events/event-delegation/&quot;&gt;https://learn.jquery.com/events/event-delegation/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/&quot;&gt;https://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://javascript.info/tutorial/event-delegation&quot;&gt;http://javascript.info/tutorial/event-delegation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.nczonline.net/blog/2009/06/30/event-delegation-in-javascript/&quot;&gt;https://www.nczonline.net/blog/2009/06/30/event-delegation-in-javascript/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hopefully this saved you from a terrible headache! If you need any help or would like
+to share your experience, you can do so by using the comments section or by tweeting at
+&lt;a href=&quot;https://twitter.com/@codesinz&quot;&gt;@codesinz&lt;/a&gt; or at &lt;a href=&quot;https://twitter.com/@opreaadrian&quot;&gt;@opreaadrian&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Photo credits:
+&lt;a href=&quot;https://www.flickr.com/photos/kom-p/&quot;&gt;KOMPETENZZENTRUM: PRÄSENTATION&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/9ZPcVC&quot;&gt;Delegation&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>For the past week or so, I’ve been working with TinyMCE. For those of you
+who don’t know what it is, I’ll just say this: it is a WYSIWYG (What You See Is What You Get) editor, very
+similar to the ones you find in popular blogging platforms like Wordpress.</summary></entry><entry><title>Configuring Git - multiple identities</title><link href="https://codesi.nz/configuring-git-multiple-identities/" rel="alternate" type="text/html" title="Configuring Git - multiple identities" /><published>2016-06-29T00:00:00+03:00</published><updated>2016-06-29T00:00:00+03:00</updated><id>https://codesi.nz/configuring-git-multiple-identities</id><content type="html" xml:base="https://codesi.nz/configuring-git-multiple-identities/">&lt;p&gt;I’ve been a freelancer for quite some time, and for approximately the same amount
 of time, I’ve been making the same mistake, over and over, again. Whenever I had
 to work for multiple customers in the same period of time, I would always mix-up
 the email addresses in my Git configuration, and end up committing code on
@@ -949,35 +1028,4 @@ phone.&lt;/p&gt;
 &lt;a href=&quot;https://www.flickr.com/photos/believekevin/&quot;&gt;kevin&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/8mGycA&quot;&gt;Lot of mobile phones + accessories (FREE)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>This article is meant to offer a hopefully simple solution for testing web applications that run on 
 your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
-or resorting to other, less elegant solutions.</summary></entry><entry><title>There’s garbage in our code</title><link href="https://codesi.nz/there-s-garbage-in-our-code/" rel="alternate" type="text/html" title="There&#39;s garbage in our code" /><published>2015-11-04T00:00:00+02:00</published><updated>2015-11-04T00:00:00+02:00</updated><id>https://codesi.nz/there-s-garbage-in-our-code</id><content type="html" xml:base="https://codesi.nz/there-s-garbage-in-our-code/">&lt;p&gt;Last week we had our &lt;a href=&quot;https://www.facebook.com/events/180867725583584/&quot; target=&quot;_blank&quot; title=&quot;October BucharestJS meetup - facebook event&quot;&gt;October BucharestJS meetup&lt;/a&gt;
-and they made the mistake of letting me speak, again.&lt;br /&gt;
-Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently — &lt;a href=&quot;https://codesi.nz/a-different-look-at-nodejs-application-architecture/&quot; target=&quot;_blank&quot; title=&quot;Older article about Node.js application architecture&quot;&gt;A different look at Node.js application architecture&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This time, I took on a challenge bigger than myself: explaining to people what garbage collection
-is, how does the garbage collector work behind the scenes, and what dog breeds they shouldn’t own.&lt;br /&gt;
-Now, I don’t know if it was a success or not, but we sure had a good time, and the audience was
-kind enough not to ask any questions — not sure if it was because pizza arrived at the end of
-my presentation or they were just being nice and didn’t want to put me in difficulty.
-I wrote this small article to thank the organisers for their courage and dedication in maintaining
-this community and to the patient crowd that stood and listened to me rambling about garbage
-collection algorithms and my Chinese Crested friend,
-Sniffles.&lt;/p&gt;
-
-&lt;p&gt;The slides are available on &lt;a href=&quot;http://www.slideshare.net/AdrianOprea3/theres-garbage-in-our-code&quot; target=&quot;_blank&quot; title=&quot;There&#39;s garbage in our code - SlideShare presentation&quot;&gt;SlideShare&lt;/a&gt;.&lt;br /&gt;
-Enjoy!&lt;/p&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/images/posts/there-s-garbage-in-our-code/sniffles.jpg&quot; alt=&quot;Chinese Crested dog in
-	tuxedo&quot; /&gt;
-	&lt;figcaption&gt;Sniffles&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Credits: &lt;br /&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/annrkiszt/&quot;&gt;Yolanda&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/foxypar4/&quot;&gt;John Haslam&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>Last week we had our October BucharestJS meetup
-and they made the mistake of letting me speak, again.
-Last time I presented something, was in June, when I tried to teach developers how to be
-lazy at work, and use their time intelligently — A different look at Node.js application architecture</summary></entry></feed>
+or resorting to other, less elegant solutions.</summary></entry></feed>
