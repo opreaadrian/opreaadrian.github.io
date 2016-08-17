@@ -21,7 +21,8 @@ is just like trying to take a fly out of your bedroom by grabbing it and throwin
 it out the window &mdash; It just doesn't work.  
 
 It was 12:45 AM, and I was getting ready to go to bed. I finished reading(listening)
-Daniel Khaneman's "Thinking fast and slow" and just when I reach over to turn my
+[Daniel Khaneman's "Thinking fast and slow"](http://www.audible.com/pd/Science-Technology/Thinking-Fast-and-Slow-Audiobook/B005TKKCWC/ref=a_search_c4_1_1_srTtl?qid=1471449930&sr=1-1 "Audible.com book link") 
+and just when I reach over to turn my
 bedside light off, I see a fly. Now, I'm not the biggest insect fan but given that they're
 living beings, I thought to myself: "I'm not going to kill it, I'll catch it and
 release it outside". Instinctively, I did what was natural for a human trying to
