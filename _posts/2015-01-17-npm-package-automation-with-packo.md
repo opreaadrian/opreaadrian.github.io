@@ -21,6 +21,12 @@ If further down the road you decide to refactor the module and place it in a `li
 Wouldn't it have been easier to simply type this: `require('my-super-package');`?  
 The answer for me is YES, and for this exact purpose I built [packo](https://www.npmjs.com/package/packo), a npm package generator that takes away the work of having to manually create your package's boilerplate structure, and all of this while keeping best practices in mind. 
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## Reasoning
 
 While analysing the codebase that I currently work with at the office, I advocated the idea that we should rebuild/rething some of our modules as npm packages, and just install them through `npm install`.

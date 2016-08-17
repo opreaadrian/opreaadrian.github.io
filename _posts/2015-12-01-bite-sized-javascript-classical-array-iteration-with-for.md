@@ -14,6 +14,12 @@ featured_image: /images/posts/bite-sized-javascript-classical-array-iteration/po
 Last week I started this blog series, on JavaScript arrays and I feel it's time to learn more about classical array iteration. With the emergence of reactive programming, arrays take a central role in the whole development equation, and I feel that both me, and other developers should grasp this concept thoroughly.  
 In this article, I plan on presenting the various ways in which one can iterate over the members of an array. We're not going to talk about the fancy `forEach` and its' "compañeros" just yet. In order to appreciate the benefit that methods such as `forEach`, `map` and the like bring to the table, the developer first needs to know the ins and outs of classical iteration.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+
 ## Iterating with `for`
 
 The first looping instruction they teach you in school, will most probably be the good old `for`.

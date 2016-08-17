@@ -22,6 +22,12 @@ job done in a timely manner and not reinvent the wheel, but using something
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+
 ## A bit of background
 
 I've been working with JSON since 2009 and all I knew is that you are able to 

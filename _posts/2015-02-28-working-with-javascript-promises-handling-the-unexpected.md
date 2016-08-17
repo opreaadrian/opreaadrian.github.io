@@ -13,6 +13,12 @@ featured_image: /images/posts/error_handling_missile.jpg
 Having worked with [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) extensively in the past year, I often found myself in situations where handling output and errors was very hard to perform, from a semantic standpoint.  
 I plan on sharing my experience with promises, especially error-handling, but this is by no mean something that should be taken as a best practice, it is only my take on this issue, and you are encouraged to share your experience and practices.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## What's an [Error](http://en.wikipedia.org/wiki/Error)
 > The concrete meaning of the Latin word "error" is "wandering" or "straying". [...] an error or a mistake can sometimes be dispelled through knowledge.
 

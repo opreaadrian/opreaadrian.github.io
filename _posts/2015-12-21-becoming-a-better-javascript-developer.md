@@ -14,6 +14,12 @@ featured_image: /images/posts/becoming-a-better-javascript-developer/post.jpg
 A week ago I saw a very interesting question on Quora, titled:  [What should I do to become an enterprise level professional in JavaScript?](https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/). In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I'd like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
 One thing worth mentioning is the fact that I don't yet consider myself an "enterprise JavaScript developer", even though I have been called by that name. I'm a software developer with a sweet tooth for JavaScript, that's it.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+
 ## The actual answer
 First and foremost let me start by saying that I met "enterprise JavaScript" developers who are not that skilled in JavaScript, simply because the "enterprise" limits all their creativity by being more restrictive in terms of technologies.
 On the other hand, they tend to be good at overall architecture, they think a lot in terms of scalability and durability.

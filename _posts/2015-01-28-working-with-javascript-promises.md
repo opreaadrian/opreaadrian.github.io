@@ -13,6 +13,12 @@ featured_image: /images/posts/promises.jpg
 We use [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) in our day to day grind, and not few were the occasions in which I found promise-using code improperly structured, responses handled in an inconsistent manner, as well as weak or no error handling.  
 With this post I aim to share some of my practices when it comes to working with promises. Throughout the post I will use ES6 syntax, but the principles outlined are available whether you're using native JavaScript promises, or a library that implements the [Promises A+ spec](https://promisesaplus.com/).
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## Introduction
 > What "is" promises?
 

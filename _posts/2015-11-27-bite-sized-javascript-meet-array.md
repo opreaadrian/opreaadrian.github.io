@@ -20,6 +20,12 @@ remind me what each method of the `Array` object does, and to also share this kn
 interested in the topic. The articles won't require more than a basic experience with JavaScript's
 syntax so absolute JavaScript beginners are welcomed, too.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+
 ## What's an array?
 
 At its core, an array is simply an ordered collection of items, nothing more, nothing less. When I was first

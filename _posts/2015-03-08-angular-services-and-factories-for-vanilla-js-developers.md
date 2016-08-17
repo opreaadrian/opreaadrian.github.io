@@ -14,6 +14,12 @@ If you ever worked on an AngularJS application that went past "Hello world!" you
 
 The way I finally understood what services and factories are all about, was by actually trying to map them to vanilla JavaScript. 
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## Services
 In the Angular docs the definition for a service looks like this: 
 > "Angular services are substitutable objects that are wired together using dependency injection (DI). You can use services to organize and share code across your app."

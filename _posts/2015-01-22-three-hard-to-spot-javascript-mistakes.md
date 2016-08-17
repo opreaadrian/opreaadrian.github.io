@@ -16,6 +16,12 @@ Most of the times, we thought that we had backend issues, that data wasn't consi
 The next morning, I would go back to work, after a good night sleep(4-5 hours) and while sipping on some coffee, I would take one last look at the divine piece of code, and after 5 seconds, the first WTF would suddenly find its way into the office.  
 The aforementioned story, has an open end, and you can choose your version from the 3 options below. Enjoy!
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## indexOf()
 > `Array.indexOf()` and `String.indexOf()`
 

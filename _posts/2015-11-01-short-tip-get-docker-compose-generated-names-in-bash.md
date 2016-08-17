@@ -13,6 +13,12 @@ featured_image: /images/posts/short-tip-docker-compose-dynamic-container-names/p
 In this short tip I will show you how to get the name of a  container created with  
 `docker-compose`, so you can manipulate it.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## The problem
 `docker-compose` generates container names going by the following convention: 
 `<CURRENT_DIR>_<CONTAINER_NAME>_<INSTANCE_NUMBER>`.  

@@ -14,6 +14,12 @@ This article is meant to offer a hopefully simple solution for testing web appli
 your local machine, on actual mobile devices, without altering your router's DNS configuration, 
 or resorting to other, less elegant solutions.
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## Use case
 
 I have an application running on my machine, and I access it on `http://myapp.dev` as it depends on

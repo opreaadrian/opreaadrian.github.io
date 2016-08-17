@@ -12,6 +12,12 @@ featured_image: /images/posts/change_alley.jpg
 
 Whether you're a developer, designer or any type of professional in the tech industry, there's one disease we all fear: *change*. Technologies, tools, languages, techniques ... all of them change literally overnight, sometimes leaving behind disappointed, frustrated people. In this article I plan on describing the actions I take when dealing with the ever changing tech world. 
 
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+ 
 ## What?! It's already outdated?
 
 > Technology changes, you can't keep up, deal with it!  

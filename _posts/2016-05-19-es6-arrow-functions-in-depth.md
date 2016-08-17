@@ -16,7 +16,13 @@ One of the prettiest features of ES6, it could easily win a beauty contest, if s
 As I like to explain it to the people who attend my trainings/workshops, arrow functions are `this`-less, `arguments`-less, `new.target`-less and `super`-less.
 Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.
 
-# Lexical-bound this
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+
+## Lexical-bound this
 
 Previously, regular functions would have their `this` value set to the global object if they were used as callbacks, to a new object in case they were called with the `new` operator or, in the case of libraries like jQuery, they would be set to the object that triggered an event in case of event handlers, or the current element in a `$.each` iteration.This situation proved very confusing even for experienced developers.
 Let’s say you have a piece of code like the one below.

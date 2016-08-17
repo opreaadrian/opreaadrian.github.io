@@ -1,4 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-07-16T00:15:05+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Event delegation in TinyMCE plugins</title><link href="https://codesi.nz/event-delegation-in-tinymce-plugins/" rel="alternate" type="text/html" title="Event delegation in TinyMCE plugins" /><published>2016-07-05T00:00:00+03:00</published><updated>2016-07-05T00:00:00+03:00</updated><id>https://codesi.nz/event-delegation-in-tinymce-plugins</id><content type="html" xml:base="https://codesi.nz/event-delegation-in-tinymce-plugins/">&lt;p&gt;For the past week or so, I’ve been working with &lt;a href=&quot;https://www.tinymce.com/&quot;&gt;TinyMCE&lt;/a&gt;. For those of you
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-08-17T18:59:40+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>The fly theory of helpfulness</title><link href="https://codesi.nz/the-fly-theory-of-helpfulness/" rel="alternate" type="text/html" title="The fly theory of helpfulness" /><published>2016-08-17T00:00:00+03:00</published><updated>2016-08-17T00:00:00+03:00</updated><id>https://codesi.nz/the-fly-theory-of-helpfulness</id><content type="html" xml:base="https://codesi.nz/the-fly-theory-of-helpfulness/">&lt;p&gt;This article is the result of an experience I had a couple of days ago, before
+going to bed. This made me realise that my eagerness to help people, does me and
+the people I’m trying to help a great disservice, sometimes.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Trying to help people when they don’t think they have a problem or need help, 
+is just like trying to take a fly out of your bedroom by grabbing it and throwing
+it out the window — It just doesn’t work.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It was 12:45 AM, and I was getting ready to go to bed. I finished reading(listening)
+Daniel Khaneman’s “Thinking fast and slow” and just when I reach over to turn my
+bedside light off, I see a fly. Now, I’m not the biggest insect fan but given that they’re
+living beings, I thought to myself: “I’m not going to kill it, I’ll catch it and
+release it outside”. Instinctively, I did what was natural for a human trying to
+catch something. I followed it carefully and then caught it in my palm.&lt;br /&gt;
+Up to this point, everything went as planned. I caught the fly, now I’ll have to
+release it. Realising that it has been caught by a “predator” the fly tries to escape,
+and at that point, I thought that it would be better to squeeze my fist a bit.
+I wasn’t going to let it slip through my fingers. Unfortunately, that was a big
+mistake, as I managed to hurt the fly in the  process. I put the fly on the edge
+of my window but it didn’t looked like it was in a condition to fly.
+After closing the window, I realised that this is exactly what happens in most
+cases when I spot a problem and try to help. Based on previous discussions with
+friends, some of them were complaining about having the same problem.&lt;/p&gt;
+
+&lt;p&gt;The problem is illustrated by any one of the quotes below:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;— I’m trying to help her and she acts like I have something against her!&lt;br /&gt;
+— Why do people think that I’m judgemental whenever I point to them that 
+they’re doing something wrong? I just want to help them realise their mistake.&lt;br /&gt;
+— He’s upset with me because I asked him to change X. It’s for his own good!&lt;br /&gt;
+— I tried to help them just like I did with those other people and they
+replied that it’s offensive to them to do X. They also said that I should
+be ashamed for trying to convince them to do that.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Take a look at all the scenarios above and imagine yourself in the position of the
+person being offered help. Your thoughts would probably be similar to the phrases below:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;— How can you say that this is wrong? And who the hell asked for your
+opinion? I did not ask for your help!&lt;br /&gt;
+— Thanks for letting me know what your self-appointed committee of one
+thinks about me. I know what my problems are and X is not one of them.&lt;br /&gt;
+— You just want me to change for your satisfaction and wellbeing, not
+because it will do me any good. I’m fine being like this and doing X. X defines 
+who I am, it’s part of my personality.&lt;br /&gt;
+— What type of people do you think we are? How is this s##t supposed to
+help us, are you trying to &lt;strong&gt;&amp;lt;insert situation they think you will put them in&amp;gt;&lt;/strong&gt;??&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you have been in any of the situations above, I bet it did not feel good.
+I know I’ve been in all of them and many more that would require a series of
+articles to list them all.&lt;br /&gt;
+These are situations where people who &lt;strong&gt;YOU&lt;/strong&gt; think have a problem, don’t see that
+problem. At least that’s what you think, that they don’t see it.&lt;br /&gt;
+The thing you’re not taking into account is that they might know about it but 
+don’t have the time to deal with it at the moment. 
+Maybe it is not on their priority list, they might have other, 
+more important things to tend to, before this. They may have received the feedback 
+(and the offer for help) dozens of times by now, and you are person #101 
+reminding them about it.  They may have otherwise listened to you, 
+but they’re in a bad mood, it’s not the right time, other things are on their mind.&lt;/p&gt;
+
+&lt;p&gt;And I can go on for ages, listing situations when people have good reasons to reject
+your help and take you for a judgemental bastard. My 12-year smoker experience
+qualifies me to do this. They left me with a lot of rationalizations 
+and reasons why, for example, smoking is not a problem, 
+how it is your only vice, how other people are drinking or taking drugs etc.&lt;/p&gt;
+
+&lt;p&gt;Bottom line is that whenever you see someone in trouble, and would like to help,
+take the time to find out if they think they need help, and how open they are
+to receive what they might see as &lt;strong&gt;negative feedback&lt;/strong&gt;.&lt;br /&gt;
+Note that what you might consider to be constructive feedback, some would see
+as negative feedback.&lt;/p&gt;
+
+&lt;p&gt;Also, don’t think that if a method worked well, on simliar occasions, with a
+different person, it is a silver bullet that you can use for everyone who has that problem.&lt;/p&gt;
+
+&lt;p&gt;For example, explaining to a junior programmer a concept like JavaScript closures, 
+drastically differs from one programmer to the next. Even though they share a
+common feature, the experience/career level, they might understand it differently
+depending on their background. 
+One of them might have studied programming since high-school while the other is
+a self-taught, no-degree developer.&lt;/p&gt;
+
+&lt;p&gt;Based on your field of expertise you might need a different approach when 
+working with different sexes, ages or cultures.&lt;/p&gt;
+
+&lt;p&gt;For example, if you are teaching a course to an audience of people in their 30s
+try no to use a school teacher’s attitude and language. Don’t ask them to turn off
+their phones, or make them put their phones in a box because they were texting
+during your course.&lt;br /&gt;
+Those come off as bad manners, as you might be talking to busy businesspeople 
+who might not afford the luxury of “unplugging” themselves outside their vacation days.
+An attitude like the one above, is a sure recipe to earn antipathy and lose
+trust. As I have come to learn on my own skin, the feeling is that the person is 
+being a smartass.&lt;/p&gt;
+
+&lt;p&gt;It took me 28 years of existence and a fly in my bedroom, in the middle of the night, 
+to realise that my do-good attitude doesn’t always do good :). 
+Through this article, I would like to thank the people who had
+the patience to learn things from me and I would like to apologise to the people
+to whom I lacked patience; I hope our neurons will regenereate 😇.&lt;/p&gt;
+
+&lt;p&gt;Bottom line, don’t think that the method for catching a calf that escaped from
+the stables will also work for catching flies.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Photo credits:
+&lt;a href=&quot;https://www.flickr.com/photos/quinnanya/&quot;&gt;Quinn Dombrowski&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/e4vxUD&quot;&gt;Help&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>This article is the result of an experience I had a couple of days ago, before
+going to bed. This made me realise that my eagerness to help people, does me and
+the people I’m trying to help a great disservice, sometimes.</summary></entry><entry><title>Event delegation in TinyMCE plugins</title><link href="https://codesi.nz/event-delegation-in-tinymce-plugins/" rel="alternate" type="text/html" title="Event delegation in TinyMCE plugins" /><published>2016-07-05T00:00:00+03:00</published><updated>2016-07-05T00:00:00+03:00</updated><id>https://codesi.nz/event-delegation-in-tinymce-plugins</id><content type="html" xml:base="https://codesi.nz/event-delegation-in-tinymce-plugins/">&lt;p&gt;For the past week or so, I’ve been working with &lt;a href=&quot;https://www.tinymce.com/&quot;&gt;TinyMCE&lt;/a&gt;. For those of you
 who don’t know what it is, I’ll just say this: it is a &lt;strong&gt;WYSIWYG&lt;/strong&gt; (What You See Is What You Get) editor, very
 similar to the ones you find in popular blogging platforms like &lt;a href=&quot;https://wordpress.com/&quot;&gt;Wordpress&lt;/a&gt;.&lt;/p&gt;
 
@@ -131,7 +246,16 @@ a client’s codebase and sign it with the email and details from another client
 As I like to explain it to the people who attend my trainings/workshops, arrow functions are &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt;-less and &lt;code class=&quot;highlighter-rouge&quot;&gt;super&lt;/code&gt;-less.
 Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.&lt;/p&gt;
 
-&lt;h1 id=&quot;lexical-bound-this&quot;&gt;Lexical-bound this&lt;/h1&gt;
+&lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#lexical-bound-this&quot; id=&quot;markdown-toc-lexical-bound-this&quot;&gt;Lexical-bound this&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#lexical-arguments&quot; id=&quot;markdown-toc-lexical-arguments&quot;&gt;Lexical arguments&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#other-characteristics&quot; id=&quot;markdown-toc-other-characteristics&quot;&gt;Other characteristics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#closing-thoughts&quot; id=&quot;markdown-toc-closing-thoughts&quot;&gt;Closing thoughts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;lexical-bound-this&quot;&gt;Lexical-bound this&lt;/h2&gt;
 
 &lt;p&gt;Previously, regular functions would have their &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; value set to the global object if they were used as callbacks, to a new object in case they were called with the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; operator or, in the case of libraries like jQuery, they would be set to the object that triggered an event in case of event handlers, or the current element in a &lt;code class=&quot;highlighter-rouge&quot;&gt;$.each&lt;/code&gt; iteration.This situation proved very confusing even for experienced developers.
 Let’s say you have a piece of code like the one below.&lt;/p&gt;
@@ -392,6 +516,17 @@ I’ve talked to in the past year or so, know how to write a vanilla
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
 with, for someone other than a junior developer.&lt;/p&gt;
+
+&lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#a-bit-of-background&quot; id=&quot;markdown-toc-a-bit-of-background&quot;&gt;A bit of background&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-is-json&quot; id=&quot;markdown-toc-what-is-json&quot;&gt;What is JSON?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-is-serialization&quot; id=&quot;markdown-toc-what-is-serialization&quot;&gt;What is serialization?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#object-serialization-and-the-replacer-function&quot; id=&quot;markdown-toc-object-serialization-and-the-replacer-function&quot;&gt;Object serialization and the &lt;strong&gt;replacer&lt;/strong&gt; function&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#de-serialization-and-reviving-properties&quot; id=&quot;markdown-toc-de-serialization-and-reviving-properties&quot;&gt;De-serialization and reviving properties&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#reference&quot; id=&quot;markdown-toc-reference&quot;&gt;Reference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;a-bit-of-background&quot;&gt;A bit of background&lt;/h2&gt;
 
@@ -696,6 +831,12 @@ without understanding it’s substance is something that I cannot come to terms
 with, for someone other than a junior developer.</summary></entry><entry><title>Becoming a better JavaScript developer</title><link href="https://codesi.nz/becoming-a-better-javascript-developer/" rel="alternate" type="text/html" title="Becoming a better JavaScript developer" /><published>2015-12-21T00:00:00+02:00</published><updated>2015-12-21T00:00:00+02:00</updated><id>https://codesi.nz/becoming-a-better-javascript-developer</id><content type="html" xml:base="https://codesi.nz/becoming-a-better-javascript-developer/">&lt;p&gt;A week ago I saw a very interesting question on Quora, titled:  &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I’d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
 One thing worth mentioning is the fact that I don’t yet consider myself an “enterprise JavaScript developer”, even though I have been called by that name. I’m a software developer with a sweet tooth for JavaScript, that’s it.&lt;/p&gt;
 
+&lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-actual-answer&quot; id=&quot;markdown-toc-the-actual-answer&quot;&gt;The actual answer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;the-actual-answer&quot;&gt;The actual answer&lt;/h2&gt;
 &lt;p&gt;First and foremost let me start by saying that I met “enterprise JavaScript” developers who are not that skilled in JavaScript, simply because the “enterprise” limits all their creativity by being more restrictive in terms of technologies.
 On the other hand, they tend to be good at overall architecture, they think a lot in terms of scalability and durability.&lt;/p&gt;
@@ -860,6 +1001,12 @@ remind me what each method of the &lt;code class=&quot;highlighter-rouge&quot;&g
 interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
 syntax so absolute JavaScript beginners are welcomed, too.&lt;/p&gt;
 
+&lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#whats-an-array&quot; id=&quot;markdown-toc-whats-an-array&quot;&gt;What’s an array?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;whats-an-array&quot;&gt;What’s an array?&lt;/h2&gt;
 
 &lt;p&gt;At its core, an array is simply an ordered collection of items, nothing more, nothing less. When I was first
@@ -910,122 +1057,4 @@ return.
 This post is the first of a series of bite-sized(like the title states) posts aimed to first of all
 remind me what each method of the Array object does, and to also share this knowledge with anyone
 interested in the topic. The articles won’t require more than a basic experience with JavaScript’s
-syntax so absolute JavaScript beginners are welcomed, too.</summary></entry><entry><title>Quick tip: Using mitmproxy for mobile testing</title><link href="https://codesi.nz/using-mitmproxy-for-mobile-testing/" rel="alternate" type="text/html" title="Quick tip: Using mitmproxy for mobile testing" /><published>2015-11-24T00:00:00+02:00</published><updated>2015-11-24T00:00:00+02:00</updated><id>https://codesi.nz/using-mitmproxy-for-mobile-testing</id><content type="html" xml:base="https://codesi.nz/using-mitmproxy-for-mobile-testing/">&lt;p&gt;This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
-or resorting to other, less elegant solutions.&lt;/p&gt;
-
-&lt;h2 id=&quot;use-case&quot;&gt;Use case&lt;/h2&gt;
-
-&lt;p&gt;I have an application running on my machine, and I access it on &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; as it depends on
-the domain it is running on, in order to bootstrap itself and offer different functionality based
-on the domain where it is being loaded.&lt;br /&gt;
-I want to be able to navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; on my phone and get the application running on 
-my computer.&lt;/p&gt;
-
-&lt;h2 id=&quot;solution-1&quot;&gt;Solution 1&lt;/h2&gt;
-&lt;p&gt;Have the mapping added to my local DNS(the router’s DNS) and every time a device on my network
-navigates to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; it will be redirected to my machine — highly impractical as
-I have multiple devices and I’d probably like to keep my router’s config as sane as possible.&lt;/p&gt;
-
-&lt;h2 id=&quot;solution-2&quot;&gt;Solution 2&lt;/h2&gt;
-
-&lt;p&gt;Set my computer as a 
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&quot; title=&quot;Wikipedia link to Man-In-The-Middle attack definition&quot; target=&quot;_blank&quot;&gt;Man-In-The-Middle&lt;/a&gt;
-between my phone and the Internet — in other words, make my computer act as an HTTP proxy. 
-This way, I can trick the phone into believeing that all its traffic needs to be routed through my laptop.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-dns-resolution-works&quot;&gt;How DNS resolution works&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;I navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; from my phone&lt;/li&gt;
-  &lt;li&gt;My phone looks at its internal hostfile — usually &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; on UNIX-like operating 
-systems — for entries resolving to that specific hostname.&lt;/li&gt;
-  &lt;li&gt;If it doesn’t find anything it looks at the local DNS (the router’s DNS)&lt;/li&gt;
-  &lt;li&gt;If no result is returned by the local DNS, then the external DNS is queried - via recursion&lt;/li&gt;
-  &lt;li&gt;If nothing comes back from the external DNS, then it means that the address is either inexistent
-or down.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;the-setup&quot;&gt;The setup&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A copy of &lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot; target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;A mobile device to test on&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;/h2&gt;
-
-&lt;p&gt;What I want to do is to trick my phone into thinking that &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev&lt;/code&gt; resolves to 
-192.168.xxx.xxx — my laptop’s local IP address — and the way I can do that is by using 
-&lt;a href=&quot;https://mitmproxy.org/&quot; title=&quot;Link to mitmproxy official website&quot; target=&quot;_blank&quot;&gt;mitmproxy&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you’re on a Mac, you have two options for installing &lt;code class=&quot;highlighter-rouge&quot;&gt;mitmproxy&lt;/code&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Through &lt;a href=&quot;https://pip.pypa.io/en/stable/&quot; title=&quot;Link to Python package manager, pip&quot; target=&quot;_blank&quot;&gt;pip&lt;/a&gt; by issuing &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install mitmproxy&lt;/code&gt; at your 
-terminal prompt.&lt;/li&gt;
-  &lt;li&gt;Through &lt;a href=&quot;http://brew.sh/&quot; title=&quot;Link to Homebrew - Mac OS X package manager&quot; target=&quot;_blank&quot;&gt;homebrew&lt;/a&gt; 
-by issuing another command at your terminal prompt: &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install mitmproxy&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you are on a different operating system please check the 
-&lt;a href=&quot;http://docs.mitmproxy.org/en/stable/install.html&quot; title=&quot;Mitmproxy official installation docs&quot; target=&quot;_blank&quot;&gt;mitmproxy installation guide&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;proxy-server-setup&quot;&gt;Proxy server setup&lt;/h2&gt;
-&lt;p&gt;All you have to do now is to start the proxy server, and set your machine’s local IP
-(192.168.xxx.xxx) as the proxy through which the phone connects to the Internet.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
-# Start the proxy server on port 7654
-$ mitmproxy -p 7654
-&lt;/code&gt;
-After starting the proxy server go to your phone’s wireless network settings, and add your 
-computer’s ip as an HTTP proxy that every connection on your phone goes through.&lt;br /&gt;
-Note that the phone and the computer need to be on the same network, or otherwise you will need to
-get the public IP that your computer uses when it accesses the Internet.&lt;/p&gt;
-
-&lt;p&gt;```bash
-# UNIX - Get your computer’s router-assigned IP (see image below)
-$ ifconfig -a | grep inet&lt;/p&gt;
-
-&lt;h1 id=&quot;windows---get-the-network-configuration-for-all-interfaces&quot;&gt;Windows - Get the network configuration for all interfaces&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;ipconfig /all
-```&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;figure&gt;
-&lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/ifconfig.png&quot; alt=&quot;Image of the output of the ifconfig
-command on UNIX like systems.&quot; /&gt;
-&lt;!--- &lt;figcaption&gt;Using ifconfig to get your IP address&lt;/figcaption&gt; ---&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;iphone-proxy-setup&quot;&gt;iPhone proxy setup&lt;/h2&gt;
-
-&lt;p&gt;In order to add a proxy to your wireless connection, navigate to “Settings -&amp;gt; Wi-Fi”, find the 
-network you whish to connect to and tap the “i” symbol, to the far  right of the network’s name.&lt;br /&gt;
-This will move you to the network’s settings panel, and at the bottom of this panel you have the 
-“HTTP PROXY” section, which is set to “Off” by default.&lt;br /&gt;
-Tap “Manual” and add your machine’s IP and the port you used when you started &lt;code class=&quot;highlighter-rouge&quot;&gt;mitmproxy&lt;/code&gt;. The
-setup should look like the image below.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;img src=&quot;/images/posts/using-mitmproxy-for-mobile-testing/iphone-proxy.png&quot; alt=&quot;Image of HTTP PROXY settings on the iPhone&quot; /&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Once you’re done performing the steps above, you should try and visit any web page, and you will
-see some activity in the terminal window where you started &lt;code class=&quot;highlighter-rouge&quot;&gt;mitmproxy&lt;/code&gt;.&lt;br /&gt;
-This means that the proxy is working correctly and that your phone’s connection is routed through 
-your laptop.&lt;br /&gt;
-Now, you can start your application on your machine, add an entry to your &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/hosts&lt;/code&gt; file, that
-makes &lt;code class=&quot;highlighter-rouge&quot;&gt;myapp.dev&lt;/code&gt; point to your local machine’s IP, and visit &lt;code class=&quot;highlighter-rouge&quot;&gt;http://myapp.dev:&amp;lt;port&amp;gt;&lt;/code&gt; from your
-phone.&lt;/p&gt;
-
-&lt;p&gt;You’re done! You should now be able to see the application that is running on your computer.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Credits: &lt;br /&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/believekevin/&quot;&gt;kevin&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/8mGycA&quot;&gt;Lot of mobile phones + accessories (FREE)&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>This article is meant to offer a hopefully simple solution for testing web applications that run on 
-your local machine, on actual mobile devices, without altering your router’s DNS configuration, 
-or resorting to other, less elegant solutions.</summary></entry></feed>
+syntax so absolute JavaScript beginners are welcomed, too.</summary></entry></feed>
