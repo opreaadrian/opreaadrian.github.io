@@ -13,8 +13,8 @@ featured_image: /images/posts/the-fly-theory-of-helpfulness/post.jpg
 ---
 
 This article is the result of an experience I had a couple of days ago, before
-going to bed. This made me realise that my eagerness to help people, does me and
-the people I'm trying to help a great disservice, sometimes.  
+going to bed. This made me realise that my eagerness to help people, sometimes 
+does me and the people I'm trying to help a great disservice.
 
 > Trying to help people when they don't think they have a problem or need help, 
 is just like trying to take a fly out of your bedroom by grabbing it and throwing
