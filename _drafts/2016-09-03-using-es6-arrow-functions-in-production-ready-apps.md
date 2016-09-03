@@ -1,0 +1,136 @@
+---
+layout: post
+title: "Using ES6 arrow functions in production-ready apps"
+pub_date: 2016-08-31 7:00:00 PM
+last_modified: 2016-08-31 7:00:00 PM
+permalink: /es6-arrow-functions-production/
+categories:
+  - javascript
+published: true
+author: "Adrian Oprea"
+twitter: "@opreaadrian"
+keywords: javascript, es6, ecmascript, ecmascript 6, arrow functions, functions, production, apps, callbacks
+featured_image: /images/posts/load-balancing-websockets-behind-nginx/post.jpg
+---
+
+Arrow functions are a great addition to the ECMAScript 6 standard. You can think of them as throwaway functions that a you can attach to a click or mouse event.
+There are a couple of ways to use arrow functions and we are going to go over each one in turn.
+
+## Table of contents
+{:.no_toc}
+
+* Table of contents(will contain all headings execept the "Table of contents" one above)
+{:toc}
+
+## Anonymous callbacks
+The first and most intuitive use for an arrow function would be as an anonymous callback. You can attach an arrow function to a button's click event as but you can also pass it as a callback to [`Array.prototype.map`](#mdn_link).
+
+{% prism javascript %}
+// click.js
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', (event) => {
+    console.log('clicked');
+});
+{% endprism %}
+
+Every time we click the button identified by the `btn` variable, we are going to log the message "clicked". Nothing too fancy, just an anonymous function responding to an event.
+
+{% prism javascript %}
+// map.js
+let numbers = [1,2,3,4];
+let multipliedBy2 = numbers.map((number) => {
+    return number * 2;
+});
+
+console.log(multipliedBy2); // [2, 4, 6, 8]
+{% endprism %}
+
+As I mentioned in my [ES6 arrow functions in depth](/es6-arrow-functions-in-depth) article, the arrow function implicitly returns the result of executing its logic, when it is a one-liner.  
+This feature makes the arrow function an ideal callback for `Array` operations that return new arrays, like `map` and `filter`. 
+
+With this in mind, let's simplify our `map` example.
+
+{% prism javascript %}
+const numbers = [1, 2, 3, 4];
+const multipliedBy2 = numbers.map((n) => n * 2);
+
+// or without the parens around the argument
+const multipliedBy2WithShorterCallback = numbers.map(n => n * 2);
+{% endprism %}
+
+## Function expressions
+
+The function expression form of the arrow function is very popular in the React.js community. This is mostly due to its clear semantics.  
+One of the people making extensive use of this feature in their examples and tutorials is Dan Abramov, the author of Redux.
+
+{% prism javascript %}
+const todoApp = (state = {}, action) => {
+    return {
+        items: state.items
+    }
+}
+{% endprism %}
+
+## Returning data
+
+If you take a look at the `map` example, you can tell from afar that it is very easy to return data from an arrow function. 
+
+### Using the `return` keyword
+
+As with any other function, you can return data from an arrow function using the `return` keyword.
+
+{% prism javascript %}
+const multiply = (x) => {
+    return (y) => {
+        return x * y;
+    }
+};
+
+const multiplyBy3 = multiply(3);
+multiplyBy3(2); // 6
+multiplyBy3(3); // 9
+{% endprism %}
+
+### Using the implicit `return`
+
+Let's rewrite our example to use the implicit return feature of arrow functions.
+
+{% prism javascript %}
+const multiply = (x) => (y) => x * y;
+
+const multiplyBy3 = multiply(3);
+multiplyBy3(2); // 6
+multiplyBy3(3); // 9
+{% endprism %}
+
+If you need to return objects from an arrow functions, there's a catch. You cannot use the curly braces directly. 
+
+{% prism javascript %}
+const getInitialData = () => {
+    id: 1,
+    name: 'Jane Doe'
+};
+
+// This will throw an error
+let initialData = getInitialData();
+{% endprism %}
+
+The code above will throw an error, because the JavaScript engine expects the object's curly braces to be a block of code, and instead it finds identifiers and colons and commas inside it.  
+
+To work around this, all you need to do is to surround your whole object in parenthesis. This will not throw an error and your code will work as expected and also look good in the process.
+
+{% prism javascript %}
+// This is perfectly valid
+const initialData = () => ({
+    id: 1,
+    name: 'Jane Doe'
+});
+
+let initialData = getInitialData();
+{% endprism %}
+
+With this last part, we wrapped up all known usages of arrow functions in real-life, production apps. For more, in-depth knowledge on the subject, refer to my [ES6 arrow functions in depth](/es6-arrow-functions-in-depth) article, where I talk more about the internals of the arrow function.
+
+> Photo credits:
+> [Richard Elzey](https://www.flickr.com/photos/elzey/) &mdash; [Arrow Signs](https://flic.kr/p/9ZDxat)

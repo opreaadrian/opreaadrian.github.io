@@ -37,8 +37,6 @@ kramdown:
   hard_wrap:      false
   footnote_nr:    1
 
-highlighter: rouge
-
 gems:
     - jekyll-sitemap
     - jekyll-feed

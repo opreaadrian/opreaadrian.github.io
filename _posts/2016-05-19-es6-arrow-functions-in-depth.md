@@ -2,13 +2,13 @@
 layout: post
 title: "ES6 arrow functions in depth"
 pub_date: 2016-05-19 4:40:00 PM
-last_modified: 2016-05-19 4:40:00 PM
+last_modified: 2016-09-03 11:00:00 AM
 categories:
   - javascript
 published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
-keywords: JavaScript, ES6, ECMAScript6, arrows, functions, lambdas, anonymous functions
+keywords: JavaScript, ES6, ECMAScript6, arrows, functions, lambdas, anonymous functions, arrow functions, Babel
 featured_image: /images/posts/es6-arrow-functions-in-depth/post.jpg
 ---
 
@@ -22,12 +22,12 @@ Let us now get past the shorter syntax and dive deeper into the specifics of the
 * Table of contents(will contain all headings execept the "Table of contents" one above)
 {:toc}
 
-## Lexical-bound this
+## Lexically-bound this
 
 Previously, regular functions would have their `this` value set to the global object if they were used as callbacks, to a new object in case they were called with the `new` operator or, in the case of libraries like jQuery, they would be set to the object that triggered an event in case of event handlers, or the current element in a `$.each` iteration.This situation proved very confusing even for experienced developers.
 Let’s say you have a piece of code like the one below.
 
-{% highlight javascript %}
+```javascript
 var obj = {
   nameValue: 'default',
   initializeHandlers: function() {
@@ -40,7 +40,7 @@ var obj = {
 };
 
 obj.initializeHandlers();
-{% endhighlight %}
+```
 
 The problem is that `this` inside the `blur` event handler is set to the global object rather than obj. In strict mode &mdash; `‘use strict’;` &mdash; you risk breaking your application because `this` is set to `undefined`. In order to side-step this issue we have two options:
 
@@ -49,7 +49,7 @@ The problem is that `this` inside the `blur` event handler is set to the global 
 
 Both options are illustrated below.
 
-{% highlight javascript %}
+```javascript
 [...]
 initializeHandlers: function() {
   var nameInput = document.querySelector('#name');
@@ -61,9 +61,9 @@ initializeHandlers: function() {
   nameInput.addEventListener('blur', blurHandler);
 }
 [...]
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 [...]
 initializeHandlers: function() {
   var nameInput = document.querySelector('#name');
@@ -76,11 +76,11 @@ initializeHandlers: function() {
 }
 [...]
 
-{% endhighlight %}
+```
 
 On the other hand, arrow functions have no internal context. They inherit their context from the outer scope. Let’s take a look at how arrow functions solve this problem.
 
-{% highlight javascript %}
+```javascript
 const obj = {
   nameValue: 'default',
   initializeHandlers: function() {
@@ -92,7 +92,7 @@ const obj = {
     });
   }
 };
-{% endhighlight %}
+```
 
 In our new implementation `this` is a hard reference to the `obj` object and doesn’t get lost due to nesting.
 
@@ -102,7 +102,7 @@ Have you ever tried to access the `arguments` object inside an arrow function? I
 Thankfully, MDN exists, and as good practice dictates, you check the documentation at the end, when you sit in a corner, knees tucked to your chest, rocking and repeating to yourself: “I should have been a carpenter!”
 Fun aside, arrow functions do not expose an `arguments` object. If you try to access it, you will get the arguments of the surrounding function. In our case, given the fact that the outer function is an arrow function as well, and we have no more functions further up the chain, we will get a `ReferenceError`.
 
-{% highlight javascript %}
+```javascript
 const variadicAdder = (x) => {
 
   return () => {
@@ -117,13 +117,13 @@ const variadicAdderOf5 = variadicAdder(5);
 
 console.log(variadicAdderOf5(10, 11, 12));
 // ReferenceError: arguments is not defined
-{% endhighlight %}
+```
 
 There is no fix here, as there is nothing broken. What we can do is to return a plain function, rather than an arrow, from our `variadicAdder()`.
 This will give us the opportunity to access the `arguments` object without an issue. The updated code will look like the one below with the only difference
 that it will actually work and not throw an error.
 
-{% highlight javascript %}
+```javascript
 const variadicAdder = (x) => {
 
   return function() {
@@ -138,22 +138,51 @@ const variadicAdderOf5 = variadicAdder(5);
 
 console.log(variadicAdderOf5(10, 11, 12));
 // 38
-{% endhighlight %}
+```
 
 To find out more about `Array.prototype.reduce`, head to the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
 
 ## Other characteristics
-As I mentioned in the introductory section of this article, arrow functions have several more characteristics besides the context and the arguments.
-The first thing I would like to mention is that you are unable to use the `new` operator with arrow functions. As a direct implication, arrow functions also don’t have `super()`. Snippets like the one below would simply throw a `TypeError`.
+As I mentioned in the introductory section of this article, arrow functions have several more characteristics besides the context and the arguments.  
 
-{% highlight javascript %}
+### Implicit return 
+A very powerful feature is the ability for one-liner arrow functions to implicitly return the result of the logic being executed within it.
+
+Take a look at the example below and let's see how we can simplify it and make use of this powerful feature.
+
+```javascript
+
+function regularMultiplyBy2(n) {
+  return n * 2;
+}
+
+const multiplyBy2Arrow = (n) => {
+  return n * 2;
+};
+
+const multiplyBy2ArrowWithImplicitReturn = (n) => n * 2;
+```
+
+We can even go a step further and remove the parens around the function's argument.
+
+```javascript
+const multiplyBy2 = n => n * 2;
+```
+
+### No `new` calls
+
+Being completely anonymous and dependent on their surrounding context, you are unable to use the `new` operator with arrow functions. As a direct implication, arrow functions also don’t have `super()`. Snippets like the one below would simply throw a `TypeError`.
+
+```javascript
 const Person = (name) => {
   this.name = name;
 };
 
 let p = new Person('John');
 // TypeError: Person is not a constructor
-{% endhighlight %}
+```
+
+### No `new.target`
 
 The third characteristic, which is as well, a direct implication of the inability to use the `new` operator, is the fact that arrow functions don’t have `new.target`. In a nutshell, `new.target` allows you to detect whether or not a function has been called as a constructor.
 Arrow functions, inherit `new.target` from their surrounding scope. If the outer scope is a function, and it is called like a constructor (e.g. `new Person('Adrian');`), then `new.target` will point to the outer function.
