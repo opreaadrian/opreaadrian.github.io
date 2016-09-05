@@ -34,13 +34,13 @@ Let's first dissect the structure:
 So for a config file like the one below, placed in `~/Documents/projects/webapp`, your 
 container would be named `webapp_nginx_1`:
 
-{% highlight yaml %}
+```yaml
 nginx:
   image: nginx
   ports:
     - "80:80"
     - "443:443"
-{% endhighlight %}
+```
 
 ## The solution
 No matter how hard my problem was, I turned to my StackOverflow skills and quickly found that 
@@ -64,9 +64,9 @@ so I could take out the underscores and dashes from the filename.
 
 The final version of my code looks just like the snippet below:
 
-{% highlight bash %}
+```bash
 CONTAINER_NAME=$(echo ${PWD##*/}_nginx_1 | sed s'/[ -]/_/g')
-{% endhighlight %}
+```
 
 Now I can manipulate containers from any bash script, as long as I can get my hands on the `$PWD`
 and as long as I know the names they get in the `YAML` config file.

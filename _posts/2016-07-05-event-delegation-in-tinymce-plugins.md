@@ -26,7 +26,7 @@ is that it receives only 2 arguments, instead of 3, so you are not able to speci
 which the application should delegate, let's say, click events.
 Below is a comparison of the two `.on()` methods:
 
-{% highlight js %}
+```javascript
 
 // jQuery.on()
 
@@ -40,18 +40,18 @@ $('.element').on('click', '.delegate-child', function(event) {
 $('.element').on('click', function(event) {
   // Do stuff when .element receives clicks
 })
-{% endhighlight %}
+```
 
 As you can see, there is no way for us to register for click events on the `.delegate-child` elements,
 unless we bind a callback to each element, like below:
 
-{% highlight js %}
+```javascript
 // tinymce.dom.DomQuery.on()
 
 $('.delegate-child').on('click', function(event) {
   // Do stuff when .delegate-child receives clicks
 })
-{% endhighlight %}
+```
 
 The problem with the approach above is that if we add more `.delegate-child` elements, further
 down the road, those will not have the click handler registered, so clicking on them would not
@@ -62,7 +62,7 @@ Fortunately, the `event` is being passed as an argument to our click handler, so
 We can also strengthen our verification by checking for a class name as well.  
 Take a look at the snippet below for the full example:
 
-{% highlight js %}
+```javascript
 // tinymce.dom.DomQuery.on()
 
 $(editor.getBody())
@@ -76,7 +76,7 @@ $(editor.getBody())
 
     console.log(`${event.target.nodeName} => CLICKED`)
   })
-{% endhighlight %}
+```
 
 If you would like to learn more about event delegation, and why is it beneficial,
 check out the list of articles below:

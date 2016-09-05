@@ -14,11 +14,11 @@ I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily,
 
 Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:
 
-{% highlight javascript %}
+```javascript
 Function.prototype.inherits = function (base) {
   // blah
 }
-{% endhighlight %}
+```
 
 At that exact moment, I immediately close any open tabs with that material and hate the Interwebs for being that dumb.
 

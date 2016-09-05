@@ -47,7 +47,7 @@ To check whether or not you already have the file available on your system, run
 the first command from the snippet below, and see if your output is similar to mine,
 and if not, follow the instructions to create it.
 
-{% highlight bash %}
+```bash
 # List all information about the config file, under the ssh/ directory
 adrian@zen ~/D/blog> ls -al ~/.ssh/config
 -rw-r--r--  1 adrian  staff  210 Mar  1 13:59 /Users/adrian/.ssh/config
@@ -58,7 +58,7 @@ adrian@zen ~/D/blog> touch ~/.ssh/config
 # Check again, to see if the file has been properly created
 adrian@zen ~/D/blog> ls -al ~/.ssh/config
 -rw-r--r--  1 adrian  staff  0 Mar  1 17:12 /Users/adrian/.ssh/config
-{% endhighlight %}
+```
 
 Now that you've created the config file, let's add stuff to it. A typical
 configuration, would contain things like the alias you would like to give to
@@ -66,14 +66,14 @@ your server, your username on that machine, your preferred authentication
 method, and by putting it all together, you get something similar to the snippet
 below.
 
-{% highlight bash %}
+```bash
 Host remote-machine                       # The shorter name you will use with the ssh command
   HostName 192.168.33.10                  # The machine's IP address or hostname
   User adrian                             # Your username on the machine
   IdentityFile ~/.ssh/remote_machine.key  # If you don't want to type the password every time, get one of these
   RemoteForward 5858 5858                 # Port forwarding (for tunnelling) - I use it for NodeJS remote debug
   ForwardAgent yes                        # Forward the ssh key to machines that you connect to from the remote machine
-{% endhighlight %}
+```
 
 A short explanation for each line has been added for each line in the
 configuration but in order to reap all the benefits that an `ssh` config file
@@ -85,7 +85,7 @@ To get a better idea on how a full `ssh_config` file would look like, you can
 take a look at the snippet below, that shows a multi-machine config with all
 the bells and whistles.
 
-{% highlight bash %}
+```bash
 # This is my git server
 Host git
   HostName 192.168.33.10
@@ -111,7 +111,7 @@ Host db
   HostName 192.168.33.12
   User root
   IdentityFile ~/.ssh/db.key
-{% endhighlight %}
+```
 
 In order to connect to any of those machines, I just need to run `ssh <Host>`, so,
 if I would like to connect to my `manager` instance, all I need to do is run

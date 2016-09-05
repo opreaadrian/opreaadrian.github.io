@@ -41,6 +41,8 @@ gems:
     - jekyll-sitemap
     - jekyll-feed
 
+highlighter: rouge
+
 exclude: ['Gemfile', 'Gemfile.lock']
 
 baseurl:  # the subpath of your site, e.g. /blog/

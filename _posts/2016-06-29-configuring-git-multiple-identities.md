@@ -19,10 +19,10 @@ a client's codebase and sign it with the email and details from another client.
 
 And it was all because of the two commands below:
 
-{% highlight console %}
+```console
 $ git config --global user.name "Adrian Oprea"
 $ git config --global user.email "company@email.com"
-{% endhighlight %}
+```
 
 Whenever I looked for help on how to set my name/email configuration in Git,
 I found these two commands. It doesn't matter which Git provider you're using,
@@ -40,10 +40,10 @@ everything will be set at the repository level, in the local config file &mdash;
 In order to configure my details on a repository basis, all you to do is to paste
 the following lines, in the command line:
 
-{% highlight console %}
+```console
 $ git config --local user.name "Adrian Oprea"
 $ git config --local user.email "company@email.com"
-{% endhighlight %}
+```
 
 This means that you can keep your global settings intact and only update the
 configuration at the local level.
@@ -53,10 +53,10 @@ configuration at the local level.
 To view all the values that are currently set at the local/global level run
 one of the following commands in your terminal emulator of choice:
 
-{% highlight bash %}
+```bash
 $ git config --local --list
 $ git config --global --list
-{% endhighlight %}
+```
 
 Have a tip you would like to share with others? Feel free to do so, in the comments section.
 

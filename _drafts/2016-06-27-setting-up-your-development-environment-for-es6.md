@@ -31,11 +31,11 @@ Before we get into details, let's first create our directory structure. When doi
 In short, make your life easier and create structure on which you can easily apply any build process.
 For now, let's settle on the following structure -- don't worry, it will evolve over time.
 
-{% highlight text %}
+```text
 project/
   src/
   test/
-{% endhighlight %}
+```
 
 The src/ directory will host the original, ES6 source code, whereas the test/ directory will host, well, you guessed it, the tests.
 Now that we've settled on the directory structure, we need to run npm init and generate a package.json file for our project. This will host our module dependencies as well as project-related metadata so just answer your best when prompted for information and then save(hit `Enter/Return`)

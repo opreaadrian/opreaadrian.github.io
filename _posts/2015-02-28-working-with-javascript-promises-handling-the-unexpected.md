@@ -29,7 +29,7 @@ In my opinion, there are situations or states that involve for example killing t
 
 Let's say for example that we have to implement a method that performs an async call to a REST service and returns the data to be used in the UI. The implementation    would probably look as follows:
 
-{% highlight javascript %}
+```javascript
 var request = require('request'),
     config  = require('config');
 
@@ -51,7 +51,7 @@ var Customer = {
     }
 };
 
-{% endhighlight %}
+```
 
 You would be tempted to structure your code like the above snippet, and look for an error, and if no error is provided, then you can just resolve with the body, as nothing could have gone wrong.  
 I say no to that approach, because you can bump into situations where you don't get an `Error` object, but you do get a `500 Internal Server Error`. 
@@ -59,7 +59,7 @@ I say no to that approach, because you can bump into situations where you don't 
 Even though many of the NodeJS development best practices articles, and even the NodeJS documentation itself suggests that you should have an error-first approach when working with callbacks, in situations like the one above, it's best to check for the status code and the presence of data, and forward the data to whoever is calling the method. If that's not the case, reject the promise with MEANINGFUL INFORMATION.  
 I'm stressing the "meaningful information" part so much because I'm a firm believer in these words: "Do unto others as you would have them do unto you". This doesn't mean in any way that I'm a religious type of person, not that it would be a shame, but I strongly believe in the power of setting examples, so if enough people are going to be able to quickly debug and track down possible issues because I added enough error-related information, they'll soon follow that example &mdash; and I would love to see the same amout of details when I'm debugging someone else's code.
 
-{% highlight javascript %}
+```javascript
 // [core/customer.js]
 var request = require('request'),
     config  = require('config');
@@ -117,7 +117,7 @@ Customer
             console.log('FAILURE_SET_DEFAULTS_AND_RECOVER', err);
         }
     });
-{% endhighlight %}
+```
 
 By following the pattern above, I make sure that I only deal with successful actions, when a promise is resolved, and for the errors/exceptions part, I have that all handled in the `catch` callback. To make things better, we could top it off with an error handler, that is separate from our library, and that has handlers for all statuses that are of interest. An example of such a concept can be found on GitHub &mdash; see [this gist](https://gist.github.com/opreaadrian/fac301833af8bcb2b8d5) &mdash; or if you want to give it a spin without saving on disk, on [jsbin.com](http://jsbin.com/yocese/1/edit?js,console)
 

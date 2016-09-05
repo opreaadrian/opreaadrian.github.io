@@ -29,15 +29,15 @@ In order to find if a certain substring exists within a given string, or if a ce
 
 Let's say that we have the following setup:
 
-{% highlight javascript %}
+```javascript
     var myString = 'The quick brown fox jumps over the lazy developer\'s head';
-{% endhighlight %}
+```
 
 Calling `myString.indexOf('developer');` would give us the index at which the word/substring "developer" is found within the given string, in our case `40`.
 
 Let's say that we have a function that checks whether a certain word is present within a given sentence, and returns true or false based on this verification. Our code would look something like this:
 
-{% highlight javascript %}
+```javascript
     function checkWordOccurrenceInSentence(word, sentence) {
         if (!word || !sentence) {
             throw new Error('Please provide both parameters.');
@@ -56,7 +56,7 @@ Let's say that we have a function that checks whether a certain word is present 
     } else {
         console.log('Programmer not found');
     }
-{% endhighlight %}
+```
 
 You would think that the piece of code above will say "Programmer not found" but you are wrong. As you might already know, the falsy values in JavaScript(values that evaluate to false) are 5: `NaN`, `Null`, `undefined`, `0` and `''`. Nowhere does it say that `-1`, the value that `indexOf()` returns if it does not find anything, will evaluate to false. 
 
@@ -65,7 +65,7 @@ is that `indexOf()` will return `-1` inside `checkWordOccurrenceInSentence()` an
 
 A better way to do this is to refactor your function to look like the one below:
 
-{% highlight javascript %}
+```javascript
     function checkWordOccurrenceInSentence(word, sentence) {
         if (!word || !sentence) {
             throw new Error('Please provide both parameters.');
@@ -79,7 +79,7 @@ A better way to do this is to refactor your function to look like the one below:
             return false;
         }
     }
-{% endhighlight %}
+```
 
 
 ## Checking object properties
@@ -89,7 +89,7 @@ Let's assume that you get a JSON object from an API, that returns error data fro
 
 Let's take the following JSON object as an example of error data, and check whether the `fatalErrorsCount` property exists as we would only want to show the fatal errors.
 
-{% highlight javascript %}
+```javascript
     // /errors/startDateMiliseconds/endDateMiliseconds
     var errorData = $http.get('https://api.company.com/errors/14201436816409/1421882120458');
     [table creation code goes here...]
@@ -97,17 +97,17 @@ Let's take the following JSON object as an example of error data, and check whet
     if (errorData.fatalErrorsCount) {
         ui.components.show('fatal-errors-count', errorData.fatalErrorsCount);
     }
-{% endhighlight %}
+```
 
 Again, like with `indexOf`, you would think that this works fine: you get data, you check if the key exists, and BAM!, you output those damn fatal errors. Not so fast!  
 What if there are no fatal errors for that period, so `errorData.fatalErrorsCount` is 0. Well, then our `if` statement there doesn't look so good, does it? This also happens if `fatalErrorsCount` is set to any falsy value, so a better way to do this would be to use the `in` operator as follows:
 
-{% highlight javascript %}
+```javascript
     [...]
     if ('fatalErrorsCount' in errorData) {
         ui.components.show('fatal-errors-count', errorData.fatalErrorsCount);
     }
-{% endhighlight %}
+```
 
 and now you are safe!
 
@@ -140,7 +140,7 @@ Bottom line is that if you want to restrict your lookup to the current object an
 
 I'll just tell you from the start that this is an EFFIN' bad idea. First of all because in JavaScript it is perfectly okay to have an array like this:
 
-{% highlight javascript %}
+```javascript
     var arr = [];
 
     arr[3] = 11;
@@ -149,21 +149,21 @@ I'll just tell you from the start that this is an EFFIN' bad idea. First of all 
     for (var el in arr) {
         console.log(el); // will log 3
     }
-{% endhighlight %}
+```
 
 This means that if we perform a `for` loop on our array and log out each element would get 3xundefined and then 11.  
 But when performing a `for-in` loop, we get the index of the last element, as the statement treats our array as an object, treating the index `3` as the key, and 11 as the value because in JavaScript it is perfectly legal to have an object looking like this:
 
-{% highlight javascript %}
+```javascript
     var object = {
         '0' : 'First value',
         '1' : 'Second value'
     };
-{% endhighlight %}
+```
 
 I think it is also worth mentioning [Paul Irish's asshole effect](http://vimeo.com/12529436#t=272) as somebody could do something like this:
 
-{% highlight javascript %}
+```javascript
     // in another js file
     Array.prototype.assholeVar = 'I haz a dude'; // http://lolcode.org/
 
@@ -171,7 +171,7 @@ I think it is also worth mentioning [Paul Irish's asshole effect](http://vimeo.c
     for (var el in arr) {
         console.log(el); // will log "3" and "assholeVar" for all arrays
     }
-{% endhighlight %}
+```
 
 Key takeaway here, is __NEVER USE `for...in` ON ARRAYS__. Use `for`, `while`, `do...while`, `forEach` and the list goes on.
 

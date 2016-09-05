@@ -36,18 +36,18 @@ items through indexes numbered from `0` to `length - 1`.
 Basically, if you have an array like the one below, its length is 5 and the index of the last item
 is 4, as index numbering starts from `0`.
 
-{% highlight javascript %}
+```javascript
 var arr = ["a", "b", "c", "d", "e"];
 // arr[0] => a
 // arr[1] => b
 // arr[2] => c
 // arr[3] => d
 // arr[4] => e
-{% endhighlight %}
+```
 
 Back to the shopping list analogy, your array of things to buy, would look like below:
 
-{% highlight javascript %}
+```javascript
 var shoppingList = [
 	"carrots",
 	"onions",
@@ -56,7 +56,7 @@ var shoppingList = [
 // shoppingList[0] => carrots
 // shoppingList[1] => onions
 // shoppingList[2] => apples
-{% endhighlight %}
+```
 
 There's one more thing you need to know before we end for the day and that is the `length` property
 of an array. Every time you query for the `length` property of an array, you will get the exact
@@ -64,9 +64,9 @@ number of items it holds.
 Going back to our shopping list, let's see how many items do we need to
 buy:
 
-{% highlight javascript %}
+```javascript
 console.log(shoppingList.length); // => 3
-{% endhighlight %}
+```
 
 Next, we will learn how to perform classic iteration on arrays, and also familiarize ourselves with
 our first `Array` method, `Array.prototype.forEach`.
