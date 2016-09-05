@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Using ES6 arrow functions in production-ready apps"
-pub_date: 2016-08-31 7:00:00 PM
-last_modified: 2016-08-31 7:00:00 PM
+pub_date: 2016-09-05 8:00:00 PM
+last_modified: 2016-09-05 8:00:00 PM
 permalink: /es6-arrow-functions-production/
 categories:
   - javascript
@@ -10,15 +10,14 @@ published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
 keywords: javascript, es6, ecmascript, ecmascript 6, arrow functions, functions, production, apps, callbacks
-featured_image: /images/posts/load-balancing-websockets-behind-nginx/post.jpg
+featured_image: /images/posts/using-es6-arrown-functions-in-production-ready-apps/post.jpg
 ---
 
-Arrow functions are a great addition to the ECMAScript 6 standard. You can think of them as throwaway functions that a you can attach to a click or mouse event.
+If you are just getting started with ES6, you might have heard about "fat arrow functions". They are a great addition to the ECMAScript 6 standard and their origin is probably the CoffeeScript function declaration. You can think of them as throwaway functions that a you can attach to a click or mouse event.  
 There are a couple of ways to use arrow functions and we are going to go over each one in turn.
 
 ## Table of contents
 {:.no_toc}
-
 * Table of contents(will contain all headings execept the "Table of contents" one above)
 {:toc}
 
@@ -46,7 +45,7 @@ let multipliedBy2 = numbers.map((number) => {
 console.log(multipliedBy2); // [2, 4, 6, 8]
 {% endprism %}
 
-As I mentioned in my [ES6 arrow functions in depth](/es6-arrow-functions-in-depth) article, the arrow function implicitly returns the result of executing its logic, when it is a one-liner.  
+As I mentioned in my [ES6 arrow functions in depth](/es6-arrow-functions-in-depth/#implicit-return "Link to article section"){:target="blank"} article, the arrow function implicitly returns the result of executing its logic, if it has a [concise body / block body](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Function_body "More info on arrow functions concise body").  
 This feature makes the arrow function an ideal callback for `Array` operations that return new arrays, like `map` and `filter`. 
 
 With this in mind, let's simplify our `map` example.
@@ -61,16 +60,21 @@ const multipliedBy2WithShorterCallback = numbers.map(n => n * 2);
 
 ## Function expressions
 
-The function expression form of the arrow function is very popular in the React.js community. This is mostly due to its clear semantics.  
-One of the people making extensive use of this feature in their examples and tutorials is Dan Abramov, the author of Redux.
+The function expression form of the arrow function is very popular in the React.js community. This is mostly due to its concise semantics. One of the people making extensive use of this feature in their examples and tutorials is Dan Abramov, the author of Redux.
 
 {% prism javascript %}
-const todoApp = (state = {}, action) => {
-    return {
-        items: state.items
+const todos = (state = [], action) => {
+    switch(action.type) {
+    case ADD_TODO:
+        return [..state, action.text];
+    default:
+        return state;
     }
 }
 {% endprism %}
+
+This allows you to call your otherwise anonymous arrow function wherever you need it, by using the `todos` identifier. Just be  careful that the hoisting for function expressions is different from the regular function. While the function is hoisted with all its body, to the top of the scope, function expressions are treated as regular variables, and only the `todos` identifier will be hoisted to the top of the scope but without the function body. This is why you cannot call functions defined using function expressions, before the site where they are assigned to the identifier in the code.  
+
 
 ## Returning data
 
@@ -104,7 +108,7 @@ multiplyBy3(2); // 6
 multiplyBy3(3); // 9
 {% endprism %}
 
-If you need to return objects from an arrow functions, there's a catch. You cannot use the curly braces directly. 
+If you need to return objects from an arrow functions, there's a catch. You cannot use the curly braces directly as that would throw an error. 
 
 {% prism javascript %}
 const getInitialData = () => {
@@ -116,7 +120,7 @@ const getInitialData = () => {
 let initialData = getInitialData();
 {% endprism %}
 
-The code above will throw an error, because the JavaScript engine expects the object's curly braces to be a block of code, and instead it finds identifiers and colons and commas inside it.  
+The JavaScript engine expects the object's curly braces to be a block of code. Instead it finds identifiers, colons and commas and it doesn't quite know what to do with them.  
 
 To work around this, all you need to do is to surround your whole object in parenthesis. This will not throw an error and your code will work as expected and also look good in the process.
 
@@ -130,7 +134,7 @@ const initialData = () => ({
 let initialData = getInitialData();
 {% endprism %}
 
-With this last part, we wrapped up all known usages of arrow functions in real-life, production apps. For more, in-depth knowledge on the subject, refer to my [ES6 arrow functions in depth](/es6-arrow-functions-in-depth) article, where I talk more about the internals of the arrow function.
+With this last part, we wrapped up all known usages of arrow functions in real-life, production apps. For more, in-depth knowledge on the subject, refer to my [ES6 arrow functions in depth](/es6-arrow-functions-in-depth "Link to article"){:target="blank"} article, where I talk more about the internals of the arrow function.
 
 > Photo credits:
-> [Richard Elzey](https://www.flickr.com/photos/elzey/) &mdash; [Arrow Signs](https://flic.kr/p/9ZDxat)
+> [Pascal](https://www.flickr.com/photos/pasukaru76/) &mdash; [Killbot Assembly Line](https://flic.kr/p/bvcbis)
