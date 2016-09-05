@@ -27,7 +27,7 @@ Let us now get past the shorter syntax and dive deeper into the specifics of the
 Previously, regular functions would have their `this` value set to the global object if they were used as callbacks, to a new object in case they were called with the `new` operator or, in the case of libraries like jQuery, they would be set to the object that triggered an event in case of event handlers, or the current element in a `$.each` iteration.This situation proved very confusing even for experienced developers.
 Let’s say you have a piece of code like the one below.
 
-{% prism javascript %}
+```javascript
 var obj = {
   nameValue: 'default',
   initializeHandlers: function() {
@@ -40,7 +40,7 @@ var obj = {
 };
 
 obj.initializeHandlers();
-{% endprism %}
+```
 
 The problem is that `this` inside the `blur` event handler is set to the global object rather than obj. In strict mode &mdash; `‘use strict’;` &mdash; you risk breaking your application because `this` is set to `undefined`. In order to side-step this issue we have two options:
 
@@ -49,7 +49,7 @@ The problem is that `this` inside the `blur` event handler is set to the global 
 
 Both options are illustrated below.
 
-{% prism javascript %}
+```javascript
 [...]
 initializeHandlers: function() {
   var nameInput = document.querySelector('#name');
@@ -61,9 +61,9 @@ initializeHandlers: function() {
   nameInput.addEventListener('blur', blurHandler);
 }
 [...]
-{% endprism %}
+```
 
-{% prism javascript %}
+```javascript
 [...]
 initializeHandlers: function() {
   var nameInput = document.querySelector('#name');
@@ -76,11 +76,11 @@ initializeHandlers: function() {
 }
 [...]
 
-{% endprism %}
+```
 
 On the other hand, arrow functions have no internal context. They inherit their context from the outer scope. Let’s take a look at how arrow functions solve this problem.
 
-{% prism javascript %}
+```javascript
 const obj = {
   nameValue: 'default',
   initializeHandlers: function() {
@@ -92,7 +92,7 @@ const obj = {
     });
   }
 };
-{% endprism %}
+```
 
 In our new implementation `this` is a hard reference to the `obj` object and doesn’t get lost due to nesting.
 
@@ -102,7 +102,7 @@ Have you ever tried to access the `arguments` object inside an arrow function? I
 Thankfully, MDN exists, and as good practice dictates, you check the documentation at the end, when you sit in a corner, knees tucked to your chest, rocking and repeating to yourself: “I should have been a carpenter!”
 Fun aside, arrow functions do not expose an `arguments` object. If you try to access it, you will get the arguments of the surrounding function. In our case, given the fact that the outer function is an arrow function as well, and we have no more functions further up the chain, we will get a `ReferenceError`.
 
-{% prism javascript %}
+```javascript
 const variadicAdder = (x) => {
 
   return () => {
@@ -117,13 +117,13 @@ const variadicAdderOf5 = variadicAdder(5);
 
 console.log(variadicAdderOf5(10, 11, 12));
 // ReferenceError: arguments is not defined
-{% endprism %}
+```
 
 There is no fix here, as there is nothing broken. What we can do is to return a plain function, rather than an arrow, from our `variadicAdder()`.
 This will give us the opportunity to access the `arguments` object without an issue. The updated code will look like the one below with the only difference
 that it will actually work and not throw an error.
 
-{% prism javascript %}
+```javascript
 const variadicAdder = (x) => {
 
   return function() {
@@ -138,7 +138,7 @@ const variadicAdderOf5 = variadicAdder(5);
 
 console.log(variadicAdderOf5(10, 11, 12));
 // 38
-{% endprism %}
+```
 
 To find out more about `Array.prototype.reduce`, head to the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce).
 
@@ -150,7 +150,7 @@ A very powerful feature is the ability to implicitly return the result of the lo
 
 Take a look at the example below and let's see how we can simplify it and make use of this powerful feature.
 
-{% prism javascript %}
+```javascript
 
 function regularMultiplyBy2(n) {
   return n * 2;
@@ -161,26 +161,26 @@ const multiplyBy2Arrow = (n) => {
 };
 
 const multiplyBy2ArrowWithImplicitReturn = (n) => n * 2;
-{% endprism %}
+```
 
 We can even go a step further and remove the parens around the function's argument.
 
-{% prism javascript %}
+```javascript
 const multiplyBy2 = n => n * 2;
-{% endprism %}
+```
 
 ### No `new` calls
 
 Being completely anonymous and dependent on their surrounding context, you are unable to use the `new` operator with arrow functions. As a direct implication, arrow functions also don’t have `super()`. Snippets like the one below would simply throw a `TypeError`.
 
-{% prism javascript %}
+```javascript
 const Person = (name) => {
   this.name = name;
 };
 
 let p = new Person('John');
 // TypeError: Person is not a constructor
-{% endprism %}
+```
 
 ### No `new.target`
 
