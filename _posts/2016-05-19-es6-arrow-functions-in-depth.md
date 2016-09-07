@@ -2,7 +2,7 @@
 layout: post
 title: "ES6 arrow functions in depth"
 pub_date: 2016-05-19 4:40:00 PM
-last_modified: 2016-09-03 11:00:00 AM
+last_modified: 2016-09-07 1:42:00 PM
 categories:
   - javascript
 published: true
@@ -194,6 +194,14 @@ Now that you got a bit more detail into how arrow functions work, go and use the
 I can't help recommending that you go through the [Mozilla Developer Network JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) as
 there is an abundance of knowledge that will help you in the long run, in your web development career.
 Feel free to leave comments, suggest edits and especially share with your peers.
+
+## Update 1
+
+Added the [**Implicit return**](#implicit-return) section.
+
+## Update 2
+
+Just published an article called [Using ES6 arrow functions in production-ready apps](/es6-arrow-functions-production/ "Article link: Using ES6 arrow functions in production-ready apps") that is directly tied to this article.
 
 Cheers!
 

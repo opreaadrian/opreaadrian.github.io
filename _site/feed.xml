@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-09-05T20:45:23+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Using ES6 arrow functions in production-ready apps</title><link href="https://codesi.nz/es6-arrow-functions-production/" rel="alternate" type="text/html" title="Using ES6 arrow functions in production-ready apps" /><published>2016-09-05T00:00:00+03:00</published><updated>2016-09-05T00:00:00+03:00</updated><id>https://codesi.nz/using-es6-arrow-functions-in-production-ready-apps</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-production/">&lt;p&gt;If you are just getting started with ES6, you might have heard about “fat arrow functions”. They are a great addition to the ECMAScript 6 standard and their origin is probably the CoffeeScript function declaration. You can think of them as throwaway functions that a you can attach to a click or mouse event.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-09-07T13:42:35+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Using ES6 arrow functions in production-ready apps</title><link href="https://codesi.nz/es6-arrow-functions-production/" rel="alternate" type="text/html" title="Using ES6 arrow functions in production-ready apps" /><published>2016-09-05T00:00:00+03:00</published><updated>2016-09-05T00:00:00+03:00</updated><id>https://codesi.nz/using-es6-arrow-functions-in-production-ready-apps</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-production/">&lt;p&gt;If you are just getting started with ES6, you might have heard about “fat arrow functions”. They are a great addition to the ECMAScript 6 standard and their origin is probably the CoffeeScript function declaration. You can think of them as throwaway functions that a you can attach to a click or mouse event.&lt;br /&gt;
 There are a couple of ways to use arrow functions and we are going to go over each one in turn.&lt;/p&gt;
 
 &lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
@@ -402,6 +402,8 @@ Let us now get past the shorter syntax and dive deeper into the specifics of the
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#closing-thoughts&quot; id=&quot;markdown-toc-closing-thoughts&quot;&gt;Closing thoughts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#update-1&quot; id=&quot;markdown-toc-update-1&quot;&gt;Update 1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#update-2&quot; id=&quot;markdown-toc-update-2&quot;&gt;Update 2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;lexically-bound-this&quot;&gt;Lexically-bound this&lt;/h2&gt;
@@ -578,6 +580,14 @@ The Mozilla Developer Network hosts a detailed explanation on &lt;code class=&qu
 I can’t help recommending that you go through the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference&quot;&gt;Mozilla Developer Network JavaScript Reference&lt;/a&gt; as
 there is an abundance of knowledge that will help you in the long run, in your web development career.
 Feel free to leave comments, suggest edits and especially share with your peers.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-1&quot;&gt;Update 1&lt;/h2&gt;
+
+&lt;p&gt;Added the &lt;a href=&quot;#implicit-return&quot;&gt;&lt;strong&gt;Implicit return&lt;/strong&gt;&lt;/a&gt; section.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-2&quot;&gt;Update 2&lt;/h2&gt;
+
+&lt;p&gt;Just published an article called &lt;a href=&quot;/es6-arrow-functions-production/&quot; title=&quot;Article link: Using ES6 arrow functions in production-ready apps&quot;&gt;Using ES6 arrow functions in production-ready apps&lt;/a&gt; that is directly tied to this article.&lt;/p&gt;
 
 &lt;p&gt;Cheers!&lt;/p&gt;
 
