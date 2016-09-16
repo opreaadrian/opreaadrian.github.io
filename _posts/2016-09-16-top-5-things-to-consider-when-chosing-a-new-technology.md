@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Top 5 things to consider when chosing a new technology"
-pub_date: 2016-09-15 4:30:00 PM
-last_modified: 2016-09-15 4:40:00 PM
+pub_date: 2016-09-16 10:00:00 AM
+last_modified: 2016-09-16 10:00:00 AM
 permalink: /top-5-things-to-consider-when-chosing-a-new-technology/
 categories:
   - prouctivity
@@ -10,7 +10,7 @@ published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
 keywords: productivity, scalability, technologies, software development, recipes, javascript, reactjs, react, angular, angular2, aurelia, libraries, front-end
-featured_image: /images/posts/load-balancing-websockets-behind-nginx/post.jpg
+featured_image: /images/posts/top-5-things-to-consider-when-chosing-a-new-technology/post.jpg
 ---
 
 There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, chosing technologies, libraries, platforms or programming languages can be just as hard.
@@ -32,7 +32,7 @@ I'm not saying that you should have a 3-month analysis process, requiring detail
 
 Think about the following scenario: 
 
-Your team choses a framework they know litte about. They are under pressure and they can't take the time to look at some stats for that framework. They know little about available learning materials and don't have time to evaluate the learning curve. One of two things can happen, and the latter is more likely than the former:
+Your team choses a framework they know litte about. They are under pressure and they can't take the time to look at some stats for each available framework. They know little about available learning materials and don't have time to evaluate the learning curve. One of two things can happen, and the latter is more likely than the former:
 
 1. Your company is an early adopter of a technology that is about to hit the mainstream. You get to be several steps in front of your competitors. 
 2. You end up with an unknown technology that only a specific team in your company knows. 
@@ -56,11 +56,11 @@ The advantage of having this process is that you can stop after step 5 and decid
 
 Below is a list of the most relevant front-end libraries, in no particular order.
 
-- [Angular 2]()
-- [React.js / Redux]()
-- [Cycle.js]()
-- [Aurelia]()
-- [Vue.js]()
+- [Angular 2](https://angular.io/ "Angular 2 official website"){:target="blank"}
+- [React.js](https://facebook.github.io/react/ "React JS GitHub page"){:target="blank"} / [Redux](http://redux.js.org "Redux official website"){:target="blank"}
+- [Cycle.js](http://cycle.js.org/ "Cycle.js official website"){:target="blank"}
+- [Aurelia](http://aurelia.io/ "Aurelia.js official website"){:target="blank"}
+- [Vue.js](http://vuejs.org/ "Vue.js official website"){:target="blank"}
 
 
 ## The evaluation criteria
@@ -116,4 +116,7 @@ If you expected me to bash all the libraries in the list and come up with a winn
 ## I'm taking on new projects
 
 I love working on different projects and helping people and businesses to meet their goals.  
-If you need help, [get in touch]() and let's see what I can help you with. 
+If you need help, send an email at [adrian@codesi.nz](mailto:adrian@codesi.nz) and let's see what I can help you with. 
+
+> Photo credits:
+> [Kyle Pearce](https://www.flickr.com/photos/keepitsurreal/) &mdash; [Choices](https://flic.kr/p/aiJFxH)
