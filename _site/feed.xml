@@ -1,4 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-09-07T13:42:35+03:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Using ES6 arrow functions in production-ready apps</title><link href="https://codesi.nz/es6-arrow-functions-production/" rel="alternate" type="text/html" title="Using ES6 arrow functions in production-ready apps" /><published>2016-09-05T00:00:00+03:00</published><updated>2016-09-05T00:00:00+03:00</updated><id>https://codesi.nz/using-es6-arrow-functions-in-production-ready-apps</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-production/">&lt;p&gt;If you are just getting started with ES6, you might have heard about “fat arrow functions”. They are a great addition to the ECMAScript 6 standard and their origin is probably the CoffeeScript function declaration. You can think of them as throwaway functions that a you can attach to a click or mouse event.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.0.3">Jekyll</generator><link href="https://codesi.nz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://codesi.nz/" rel="alternate" type="text/html" /><updated>2016-09-16T10:32:33+02:00</updated><id>https://codesi.nz/</id><title>codesins.</title><subtitle>codesins. is an opinionated blog about JavaScript, life and everything inbetween. It is maintained by Adrian Oprea, a software developer heavily focused on JavaScript. Adrian also likes to read, travel and enjoy life.</subtitle><author><name>Adrian Oprea</name><email>adrian@codesi.nz</email><uri>https://ro.linkedin.com/in/opreageorgeadrian</uri></author><entry><title>Top 5 things to consider when chosing a new technology</title><link href="https://codesi.nz/top-5-things-to-consider-when-chosing-a-new-technology/" rel="alternate" type="text/html" title="Top 5 things to consider when chosing a new technology" /><published>2016-09-14T00:00:00+02:00</published><updated>2016-09-14T00:00:00+02:00</updated><id>https://codesi.nz/top-5-things-to-consider-when-chosing-a-new-technology</id><content type="html" xml:base="https://codesi.nz/top-5-things-to-consider-when-chosing-a-new-technology/">&lt;p&gt;There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, chosing technologies, libraries, platforms or programming languages can be just as hard.
+There are many aspects to consider, besides how we feel about it or if it is trendy or not. Judging a framework, for example, only by its popularity and how bad you want to work with it, without looking at some numbers is a thing I call Resume-Driven Development (RDD) and has nothing to do with healthy software development practices. In this article, I will share with you, my process for making such difficult choices.&lt;/p&gt;
+
+&lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#a-bit-of-context&quot; id=&quot;markdown-toc-a-bit-of-context&quot;&gt;A bit of context&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#case-study&quot; id=&quot;markdown-toc-case-study&quot;&gt;Case study&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-evaluation-process&quot; id=&quot;markdown-toc-the-evaluation-process&quot;&gt;The evaluation process&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-evaluation-criteria&quot; id=&quot;markdown-toc-the-evaluation-criteria&quot;&gt;The evaluation criteria&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#community-size&quot; id=&quot;markdown-toc-community-size&quot;&gt;Community size&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#github-activity&quot; id=&quot;markdown-toc-github-activity&quot;&gt;GitHub activity&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#npm-stats&quot; id=&quot;markdown-toc-npm-stats&quot;&gt;Npm stats&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#official-documentation-maturity&quot; id=&quot;markdown-toc-official-documentation-maturity&quot;&gt;Official documentation maturity&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#learning-material-availability&quot; id=&quot;markdown-toc-learning-material-availability&quot;&gt;Learning material availability&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#extra-criteria&quot; id=&quot;markdown-toc-extra-criteria&quot;&gt;Extra criteria&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#closing-thoughts&quot; id=&quot;markdown-toc-closing-thoughts&quot;&gt;Closing thoughts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#im-taking-on-new-projects&quot; id=&quot;markdown-toc-im-taking-on-new-projects&quot;&gt;I’m taking on new projects&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;a-bit-of-context&quot;&gt;A bit of context&lt;/h2&gt;
+
+&lt;p&gt;During my career as a consultant, I’ve always offered technical guidance to clients. From chosing between cloud providers to optimizing the development process to chosing a front-end framework, I’ve done it all.&lt;br /&gt;
+One of the frequent issues I faced when working with the the client’s team on chosing a specific technology was the lack of process. They either did not have a process or they did not know about it.&lt;/p&gt;
+
+&lt;p&gt;If you own a business or you are a decision maker, you should know that migrating to new technologies without a clear process and careful consideration from the teams involved, can be highly detrimental.&lt;br /&gt;
+I’m not saying that you should have a 3-month analysis process, requiring detailed documentation and sign-off from 5 stakeholders. Far from it! These processes need to be light and streamlined. The only thing I’m suggesting is that a process should be in place and it should be known by all team members.&lt;/p&gt;
+
+&lt;p&gt;Think about the following scenario:&lt;/p&gt;
+
+&lt;p&gt;Your team choses a framework they know litte about. They are under pressure and they can’t take the time to look at some stats for each available framework. They know little about available learning materials and don’t have time to evaluate the learning curve. One of two things can happen, and the latter is more likely than the former:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Your company is an early adopter of a technology that is about to hit the mainstream. You get to be several steps in front of your competitors.&lt;/li&gt;
+  &lt;li&gt;You end up with an unknown technology that only a specific team in your company knows.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you end up in situation #2, which is almost always the case, not only is your project delivery going to be affected but you might also have trouble hiring the right people further down the road.&lt;/p&gt;
+
+&lt;h2 id=&quot;case-study&quot;&gt;Case study&lt;/h2&gt;
+
+&lt;p&gt;Let’s pretend for a moment that you want to migrate an application written in Flash, to modern web technologies and your team needs to chose the front-end stack to develop on. 
+I will outline the process you should use to evaluate the most known front-end frameworks/libraries and decide on the stack the team would later use to develop the new application.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-evaluation-process&quot;&gt;The evaluation process&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create a list of (relevant) candidate front-end libraries&lt;/li&gt;
+  &lt;li&gt;Establish the evaluation criteria&lt;/li&gt;
+  &lt;li&gt;Brief the team on the list and the criteria. Offer useful links for each technology&lt;/li&gt;
+  &lt;li&gt;Set up 1 or 2 meetings to discuss, clarify and decide&lt;/li&gt;
+  &lt;li&gt;Create a proof of concept using the chosen library&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The advantage of having this process is that you can stop after step 5 and decide whether it is worth going with framework X or if you need another round.&lt;/p&gt;
+
+&lt;p&gt;Below is a list of the most relevant front-end libraries, in no particular order.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://angular.io/&quot; title=&quot;Angular 2 official website&quot; target=&quot;blank&quot;&gt;Angular 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/react/&quot; title=&quot;React JS GitHub page&quot; target=&quot;blank&quot;&gt;React.js&lt;/a&gt; / &lt;a href=&quot;http://redux.js.org&quot; title=&quot;Redux official website&quot; target=&quot;blank&quot;&gt;Redux&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://cycle.js.org/&quot; title=&quot;Cycle.js official website&quot; target=&quot;blank&quot;&gt;Cycle.js&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://aurelia.io/&quot; title=&quot;Aurelia.js official website&quot; target=&quot;blank&quot;&gt;Aurelia&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://vuejs.org/&quot; title=&quot;Vue.js official website&quot; target=&quot;blank&quot;&gt;Vue.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-evaluation-criteria&quot;&gt;The evaluation criteria&lt;/h2&gt;
+
+&lt;p&gt;This is the most important aspect of the whole process. This is your filter and it should reflect your actual needs. Listed below are the criteria I use for all my client projects.&lt;/p&gt;
+
+&lt;h3 id=&quot;community-size&quot;&gt;Community size&lt;/h3&gt;
+
+&lt;p&gt;My recommendation is to stick with a library that has a large community. By community you can think of everything ranging from Twitter hashtags, StackOverflow community, IRC channels, Slack Channels.
+Another important aspect is the number of events (meetups, conferences) in your area.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-activity&quot;&gt;GitHub activity&lt;/h3&gt;
+
+&lt;p&gt;A big part of the decision is the GitHub repository. I’m not talking about GitHub stars. I can’t tell you the number of times I starred a project that I later forgot about. I’m talking about actual activity.&lt;/p&gt;
+
+&lt;p&gt;Take into account the following aspects:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Contributors (more is better)&lt;/li&gt;
+  &lt;li&gt;Commits (more is better)&lt;/li&gt;
+  &lt;li&gt;Resolved / Pending issues (more is better / less is better)&lt;/li&gt;
+  &lt;li&gt;Pending pull requests (less is better)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each of the indicators above signal the level of activity and the involvelment of the community in the development / maintenance process. For example, if there are many pull requests and some of them are pretty old and left hanging, that is a clear sign of a slow-moving community. This is probably due to the fact that open-source projects are usually side-projects that people maintain out of passion, outside their working hours.&lt;/p&gt;
+
+&lt;h3 id=&quot;npm-stats&quot;&gt;Npm stats&lt;/h3&gt;
+
+&lt;p&gt;This is simple. If it has a lot of downloads that means that it is used. compared to GitHub fork count or stars, which only indicate the level of interest of that community, the download count literally means that the module is in use. I don’t have a threshold or an orientative number but always look for the highest number of downloads.&lt;/p&gt;
+
+&lt;h3 id=&quot;official-documentation-maturity&quot;&gt;Official documentation maturity&lt;/h3&gt;
+
+&lt;p&gt;Sift through the documentation of the library. If you can make sense of it, then you probably have a good candidate for the final round. Note that this doesn’t mean everyone can understand the documentation. Make sure you get input from the team every step of the way. You might also find that for your sample application everything is very clear, but when you work on non-trivial applications, things can get more complicated. Always be sure to check what people are saying on forums and websites. Some documentations are available on GitHub so you might find some useful information directly on the repository.&lt;/p&gt;
+
+&lt;h3 id=&quot;learning-material-availability&quot;&gt;Learning material availability&lt;/h3&gt;
+
+&lt;p&gt;I won’t go into much detail on this, as it is self-explanatory. All I do is follow the list of steps outlined below.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Google for the library and eye-ball the number of blog articles available&lt;/li&gt;
+  &lt;li&gt;Search for courses on training sites such as: &lt;a href=&quot;http://pluralsight.com&quot; title=&quot;Link to Pluralsight website&quot; target=&quot;blank&quot;&gt;pluralsight.com&lt;/a&gt;, &lt;a href=&quot;http://egghead.io&quot; title=&quot;Link to Egghead.io website&quot; target=&quot;blank&quot;&gt;egghead.io&lt;/a&gt;, &lt;a href=&quot;http://tutsplus.com&quot; title=&quot;Link to Tutsplus.com website&quot; target=&quot;blank&quot;&gt;tutsplus.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Look on Twitter and other popular tech news aggregators like &lt;a href=&quot;&quot;&gt;echojs.com&lt;/a&gt; for mentions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;extra-criteria&quot;&gt;Extra criteria&lt;/h3&gt;
+
+&lt;p&gt;If after going through the process above, you still haven’t found “the right one” there are two more steps that you can take:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Check if the project is backed by a company. As I mentioned before, OSS projects are usually passion projects of people who also have a day job. This is usually a risk factor as they might grow tired or bored of the project, or they might not have the time to maintain it anymore. On the other hand, companies have people or entire teams dedicated to the development of a project, which brings more stability in terms of project maintenance.&lt;/li&gt;
+  &lt;li&gt;Check the activity of the main contributor / contributors since the project started. If they dropped development on a framework to go work for a company and after that they left the company and started a new framework, I would advise you to think a bit more about the reliability of the project. It might be an extraordinary piece of software but unless you want to possibly become a contributor, you need to stay away from projects like this.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;closing-thoughts&quot;&gt;Closing thoughts&lt;/h2&gt;
+
+&lt;p&gt;If you expected me to bash all the libraries in the list and come up with a winner, you got tricked. I’m not going to declare winners here, but you can use &lt;a href=&quot;/resources/frontend_libraries_comparison.pdf&quot; target=&quot;blank&quot;&gt;this document&lt;/a&gt; I put together a couple of weeks ago for a client of mine and decide for yourself.&lt;/p&gt;
+
+&lt;h2 id=&quot;im-taking-on-new-projects&quot;&gt;I’m taking on new projects&lt;/h2&gt;
+
+&lt;p&gt;I love working on different projects and helping people and businesses to meet their goals.&lt;br /&gt;
+If you need help, send an email at &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#097;&amp;#100;&amp;#114;&amp;#105;&amp;#097;&amp;#110;&amp;#064;&amp;#099;&amp;#111;&amp;#100;&amp;#101;&amp;#115;&amp;#105;&amp;#046;&amp;#110;&amp;#122;&quot;&gt;&amp;#097;&amp;#100;&amp;#114;&amp;#105;&amp;#097;&amp;#110;&amp;#064;&amp;#099;&amp;#111;&amp;#100;&amp;#101;&amp;#115;&amp;#105;&amp;#046;&amp;#110;&amp;#122;&lt;/a&gt; and let’s see what I can help you with.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Photo credits:
+&lt;a href=&quot;https://www.flickr.com/photos/keepitsurreal/&quot;&gt;Kyle Pearce&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/aiJFxH&quot;&gt;Choices&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, chosing technologies, libraries, platforms or programming languages can be just as hard.
+There are many aspects to consider, besides how we feel about it or if it is trendy or not. Judging a framework, for example, only by its popularity and how bad you want to work with it, without looking at some numbers is a thing I call Resume-Driven Development (RDD) and has nothing to do with healthy software development practices. In this article, I will share with you, my process for making such difficult choices.</summary></entry><entry><title>Using ES6 arrow functions in production-ready apps</title><link href="https://codesi.nz/es6-arrow-functions-production/" rel="alternate" type="text/html" title="Using ES6 arrow functions in production-ready apps" /><published>2016-09-05T00:00:00+02:00</published><updated>2016-09-05T00:00:00+02:00</updated><id>https://codesi.nz/using-es6-arrow-functions-in-production-ready-apps</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-production/">&lt;p&gt;If you are just getting started with ES6, you might have heard about “fat arrow functions”. They are a great addition to the ECMAScript 6 standard and their origin is probably the CoffeeScript function declaration. You can think of them as throwaway functions that a you can attach to a click or mouse event.&lt;br /&gt;
 There are a couple of ways to use arrow functions and we are going to go over each one in turn.&lt;/p&gt;
 
 &lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
@@ -130,7 +262,7 @@ This feature makes the arrow function an ideal callback for &lt;code class=&quot
   &lt;p&gt;Photo credits:
 &lt;a href=&quot;https://www.flickr.com/photos/pasukaru76/&quot;&gt;Pascal&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/bvcbis&quot;&gt;Killbot Assembly Line&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>If you are just getting started with ES6, you might have heard about “fat arrow functions”. They are a great addition to the ECMAScript 6 standard and their origin is probably the CoffeeScript function declaration. You can think of them as throwaway functions that a you can attach to a click or mouse event.
-There are a couple of ways to use arrow functions and we are going to go over each one in turn.</summary></entry><entry><title>The fly theory of helpfulness</title><link href="https://codesi.nz/the-fly-theory-of-helpfulness/" rel="alternate" type="text/html" title="The fly theory of helpfulness" /><published>2016-08-17T00:00:00+03:00</published><updated>2016-08-17T00:00:00+03:00</updated><id>https://codesi.nz/the-fly-theory-of-helpfulness</id><content type="html" xml:base="https://codesi.nz/the-fly-theory-of-helpfulness/">&lt;p&gt;This article is the result of an experience I had a couple of days ago, before
+There are a couple of ways to use arrow functions and we are going to go over each one in turn.</summary></entry><entry><title>The fly theory of helpfulness</title><link href="https://codesi.nz/the-fly-theory-of-helpfulness/" rel="alternate" type="text/html" title="The fly theory of helpfulness" /><published>2016-08-17T00:00:00+02:00</published><updated>2016-08-17T00:00:00+02:00</updated><id>https://codesi.nz/the-fly-theory-of-helpfulness</id><content type="html" xml:base="https://codesi.nz/the-fly-theory-of-helpfulness/">&lt;p&gt;This article is the result of an experience I had a couple of days ago, before
 going to bed. This made me realise that my eagerness to help people, sometimes 
 does me and the people I’m trying to help a great disservice.&lt;/p&gt;
 
@@ -246,7 +378,7 @@ the stables will also work for catching flies.&lt;/p&gt;
 &lt;a href=&quot;https://www.flickr.com/photos/quinnanya/&quot;&gt;Quinn Dombrowski&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/e4vxUD&quot;&gt;Help&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>This article is the result of an experience I had a couple of days ago, before
 going to bed. This made me realise that my eagerness to help people, sometimes 
-does me and the people I’m trying to help a great disservice.</summary></entry><entry><title>Event delegation in TinyMCE plugins</title><link href="https://codesi.nz/event-delegation-in-tinymce-plugins/" rel="alternate" type="text/html" title="Event delegation in TinyMCE plugins" /><published>2016-07-05T00:00:00+03:00</published><updated>2016-07-05T00:00:00+03:00</updated><id>https://codesi.nz/event-delegation-in-tinymce-plugins</id><content type="html" xml:base="https://codesi.nz/event-delegation-in-tinymce-plugins/">&lt;p&gt;For the past week or so, I’ve been working with &lt;a href=&quot;https://www.tinymce.com/&quot;&gt;TinyMCE&lt;/a&gt;. For those of you
+does me and the people I’m trying to help a great disservice.</summary></entry><entry><title>Event delegation in TinyMCE plugins</title><link href="https://codesi.nz/event-delegation-in-tinymce-plugins/" rel="alternate" type="text/html" title="Event delegation in TinyMCE plugins" /><published>2016-07-05T00:00:00+02:00</published><updated>2016-07-05T00:00:00+02:00</updated><id>https://codesi.nz/event-delegation-in-tinymce-plugins</id><content type="html" xml:base="https://codesi.nz/event-delegation-in-tinymce-plugins/">&lt;p&gt;For the past week or so, I’ve been working with &lt;a href=&quot;https://www.tinymce.com/&quot;&gt;TinyMCE&lt;/a&gt;. For those of you
 who don’t know what it is, I’ll just say this: it is a &lt;strong&gt;WYSIWYG&lt;/strong&gt; (What You See Is What You Get) editor, very
 similar to the ones you find in popular blogging platforms like &lt;a href=&quot;https://wordpress.com/&quot;&gt;Wordpress&lt;/a&gt;.&lt;/p&gt;
 
@@ -332,7 +464,7 @@ to share your experience, you can do so by using the comments section or by twee
 &lt;a href=&quot;https://www.flickr.com/photos/kom-p/&quot;&gt;KOMPETENZZENTRUM: PRÄSENTATION&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/9ZPcVC&quot;&gt;Delegation&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>For the past week or so, I’ve been working with TinyMCE. For those of you
 who don’t know what it is, I’ll just say this: it is a WYSIWYG (What You See Is What You Get) editor, very
-similar to the ones you find in popular blogging platforms like Wordpress.</summary></entry><entry><title>Configuring Git - multiple identities</title><link href="https://codesi.nz/configuring-git-multiple-identities/" rel="alternate" type="text/html" title="Configuring Git - multiple identities" /><published>2016-06-29T00:00:00+03:00</published><updated>2016-06-29T00:00:00+03:00</updated><id>https://codesi.nz/configuring-git-multiple-identities</id><content type="html" xml:base="https://codesi.nz/configuring-git-multiple-identities/">&lt;p&gt;I’ve been a freelancer for quite some time, and for approximately the same amount
+similar to the ones you find in popular blogging platforms like Wordpress.</summary></entry><entry><title>Configuring Git - multiple identities</title><link href="https://codesi.nz/configuring-git-multiple-identities/" rel="alternate" type="text/html" title="Configuring Git - multiple identities" /><published>2016-06-29T00:00:00+02:00</published><updated>2016-06-29T00:00:00+02:00</updated><id>https://codesi.nz/configuring-git-multiple-identities</id><content type="html" xml:base="https://codesi.nz/configuring-git-multiple-identities/">&lt;p&gt;I’ve been a freelancer for quite some time, and for approximately the same amount
 of time, I’ve been making the same mistake, over and over, again. Whenever I had
 to work for multiple customers in the same period of time, I would always mix-up
 the email addresses in my Git configuration, and end up committing code on
@@ -386,7 +518,7 @@ one of the following commands in your terminal emulator of choice:&lt;/p&gt;
 of time, I’ve been making the same mistake, over and over, again. Whenever I had
 to work for multiple customers in the same period of time, I would always mix-up
 the email addresses in my Git configuration, and end up committing code on
-a client’s codebase and sign it with the email and details from another client.</summary></entry><entry><title>ES6 arrow functions in depth</title><link href="https://codesi.nz/es6-arrow-functions-in-depth/" rel="alternate" type="text/html" title="ES6 arrow functions in depth" /><published>2016-05-19T00:00:00+03:00</published><updated>2016-05-19T00:00:00+03:00</updated><id>https://codesi.nz/es6-arrow-functions-in-depth</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-in-depth/">&lt;p&gt;One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
+a client’s codebase and sign it with the email and details from another client.</summary></entry><entry><title>ES6 arrow functions in depth</title><link href="https://codesi.nz/es6-arrow-functions-in-depth/" rel="alternate" type="text/html" title="ES6 arrow functions in depth" /><published>2016-05-19T00:00:00+02:00</published><updated>2016-05-19T00:00:00+02:00</updated><id>https://codesi.nz/es6-arrow-functions-in-depth</id><content type="html" xml:base="https://codesi.nz/es6-arrow-functions-in-depth/">&lt;p&gt;One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
 As I like to explain it to the people who attend my trainings/workshops, arrow functions are &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;arguments&lt;/code&gt;-less, &lt;code class=&quot;highlighter-rouge&quot;&gt;new.target&lt;/code&gt;-less and &lt;code class=&quot;highlighter-rouge&quot;&gt;super&lt;/code&gt;-less.
 Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.&lt;/p&gt;
 
@@ -596,7 +728,7 @@ Feel free to leave comments, suggest edits and especially share with your peers.
 &lt;a href=&quot;https://www.flickr.com/photos/elzey/&quot;&gt;Richard Elzey&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/9ZDxat&quot;&gt;Arrow Signs&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>One of the prettiest features of ES6, it could easily win a beauty contest, if such a contest would be held. What many people don’t know is that the arrow function is not simply a form of syntactic sugar that we can use instead of the regular callback.
 As I like to explain it to the people who attend my trainings/workshops, arrow functions are this-less, arguments-less, new.target-less and super-less.
-Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.</summary></entry><entry><title>An SSH workflow that’s easier on your brain</title><link href="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/" rel="alternate" type="text/html" title="An SSH workflow that&#39;s easier on your brain" /><published>2016-05-05T00:00:00+03:00</published><updated>2016-05-05T00:00:00+03:00</updated><id>https://codesi.nz/an-ssh-workflow-easier-on-the-brain</id><content type="html" xml:base="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/">&lt;p&gt;In this quick tip, I will share my SSH workflow and how I manage things
+Let us now get past the shorter syntax and dive deeper into the specifics of the arrow function.</summary></entry><entry><title>An SSH workflow that’s easier on your brain</title><link href="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/" rel="alternate" type="text/html" title="An SSH workflow that&#39;s easier on your brain" /><published>2016-05-05T00:00:00+02:00</published><updated>2016-05-05T00:00:00+02:00</updated><id>https://codesi.nz/an-ssh-workflow-easier-on-the-brain</id><content type="html" xml:base="https://codesi.nz/an-ssh-workflow-easier-on-the-brain/">&lt;p&gt;In this quick tip, I will share my SSH workflow and how I manage things
 when it comes to working with multiple remote machines.
 Unlike “the old days” when we used to have Apache installed locally on our
 machines — I see you Mamp Server users — now, with the rise of cloud
@@ -717,7 +849,7 @@ Unlike “the old days” when we used to have Apache installed locally on our
 machines — I see you Mamp Server users — now, with the rise of cloud
 providers like Amazon, Digital Ocean or Microsoft Azure, and  products such as
 Docker, we are working more and more on systems that are spread accross multiple
-machines, instances, containers, you name it.</summary></entry><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+02:00</published><updated>2016-02-29T00:00:00+02:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
+machines, instances, containers, you name it.</summary></entry><entry><title>Serializing object methods using ES6 template strings and eval</title><link href="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/" rel="alternate" type="text/html" title="Serializing object methods using ES6 template strings and eval" /><published>2016-02-29T00:00:00+01:00</published><updated>2016-02-29T00:00:00+01:00</updated><id>https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval</id><content type="html" xml:base="https://codesi.nz/serializing-object-methods-with-ES6-template-strings-and-eval/">&lt;p&gt;Understanding the way AJAX and JSON manipulation work in JavaScript could make 
 the difference between writing an elegant, easy to reason about application, 
 and a crude hack. As far as my experience goes, only a small number of developers 
 I’ve talked to in the past year or so, know how to write a vanilla 
@@ -1055,7 +1187,7 @@ I’ve talked to in the past year or so, know how to write a vanilla
 XMLHttpRequest, from scratch. I do agree that it is important to get the 
 job done in a timely manner and not reinvent the wheel, but using something 
 without understanding it’s substance is something that I cannot come to terms 
-with, for someone other than a junior developer.</summary></entry><entry><title>Becoming a better JavaScript developer</title><link href="https://codesi.nz/becoming-a-better-javascript-developer/" rel="alternate" type="text/html" title="Becoming a better JavaScript developer" /><published>2015-12-21T00:00:00+02:00</published><updated>2015-12-21T00:00:00+02:00</updated><id>https://codesi.nz/becoming-a-better-javascript-developer</id><content type="html" xml:base="https://codesi.nz/becoming-a-better-javascript-developer/">&lt;p&gt;A week ago I saw a very interesting question on Quora, titled:  &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I’d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
+with, for someone other than a junior developer.</summary></entry><entry><title>Becoming a better JavaScript developer</title><link href="https://codesi.nz/becoming-a-better-javascript-developer/" rel="alternate" type="text/html" title="Becoming a better JavaScript developer" /><published>2015-12-21T00:00:00+01:00</published><updated>2015-12-21T00:00:00+01:00</updated><id>https://codesi.nz/becoming-a-better-javascript-developer</id><content type="html" xml:base="https://codesi.nz/becoming-a-better-javascript-developer/">&lt;p&gt;A week ago I saw a very interesting question on Quora, titled:  &lt;a href=&quot;https://www.quora.com/What-should-I-do-to-become-an-enterprise-level-professional-in-JavaScript/&quot;&gt;What should I do to become an enterprise level professional in JavaScript?&lt;/a&gt;. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I’d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
 One thing worth mentioning is the fact that I don’t yet consider myself an “enterprise JavaScript developer”, even though I have been called by that name. I’m a software developer with a sweet tooth for JavaScript, that’s it.&lt;/p&gt;
 
 &lt;h2 class=&quot;no_toc&quot; id=&quot;table-of-contents&quot;&gt;Table of contents&lt;/h2&gt;
@@ -1148,76 +1280,4 @@ You will only waste precious time and memory on useless stuff. Set small(reaaaaa
   &lt;p&gt;Credits:&lt;br /&gt;
 &lt;a href=&quot;https://www.flickr.com/photos/dvids/&quot;&gt;DVIDSHUB&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/5KpvAf&quot;&gt;Fitness Test Shows Marines a Taste of Combat&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>A week ago I saw a very interesting question on Quora, titled:  What should I do to become an enterprise level professional in JavaScript?. In this article, you will find my answer to this question, as I intend to keep it as a reference for everybody interested in the subject. I’d like to mention that writing this answer was highly beneficial for me, as I had to look back at my past and think about my actions and how they determined the path that I took in my career as a software development professional.
-One thing worth mentioning is the fact that I don’t yet consider myself an “enterprise JavaScript developer”, even though I have been called by that name. I’m a software developer with a sweet tooth for JavaScript, that’s it.</summary></entry><entry><title>My favorite podcasts</title><link href="https://codesi.nz/my-favorite-podcasts/" rel="alternate" type="text/html" title="My favorite podcasts" /><published>2015-12-05T00:00:00+02:00</published><updated>2015-12-05T00:00:00+02:00</updated><id>https://codesi.nz/my-favorite-podcasts</id><content type="html" xml:base="https://codesi.nz/my-favorite-podcasts/">&lt;p&gt;The one thing I absolutely love doing when I’m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.&lt;br /&gt;
-Today I’m going share with you which are my favorite podcasts, but before we get to the “meat” of the article, I want to let you know that I created &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt; where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.&lt;/p&gt;
-
-&lt;p&gt;The idea for this article started from a question I saw on one of the Facebook groups I follow, related specifically to the subject of podcasts. After I added my answer, I thought that it would be better if I could create a list that I could refer people to, and why not, have people contribute their own preferences.&lt;/p&gt;
-
-&lt;p&gt;So, without further ado, my list of podcasts.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpsdevchattvjs-jabber-targetblank-titlejavascript-jabberjavascript-jabbera&quot;&gt;&lt;a href=&quot;https://devchat.tv/js-jabber&quot; target=&quot;_blank&quot; title=&quot;JavaScript Jabber&quot;&gt;JavaScript Jabber&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;If you want to find out what are the latest and greatest in terms of JS libraries, frameworks, programming techniques, analytics tools, application monitoring, this is your go-to podcast. They have a great panel and they always invite people that are highly relevant in the JavaScript community.
-They have an absolutely awesome format, that you will see in both “Adventures In Angular” and “The Freelancers’ Show”, and at the end of the show they do “picks”, so you get the chance to find out what the panelists have been reading about, book titles, articles, various services they use, or don’t(that’s an anti-pick :D).&lt;br /&gt;
-Besides the regular panelists, one of them struck me as being a highly ambitious and motivated person — &lt;a href=&quot;https://twitter.com/Aimee_Knight&quot;&gt;Aimee Knight&lt;/a&gt;. The reason for my admiration is that before becoming a developer, she was a figure skater and in my opinion, it takes a lot of courage and effort to make that kind of switch; it’s totally different from becoming a developer after working as an accountant.&lt;br /&gt;
-Aimee gave a great talk at &lt;a href=&quot;http://angularconnect.com/&quot;&gt;AngularConnect 2015&lt;/a&gt; titled “Getting Comfortable Being Uncomfortable”, available on Youtube, so check it out:  &lt;a href=&quot;https://youtu.be/B22o_yeDE_s&quot;&gt;https://youtu.be/B22o_yeDE_s&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpsdevchattvadventures-in-angular-targetblank-titleadventures-in-angularadventures-in-angulara&quot;&gt;&lt;a href=&quot;https://devchat.tv/adventures-in-angular&quot; target=&quot;_blank&quot; title=&quot;Adventures In Angular&quot;&gt;Adventures In Angular&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;If you’re all about Angular, then you have a podcast all about your beloved  framework. You’ll hear about a lot of new directives, services to use in your Angular apps, performance tips, and more.&lt;br /&gt;
-Amongst the panelists you’ll hear some of the people that are on &lt;a href=&quot;https://devchat.tv/js-jabber&quot;&gt;JavaScript Jabber&lt;/a&gt; as well, but they also bring in people who are very influential in the Angular community.&lt;br /&gt;
-To list some of the panelists, I would mention: &lt;a href=&quot;https://twitter.com/cmaxw&quot;&gt;Charles Max Wood&lt;/a&gt; — initiator of &lt;a href=&quot;https://devchat.tv&quot;&gt;devchat.tv&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/simpulton&quot;&gt;Lukas Ruebbelke&lt;/a&gt; — &lt;a href=&quot;https://egghead.io&quot;&gt;egghead.io&lt;/a&gt; trainer, &lt;a href=&quot;https://twitter.com/John_Papa&quot;&gt;John Papa&lt;/a&gt; — c’mon, it’s John Papa.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpsdevchattvfreelancers-targetblank-titlethe-freelancers-showthe-freelancers-showa&quot;&gt;&lt;a href=&quot;https://devchat.tv/freelancers&quot; target=&quot;_blank&quot; title=&quot;The Freelancers&#39; Show&quot;&gt;The Freelancers’ Show&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;This one is my favorite. I’ve learned so many things from this podcast, that I recently started listening to all the episodes, to make sure I haven’t missed anything critical.&lt;br /&gt;
-Same as with “JavaScript Jabber” and “Adventures In Angular”, there are kind of the same people talking, they bring in other people that do freelancing, or offer various services for freelancers.&lt;br /&gt;
-I found a lot of useful things from this podcast, and only to name a few: what to bill for, how to pick your clients, keeping up to date, self-promotion,  &lt;a href=&quot;http://www.bookyourselfsolid.com/&quot; title=&quot;Link to Book yourself solid website&quot; target=&quot;_blank&quot;&gt;Michael Port’s “Book yourself solid” program&lt;/a&gt;.
-If you’re doing freelancing or planning on going freelance, I wholeheartedly recommend this podcast.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpentreprogrammerscom-targetblank-titleentreprogrammers-podcastentreprogrammers-podcasta&quot;&gt;&lt;a href=&quot;http://entreprogrammers.com/&quot; target=&quot;_blank&quot; title=&quot;Entreprogrammers Podcast&quot;&gt;Entreprogrammers Podcast&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;Again, another one about self-employment, freelancing, and the whole business of being a one-person shop. They discuss about conferences, projects they work on and share tips on how to be a better developreneur :).&lt;br /&gt;
-As for the panelists, if you used Backbone in their life, especially &lt;a href=&quot;http://marionettejs.com/&quot;&gt;Marionette.js&lt;/a&gt;, then you should know who &lt;a href=&quot;http://derickbailey.com&quot;&gt;Derick Bailey&lt;/a&gt; is. He used to post on &lt;a href=&quot;https://lostechies.com/&quot;&gt;the LosTechies blog&lt;/a&gt; and do a lot of other cool stuff with podcasting.
-You might have gotten used to Charles Max Wood by now. I don’t know where does this guy get his energy from, but, then again, that’s none of my business.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpsgimletmediacomshowreply-all-targetblank-titlereply-allreply-alla&quot;&gt;&lt;a href=&quot;https://gimletmedia.com/show/reply-all/&quot; target=&quot;_blank&quot; title=&quot;Reply All&quot;&gt;Reply All&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;This one is lighter on the brain. No programming involved, just the panelists’ viewpoints on the Internet, and how everything gets shaped by it.&lt;br /&gt;
-To quote their own description, “Reply All is a show about the internet, hosted by PJ Vogt and Alex Goldman. It features stories about how people shape the internet, and the internet shapes people.”&lt;br /&gt;
-They have other podcasts that might interest you, so feel free to &lt;a href=&quot;https://gimletmedia.com/&quot;&gt;check them all out&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpintegrumtechcomcategoryagile-weekly-podcast-targetblank-titleagile-weekly-podcastagile-weekly-podcasta&quot;&gt;&lt;a href=&quot;http://integrumtech.com/category/agile-weekly-podcast/&quot; target=&quot;_blank&quot; title=&quot;Agile Weekly Podcast&quot;&gt;Agile Weekly Podcast&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;This podcast helped me in a time where my knowledge about Agile methodologies was close to -1. It’s not that active lately, and the owners left it unmaintained for quite some time, but they still have very useful info into development teams’ dynamics, and how stuff is supposed to work in Agile environments.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-hrefhttpsteamtreehousecomlibrarythe-treehouse-show-targetblank-titlethe-treehouse-showthe-treehouse-showa&quot;&gt;&lt;a href=&quot;https://teamtreehouse.com/library/the-treehouse-show&quot; target=&quot;_blank&quot; title=&quot;The Treehouse Show&quot;&gt;The Treehouse Show&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;If you are a frontend developer, there’s a good chance you probably landed at one point on &lt;a href=&quot;https://teamtreehouse.com/&quot;&gt;www.teamtreehouse.com&lt;/a&gt; while looking for training material. If you’re more into the front-end side of things, this is definitely a podcast worth checking out. It’s hosted by Treehouses’ most prolific authors: &lt;a href=&quot;http://nickpettit.com/&quot;&gt;Nick Petitt&lt;/a&gt; and &lt;a href=&quot;http://jasonseifer.com/&quot;&gt;Jason Seifer&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This is the end of my podcasts list and I’m sure there are many more great podcasts and podcasters out there, so be sure to add your favorite podcast to &lt;a href=&quot;https://github.com/opreaadrian/great-podcasts&quot; title=&quot;Awesome podcasts repository&quot; target=&quot;_blank&quot;&gt;this github repository&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Credits: &lt;br /&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/pasukaru76/&quot;&gt;Pascal&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/6uzLyN&quot;&gt;Some old Beyer Dynamics headphones.&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>The one thing I absolutely love doing when I’m out and about, by myself, either walking, driving or running(not that often) is to listen to podcasts.
-Today I’m going share with you which are my favorite podcasts, but before we get to the “meat” of the article, I want to let you know that I created this github repository where all the podcasts mentioned in this article are listed. If you find it useful, make sure to share it with others and maybe contribute with your own preferences.</summary></entry><entry><title>Interest killers</title><link href="https://codesi.nz/things-that-kill-my-interest/" rel="alternate" type="text/html" title="Interest killers" /><published>2015-12-03T00:00:00+02:00</published><updated>2015-12-03T00:00:00+02:00</updated><id>https://codesi.nz/things-that-kill-my-interest</id><content type="html" xml:base="https://codesi.nz/things-that-kill-my-interest/">&lt;p&gt;I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I’m only talking about planned stuff, I don’t count the times I take a break and I’m not busy eating — one of my biggest “hobbies” — because those add up, too.&lt;/p&gt;
-
-&lt;p&gt;Anyway, nothing gets on my nerves more than wasting 15 minutes on some highly recommended tutorial, only to see that at some point they do something like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inherits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// blah&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;At that exact moment, I immediately close any open tabs with that material and hate the Interwebs for being that dumb.&lt;/p&gt;
-
-&lt;p&gt;Bottom line, content creators, please take best practices into account when authoring for tech people or you’ll lose them. Better yet, take best practices into account when catering towards aspiring tech people, because at some point, you’ll end up working with “your creation”, and it won’t be pretty.&lt;/p&gt;
-
-&lt;p&gt;Cheers!&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Credits: &lt;br /&gt;
-&lt;a href=&quot;https://www.flickr.com/photos/archer10/&quot;&gt;Dennis Jarvis&lt;/a&gt; — &lt;a href=&quot;https://flic.kr/p/4oULGp&quot;&gt;New Hampshire-5132 - Slanted Boiler&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Adrian Oprea</name></author><summary>I love learning new stuff, I really do! Usually, I spend at least 1 hour, daily, reading on stuff, watching videos, listening to podcasts. And when I say 1 hour, I’m only talking about planned stuff, I don’t count the times I take a break and I’m not busy eating — one of my biggest “hobbies” — because those add up, too.</summary></entry></feed>
+One thing worth mentioning is the fact that I don’t yet consider myself an “enterprise JavaScript developer”, even though I have been called by that name. I’m a software developer with a sweet tooth for JavaScript, that’s it.</summary></entry></feed>
