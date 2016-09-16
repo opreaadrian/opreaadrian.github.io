@@ -1,17 +1,20 @@
 ---
 layout: post
 title: "Top 5 things to consider when chosing a new technology"
-pub_date: 2016-09-14 4:00:00 PM
-last_modified: 2016-09-14 4:00:00 PM
+pub_date: 2016-09-15 4:30:00 PM
+last_modified: 2016-09-15 4:40:00 PM
+permalink: /top-5-things-to-consider-when-chosing-a-new-technology/
 categories:
   - prouctivity
 published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
-keywords: productivity, scalability, technologies, software development, recipes, javascript, reactjs, react, angular, angular2, aurelia
+keywords: productivity, scalability, technologies, software development, recipes, javascript, reactjs, react, angular, angular2, aurelia, libraries, front-end
 featured_image: /images/posts/load-balancing-websockets-behind-nginx/post.jpg
 ---
 
+There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, chosing technologies, libraries, platforms or programming languages can be just as hard.
+There are many aspects to consider, besides how we feel about it or if it is trendy or not. Judging a framework, for example, only by its popularity and how bad you want to work with it, without looking at some numbers is a thing I call Resume-Driven Development (RDD) and has nothing to do with healthy software development practices. In this article, I will share with you, my process for making such difficult choices. 
 
 ## Table of contents
 {:.no_toc}
@@ -19,13 +22,13 @@ featured_image: /images/posts/load-balancing-websockets-behind-nginx/post.jpg
 * Table of contents(will contain all headings execept the "Table of contents" one above)
 {:toc}
 
-There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, chosing technologies, libraries, platforms or programming languages can be just as hard.
-There are many aspects to consider, besides how we feel about it or if it is trendy or not. Judging a framework, for example, only by its popularity and how bad you want to work with it, without looking at some numbers is a thing I call Resume-Driven Development (RDD) and has nothing to do with healthy software development practices. In this article, I plan to share with you, my process and criteria for making such difficult choices. 
+## A bit of context
 
-During my career as a consultant, I've always provided technical guidance to my clients. From chosing the cloud provider to optimizing the development process to chosing a front-end framework, I've done it all.  
+During my career as a consultant, I've always offered technical guidance to clients. From chosing between cloud providers to optimizing the development process to chosing a front-end framework, I've done it all.  
 One of the frequent issues I faced when working with the the client's team on chosing a specific technology was the lack of process. They either did not have a process or they did not know about it.
 
-If you own a business or you are a decision maker, you should know that migrating to new technologies without a clear process and careful consideration from the teams involved, can be highly detrimental. I'm not saying that you should have a 3-month analysis process, requiring detailed documentation and sign-off from 5 stakeholders. Far from it! These processes need to be light and streamlined. The only thing I'm suggesting is that a process should be in place and it should be known by all team members. 
+If you own a business or you are a decision maker, you should know that migrating to new technologies without a clear process and careful consideration from the teams involved, can be highly detrimental.  
+I'm not saying that you should have a 3-month analysis process, requiring detailed documentation and sign-off from 5 stakeholders. Far from it! These processes need to be light and streamlined. The only thing I'm suggesting is that a process should be in place and it should be known by all team members. 
 
 Think about the following scenario: 
 
@@ -95,7 +98,7 @@ Sift through the documentation of the library. If you can make sense of it, then
 I won't go into much detail on this, as it is self-explanatory. All I do is follow the list of steps outlined below. 
 
 - Google for the library and eye-ball the number of blog articles available
-- Search for courses on training sites such as: [pluralsight.com](), [egghead.io](), [tutsplus.com]()
+- Search for courses on training sites such as: [pluralsight.com](http://pluralsight.com "Link to Pluralsight website"){:target="blank"}, [egghead.io](http://egghead.io "Link to Egghead.io website"){:target="blank"}, [tutsplus.com](http://tutsplus.com "Link to Tutsplus.com website"){:target="blank"}
 - Look on Twitter and other popular tech news aggregators like [echojs.com]() for mentions.
 
 
@@ -108,8 +111,9 @@ If after going through the process above, you still haven't found "the right one
 
 ## Closing thoughts
 
-If you expected me to bash all the libraries in the list and come up with a winner, you got tricked. I'm not going to declare winners here, but you can use [this document]() I put together a couple of weeks ago for a client of mine and decide for yourself. 
+If you expected me to bash all the libraries in the list and come up with a winner, you got tricked. I'm not going to declare winners here, but you can use [this document](/resources/frontend_libraries_comparison.pdf){:target="blank"} I put together a couple of weeks ago for a client of mine and decide for yourself. 
 
-## I'm taking on new work
+## I'm taking on new projects
 
-I'm currently available to work on new projects so [get in touch]() and let's see how I can help you. 
+I love working on different projects and helping people and businesses to meet their goals.  
+If you need help, [get in touch]() and let's see what I can help you with. 
