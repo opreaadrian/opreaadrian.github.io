@@ -1,19 +1,19 @@
 ---
 layout: post
-title: "Top 5 things to consider when chosing a new technology"
+title: "Top 5 things to consider when choosing a new technology"
 pub_date: 2016-09-16 10:00:00 AM
 last_modified: 2016-09-16 10:00:00 AM
-permalink: /top-5-things-to-consider-when-chosing-a-new-technology/
+permalink: /top-5-things-to-consider-when-choosing-a-new-technology/
 categories:
   - prouctivity
 published: true
 author: "Adrian Oprea"
 twitter: "@opreaadrian"
 keywords: productivity, scalability, technologies, software development, recipes, javascript, reactjs, react, angular, angular2, aurelia, libraries, front-end
-featured_image: /images/posts/top-5-things-to-consider-when-chosing-a-new-technology/post.jpg
+featured_image: /images/posts/top-5-things-to-consider-when-choosing-a-new-technology/post.jpg
 ---
 
-There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, chosing technologies, libraries, platforms or programming languages can be just as hard.
+There is a saying that naming things is the most difficult part of software development and it is 100% true. At the same time, choosing technologies, libraries, platforms or programming languages can be just as hard.
 There are many aspects to consider, besides how we feel about it or if it is trendy or not. Judging a framework, for example, only by its popularity and how bad you want to work with it, without looking at some numbers is a thing I call Resume-Driven Development (RDD) and has nothing to do with healthy software development practices. In this article, I will share with you, my process for making such difficult choices. 
 
 ## Table of contents
@@ -24,15 +24,15 @@ There are many aspects to consider, besides how we feel about it or if it is tre
 
 ## A bit of context
 
-During my career as a consultant, I've always offered technical guidance to clients. From chosing between cloud providers to optimizing the development process to chosing a front-end framework, I've done it all.  
-One of the frequent issues I faced when working with the the client's team on chosing a specific technology was the lack of process. They either did not have a process or they did not know about it.
+During my career as a consultant, I've always offered technical guidance to clients. From choosing between cloud providers to optimizing the development process to choosing a front-end framework, I've done it all.  
+One of the frequent issues I faced when working with the the client's team on choosing a specific technology was the lack of process. They either did not have a process or they did not know about it.
 
 If you own a business or you are a decision maker, you should know that migrating to new technologies without a clear process and careful consideration from the teams involved, can be highly detrimental.  
 I'm not saying that you should have a 3-month analysis process, requiring detailed documentation and sign-off from 5 stakeholders. Far from it! These processes need to be light and streamlined. The only thing I'm suggesting is that a process should be in place and it should be known by all team members. 
 
 Think about the following scenario: 
 
-Your team choses a framework they know litte about. They are under pressure and they can't take the time to look at some stats for each available framework. They know little about available learning materials and don't have time to evaluate the learning curve. One of two things can happen, and the latter is more likely than the former:
+Your team chooses a framework they know litte about. They are under pressure and they can't take the time to look at some stats for each available framework. They know little about available learning materials and don't have time to evaluate the learning curve. One of two things can happen, and the latter is more likely than the former:
 
 1. Your company is an early adopter of a technology that is about to hit the mainstream. You get to be several steps in front of your competitors. 
 2. You end up with an unknown technology that only a specific team in your company knows. 
@@ -41,7 +41,7 @@ If you end up in situation #2, which is almost always the case, not only is your
 
 ## Case study
 
-Let's pretend for a moment that you want to migrate an application written in Flash, to modern web technologies and your team needs to chose the front-end stack to develop on. 
+Let's pretend for a moment that you want to migrate an application written in Flash, to modern web technologies and your team needs to choose the front-end stack to develop on. 
 I will outline the process you should use to evaluate the most known front-end frameworks/libraries and decide on the stack the team would later use to develop the new application.
 
 ## The evaluation process
