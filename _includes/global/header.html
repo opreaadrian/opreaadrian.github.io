@@ -12,9 +12,7 @@
   {% include global/article_page_meta.html %}
   {% else %}
   <title>{{ site.name }}</title>
-  <!-- PRELOAD LATEST ARTICLE -->
-  <link rel="preload" href="{{ site.posts.first.url }}">
-  <!-- /END PRELOAD LATEST ARTICLE -->
+  <link rel="prefetch" href="{{ site.posts.first.url }}">
   <meta name="keywords" content="{{ site.keywords }}">
   <meta name="author" itemprop="creator" content="{{ site.author.name }}">
   {% include global/standard_page_meta.html %}

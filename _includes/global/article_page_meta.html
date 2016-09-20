@@ -16,3 +16,12 @@
 <meta name="twitter:title" content="{{ page.title }}">
 <meta name="twitter:description" content="{{ page.excerpt | strip_html }}">
 <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}{{ page.featured_image }}">
+
+<!-- Preload / Prefetch / Prerender -->
+{% if page.previous %}
+<link rel="prefetch" href="{{ page.previous.url }}">
+{% endif %}
+
+{% if page.next %}
+<link rel="prefetch" href="{{ page.next.url }}">
+{% endif %}
