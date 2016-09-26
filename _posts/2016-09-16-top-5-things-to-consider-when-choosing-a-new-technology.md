@@ -115,8 +115,8 @@ If you expected me to bash all the libraries in the list and come up with a winn
 
 ## I'm taking on new projects
 
-I love working on different projects and helping people and businesses to meet their goals.  
-If you need help, send an email at [adrian@codesi.nz](mailto:adrian@codesi.nz) and let's see what I can help you with. 
+Is your team having trouble deciding on the framework to use for your next application? Are you migrating an old web application and would like to be  productive fast?  
+Email me at [adrian@codesi.nz](mailto:adrian@codesi.nz) or [schedule some time on my calendar](https://calendly.com/neuron01/ "Link to my calendly.com calendar"){:target="blank"} and let's see how I can help you.
 
 > Photo credits:
 > [Kyle Pearce](https://www.flickr.com/photos/keepitsurreal/) &mdash; [Choices](https://flic.kr/p/aiJFxH)
